@@ -892,6 +892,10 @@
       gap: 3px;
     }
 
+    .res-card.full-width {
+      grid-column: span 2;
+    }
+
     .res-card.active {
       background: var(--emerald-light);
       border-color: var(--emerald);
@@ -1272,11 +1276,11 @@
         <span class="sns-badge-icon sns-naver">N</span>
         <span>네이버 블로그</span>
       </a>
-      <a id="snsYoutubeLink" href="https://www.youtube.com" target="_blank" rel="noopener" class="sns-btn">
+      <a id="snsYoutubeLink" href="https://www.youtube.com/@줄눈.방충망.타일코팅" target="_blank" rel="noopener" class="sns-btn">
         <span class="sns-badge-icon sns-youtube">▶</span>
         <span>유튜브</span>
       </a>
-      <a id="snsInstaLink" href="https://www.instagram.com" target="_blank" rel="noopener" class="sns-btn">
+      <a id="snsInstaLink" href="https://www.instagram.com/deep_clean_6831" target="_blank" rel="noopener" class="sns-btn">
         <span class="sns-badge-icon sns-insta" aria-hidden="true">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
             <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
@@ -1345,7 +1349,13 @@
   </section>
 
   <!-- 푸터 -->
-  <footer class="biz-footer" id="bizFooter"></footer>
+  <footer class="biz-footer" id="bizFooter">
+    상호명: 부산딥클린 올인원 홈케어<br />
+    대표자: 양상인<br />
+    사업장 소재지: 부산광역시 남구 석포로45 1층<br />
+    시공 지역: 부산 · 김해 · 양산 · 창원 · 밀양 · 울산 경남 전지역 (출장 가능: 경주 · 대구 · 남해)<br />
+    상담 문의: 010-4944-6831
+  </footer>
 
   <!-- 8. 하단 고정 스마트 독 -->
   <div class="bottom-dock">
@@ -1355,7 +1365,7 @@
       <span id="dockCountText" class="dock-ticker-count">0건 선택됨 ▲</span>
     </div>
     <div class="dock-actions">
-      <a id="dockCallBtn" href="tel:010-0000-0000" class="dock-call-btn">전화 문의</a>
+      <a id="dockCallBtn" href="tel:01049446831" class="dock-call-btn">전화 문의</a>
       <button type="button" class="dock-sms-btn" onclick="openSmsModal()">문자 견적 바로보내기</button>
     </div>
   </div>
@@ -1387,7 +1397,7 @@
   </div>
 
   <script>
-    const STORAGE_KEY = 'busandeepclean_homecare_v1';
+    const STORAGE_KEY = 'busandeepclean_homecare_v3';
 
     function makeSvgThumb(bg1, bg2, lineColor) {
       const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="600" height="450" viewBox="0 0 600 450">
@@ -1416,18 +1426,18 @@
     };
 
     const DEFAULT_CONFIG = {
-      phone: '010-0000-0000',
+      phone: '010-4944-6831',
       adminPw: '0000',
       sns: {
         blog: 'https://blog.naver.com/deepclean6831',
-        youtube: 'https://www.youtube.com',
-        instagram: 'https://www.instagram.com'
+        youtube: 'https://www.youtube.com/@줄눈.방충망.타일코팅',
+        instagram: 'https://www.instagram.com/deep_clean_6831'
       },
       biz: {
         name: '부산딥클린 올인원 홈케어',
-        owner: '',
+        owner: '양상인',
         bizNo: '',
-        address: '부산광역시 남구 감만동',
+        address: '부산광역시 남구 석포로45 1층',
         regions: '부산 · 김해 · 양산 · 창원 · 밀양 · 울산 경남 전지역 (출장 가능: 경주 · 대구 · 남해)'
       },
       services: {
@@ -1495,10 +1505,10 @@
             { id: '700r', name: '아크바리아 700 R', grade: '700 R', desc: '샤워부스 유리, 거울, 수전, 도기류', color: 'blue' }
           ],
           zones: [
-            { id: 'c_kitchen_top', name: '주방 상판', badge: '추천 · Z 추천', defaultMat: '700z' },
-            { id: 'c_living_tile', name: '거실 타일', badge: '추천', defaultMat: '700z' },
-            { id: 'c_common_floor', name: '공용욕실 바닥타일', badge: '추천', defaultMat: '700z' },
-            { id: 'c_master_floor', name: '안방욕실 바닥타일', badge: '추천', defaultMat: '700z' },
+            { id: 'c_kitchen_top', name: '주방 상판', badge: '추천 Z', defaultMat: '700z' },
+            { id: 'c_living_tile', name: '거실 타일', badge: '추천 Z', defaultMat: '700z' },
+            { id: 'c_common_floor', name: '공용욕실 바닥타일', badge: '추천 Z', defaultMat: '700z' },
+            { id: 'c_master_floor', name: '안방욕실 바닥타일', badge: '추천 Z', defaultMat: '700z' },
             { id: 'c_common_bath', name: '공용욕실', sub: '거울, 세면대, 변기, 수전', badge: '추천 X, R', defaultMat: '700r' },
             { id: 'c_master_bath', name: '안방욕실', sub: '샤워부스, 거울, 변기, 수전, 세면대', badge: '추천 X, R', defaultMat: '700r' },
             { id: 'c_etc', name: '기타 공간', hasInput: true, placeholder: '코팅 희망 공간 직접 입력' }
@@ -1531,8 +1541,16 @@
       { id: 'new', title: '신축', desc: '올해 준공되고 입주하는 아파트' },
       { id: 'semi_new', title: '준신축', desc: '2~4년' },
       { id: 'old', title: '구축', desc: '5년 이상' },
-      { id: 'living', title: '거주 중', desc: '현재 거주 중인 공간' }
+      { id: 'living', title: '거주 중', desc: '현재 거주 중인 공간' },
+      { id: 'remodel', title: '리모델링 공사 후 입주', desc: '인테리어·리모델링 완료 후 입주 예정', fullWidth: true }
     ];
+
+    function normalizeUrl(url, fallback) {
+      const val = (url || '').trim();
+      if (!val) return fallback;
+      if (/^https?:\/\//i.test(val)) return val;
+      return 'https://' + val.replace(/^\/+/, '');
+    }
 
     function loadConfig() {
       try {
@@ -1691,11 +1709,11 @@
     }
 
     function renderHeaderAndLinks() {
-      const cleanTel = (config.phone || '010-0000-0000').replace(/[^0-9]/g, '');
+      const cleanTel = (config.phone || '010-4944-6831').replace(/[^0-9]/g, '');
       document.getElementById('dockCallBtn').href = 'tel:' + cleanTel;
-      document.getElementById('snsBlogLink').href = config.sns.blog || 'https://blog.naver.com/deepclean6831';
-      document.getElementById('snsYoutubeLink').href = config.sns.youtube || 'https://www.youtube.com';
-      document.getElementById('snsInstaLink').href = config.sns.instagram || 'https://www.instagram.com';
+      document.getElementById('snsBlogLink').href = normalizeUrl(config.sns.blog, 'https://blog.naver.com/deepclean6831');
+      document.getElementById('snsYoutubeLink').href = normalizeUrl(config.sns.youtube, 'https://www.youtube.com/@줄눈.방충망.타일코팅');
+      document.getElementById('snsInstaLink').href = normalizeUrl(config.sns.instagram, 'https://www.instagram.com/deep_clean_6831');
 
       const b = config.biz;
       let lines = [`상호명: ${b.name}`];
@@ -1905,7 +1923,7 @@
     function renderResidence() {
       const grid = document.getElementById('residenceGrid');
       grid.innerHTML = RESIDENCE_OPTIONS.map(r => `
-        <button type="button" class="res-card ${selectedResidence.has(r.id) ? 'active' : ''}" onclick="toggleResidence('${r.id}')">
+        <button type="button" class="res-card ${r.fullWidth ? 'full-width' : ''} ${selectedResidence.has(r.id) ? 'active' : ''}" onclick="toggleResidence('${r.id}')">
           <span class="res-title">${r.title}</span>
           <span class="res-desc">${r.desc}</span>
         </button>
@@ -2026,7 +2044,7 @@
 
     function launchSmsApp() {
       const text = document.getElementById('smsPreviewText').value;
-      const cleanTel = (config.phone || '010-0000-0000').replace(/[^0-9]/g, '');
+      const cleanTel = (config.phone || '010-4944-6831').replace(/[^0-9]/g, '');
       const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
       const sep = isIOS ? '&' : '?';
       window.location.href = `sms:${cleanTel}${sep}body=${encodeURIComponent(text)}`;
@@ -2070,7 +2088,7 @@
             <label class="field-label">상담 전화번호 (문자 수신 번호)</label>
             <input id="admPhone" type="text" class="field-input" value="${config.phone}" />
             <label class="field-label">대표자 성명</label>
-            <input id="admOwner" type="text" class="field-input" value="${config.biz.owner || ''}" placeholder="예: 홍길동" />
+            <input id="admOwner" type="text" class="field-input" value="${config.biz.owner || ''}" placeholder="예: 양상인" />
             <label class="field-label">사업자등록번호</label>
             <input id="admBizNo" type="text" class="field-input" value="${config.biz.bizNo || ''}" placeholder="예: 000-00-00000" />
             <label class="field-label">사업장 주소</label>
@@ -2188,13 +2206,13 @@
     }
 
     function saveAdminSettings() {
-      config.phone = document.getElementById('admPhone').value.trim() || '010-0000-0000';
+      config.phone = document.getElementById('admPhone').value.trim() || '010-4944-6831';
       config.biz.owner = document.getElementById('admOwner').value.trim();
       config.biz.bizNo = document.getElementById('admBizNo').value.trim();
       config.biz.address = document.getElementById('admAddr').value.trim();
-      config.sns.blog = document.getElementById('admBlog').value.trim();
-      config.sns.youtube = document.getElementById('admYoutube').value.trim();
-      config.sns.instagram = document.getElementById('admInsta').value.trim();
+      config.sns.blog = normalizeUrl(document.getElementById('admBlog').value, 'https://blog.naver.com/deepclean6831');
+      config.sns.youtube = normalizeUrl(document.getElementById('admYoutube').value, 'https://www.youtube.com/@줄눈.방충망.타일코팅');
+      config.sns.instagram = normalizeUrl(document.getElementById('admInsta').value, 'https://www.instagram.com/deep_clean_6831');
       const newPw = document.getElementById('admNewPw').value.trim();
       if (newPw) config.adminPw = newPw;
 
