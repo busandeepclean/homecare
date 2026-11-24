@@ -3,302 +3,246 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>부산딥클린 올인원 홈케어 | 부산·경남 4대 홈케어 전문</title>
+  <title>부산딥클린 올인원 홈케어 | 줄눈·방충망·타일코팅·실리콘</title>
   <meta name="description" content="부산·김해·양산·창원·밀양·울산 경남 전지역 프리미엄 줄눈, 블랙스텐 방충망, 일본 아크바리아 700 타일·욕실 코팅, 항균 바이오 실리콘 정석 시공" />
-  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
-  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" rel="stylesheet" />
   <style>
     :root {
       --bg-canvas: #FAFAF9;
       --bg-card: #FFFFFF;
-      --bg-subtle: #F5F5F4;
+      --text-main: #1C1917;
+      --text-sub: #57534E;
+      --text-muted: #78716C;
       --border-light: #E7E5E4;
       --border-mid: #D6D3D1;
-      --text-primary: #111827;
-      --text-secondary: #44403C;
-      --text-muted: #78716C;
 
       --emerald: #047857;
-      --emerald-light: #ECFDF5;
+      --emerald-bg: #ECFDF5;
       --emerald-border: #A7F3D0;
 
       --gold: #B45309;
-      --gold-light: #FFFBEB;
+      --gold-bg: #FFFBEB;
       --gold-border: #FDE68A;
 
       --blue: #1D4ED8;
-      --blue-light: #EFF6FF;
+      --blue-bg: #EFF6FF;
       --blue-border: #BFDBFE;
 
       --purple: #6D28D9;
-      --purple-light: #F5F3FF;
+      --purple-bg: #F5F3FF;
       --purple-border: #DDD6FE;
 
-      --charcoal: #1F2937;
-      --charcoal-light: #F3F4F6;
-
-      --shadow-sm: 0 2px 8px rgba(17, 24, 39, 0.04);
-      --shadow-md: 0 6px 20px rgba(17, 24, 39, 0.06);
-      --shadow-lg: 0 12px 32px rgba(17, 24, 39, 0.14);
+      --charcoal: #1E293B;
     }
 
-    *, *::before, *::after {
+    * {
       box-sizing: border-box;
-      -webkit-tap-highlight-color: transparent;
       margin: 0;
       padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-      background-color: #EFECE8;
+      -webkit-tap-highlight-color: transparent;
     }
 
     body {
-      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard", "Malgun Gothic", sans-serif;
       background-color: var(--bg-canvas);
-      color: var(--text-primary);
+      color: var(--text-main);
+      line-height: 1.5;
+      padding-bottom: 118px;
+      word-break: keep-all;
+    }
+
+    .container {
       max-width: 520px;
       margin: 0 auto;
-      min-height: 100vh;
-      padding-bottom: 132px;
-      line-height: 1.5;
-      box-shadow: 0 0 40px rgba(0, 0, 0, 0.05);
-      overflow-x: hidden;
+      padding: 0 16px;
     }
 
-    button, input, textarea, select {
-      font-family: inherit;
-    }
-
-    /* 1. 초미니멀 상단 헤더 */
-    .top-header {
-      position: sticky;
-      top: 0;
-      z-index: 40;
-      background: rgba(250, 250, 249, 0.94);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+    /* 상단 헤더 */
+    header {
+      background-color: var(--bg-canvas);
+      padding: 16px 0 12px;
       border-bottom: 1px solid var(--border-light);
-      padding: 13px 18px;
+    }
+
+    .header-inner {
       display: flex;
-      align-items: center;
       justify-content: space-between;
+      align-items: center;
       gap: 10px;
     }
 
-    .brand-wrap {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-
-    .brand-name {
-      font-size: 16px;
+    .brand-title {
+      font-size: 18px;
       font-weight: 800;
-      letter-spacing: -0.02em;
-      color: var(--text-primary);
+      color: var(--text-main);
+      letter-spacing: -0.4px;
     }
 
     .brand-region {
-      font-size: 11.5px;
-      font-weight: 500;
-      color: var(--text-muted);
-      letter-spacing: -0.01em;
+      font-size: 12px;
+      color: var(--text-sub);
+      margin-top: 2px;
+      letter-spacing: -0.2px;
     }
 
-    .admin-trigger-btn {
+    .admin-btn {
       background: var(--bg-card);
       border: 1px solid var(--border-mid);
-      color: var(--text-secondary);
+      color: var(--text-sub);
       font-size: 12px;
       font-weight: 600;
       padding: 6px 11px;
       border-radius: 8px;
       cursor: pointer;
-      white-space: nowrap;
-    }
-
-    .admin-trigger-btn:active {
-      background: var(--bg-subtle);
-    }
-
-    /* 2. 박스 없는 미니멀 히어로 + 2x2 정품 스펙 라벨 그리드 */
-    .hero-section {
-      padding: 26px 18px 18px;
-      text-align: left;
-    }
-
-    .hero-eyebrow {
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--gold);
-      letter-spacing: -0.01em;
-      margin-bottom: 9px;
-    }
-
-    .hero-title {
-      font-size: 26px;
-      font-weight: 800;
-      line-height: 1.32;
-      letter-spacing: -0.03em;
-      color: var(--text-primary);
-      margin-bottom: 10px;
-    }
-
-    .hero-title .accent {
-      color: var(--emerald);
-    }
-
-    .hero-subtitle {
-      font-size: 14.5px;
-      font-weight: 500;
-      color: #57534E;
-      line-height: 1.5;
-      letter-spacing: -0.01em;
-      margin-bottom: 20px;
-    }
-
-    .spec-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 9px;
-    }
-
-    .spec-item {
-      background: var(--bg-card);
-      border: 1px solid var(--border-light);
-      border-radius: 12px;
-      padding: 12px 13px;
-      text-align: left;
-      cursor: pointer;
-      box-shadow: var(--shadow-sm);
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-
-    .spec-item:active {
-      transform: scale(0.98);
-    }
-
-    .spec-top {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--text-secondary);
-    }
-
-    .spec-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
       flex-shrink: 0;
     }
 
-    .dot-emerald { background: var(--emerald); }
-    .dot-gold { background: var(--gold); }
-    .dot-blue { background: var(--blue); }
-    .dot-charcoal { background: var(--charcoal); }
+    .admin-btn:active {
+      background: #F5F5F4;
+    }
 
-    .spec-value {
+    /* 박스 없는 미니멀 히어로 */
+    .hero {
+      padding: 22px 0 16px;
+    }
+
+    .hero-eyebrow {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--emerald);
+      letter-spacing: -0.2px;
+      margin-bottom: 6px;
+    }
+
+    .hero-title {
+      font-size: 22px;
+      font-weight: 800;
+      line-height: 1.35;
+      color: var(--text-main);
+      letter-spacing: -0.6px;
+      margin-bottom: 8px;
+    }
+
+    .hero-sub {
+      font-size: 14px;
+      color: var(--text-sub);
+      line-height: 1.55;
+      margin-bottom: 18px;
+    }
+
+    /* 2x2 정품 스펙 라벨 그리드 */
+    .spec-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .spec-chip {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: 10px;
+      padding: 10px 12px;
+      text-align: left;
+      cursor: pointer;
+      transition: border-color 0.15s, background-color 0.15s;
+    }
+
+    .spec-chip:active {
+      background: #F5F5F4;
+      border-color: var(--emerald);
+    }
+
+    .spec-chip-title {
       font-size: 13px;
       font-weight: 700;
-      color: var(--text-primary);
-      letter-spacing: -0.02em;
+      color: var(--text-main);
+      display: block;
     }
 
-    /* 3. SNS 3열 입체 뱃지 */
-    .sns-section {
-      padding: 4px 18px 22px;
+    .spec-chip-sub {
+      font-size: 11px;
+      color: var(--emerald);
+      font-weight: 600;
+      display: block;
+      margin-top: 2px;
     }
 
+    /* SNS 3열 입체 뱃지 */
     .sns-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 8px;
+      margin-bottom: 8px;
     }
 
-    .sns-btn {
+    .sns-badge {
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 6px;
       background: var(--bg-card);
       border: 1px solid var(--border-light);
-      border-radius: 12px;
-      padding: 11px 6px;
+      border-bottom: 2px solid var(--border-mid);
+      border-radius: 10px;
+      padding: 9px 6px;
       text-decoration: none;
-      color: var(--text-primary);
-      font-size: 12.5px;
+      color: var(--text-main);
+      font-size: 12px;
       font-weight: 700;
-      box-shadow: 0 3px 0 #E7E5E4, var(--shadow-sm);
     }
 
-    .sns-btn:active {
-      transform: translateY(2px);
-      box-shadow: 0 1px 0 #E7E5E4;
+    .sns-badge:active {
+      transform: translateY(1px);
+      border-bottom-width: 1px;
     }
 
-    .sns-badge-icon {
-      width: 20px;
-      height: 20px;
-      border-radius: 6px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      color: #FFFFFF;
-      font-size: 11px;
-      font-weight: 900;
+    .sns-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
       flex-shrink: 0;
     }
 
-    .sns-naver { background: #03C75A; }
-    .sns-youtube { background: #FF0000; }
-    .sns-insta {
-      background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
-    }
+    .sns-dot.naver { background: #03C75A; }
+    .sns-dot.youtube { background: #FF0000; }
+    .sns-dot.insta { background: #E1306C; }
 
-    /* 섹션 공통 */
+    /* 공통 섹션 헤더 */
     .section-block {
-      padding: 22px 18px;
-      border-top: 1px solid var(--border-light);
+      margin-top: 22px;
     }
 
     .step-badge {
       display: inline-block;
+      background: var(--emerald-bg);
+      color: var(--emerald);
       font-size: 11px;
       font-weight: 800;
-      letter-spacing: 0.04em;
-      color: var(--emerald);
-      background: var(--emerald-light);
-      border: 1px solid var(--emerald-border);
-      padding: 3px 8px;
+      padding: 3px 9px;
       border-radius: 6px;
       margin-bottom: 6px;
+      letter-spacing: 0.3px;
     }
 
     .section-title {
-      font-size: 19px;
+      font-size: 17px;
       font-weight: 800;
-      color: var(--text-primary);
-      letter-spacing: -0.02em;
-      margin-bottom: 4px;
+      color: var(--text-main);
+      letter-spacing: -0.4px;
     }
 
     .section-desc {
       font-size: 13px;
-      color: var(--text-muted);
-      margin-bottom: 16px;
+      color: var(--text-sub);
+      margin-top: 3px;
+      margin-bottom: 12px;
     }
 
-    /* 4. STEP 1: 4대 핵심 시공 2x2 동일 비율 실사진 카드 */
+    /* STEP 01: 4대 시공 2x2 실사진 카드 */
     .service-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 11px;
+      gap: 10px;
     }
 
     .service-card {
@@ -307,22 +251,18 @@
       border-radius: 14px;
       overflow: hidden;
       cursor: pointer;
-      box-shadow: var(--shadow-sm);
+      transition: all 0.15s ease;
+      position: relative;
       display: flex;
       flex-direction: column;
-      position: relative;
     }
 
     .service-card.selected {
       border-color: var(--emerald);
-      box-shadow: 0 4px 14px rgba(4, 120, 87, 0.14);
+      box-shadow: 0 4px 12px rgba(4, 120, 87, 0.12);
     }
 
-    .service-card.active-tab {
-      outline: 2px solid rgba(4, 120, 87, 0.28);
-    }
-
-    .service-img-box {
+    .service-img-wrap {
       width: 100%;
       aspect-ratio: 4 / 3;
       background: #E7E5E4;
@@ -330,711 +270,546 @@
       overflow: hidden;
     }
 
-    .service-img-box img {
+    .service-img-wrap img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
     }
 
-    .service-check-pill {
+    .img-fallback {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #EFECE9;
+      color: var(--text-muted);
+      font-size: 11px;
+      text-align: center;
+      padding: 8px;
+    }
+
+    .check-circle {
       position: absolute;
       top: 9px;
       right: 9px;
-      width: 26px;
-      height: 26px;
+      width: 24px;
+      height: 24px;
       border-radius: 50%;
       background: rgba(255, 255, 255, 0.92);
       border: 1.5px solid var(--border-mid);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 13px;
-      font-weight: 800;
       color: transparent;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
-      z-index: 2;
+      font-size: 13px;
+      font-weight: 900;
+      transition: all 0.15s;
     }
 
-    .service-card.selected .service-check-pill {
+    .service-card.selected .check-circle {
       background: var(--emerald);
       border-color: var(--emerald);
       color: #FFFFFF;
     }
 
-    .service-card-body {
-      padding: 11px 12px 12px;
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-      flex: 1;
-      justify-content: center;
+    .service-info {
+      padding: 11px 11px 13px;
     }
 
     .service-num {
       font-size: 11px;
       font-weight: 800;
       color: var(--gold);
+      margin-bottom: 2px;
     }
 
-    .service-card-title {
+    .service-name {
       font-size: 15px;
       font-weight: 800;
-      color: var(--text-primary);
-      letter-spacing: -0.02em;
+      color: var(--text-main);
+      letter-spacing: -0.3px;
     }
 
-    .service-card-sub {
+    .service-tagline {
       font-size: 11.5px;
-      color: var(--text-muted);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      color: var(--text-sub);
+      margin-top: 3px;
+      line-height: 1.35;
     }
 
-    /* 5. STEP 2: 스마트 탭 전환형 자재·공간 세부 선택기 */
-    .tab-bar {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 6px;
-      margin-bottom: 14px;
-    }
-
-    .tab-btn {
-      background: var(--bg-card);
-      border: 1px solid var(--border-light);
-      border-radius: 10px;
-      padding: 10px 4px;
-      font-size: 12.5px;
-      font-weight: 700;
-      color: var(--text-muted);
-      cursor: pointer;
-      text-align: center;
-    }
-
-    .tab-btn.active {
-      background: var(--text-primary);
-      border-color: var(--text-primary);
-      color: #FFFFFF;
-    }
-
-    .tab-btn .tab-dot {
-      display: inline-block;
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--emerald);
-      margin-left: 3px;
-      vertical-align: middle;
-    }
-
+    /* STEP 02: 시공별 자재 및 구역 상세 패널 */
     .detail-panel {
       background: var(--bg-card);
       border: 1px solid var(--border-light);
-      border-radius: 16px;
-      padding: 16px;
-      box-shadow: var(--shadow-sm);
+      border-radius: 14px;
+      padding: 16px 14px;
+      margin-bottom: 12px;
     }
 
-    .panel-header-row {
+    .panel-header {
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      gap: 8px;
-      margin-bottom: 12px;
+      align-items: center;
       padding-bottom: 10px;
-      border-bottom: 1px solid var(--bg-subtle);
+      margin-bottom: 12px;
+      border-bottom: 1px solid var(--border-light);
     }
 
     .panel-title {
       font-size: 16px;
       font-weight: 800;
-      color: var(--text-primary);
+      color: var(--text-main);
     }
 
-    .panel-sub-pill {
+    .panel-badge {
       font-size: 11px;
       font-weight: 700;
       color: var(--emerald);
-      background: var(--emerald-light);
-      border: 1px solid var(--emerald-border);
+      background: var(--emerald-bg);
       padding: 3px 8px;
       border-radius: 6px;
     }
 
-    .service-notice-banner {
-      background: var(--gold-light);
-      border: 1px solid var(--gold-border);
-      color: #92400E;
-      font-size: 12.5px;
-      font-weight: 700;
-      padding: 9px 12px;
-      border-radius: 10px;
-      margin-bottom: 14px;
-    }
-
     .sub-label {
       font-size: 13px;
-      font-weight: 800;
-      color: var(--text-secondary);
+      font-weight: 700;
+      color: var(--text-main);
       margin-bottom: 8px;
       display: flex;
-      align-items: center;
       justify-content: space-between;
+      align-items: center;
     }
 
-    .sub-label span.hint {
+    .sub-hint {
       font-size: 11.5px;
       font-weight: 500;
       color: var(--text-muted);
     }
 
+    /* 자재 선택 그리드 */
     .mat-grid-2 {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 8px;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
     }
 
     .mat-grid-3 {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 7px;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
     }
 
-    .mat-card {
-      background: var(--bg-subtle);
+    .mat-btn {
+      background: var(--bg-canvas);
       border: 1.5px solid var(--border-light);
-      border-radius: 11px;
-      padding: 10px;
+      border-radius: 10px;
+      padding: 10px 9px;
       text-align: left;
       cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
+      transition: all 0.15s;
     }
 
     .mat-grade {
       font-size: 10px;
       font-weight: 800;
-      letter-spacing: 0.04em;
-      padding: 2px 6px;
-      border-radius: 5px;
-      align-self: flex-start;
+      letter-spacing: 0.2px;
+      display: block;
+      margin-bottom: 2px;
     }
 
     .mat-name {
       font-size: 13px;
       font-weight: 800;
-      color: var(--text-primary);
-      line-height: 1.3;
+      color: var(--text-main);
+      display: block;
     }
 
-    .mat-desc {
+    .mat-note {
       font-size: 11px;
-      color: var(--text-muted);
-      line-height: 1.3;
+      color: var(--text-sub);
+      display: block;
+      margin-top: 2px;
     }
 
-    .c-emerald .mat-grade { background: var(--emerald-light); color: var(--emerald); }
-    .c-emerald.active { background: var(--emerald-light); border-color: var(--emerald); }
+    /* 색상 테마별 활성 상태 */
+    .mat-btn[data-color="emerald"] .mat-grade { color: var(--emerald); }
+    .mat-btn[data-color="emerald"].active {
+      background: var(--emerald-bg);
+      border-color: var(--emerald);
+    }
 
-    .c-gold .mat-grade { background: var(--gold-light); color: var(--gold); }
-    .c-gold.active { background: var(--gold-light); border-color: var(--gold); }
+    .mat-btn[data-color="gold"] .mat-grade { color: var(--gold); }
+    .mat-btn[data-color="gold"].active {
+      background: var(--gold-bg);
+      border-color: var(--gold);
+    }
 
-    .c-purple .mat-grade { background: var(--purple-light); color: var(--purple); }
-    .c-purple.active { background: var(--purple-light); border-color: var(--purple); }
+    .mat-btn[data-color="blue"] .mat-grade { color: var(--blue); }
+    .mat-btn[data-color="blue"].active {
+      background: var(--blue-bg);
+      border-color: var(--blue);
+    }
 
-    .c-blue .mat-grade { background: var(--blue-light); color: var(--blue); }
-    .c-blue.active { background: var(--blue-light); border-color: var(--blue); }
+    .mat-btn[data-color="purple"] .mat-grade { color: var(--purple); }
+    .mat-btn[data-color="purple"].active {
+      background: var(--purple-bg);
+      border-color: var(--purple);
+    }
 
-    /* 구역 리스트 */
-    .zone-group-title {
+    .info-strip {
+      background: #F5F5F4;
+      border-radius: 8px;
+      padding: 9px 11px;
+      font-size: 12px;
+      color: var(--text-sub);
+      margin-bottom: 14px;
+      line-height: 1.45;
+    }
+
+    /* 구역 선택 태그 버튼 */
+    .area-group-title {
       font-size: 11.5px;
       font-weight: 700;
       color: var(--text-muted);
-      margin: 12px 0 7px;
+      margin: 10px 0 6px;
     }
 
-    .zone-list {
+    .area-grid {
       display: flex;
-      flex-direction: column;
-      gap: 8px;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-bottom: 10px;
     }
 
-    .zone-item {
+    .area-chip {
+      background: var(--bg-card);
       border: 1.5px solid var(--border-light);
-      background: var(--bg-canvas);
-      border-radius: 12px;
-      padding: 11px 12px;
-    }
-
-    .zone-item.checked {
-      background: #FFFFFF;
-      border-color: var(--emerald);
-      box-shadow: var(--shadow-sm);
-    }
-
-    .zone-top-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 8px;
+      border-radius: 9px;
+      padding: 8px 11px;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--text-main);
       cursor: pointer;
-    }
-
-    .zone-left {
-      display: flex;
-      align-items: center;
-      gap: 9px;
-      flex: 1;
-      min-width: 0;
-    }
-
-    .zone-checkbox {
-      width: 20px;
-      height: 20px;
-      border-radius: 6px;
-      border: 1.5px solid var(--border-mid);
-      background: #FFFFFF;
       display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 12px;
-      font-weight: 800;
-      color: transparent;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 2px;
+      transition: all 0.15s;
+    }
+
+    .area-chip.active-emerald {
+      background: var(--emerald-bg);
+      border-color: var(--emerald);
+      color: var(--emerald);
+    }
+
+    .area-chip.active-gold {
+      background: var(--gold-bg);
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    .area-chip.active-blue {
+      background: var(--blue-bg);
+      border-color: var(--blue);
+      color: var(--blue);
+    }
+
+    .area-chip.active-purple {
+      background: var(--purple-bg);
+      border-color: var(--purple);
+      color: var(--purple);
+    }
+
+    .chip-sub-tag {
+      font-size: 10.5px;
+      font-weight: 700;
+      opacity: 0.9;
+    }
+
+    .rec-tag {
+      font-size: 10px;
+      font-weight: 700;
+      background: #FEF3C7;
+      color: #92400E;
+      padding: 1px 5px;
+      border-radius: 4px;
+    }
+
+    /* 직접 입력 행 */
+    .custom-input-row {
+      display: flex;
+      gap: 6px;
+      margin-top: 8px;
+    }
+
+    .text-input {
+      flex: 1;
+      border: 1px solid var(--border-mid);
+      border-radius: 9px;
+      padding: 9px 11px;
+      font-size: 13px;
+      background: var(--bg-canvas);
+      color: var(--text-main);
+      outline: none;
+    }
+
+    .text-input:focus {
+      border-color: var(--emerald);
+      background: #FFFFFF;
+    }
+
+    .add-btn {
+      background: var(--charcoal);
+      color: #FFFFFF;
+      border: none;
+      border-radius: 9px;
+      padding: 0 14px;
+      font-size: 12.5px;
+      font-weight: 700;
+      cursor: pointer;
       flex-shrink: 0;
     }
 
-    .zone-item.checked .zone-checkbox {
-      background: var(--emerald);
-      border-color: var(--emerald);
-      color: #FFFFFF;
-    }
-
-    .zone-text-wrap {
+    /* 방충망 개수 카운터 리스트 */
+    .counter-list {
       display: flex;
       flex-direction: column;
-      gap: 1px;
+      gap: 7px;
+      margin-bottom: 10px;
     }
 
-    .zone-name-row {
+    .counter-row {
       display: flex;
-      align-items: center;
-      gap: 6px;
-      flex-wrap: wrap;
-    }
-
-    .zone-name {
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--text-primary);
-    }
-
-    .zone-rec-badge {
-      font-size: 10.5px;
-      font-weight: 700;
-      color: var(--gold);
-      background: var(--gold-light);
-      border: 1px solid var(--gold-border);
-      padding: 1px 6px;
-      border-radius: 5px;
-    }
-
-    .zone-sub-text {
-      font-size: 11.5px;
-      color: var(--text-muted);
-    }
-
-    .zone-controls {
-      margin-top: 10px;
-      padding-top: 9px;
-      border-top: 1px dashed var(--border-light);
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .mini-mat-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 5px;
-    }
-
-    .mini-mat-pill {
-      font-size: 11px;
-      font-weight: 700;
-      padding: 4px 8px;
-      border-radius: 7px;
-      border: 1px solid var(--border-light);
-      background: var(--bg-subtle);
-      color: var(--text-secondary);
-      cursor: pointer;
-    }
-
-    .mini-mat-pill.active.m-emerald {
-      background: var(--emerald);
-      border-color: var(--emerald);
-      color: #FFFFFF;
-    }
-
-    .mini-mat-pill.active.m-gold {
-      background: var(--gold);
-      border-color: var(--gold);
-      color: #FFFFFF;
-    }
-
-    .mini-mat-pill.active.m-purple {
-      background: var(--purple);
-      border-color: var(--purple);
-      color: #FFFFFF;
-    }
-
-    .mini-mat-pill.active.m-blue {
-      background: var(--blue);
-      border-color: var(--blue);
-      color: #FFFFFF;
-    }
-
-    .qty-size-row {
-      display: flex;
-      align-items: center;
       justify-content: space-between;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    .qty-box {
-      display: inline-flex;
       align-items: center;
-      border: 1px solid var(--border-mid);
-      border-radius: 8px;
-      overflow: hidden;
-      background: #FFFFFF;
-    }
-
-    .qty-btn {
-      width: 28px;
-      height: 26px;
-      border: none;
-      background: var(--bg-subtle);
-      font-size: 14px;
-      font-weight: 800;
-      color: var(--text-primary);
-      cursor: pointer;
-    }
-
-    .qty-val {
-      padding: 0 10px;
-      font-size: 12.5px;
-      font-weight: 800;
-      color: var(--text-primary);
-    }
-
-    .size-toggle-group {
-      display: inline-flex;
-      gap: 4px;
-      flex-wrap: wrap;
-    }
-
-    .size-btn {
-      font-size: 11px;
-      font-weight: 700;
-      padding: 5px 8px;
-      border-radius: 7px;
-      border: 1px solid var(--border-mid);
-      background: #FFFFFF;
-      color: var(--text-secondary);
-      cursor: pointer;
-    }
-
-    .size-btn.active {
-      background: var(--charcoal);
-      border-color: var(--charcoal);
-      color: #FFFFFF;
-    }
-
-    .zone-text-input {
-      width: 100%;
-      border: 1px solid var(--border-mid);
-      border-radius: 8px;
-      padding: 8px 10px;
-      font-size: 13px;
-      color: var(--text-primary);
-      background: #FFFFFF;
-    }
-
-    .zone-text-input:focus {
-      outline: none;
-      border-color: var(--emerald);
-    }
-
-    /* 6. 실시간 선택 장바구니 보드 */
-    .cart-board {
-      background: var(--bg-card);
-      border: 1.5px solid var(--gold-border);
-      border-radius: 16px;
-      padding: 16px;
-      box-shadow: var(--shadow-md);
-    }
-
-    .cart-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 12px;
-      padding-bottom: 10px;
-      border-bottom: 1px solid var(--border-light);
-    }
-
-    .cart-title {
-      font-size: 16px;
-      font-weight: 800;
-      color: var(--text-primary);
-    }
-
-    .cart-reset-btn {
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--text-muted);
-      background: var(--bg-subtle);
-      border: 1px solid var(--border-light);
-      padding: 4px 9px;
-      border-radius: 7px;
-      cursor: pointer;
-    }
-
-    .cart-empty {
-      text-align: center;
-      padding: 20px 10px;
-      font-size: 13px;
-      color: var(--text-muted);
-      line-height: 1.6;
-    }
-
-    .cart-group {
-      margin-bottom: 12px;
-    }
-
-    .cart-group:last-child {
-      margin-bottom: 0;
-    }
-
-    .cart-group-head {
-      font-size: 13px;
-      font-weight: 800;
-      color: var(--emerald);
-      margin-bottom: 6px;
-    }
-
-    .cart-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 8px;
       background: var(--bg-canvas);
       border: 1px solid var(--border-light);
-      border-radius: 10px;
-      padding: 8px 10px;
-      margin-bottom: 5px;
+      border-radius: 9px;
+      padding: 8px 11px;
     }
 
-    .cart-row-info {
+    .counter-row.has-count {
+      background: var(--emerald-bg);
+      border-color: var(--emerald-border);
+    }
+
+    .counter-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .counter-controls {
       display: flex;
       align-items: center;
-      gap: 6px;
-      flex-wrap: wrap;
-      font-size: 13px;
+      gap: 10px;
+    }
+
+    .cnt-btn {
+      width: 28px;
+      height: 28px;
+      border-radius: 7px;
+      border: 1px solid var(--border-mid);
+      background: #FFFFFF;
+      font-size: 16px;
       font-weight: 700;
-      color: var(--text-primary);
+      color: var(--text-main);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    .cart-mat-tag {
-      font-size: 11px;
-      font-weight: 800;
-      padding: 2px 7px;
-      border-radius: 5px;
-    }
-
-    .tag-emerald { background: var(--emerald-light); color: var(--emerald); }
-    .tag-gold { background: var(--gold-light); color: var(--gold); }
-    .tag-purple { background: var(--purple-light); color: var(--purple); }
-    .tag-blue { background: var(--blue-light); color: var(--blue); }
-
-    .cart-del-btn {
-      border: none;
-      background: transparent;
-      color: var(--text-muted);
+    .cnt-val {
       font-size: 14px;
       font-weight: 800;
-      padding: 2px 6px;
-      cursor: pointer;
+      min-width: 22px;
+      text-align: center;
+      color: var(--emerald);
     }
 
-    /* 7. STEP 3: 거주 상태 (아이콘 없음, 중복 선택) & 현장 정보 */
-    .res-grid {
+    /* STEP 03: 거주 상태 (아이콘 없는 깔끔한 텍스트 카드) */
+    .status-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: 1fr;
       gap: 8px;
-      margin-bottom: 16px;
     }
 
-    .res-card {
+    .status-card {
       background: var(--bg-card);
       border: 1.5px solid var(--border-light);
-      border-radius: 12px;
-      padding: 12px;
+      border-radius: 11px;
+      padding: 12px 14px;
       text-align: left;
       cursor: pointer;
       display: flex;
-      flex-direction: column;
-      gap: 3px;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.15s;
     }
 
-    .res-card.full-width {
-      grid-column: span 2;
-    }
-
-    .res-card.active {
-      background: var(--emerald-light);
+    .status-card.active {
+      background: var(--emerald-bg);
       border-color: var(--emerald);
     }
 
-    .res-title {
+    .status-title {
       font-size: 14px;
-      font-weight: 800;
-      color: var(--text-primary);
+      font-weight: 700;
+      color: var(--text-main);
     }
 
-    .res-card.active .res-title {
+    .status-sub {
+      font-size: 12px;
+      color: var(--text-sub);
+      margin-top: 1px;
+    }
+
+    .status-check-text {
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--text-muted);
+    }
+
+    .status-card.active .status-check-text {
       color: var(--emerald);
     }
 
-    .res-desc {
-      font-size: 11.5px;
-      color: var(--text-muted);
-      line-height: 1.35;
+    /* 사업자 정보 푸터 */
+    footer {
+      margin-top: 28px;
+      padding: 18px 16px;
+      background: #F5F5F4;
+      border-top: 1px solid var(--border-light);
+      font-size: 12px;
+      color: var(--text-sub);
+      line-height: 1.65;
     }
 
-    .form-stack {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-bottom: 16px;
-    }
-
-    .field-group {
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-    }
-
-    .field-label {
-      font-size: 12.5px;
-      font-weight: 700;
-      color: var(--text-secondary);
-    }
-
-    .field-input, .field-textarea {
-      width: 100%;
-      background: var(--bg-card);
-      border: 1px solid var(--border-mid);
-      border-radius: 10px;
-      padding: 11px 12px;
-      font-size: 14px;
-      color: var(--text-primary);
-    }
-
-    .field-textarea {
-      min-height: 76px;
-      resize: vertical;
-    }
-
-    .field-input:focus, .field-textarea:focus {
-      outline: none;
-      border-color: var(--emerald);
-    }
-
-    .primary-sms-btn {
-      width: 100%;
-      background: var(--emerald);
-      color: #FFFFFF;
-      border: none;
-      border-radius: 13px;
-      padding: 15px 16px;
-      font-size: 15.5px;
+    .footer-title {
+      font-size: 13px;
       font-weight: 800;
-      cursor: pointer;
-      box-shadow: 0 4px 14px rgba(4, 120, 87, 0.25);
+      color: var(--text-main);
+      margin-bottom: 4px;
     }
 
-    .primary-sms-btn:active {
-      transform: scale(0.99);
-    }
-
-    /* 푸터 사업자 정보 */
-    .biz-footer {
-      padding: 20px 18px 28px;
-      border-top: 1px solid var(--border-light);
-      font-size: 11.5px;
-      color: var(--text-muted);
-      line-height: 1.7;
-    }
-
-    /* 8. 하단 고정 스마트 독 & 확장형 드로어 */
-    .bottom-dock {
+    /* 하단 고정 스마트 독 및 실시간 장바구니 드로어 */
+    .cart-drawer {
       position: fixed;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 100%;
-      max-width: 520px;
-      background: rgba(255, 255, 255, 0.97);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-top: 1px solid var(--border-light);
-      box-shadow: 0 -6px 24px rgba(0, 0, 0, 0.08);
-      z-index: 50;
-      padding: 10px 14px calc(10px + env(safe-area-inset-bottom));
+      left: 0;
+      right: 0;
+      bottom: 92px;
+      background: #FFFFFF;
+      border-top: 1.5px solid var(--border-mid);
+      border-radius: 18px 18px 0 0;
+      box-shadow: 0 -6px 24px rgba(0, 0, 0, 0.12);
+      z-index: 90;
+      max-height: 58vh;
+      overflow-y: auto;
+      display: none;
     }
 
-    .dock-drawer {
-      display: none;
-      max-height: 210px;
-      overflow-y: auto;
-      margin-bottom: 10px;
+    .cart-drawer.open {
+      display: block;
+    }
+
+    .drawer-inner {
+      max-width: 520px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+
+    .drawer-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
       padding-bottom: 8px;
       border-bottom: 1px solid var(--border-light);
     }
 
-    .dock-drawer.open {
-      display: block;
+    .drawer-title {
+      font-size: 15px;
+      font-weight: 800;
     }
 
-    .dock-ticker {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+    .clear-btn {
+      background: none;
+      border: none;
+      color: var(--text-muted);
       font-size: 12px;
-      font-weight: 700;
-      color: var(--text-secondary);
-      padding: 2px 2px 8px;
+      text-decoration: underline;
       cursor: pointer;
+    }
+
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 0;
+      border-bottom: 1px solid #F5F5F4;
+      font-size: 13px;
       gap: 8px;
     }
 
-    .dock-ticker-summary {
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      flex: 1;
+    .cart-item-cat {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--emerald);
+      display: block;
     }
 
-    .dock-ticker-count {
+    .cart-remove {
+      background: #F5F5F4;
+      border: none;
+      border-radius: 6px;
+      padding: 4px 8px;
+      font-size: 11px;
+      color: var(--text-sub);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .bottom-dock {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: #FFFFFF;
+      border-top: 1px solid var(--border-light);
+      box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.06);
+      z-index: 100;
+      padding: 8px 14px 12px;
+    }
+
+    .dock-inner {
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    .dock-summary-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 4px 2px 8px;
+      cursor: pointer;
+      font-size: 12.5px;
+    }
+
+    .dock-hint {
+      color: var(--text-sub);
+      font-weight: 600;
+    }
+
+    .dock-count {
       color: var(--emerald);
       font-weight: 800;
-      white-space: nowrap;
     }
 
     .dock-actions {
@@ -1043,1390 +818,1302 @@
       gap: 8px;
     }
 
-    .dock-call-btn {
+    .btn-call {
       background: var(--charcoal);
       color: #FFFFFF;
-      border: none;
+      text-decoration: none;
       border-radius: 11px;
-      padding: 12px 10px;
+      padding: 13px 10px;
       font-size: 14px;
       font-weight: 800;
       text-align: center;
-      text-decoration: none;
       display: flex;
       align-items: center;
       justify-content: center;
     }
 
-    .dock-sms-btn {
+    .btn-sms {
       background: var(--emerald);
       color: #FFFFFF;
       border: none;
       border-radius: 11px;
-      padding: 12px 10px;
+      padding: 13px 10px;
       font-size: 14px;
       font-weight: 800;
       cursor: pointer;
+      text-align: center;
     }
 
-    /* 모달 및 바텀시트 */
+    /* 관리자 모달 */
     .modal-backdrop {
       position: fixed;
       inset: 0;
-      background: rgba(17, 24, 39, 0.55);
-      z-index: 80;
+      background: rgba(0, 0, 0, 0.55);
+      z-index: 200;
       display: none;
-      align-items: flex-end;
+      align-items: center;
       justify-content: center;
+      padding: 16px;
     }
 
     .modal-backdrop.open {
       display: flex;
     }
 
-    .sheet-box {
-      width: 100%;
-      max-width: 520px;
-      max-height: 88vh;
-      overflow-y: auto;
+    .modal-box {
       background: #FFFFFF;
-      border-radius: 20px 20px 0 0;
-      padding: 20px 18px calc(24px + env(safe-area-inset-bottom));
-      box-shadow: var(--shadow-lg);
+      border-radius: 16px;
+      width: 100%;
+      max-width: 460px;
+      max-height: 85vh;
+      overflow-y: auto;
+      padding: 18px;
     }
 
-    .sheet-head {
+    .modal-head {
       display: flex;
-      align-items: center;
       justify-content: space-between;
+      align-items: center;
       margin-bottom: 14px;
       padding-bottom: 10px;
       border-bottom: 1px solid var(--border-light);
     }
 
-    .sheet-title {
-      font-size: 17px;
+    .modal-title {
+      font-size: 16px;
       font-weight: 800;
-      color: var(--text-primary);
     }
 
-    .sheet-close {
-      background: var(--bg-subtle);
+    .close-modal {
+      background: #F5F5F4;
       border: none;
       border-radius: 8px;
       padding: 6px 10px;
-      font-size: 13px;
-      font-weight: 700;
-      cursor: pointer;
-    }
-
-    .sms-preview-box {
-      width: 100%;
-      min-height: 210px;
-      background: var(--bg-canvas);
-      border: 1px solid var(--border-mid);
-      border-radius: 12px;
-      padding: 12px;
-      font-size: 13px;
-      line-height: 1.55;
-      color: var(--text-primary);
-      margin-bottom: 12px;
-      white-space: pre-wrap;
-    }
-
-    .sheet-btn-row {
-      display: grid;
-      grid-template-columns: 1fr 1.4fr;
-      gap: 8px;
-    }
-
-    .copy-btn {
-      background: var(--bg-subtle);
-      border: 1px solid var(--border-mid);
-      color: var(--text-primary);
-      border-radius: 11px;
-      padding: 13px;
-      font-size: 14px;
-      font-weight: 800;
-      cursor: pointer;
-    }
-
-    .send-now-btn {
-      background: var(--emerald);
-      border: none;
-      color: #FFFFFF;
-      border-radius: 11px;
-      padding: 13px;
-      font-size: 14px;
-      font-weight: 800;
-      cursor: pointer;
-    }
-
-    /* 관리자 전용 스타일 */
-    .admin-card {
-      border: 1px solid var(--border-light);
-      border-radius: 12px;
-      padding: 12px;
-      margin-bottom: 12px;
-      background: var(--bg-canvas);
-    }
-
-    .admin-card-title {
-      font-size: 14px;
-      font-weight: 800;
-      margin-bottom: 8px;
-      color: var(--text-primary);
-    }
-
-    .admin-row {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      margin-bottom: 10px;
-    }
-
-    .admin-inline-btns {
-      display: flex;
-      gap: 6px;
-      flex-wrap: wrap;
-    }
-
-    .admin-mini-btn {
-      background: var(--charcoal);
-      color: #FFFFFF;
-      border: none;
-      border-radius: 8px;
-      padding: 8px 12px;
       font-size: 12px;
       font-weight: 700;
       cursor: pointer;
     }
 
-    .admin-sub-btn {
-      background: var(--bg-card);
-      color: var(--text-secondary);
+    .admin-section {
+      margin-bottom: 16px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .admin-section h4 {
+      font-size: 13.5px;
+      font-weight: 800;
+      margin-bottom: 8px;
+      color: var(--text-main);
+    }
+
+    .admin-img-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 8px;
+      font-size: 12.5px;
+    }
+
+    .admin-small-btn {
+      background: var(--charcoal);
+      color: #FFFFFF;
+      border: none;
+      border-radius: 7px;
+      padding: 6px 10px;
+      font-size: 11.5px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .admin-outline-btn {
+      background: #FFFFFF;
+      color: var(--text-main);
       border: 1px solid var(--border-mid);
-      border-radius: 8px;
+      border-radius: 7px;
       padding: 7px 10px;
       font-size: 12px;
       font-weight: 700;
       cursor: pointer;
-    }
-
-    .toast-msg {
-      position: fixed;
-      top: 70px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: rgba(17, 24, 39, 0.92);
-      color: #FFFFFF;
-      padding: 10px 16px;
-      border-radius: 999px;
-      font-size: 13px;
-      font-weight: 700;
-      z-index: 100;
-      display: none;
-      white-space: nowrap;
+      width: 100%;
+      margin-top: 6px;
     }
   </style>
 </head>
 <body>
 
-  <div id="toastMsg" class="toast-msg"></div>
-
-  <!-- 1. 초미니멀 상단 헤더 -->
-  <header class="top-header">
-    <div class="brand-wrap">
-      <div class="brand-name">부산딥클린 올인원 홈케어</div>
-      <div class="brand-region">부산 · 김해 · 양산 · 창원 · 밀양 · 울산 경남 전지역</div>
+  <!-- 상단 헤더 -->
+  <header>
+    <div class="container header-inner">
+      <div>
+        <div class="brand-title">부산딥클린 올인원 홈케어</div>
+        <div class="brand-region">부산 · 김해 · 양산 · 창원 · 밀양 · 울산 경남 전지역</div>
+      </div>
+      <button type="button" class="admin-btn" onclick="openAdminModal()">관리자</button>
     </div>
-    <button type="button" class="admin-trigger-btn" onclick="openAdminModal()">관리자</button>
   </header>
 
-  <!-- 2. 박스 없는 미니멀 히어로 + 2x2 정품 스펙 라벨 그리드 -->
-  <section class="hero-section">
-    <div class="hero-eyebrow">부산 · 경남 4대 홈케어 전문</div>
-    <h1 class="hero-title">실속형부터 하이엔드까지,<br />우리 집에 딱 맞는 <span class="accent">정석 시공</span></h1>
-    <p class="hero-subtitle">예산에 맞춘 자재 선택, 결과로 증명하는 꼼꼼한 마감.</p>
+  <main class="container">
+    <!-- 미니멀 히어로 (박스·테두리 없음) -->
+    <section class="hero">
+      <div class="hero-eyebrow">부산 · 경남 4대 홈케어 전문</div>
+      <h1 class="hero-title">실속형부터 하이엔드까지,<br>우리 집에 딱 맞는 정석 시공</h1>
+      <p class="hero-sub">예산에 맞춘 자재 선택, 결과로 증명하는 꼼꼼한 마감.</p>
 
-    <div class="spec-grid">
-      <button type="button" class="spec-item" onclick="quickSelectService('grout')">
-        <span class="spec-top"><span class="spec-dot dot-emerald"></span>줄눈 정석 시공</span>
-        <span class="spec-value">스타라이크 프로 · 아스팍톤</span>
-      </button>
-      <button type="button" class="spec-item" onclick="quickSelectService('screen')">
-        <span class="spec-top"><span class="spec-dot dot-gold"></span>미세 방충망</span>
-        <span class="spec-value">고강도 블랙스텐</span>
-      </button>
-      <button type="button" class="spec-item" onclick="quickSelectService('coating')">
-        <span class="spec-top"><span class="spec-dot dot-blue"></span>타일·욕실 코팅</span>
-        <span class="spec-value">일본 아크바리아 700</span>
-      </button>
-      <button type="button" class="spec-item" onclick="quickSelectService('silicone')">
-        <span class="spec-top"><span class="spec-dot dot-charcoal"></span>곰팡이 방지</span>
-        <span class="spec-value">항균 바이오 실리콘</span>
-      </button>
-    </div>
-  </section>
-
-  <!-- 3. SNS 3열 입체 뱃지 -->
-  <section class="sns-section">
-    <div class="sns-grid">
-      <a id="snsBlogLink" href="https://blog.naver.com/deepclean6831" target="_blank" rel="noopener" class="sns-btn">
-        <span class="sns-badge-icon sns-naver">N</span>
-        <span>네이버 블로그</span>
-      </a>
-      <a id="snsYoutubeLink" href="https://www.youtube.com/@줄눈.방충망.타일코팅" target="_blank" rel="noopener" class="sns-btn">
-        <span class="sns-badge-icon sns-youtube">▶</span>
-        <span>유튜브</span>
-      </a>
-      <a id="snsInstaLink" href="https://www.instagram.com/deep_clean_6831" target="_blank" rel="noopener" class="sns-btn">
-        <span class="sns-badge-icon sns-insta" aria-hidden="true">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-          </svg>
-        </span>
-        <span>인스타그램</span>
-      </a>
-    </div>
-  </section>
-
-  <!-- 4. STEP 1: 4대 핵심 시공 선택 (2x2 동일 비율 4분할 실사진 카드) -->
-  <section class="section-block" id="step1Section">
-    <span class="step-badge">STEP 01</span>
-    <h2 class="section-title">시공 항목 선택</h2>
-    <p class="section-desc">원하시는 시공을 선택하면 아래에서 자재와 구역을 바로 고르실 수 있습니다.</p>
-    <div id="serviceGrid" class="service-grid"></div>
-  </section>
-
-  <!-- 5. STEP 2: 스마트 탭 전환형 자재·공간 세부 선택기 -->
-  <section class="section-block" id="step2Section">
-    <span class="step-badge">STEP 02</span>
-    <h2 class="section-title">자재 및 시공 구역 선택</h2>
-    <p class="section-desc">자재를 먼저 고른 뒤 구역을 체크하거나, 공간마다 다른 자재를 지정할 수 있습니다.</p>
-
-    <div id="tabBar" class="tab-bar"></div>
-    <div id="detailPanel" class="detail-panel"></div>
-  </section>
-
-  <!-- 6. 실시간 선택 장바구니 보드 -->
-  <section class="section-block" id="cartSection">
-    <div class="cart-board">
-      <div class="cart-header">
-        <div class="cart-title">내가 선택한 시공 목록</div>
-        <button type="button" class="cart-reset-btn" onclick="resetAllSelections()">전체 초기화</button>
+      <!-- 2x2 정품 스펙 라벨 그리드 -->
+      <div class="spec-grid">
+        <button type="button" class="spec-chip" onclick="quickSelectService('grout')">
+          <span class="spec-chip-title">줄눈 정석 시공</span>
+          <span class="spec-chip-sub">스타라이크 프로 · 아스팍톤</span>
+        </button>
+        <button type="button" class="spec-chip" onclick="quickSelectService('screen')">
+          <span class="spec-chip-title">미세 방충망</span>
+          <span class="spec-chip-sub">고강도 블랙스텐</span>
+        </button>
+        <button type="button" class="spec-chip" onclick="quickSelectService('coating')">
+          <span class="spec-chip-title">타일·욕실 코팅</span>
+          <span class="spec-chip-sub">일본 아크바리아 700</span>
+        </button>
+        <button type="button" class="spec-chip" onclick="quickSelectService('silicone')">
+          <span class="spec-chip-title">곰팡이 방지</span>
+          <span class="spec-chip-sub">항균 바이오 실리콘</span>
+        </button>
       </div>
-      <div id="cartBoardBody"></div>
+
+      <!-- SNS 3열 입체 뱃지 -->
+      <div class="sns-grid">
+        <a id="snsBlogLink" href="https://m.blog.naver.com/deepclean6831" target="_blank" rel="noopener" class="sns-badge">
+          <span class="sns-dot naver"></span>네이버 블로그
+        </a>
+        <a id="snsYoutubeLink" href="https://www.youtube.com" target="_blank" rel="noopener" class="sns-badge">
+          <span class="sns-dot youtube"></span>유튜브
+        </a>
+        <a id="snsInstaLink" href="https://www.instagram.com" target="_blank" rel="noopener" class="sns-badge">
+          <span class="sns-dot insta"></span>인스타그램
+        </a>
+      </div>
+    </section>
+
+    <!-- STEP 01: 4대 시공 선택 -->
+    <section class="section-block" id="step01Section">
+      <span class="step-badge">STEP 01</span>
+      <h2 class="section-title">원하시는 시공을 선택해 주세요</h2>
+      <p class="section-desc">원하시는 시공을 선택하면 아래에서 자재와 구역을 바로 고르실 수 있습니다. (복수 선택 가능)</p>
+
+      <div class="service-grid" id="serviceGrid"></div>
+    </section>
+
+    <!-- STEP 02: 선택된 시공별 자재 및 구역 매핑 -->
+    <section class="section-block" id="step02Section">
+      <span class="step-badge">STEP 02</span>
+      <h2 class="section-title">자재 및 시공 구역 선택</h2>
+      <p class="section-desc" id="step02Guide">위에서 시공 항목을 먼저 선택하시면 세부 자재와 구역이 열립니다.</p>
+
+      <div id="detailPanelsContainer"></div>
+    </section>
+
+    <!-- STEP 03: 거주 상태 (아이콘 없는 깔끔한 텍스트 카드) -->
+    <section class="section-block" id="step03Section">
+      <span class="step-badge">STEP 03</span>
+      <h2 class="section-title">현재 거주 및 입주 상태</h2>
+      <p class="section-desc">해당하는 공간에 체크해 주세요 (중복 선택 가능)</p>
+
+      <div class="status-grid" id="statusGrid"></div>
+
+      <div style="margin-top: 12px;">
+        <div class="sub-label">
+          <span>지역 및 아파트명 (선택 입력)</span>
+          <span class="sub-hint">예: 부산 남구 대연동 / OO아파트</span>
+        </div>
+        <input type="text" id="aptInput" class="text-input" style="width: 100%;" placeholder="예: 부산 남구 감만동 / OO아파트 34평" oninput="updateDockSummary()" />
+      </div>
+    </section>
+  </main>
+
+  <!-- 사업자 정보 푸터 -->
+  <footer>
+    <div class="container">
+      <div class="footer-title">부산딥클린 올인원 홈케어</div>
+      <div>대표: 양상인 | 상담문의: <span id="footerPhone">010-4944-6831</span></div>
+      <div>사업장: 부산광역시 남구 석포로 45, 1층 (감만동)</div>
+      <div>출장지역: 부산 · 김해 · 양산 · 창원 · 밀양 · 울산 경남 전지역</div>
     </div>
-  </section>
-
-  <!-- 7. STEP 3: 거주 상태 및 현장 정보 -->
-  <section class="section-block" id="step3Section">
-    <span class="step-badge">STEP 03</span>
-    <h2 class="section-title">거주 상태 및 현장 정보</h2>
-    <p class="section-desc">해당하는 공간(항목)에 체크해 주세요. (중복 선택 가능)</p>
-
-    <div id="residenceGrid" class="res-grid"></div>
-
-    <div class="form-stack">
-      <div class="field-group">
-        <label class="field-label" for="siteNameInput">아파트 / 현장명 (지역 포함)</label>
-        <input id="siteNameInput" type="text" class="field-input" placeholder="예: 부산 남구 대연동 OO아파트 34평" />
-      </div>
-      <div class="field-group">
-        <label class="field-label" for="hopeDateInput">시공 희망일</label>
-        <input id="hopeDateInput" type="text" class="field-input" placeholder="예: 12월 10일 전후 또는 협의 희망" />
-      </div>
-      <div class="field-group">
-        <label class="field-label" for="memoInput">추가 요청사항</label>
-        <textarea id="memoInput" class="field-textarea" placeholder="궁금하신 점이나 현장 특이사항을 편하게 적어주세요."></textarea>
-      </div>
-    </div>
-
-    <button type="button" class="primary-sms-btn" onclick="openSmsModal()">선택 내역으로 문자 견적 문의하기</button>
-  </section>
-
-  <!-- 푸터 -->
-  <footer class="biz-footer" id="bizFooter">
-    상호명: 부산딥클린 올인원 홈케어<br />
-    대표자: 양상인<br />
-    사업장 소재지: 부산광역시 남구 석포로45 1층<br />
-    시공 지역: 부산 · 김해 · 양산 · 창원 · 밀양 · 울산 경남 전지역 (출장 가능: 경주 · 대구 · 남해)<br />
-    상담 문의: 010-4944-6831
   </footer>
 
-  <!-- 8. 하단 고정 스마트 독 -->
+  <!-- 실시간 장바구니 보드 (드로어) -->
+  <div class="cart-drawer" id="cartDrawer">
+    <div class="drawer-inner">
+      <div class="drawer-header">
+        <span class="drawer-title">선택한 시공 내역 확인</span>
+        <button type="button" class="clear-btn" onclick="resetAllSelections()">전체 초기화</button>
+      </div>
+      <div id="cartItemsList"></div>
+      <button type="button" class="admin-outline-btn" onclick="copyQuoteText()" style="margin-top: 10px;">견적 내역 문구 복사하기</button>
+    </div>
+  </div>
+
+  <!-- 하단 고정 스마트 독 -->
   <div class="bottom-dock">
-    <div id="dockDrawer" class="dock-drawer"></div>
-    <div class="dock-ticker" onclick="toggleDockDrawer()">
-      <span id="dockSummaryText" class="dock-ticker-summary">시공 항목과 구역을 선택해 주세요</span>
-      <span id="dockCountText" class="dock-ticker-count">0건 선택됨 ▲</span>
-    </div>
-    <div class="dock-actions">
-      <a id="dockCallBtn" href="tel:01049446831" class="dock-call-btn">전화 문의</a>
-      <button type="button" class="dock-sms-btn" onclick="openSmsModal()">문자 견적 바로보내기</button>
-    </div>
-  </div>
-
-  <!-- 문자 미리보기 및 전송 바텀시트 -->
-  <div id="smsModal" class="modal-backdrop" onclick="closeModalOnBackdrop(event, 'smsModal')">
-    <div class="sheet-box">
-      <div class="sheet-head">
-        <div class="sheet-title">문자 견적 내용 미리보기</div>
-        <button type="button" class="sheet-close" onclick="closeModal('smsModal')">닫기</button>
+    <div class="dock-inner">
+      <div class="dock-summary-bar" onclick="toggleCartDrawer()">
+        <span class="dock-hint" id="dockHintText">시공 항목과 구역을 선택해 주세요</span>
+        <span class="dock-count" id="dockCountText">0건 선택됨 ▲</span>
       </div>
-      <textarea id="smsPreviewText" class="sms-preview-box"></textarea>
-      <div class="sheet-btn-row">
-        <button type="button" class="copy-btn" onclick="copySmsText()">문구 복사하기</button>
-        <button type="button" class="send-now-btn" onclick="launchSmsApp()">문자 앱으로 바로 전송</button>
+      <div class="dock-actions">
+        <a id="callLinkBtn" href="tel:010-4944-6831" class="btn-call">전화 문의</a>
+        <button type="button" class="btn-sms" onclick="sendSmsQuote()">문자 견적 바로보내기</button>
       </div>
     </div>
   </div>
 
-  <!-- 관리자 모드 바텀시트 -->
-  <div id="adminModal" class="modal-backdrop" onclick="closeModalOnBackdrop(event, 'adminModal')">
-    <div class="sheet-box">
-      <div class="sheet-head">
-        <div class="sheet-title">사장님 관리자 모드</div>
-        <button type="button" class="sheet-close" onclick="closeModal('adminModal')">닫기</button>
+  <!-- 관리자 모드 모달 -->
+  <div class="modal-backdrop" id="adminModal">
+    <div class="modal-box">
+      <div class="modal-head">
+        <span class="modal-title">사장님 관리자 모드</span>
+        <button type="button" class="close-modal" onclick="closeAdminModal()">닫기</button>
       </div>
-      <div id="adminBody"></div>
+
+      <!-- 비밀번호 인증 화면 -->
+      <div id="adminAuthView">
+        <p style="font-size: 13px; color: var(--text-sub); margin-bottom: 10px;">관리자 비밀번호를 입력해 주세요. (초기 비밀번호: 0000)</p>
+        <div class="custom-input-row">
+          <input type="password" id="adminPwInput" class="text-input" placeholder="비밀번호 입력" maxlength="12" />
+          <button type="button" class="add-btn" onclick="verifyAdminPw()">확인</button>
+        </div>
+      </div>
+
+      <!-- 관리자 설정 본문 -->
+      <div id="adminPanelView" style="display: none;">
+        <div class="admin-section">
+          <h4>1. 시공 카드 대표 사진 관리</h4>
+          <p style="font-size: 11.5px; color: var(--text-muted); margin-bottom: 10px;">
+            기본값은 깃허브 저장소의 img1.jpg ~ img4.jpg 파일입니다.
+          </p>
+          <div id="adminImgList"></div>
+          <button type="button" class="admin-outline-btn" onclick="resetImagesToGithubDefault()">깃허브 기본 이미지(img1~4.jpg)로 복원</button>
+        </div>
+
+        <div class="admin-section">
+          <h4>2. 연락처 및 SNS 채널 링크</h4>
+          <div style="display: flex; flex-direction: column; gap: 7px;">
+            <input type="text" id="cfgPhone" class="text-input" placeholder="상담 전화번호 (예: 010-4944-6831)" />
+            <input type="text" id="cfgBlog" class="text-input" placeholder="네이버 블로그 주소" />
+            <input type="text" id="cfgYoutube" class="text-input" placeholder="유튜브 채널 주소" />
+            <input type="text" id="cfgInsta" class="text-input" placeholder="인스타그램 주소" />
+            <button type="button" class="admin-small-btn" style="padding: 9px;" onclick="saveSiteConfig()">연락처 및 링크 저장</button>
+          </div>
+        </div>
+
+        <div class="admin-section">
+          <h4>3. 관리자 비밀번호 변경</h4>
+          <div class="custom-input-row">
+            <input type="password" id="newAdminPw" class="text-input" placeholder="새 비밀번호 입력" />
+            <button type="button" class="add-btn" onclick="changeAdminPw()">변경</button>
+          </div>
+        </div>
+
+        <div>
+          <h4>4. 설정 백업 및 복원 (JSON)</h4>
+          <button type="button" class="admin-outline-btn" onclick="exportConfigJson()">설정 백업 파일 내보내기</button>
+          <label class="admin-outline-btn" style="display: block; text-align: center; cursor: pointer;">
+            백업 파일 불러오기
+            <input type="file" accept=".json" style="display: none;" onchange="importConfigJson(event)" />
+          </label>
+        </div>
+      </div>
     </div>
   </div>
 
   <script>
-    const STORAGE_KEY = 'busandeepclean_homecare_v6';
+    const STORAGE_KEY = 'bdc_homecare_config_v3';
 
-    const DEFAULT_THUMBS = {
-      grout: 'data:image/jpeg;base64,' + [
-        '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',
-        'jmEJyHJRRUKOSiiiD//Z'
-      ].join(''),
-      screen: 'data:image/jpeg;base64,' + [
-        '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',
-        'ajNUIAKhCAAEwAAP/9k='
-      ].join(''),
-      coating: 'data:image/jpeg;base64,' + [
-        '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'
-      ].join('')
-    };
-
-    const DEFAULT_CONFIG = {
-      phone: '010-4944-6831',
-      adminPw: '0000',
-      sns: {
-        blog: 'https://blog.naver.com/deepclean6831',
-        youtube: 'https://www.youtube.com/@줄눈.방충망.타일코팅',
-        instagram: 'https://www.instagram.com/deep_clean_6831'
+    // 4대 시공 마스터 데이터 (깃허브 img1.jpg ~ img4.jpg 기본 연결)
+    const SERVICES = [
+      {
+        id: 'grout',
+        num: '01',
+        name: '프리미엄 줄눈',
+        tagline: '정밀 ㄷ자 시공 · 스타라이크 프로 · 아스팍톤',
+        defaultImg: 'img1.jpg'
       },
-      biz: {
-        name: '부산딥클린 올인원 홈케어',
-        owner: '양상인',
-        bizNo: '',
-        address: '부산광역시 남구 석포로45 1층',
-        regions: '부산 · 김해 · 양산 · 창원 · 밀양 · 울산 경남 전지역 (출장 가능: 경주 · 대구 · 남해)'
+      {
+        id: 'screen',
+        num: '02',
+        name: '블랙스텐 방충망',
+        tagline: '고강도 블랙스텐 · 미세 촘촘망 · 물구멍·모헤어 포함',
+        defaultImg: 'img2.jpg'
       },
-      services: {
-        grout: {
-          key: 'grout',
-          num: '01',
-          title: '프리미엄 줄눈',
-          sub: '정밀 ㄷ자 시공 · 스타라이크 프로 · 아스팍톤',
-          img: DEFAULT_THUMBS.grout,
-          notice: '',
-          materials: [
-            { id: 'starlike', name: '스타라이크 프로', grade: 'MASTER', desc: '이태리 최상위 프리미엄', color: 'emerald' },
-            { id: 'aspakton', name: '아스팍톤', grade: 'SIGNATURE', desc: '고강도 특허 프리미엄', color: 'gold' },
-            { id: 'aspakshine', name: '아스팍샤인', grade: 'PREMIUM POLY', desc: '폴리 최상위 라인', color: 'purple' },
-            { id: 'poly', name: '폴리아스파틱', grade: 'STANDARD', desc: '실속형 정석 줄눈', color: 'blue' }
-          ],
-          zones: [
-            { id: 'g_entrance', name: '현관', priority: true },
-            { id: 'g_master_floor', name: '안방 욕실 바닥', priority: true },
-            { id: 'g_common_floor', name: '공용 욕실 바닥', priority: true },
-            { id: 'g_laundry', name: '세탁실', priority: true },
-            { id: 'g_veranda', name: '안방 베란다', priority: true },
-            { id: 'g_master_shower', name: '안방 샤워부스 벽면', priority: false },
-            { id: 'g_common_tub', name: '공용욕실 욕조부분 벽면', priority: false },
-            { id: 'g_master_wall', name: '안방 벽전체', priority: false },
-            { id: 'g_common_wall', name: '공용욕실 벽전체', priority: false },
-            { id: 'g_living_floor', name: '거실,주방,복도 바닥', priority: false, hasInput: true, placeholder: '예: 거실+주방+복도 포세린 타일' },
-            { id: 'g_etc', name: '기타 공간', priority: false, hasInput: true, placeholder: '추가 희망 공간 직접 입력' }
-          ]
-        },
-        screen: {
-          key: 'screen',
-          num: '02',
-          title: '블랙스텐 방충망',
-          sub: '고강도 블랙스텐 · 미세 촘촘망',
-          img: DEFAULT_THUMBS.screen,
-          notice: '교체된 방충망 물구멍 스티커, 모헤어 교체 서비스 포함',
-          materials: [
-            { id: 'blacksteel', name: '고강도 블랙스텐', grade: 'MASTER', desc: '선명한 시야 · 최고 내구성', color: 'emerald' },
-            { id: 'micro', name: '미세 촘촘망', grade: 'PREMIUM', desc: '날벌레 · 미세먼지 차단', color: 'gold' },
-            { id: 'aluminum', name: '알루미늄망', grade: 'STANDARD', desc: '기본 실속형 교체', color: 'blue' }
-          ],
-          zones: [
-            { id: 's_living', name: '거실 대창', hasQty: true },
-            { id: 's_master_veranda', name: '안방 베란다창', hasQty: true },
-            { id: 's_pantry', name: '안방 팬트리창', hasQty: true },
-            { id: 's_laundry', name: '주방 옆 세탁실 창', hasQty: true },
-            { id: 's_kitchen', name: '주방 창', hasQty: true },
-            { id: 's_room1', name: '방 1', hasQty: true, hasSize: true },
-            { id: 's_room2', name: '방 2', hasQty: true, hasSize: true },
-            { id: 's_room3', name: '방 3', hasQty: true, hasSize: true },
-            { id: 's_etc', name: '기타 창', hasQty: true, hasInput: true, placeholder: '예: 드레스룸 창, 알파룸 창 등' }
-          ]
-        },
-        coating: {
-          key: 'coating',
-          num: '03',
-          title: '욕실·타일 코팅',
-          sub: '일본 아크바리아 700 Z · X · R',
-          img: DEFAULT_THUMBS.coating,
-          notice: '',
-          materials: [
-            { id: '700z', name: '아크바리아 700 Z', grade: '700 Z', desc: '포세린 타일 바닥 등', color: 'emerald' },
-            { id: '700x', name: '아크바리아 700 X', grade: '700 X', desc: '타일, 상판, 다목적', color: 'gold' },
-            { id: '700r', name: '아크바리아 700 R', grade: '700 R', desc: '샤워부스 유리, 거울, 수전, 도기류', color: 'blue' }
-          ],
-          zones: [
-            { id: 'c_kitchen_top', name: '주방 상판', badge: '추천 Z', defaultMat: '700z' },
-            { id: 'c_living_tile', name: '거실 타일', badge: '추천 Z', defaultMat: '700z' },
-            { id: 'c_common_floor', name: '공용욕실 바닥타일', badge: '추천 Z', defaultMat: '700z' },
-            { id: 'c_master_floor', name: '안방욕실 바닥타일', badge: '추천 Z', defaultMat: '700z' },
-            { id: 'c_common_bath', name: '공용욕실', sub: '거울, 세면대, 변기, 수전', badge: '추천 X, R', defaultMat: '700r' },
-            { id: 'c_master_bath', name: '안방욕실', sub: '샤워부스, 거울, 변기, 수전, 세면대', badge: '추천 X, R', defaultMat: '700r' },
-            { id: 'c_etc', name: '기타 공간', hasInput: true, placeholder: '코팅 희망 공간 직접 입력' }
-          ]
-        },
-        silicone: {
-          key: 'silicone',
-          num: '04',
-          title: '바이오 실리콘',
-          sub: '무펄 · 펄 항균 실리콘 마감',
-          img: DEFAULT_THUMBS.silicone,
-          notice: '',
-          materials: [
-            { id: 'matte', name: '무펄', grade: '', desc: '깔끔하고 차분한 무광 마감', color: 'emerald' },
-            { id: 'pearl', name: '펄', grade: '', desc: '은은한 광택 포인트 마감', color: 'blue' }
-          ],
-          zones: [
-            { id: 'si_kitchen', name: '주방 상판 테두리' },
-            { id: 'si_master', name: '안방 욕실', sub: '세로줄 벽면, 젠다이 등 기존 범위 포함' },
-            { id: 'si_common', name: '공용 욕실', sub: '욕조 테두리, 세로줄 벽면, 젠다이 등 기존 범위 포함' },
-            { id: 'si_window', name: '샷시(유리창) 실리콘' },
-            { id: 'si_molding', name: '집 전체 걸레받이 테두리' },
-            { id: 'si_etc', name: '기타 공간', hasInput: true, placeholder: '실리콘 시공 희망 공간 직접 입력' }
-          ]
-        }
+      {
+        id: 'coating',
+        num: '03',
+        name: '욕실·타일 코팅',
+        tagline: '일본 아크바리아 700 Z · X · R',
+        defaultImg: 'img3.jpg'
+      },
+      {
+        id: 'silicone',
+        num: '04',
+        name: '바이오 실리콘',
+        tagline: '무펄 · 펄 항균 실리콘 정밀 마감',
+        defaultImg: 'img4.jpg'
       }
-    };
-
-    const RESIDENCE_OPTIONS = [
-      { id: 'new', title: '신축', desc: '올해 준공되고 입주하는 아파트' },
-      { id: 'semi_new', title: '준신축', desc: '2~4년' },
-      { id: 'old', title: '구축', desc: '5년 이상' },
-      { id: 'living', title: '거주 중', desc: '현재 거주 중인 공간' },
-      { id: 'remodel', title: '리모델링 공사 후 입주', desc: '인테리어·리모델링 완료 후 입주 예정', fullWidth: true }
     ];
 
-    function normalizeUrl(url, fallback) {
-      const val = (url || '').trim();
-      if (!val) return fallback;
-      if (/^https?:\/\//i.test(val)) return val;
-      return 'https://' + val.replace(/^\/+/, '');
-    }
+    // 시공별 자재 데이터
+    const GROUT_MATERIALS = [
+      { id: 'starlike_pro', name: '스타라이크 프로', grade: 'HIGH-END · 이태리 리토콜', note: '디펜더 에보 항균 내장', color: 'emerald' },
+      { id: 'aspakton', name: '아스팍톤', grade: 'SIGNATURE · 크린파파 특허', note: '고강도 프리미엄 특화 자재', color: 'gold' },
+      { id: 'aspakshine', name: '아스팍샤인', grade: 'ADVANCED · 고밀도 마감', note: '우수한 내오염·광택 밸런스', color: 'purple' },
+      { id: 'poly', name: '폴리아스파틱', grade: 'STANDARD · 실속형', note: '유광무펄 · 펄 타입 선택', color: 'blue' }
+    ];
 
-    function loadConfig() {
-      try {
-        const raw = localStorage.getItem(STORAGE_KEY);
-        if (!raw) return JSON.parse(JSON.stringify(DEFAULT_CONFIG));
-        const parsed = JSON.parse(raw);
-        return Object.assign({}, JSON.parse(JSON.stringify(DEFAULT_CONFIG)), parsed);
-      } catch (e) {
-        return JSON.parse(JSON.stringify(DEFAULT_CONFIG));
-      }
-    }
+    const GROUT_BASIC_AREAS = [
+      '현관',
+      '안방 욕실 바닥',
+      '공용 욕실 바닥',
+      '세탁실',
+      '안방 베란다'
+    ];
 
-    let config = loadConfig();
-    let activeTab = 'grout';
-    let activeMat = {
-      grout: 'starlike',
-      screen: 'blacksteel',
-      coating: '700z',
-      silicone: 'matte'
+    const GROUT_EXTRA_AREAS = [
+      '안방 샤워부스 벽면',
+      '공용욕실 욕조부분 벽면',
+      '안방 벽전체',
+      '공용욕실 벽전체'
+    ];
+
+    const SCREEN_MATERIALS = [
+      { id: 'black_sus', name: '고강도 블랙스텐', grade: 'HEAVY DUTY', note: '반영구 내구성 · 선명한 시야', color: 'emerald' },
+      { id: 'micro_mesh', name: '미세 촘촘망', grade: 'MICRO MESH', note: '날벌레·미세먼지 유입 차단', color: 'gold' },
+      { id: 'aluminum', name: '알루미늄망', grade: 'BASIC', note: '합리적 기본형 교체', color: 'blue' }
+    ];
+
+    const SCREEN_WINDOWS = [
+      '거실 대창',
+      '안방 베란다창',
+      '안방 팬트리창',
+      '주방 옆 세탁실 창',
+      '주방 창',
+      '방 1 (거실 대창 크기)',
+      '방 1 (중간창 크기)',
+      '방 2 (거실 대창 크기)',
+      '방 2 (중간창 크기)',
+      '방 3 (거실 대창 크기)',
+      '방 3 (중간창 크기)'
+    ];
+
+    const COATING_MATERIALS = [
+      { id: '700z', name: '700 Z', grade: '바닥·타일·상판', note: '고경도 무기질 피막', color: 'emerald' },
+      { id: '700x', name: '700 X', grade: '타일·상판·다목적', note: '발수·방오 밸런스', color: 'gold' },
+      { id: '700r', name: '700 R', grade: '유리·수전·도기', note: '물때 고착 방지 특화', color: 'blue' }
+    ];
+
+    const COATING_AREAS = [
+      { name: '주방 상판', rec: '추천 · Z 추천' },
+      { name: '거실 타일', rec: '추천' },
+      { name: '공용욕실 바닥타일', rec: '추천' },
+      { name: '안방욕실 바닥타일', rec: '추천' },
+      { name: '공용욕실 (거울·세면대·변기·수전)', rec: '추천 X · R' },
+      { name: '안방욕실 (샤워부스·거울·변기·수전·세면대)', rec: '추천 X · R' }
+    ];
+
+    const SILICONE_MATERIALS = [
+      { id: 'matte', name: '무펄', grade: '매트 마감', note: '차분하고 깔끔한 정석 컬러', color: 'emerald' },
+      { id: 'pearl', name: '펄', grade: '은은한 펄 마감', note: '화사한 포인트 마감', color: 'blue' }
+    ];
+
+    const SILICONE_AREAS = [
+      '주방 상판 테두리',
+      '안방 욕실 (세로줄 벽면·젠다이 포함)',
+      '공용 욕실 (욕조 테두리·세로줄 벽면·젠다이 포함)',
+      '샷시(유리창) 실리콘',
+      '집 전체 걸레받이 테두리'
+    ];
+
+    const RESIDENCE_STATUSES = [
+      { id: 'new', title: '신축', sub: '올해 준공되고 입주하는 아파트' },
+      { id: 'semi_new', title: '준신축', sub: '2~4년' },
+      { id: 'old', title: '구축', sub: '5년 이상' },
+      { id: 'remodeling', title: '리모델링 공사 후 입주', sub: '인테리어·리모델링 마감 후 입주 전' },
+      { id: 'living', title: '거주 중', sub: '현재 생활 중인 공간 시공' }
+    ];
+
+    // 상태 변수
+    let siteConfig = {
+      pw: '0000',
+      phone: '010-4944-6831',
+      blog: 'https://m.blog.naver.com/deepclean6831',
+      youtube: 'https://www.youtube.com',
+      insta: 'https://www.instagram.com',
+      customImages: {}
     };
-    let selectedServices = new Set(['grout']);
-    let selections = {
-      grout: {},
-      screen: {},
-      coating: {},
-      silicone: {}
+
+    let state = {
+      selectedServices: [],
+      // 줄눈: 현재 선택 자재 및 { 구역명: 자재객체 }
+      activeGroutMat: GROUT_MATERIALS[0],
+      groutMap: {},
+      // 방충망: 선택 자재 및 { 창이름: 개수 }
+      activeScreenMat: SCREEN_MATERIALS[0],
+      screenCounts: {},
+      // 코팅: 현재 선택 자재 및 { 구역명: 자재객체 }
+      activeCoatingMat: COATING_MATERIALS[0],
+      coatingMap: {},
+      // 실리콘: 현재 선택 자재 및 { 구역명: 자재객체 }
+      activeSiliconeMat: SILICONE_MATERIALS[0],
+      siliconeMap: {},
+      // 거주 상태 (중복 선택)
+      selectedStatuses: []
     };
-    let selectedResidence = new Set();
-    let adminUnlocked = false;
-    let dockOpen = false;
 
-    function saveConfig() {
+    function loadSiteConfig() {
       try {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(config));
-      } catch (e) {
-        showToast('저장 공간이 부족해 일부 설정이 저장되지 않았습니다.');
-      }
-    }
-
-    function showToast(msg) {
-      const el = document.getElementById('toastMsg');
-      el.textContent = msg;
-      el.style.display = 'block';
-      clearTimeout(window._toastTimer);
-      window._toastTimer = setTimeout(() => {
-        el.style.display = 'none';
-      }, 2200);
-    }
-
-    function quickSelectService(svcKey) {
-      selectedServices.add(svcKey);
-      activeTab = svcKey;
-      renderAll();
-      document.getElementById('step2Section').scrollIntoView({ behavior: 'smooth' });
-    }
-
-    function toggleServiceCard(svcKey) {
-      if (selectedServices.has(svcKey)) {
-        if (activeTab === svcKey && Object.keys(selections[svcKey]).length === 0 && selectedServices.size > 1) {
-          selectedServices.delete(svcKey);
-          activeTab = Array.from(selectedServices)[0];
-        } else {
-          activeTab = svcKey;
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          siteConfig = { ...siteConfig, ...parsed };
         }
-      } else {
-        selectedServices.add(svcKey);
-        activeTab = svcKey;
+      } catch (e) {
+        console.warn('설정 로드 실패:', e);
       }
-      renderAll();
+      applySiteConfig();
     }
 
-    function switchTab(svcKey) {
-      activeTab = svcKey;
-      selectedServices.add(svcKey);
-      renderAll();
+    function applySiteConfig() {
+      document.getElementById('footerPhone').textContent = siteConfig.phone;
+      document.getElementById('callLinkBtn').href = 'tel:' + siteConfig.phone.replace(/[^0-9]/g, '');
+      document.getElementById('snsBlogLink').href = siteConfig.blog || 'https://m.blog.naver.com/deepclean6831';
+      document.getElementById('snsYoutubeLink').href = siteConfig.youtube || 'https://www.youtube.com';
+      document.getElementById('snsInstaLink').href = siteConfig.insta || 'https://www.instagram.com';
     }
 
-    function selectMaterial(svcKey, matId) {
-      activeMat[svcKey] = matId;
-      renderDetailPanel();
-    }
-
-    function toggleZone(svcKey, zoneId) {
-      const svc = config.services[svcKey];
-      const zone = svc.zones.find(z => z.id === zoneId);
-      if (!zone) return;
-
-      if (selections[svcKey][zoneId]) {
-        delete selections[svcKey][zoneId];
-      } else {
-        selectedServices.add(svcKey);
-        const defaultMatId = activeMat[svcKey] || (zone.defaultMat || svc.materials[0].id);
-        selections[svcKey][zoneId] = {
-          matId: defaultMatId,
-          qty: 1,
-          size: '거실 대창과 같은 크기',
-          note: ''
-        };
-      }
-      renderAll();
-    }
-
-    function changeZoneMaterial(e, svcKey, zoneId, matId) {
-      e.stopPropagation();
-      if (!selections[svcKey][zoneId]) return;
-      selections[svcKey][zoneId].matId = matId;
-      activeMat[svcKey] = matId;
-      renderAll();
-    }
-
-    function changeZoneQty(e, svcKey, zoneId, delta) {
-      e.stopPropagation();
-      const item = selections[svcKey][zoneId];
-      if (!item) return;
-      const next = (item.qty || 1) + delta;
-      if (next < 1) return;
-      item.qty = next;
-      renderAll();
-    }
-
-    function changeZoneSize(e, svcKey, zoneId, sizeLabel) {
-      e.stopPropagation();
-      const item = selections[svcKey][zoneId];
-      if (!item) return;
-      item.size = sizeLabel;
-      renderAll();
-    }
-
-    function updateZoneNote(svcKey, zoneId, val) {
-      const item = selections[svcKey][zoneId];
-      if (!item) return;
-      item.note = val;
-      renderCartBoard();
-      updateDock();
-    }
-
-    function removeCartItem(svcKey, zoneId) {
-      delete selections[svcKey][zoneId];
-      renderAll();
-    }
-
-    function resetAllSelections() {
-      selections = { grout: {}, screen: {}, coating: {}, silicone: {} };
-      selectedResidence.clear();
-      renderAll();
-      showToast('선택 목록이 초기화되었습니다.');
-    }
-
-    function toggleResidence(resId) {
-      if (selectedResidence.has(resId)) {
-        selectedResidence.delete(resId);
-      } else {
-        selectedResidence.add(resId);
-      }
-      renderResidence();
-    }
-
-    function renderHeaderAndLinks() {
-      const cleanTel = (config.phone || '010-4944-6831').replace(/[^0-9]/g, '');
-      document.getElementById('dockCallBtn').href = 'tel:' + cleanTel;
-      document.getElementById('snsBlogLink').href = normalizeUrl(config.sns.blog, 'https://blog.naver.com/deepclean6831');
-      document.getElementById('snsYoutubeLink').href = normalizeUrl(config.sns.youtube, 'https://www.youtube.com/@줄눈.방충망.타일코팅');
-      document.getElementById('snsInstaLink').href = normalizeUrl(config.sns.instagram, 'https://www.instagram.com/deep_clean_6831');
-
-      const b = config.biz;
-      let lines = [`상호명: ${b.name}`];
-      if (b.owner) lines.push(`대표자: ${b.owner}`);
-      if (b.bizNo) lines.push(`사업자등록번호: ${b.bizNo}`);
-      if (b.address) lines.push(`사업장 소재지: ${b.address}`);
-      lines.push(`시공 지역: ${b.regions}`);
-      lines.push(`상담 문의: ${config.phone}`);
-      document.getElementById('bizFooter').innerHTML = lines.join('<br />');
-    }
-
-    function renderServiceGrid() {
+    function renderServiceCards() {
       const grid = document.getElementById('serviceGrid');
-      const order = ['grout', 'screen', 'coating', 'silicone'];
-      grid.innerHTML = order.map(key => {
-        const s = config.services[key];
-        const count = Object.keys(selections[key]).length;
-        const isSel = selectedServices.has(key) || count > 0;
-        const isAct = activeTab === key;
+      grid.innerHTML = SERVICES.map(srv => {
+        const isSelected = state.selectedServices.includes(srv.id);
+        const imgSrc = siteConfig.customImages[srv.id] || srv.defaultImg;
         return `
-          <div class="service-card ${isSel ? 'selected' : ''} ${isAct ? 'active-tab' : ''}" onclick="toggleServiceCard('${key}')">
-            <div class="service-img-box">
-              <img src="${s.img || DEFAULT_THUMBS[key]}" alt="${s.title}" onerror="this.src='${DEFAULT_THUMBS[key]}'" />
-              <div class="service-check-pill">✓</div>
+          <div class="service-card ${isSelected ? 'selected' : ''}" onclick="toggleService('${srv.id}')">
+            <div class="service-img-wrap">
+              <img src="${imgSrc}" alt="${srv.name}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+              <div class="img-fallback" style="display:none;">
+                <strong>${srv.defaultImg}</strong>
+                <span>깃허브 업로드 대기</span>
+              </div>
+              <div class="check-circle">✓</div>
             </div>
-            <div class="service-card-body">
-              <div class="service-num">${s.num}${count > 0 ? ' · ' + count + '곳 선택' : ''}</div>
-              <div class="service-card-title">${s.title}</div>
-              <div class="service-card-sub">${s.sub}</div>
+            <div class="service-info">
+              <div class="service-num">${srv.num}</div>
+              <div class="service-name">${srv.name}</div>
+              <div class="service-tagline">${srv.tagline}</div>
             </div>
           </div>
         `;
       }).join('');
     }
 
-    function renderTabBar() {
-      const bar = document.getElementById('tabBar');
-      const order = [
-        { key: 'grout', label: '줄눈' },
-        { key: 'screen', label: '방충망' },
-        { key: 'coating', label: '타일코팅' },
-        { key: 'silicone', label: '실리콘' }
-      ];
-      bar.innerHTML = order.map(t => {
-        const hasItems = Object.keys(selections[t.key]).length > 0;
+    function toggleService(serviceId) {
+      const idx = state.selectedServices.indexOf(serviceId);
+      if (idx > -1) {
+        state.selectedServices.splice(idx, 1);
+      } else {
+        state.selectedServices.push(serviceId);
+      }
+      renderServiceCards();
+      renderDetailPanels();
+      updateDockSummary();
+    }
+
+    function quickSelectService(serviceId) {
+      if (!state.selectedServices.includes(serviceId)) {
+        state.selectedServices.push(serviceId);
+        renderServiceCards();
+        renderDetailPanels();
+        updateDockSummary();
+      }
+      const target = document.getElementById('panel_' + serviceId) || document.getElementById('step02Section');
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    function renderDetailPanels() {
+      const container = document.getElementById('detailPanelsContainer');
+      const guide = document.getElementById('step02Guide');
+
+      if (state.selectedServices.length === 0) {
+        guide.textContent = '위에서 시공 항목을 먼저 선택하시면 세부 자재와 구역이 열립니다.';
+        container.innerHTML = '';
+        return;
+      }
+
+      guide.textContent = '자재를 먼저 고른 뒤 구역을 누르면 공간별로 자재가 개별 매핑됩니다.';
+
+      let html = '';
+      if (state.selectedServices.includes('grout')) html += renderGroutPanel();
+      if (state.selectedServices.includes('screen')) html += renderScreenPanel();
+      if (state.selectedServices.includes('coating')) html += renderCoatingPanel();
+      if (state.selectedServices.includes('silicone')) html += renderSiliconePanel();
+
+      container.innerHTML = html;
+    }
+
+    // 01. 줄눈 패널
+    function renderGroutPanel() {
+      const matButtons = GROUT_MATERIALS.map(m => `
+        <button type="button" class="mat-btn ${state.activeGroutMat.id === m.id ? 'active' : ''}" data-color="${m.color}" onclick="setGroutMat('${m.id}')">
+          <span class="mat-grade">${m.grade}</span>
+          <span class="mat-name">${m.name}</span>
+          <span class="mat-note">${m.note}</span>
+        </button>
+      `).join('');
+
+      const makeAreaChips = (list) => list.map(area => {
+        const mapped = state.groutMap[area];
+        const cls = mapped ? `active-${mapped.color}` : '';
         return `
-          <button type="button" class="tab-btn ${activeTab === t.key ? 'active' : ''}" onclick="switchTab('${t.key}')">
-            ${t.label}${hasItems ? '<span class="tab-dot"></span>' : ''}
+          <button type="button" class="area-chip ${cls}" onclick="toggleGroutArea('${area}')">
+            <span>${area}</span>
+            ${mapped ? `<span class="chip-sub-tag">${mapped.name}</span>` : ''}
+          </button>
+        `;
+      }).join('');
+
+      // 직접 추가된 커스텀 구역 추출
+      const customAreas = Object.keys(state.groutMap).filter(
+        k => !GROUT_BASIC_AREAS.includes(k) && !GROUT_EXTRA_AREAS.includes(k)
+      );
+
+      return `
+        <div class="detail-panel" id="panel_grout">
+          <div class="panel-header">
+            <span class="panel-title">01 프리미엄 줄눈</span>
+            <span class="panel-badge">공간별 자재 매핑</span>
+          </div>
+
+          <div class="sub-label">
+            <span>1. 적용할 줄눈 자재 선택</span>
+            <span class="sub-hint">현재 선택: ${state.activeGroutMat.name}</span>
+          </div>
+          <div class="mat-grid-2">${matButtons}</div>
+
+          <div class="info-strip">
+            조색 없이 정품 고유 컬러로 정밀 ㄷ자 시공을 원칙으로 합니다. (싱크볼·수전 테두리 제외)
+          </div>
+
+          <div class="sub-label">
+            <span>2. 시공 구역 선택</span>
+            <span class="sub-hint">클릭 시 선택한 자재로 지정</span>
+          </div>
+
+          <div class="area-group-title">기본 5바닥 (가장 많이 선택하는 구역)</div>
+          <div class="area-grid">${makeAreaChips(GROUT_BASIC_AREAS)}</div>
+
+          <div class="area-group-title">추가 확장 벽면 구역</div>
+          <div class="area-grid">${makeAreaChips(GROUT_EXTRA_AREAS)}</div>
+
+          ${customAreas.length > 0 ? `
+            <div class="area-group-title">직접 입력된 구역</div>
+            <div class="area-grid">${makeAreaChips(customAreas)}</div>
+          ` : ''}
+
+          <div class="custom-input-row">
+            <input type="text" id="groutFloorCustom" class="text-input" placeholder="거실, 주방, 복도 바닥 직접입력" />
+            <button type="button" class="add-btn" onclick="addCustomGrout('groutFloorCustom')">추가</button>
+          </div>
+          <div class="custom-input-row">
+            <input type="text" id="groutEtcCustom" class="text-input" placeholder="기타 공간 직접입력 (예: 드레스룸 바닥)" />
+            <button type="button" class="add-btn" onclick="addCustomGrout('groutEtcCustom')">추가</button>
+          </div>
+        </div>
+      `;
+    }
+
+    function setGroutMat(matId) {
+      const found = GROUT_MATERIALS.find(m => m.id === matId);
+      if (found) {
+        state.activeGroutMat = found;
+        renderDetailPanels();
+      }
+    }
+
+    function toggleGroutArea(area) {
+      const existing = state.groutMap[area];
+      if (existing && existing.id === state.activeGroutMat.id) {
+        delete state.groutMap[area];
+      } else {
+        state.groutMap[area] = state.activeGroutMat;
+      }
+      renderDetailPanels();
+      updateDockSummary();
+    }
+
+    function addCustomGrout(inputId) {
+      const el = document.getElementById(inputId);
+      const val = el.value.trim();
+      if (!val) return;
+      state.groutMap[val] = state.activeGroutMat;
+      el.value = '';
+      renderDetailPanels();
+      updateDockSummary();
+    }
+
+    // 02. 방충망 패널
+    function renderScreenPanel() {
+      const matButtons = SCREEN_MATERIALS.map(m => `
+        <button type="button" class="mat-btn ${state.activeScreenMat.id === m.id ? 'active' : ''}" data-color="${m.color}" onclick="setScreenMat('${m.id}')">
+          <span class="mat-grade">${m.grade}</span>
+          <span class="mat-name">${m.name}</span>
+          <span class="mat-note">${m.note}</span>
+        </button>
+      `).join('');
+
+      const allKeys = [...SCREEN_WINDOWS];
+      Object.keys(state.screenCounts).forEach(k => {
+        if (!allKeys.includes(k) && state.screenCounts[k] > 0) allKeys.push(k);
+      });
+
+      const rows = allKeys.map(win => {
+        const cnt = state.screenCounts[win] || 0;
+        return `
+          <div class="counter-row ${cnt > 0 ? 'has-count' : ''}">
+            <span class="counter-label">${win}</span>
+            <div class="counter-controls">
+              <button type="button" class="cnt-btn" onclick="changeScreenCount('${win}', -1)">-</button>
+              <span class="cnt-val">${cnt}</span>
+              <button type="button" class="cnt-btn" onclick="changeScreenCount('${win}', 1)">+</button>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      return `
+        <div class="detail-panel" id="panel_screen">
+          <div class="panel-header">
+            <span class="panel-title">02 블랙스텐 방충망</span>
+            <span class="panel-badge">망 종류 · 창 개수</span>
+          </div>
+
+          <div class="sub-label">
+            <span>1. 방충망 망 종류 선택</span>
+            <span class="sub-hint">선택: ${state.activeScreenMat.name}</span>
+          </div>
+          <div class="mat-grid-3">${matButtons}</div>
+
+          <div class="info-strip">
+            교체된 방충망 물구멍 스티커 및 모헤어 교체 서비스 포함
+          </div>
+
+          <div class="sub-label">
+            <span>2. 교체할 창문 개수 체크</span>
+          </div>
+          <div class="counter-list">${rows}</div>
+
+          <div class="custom-input-row">
+            <input type="text" id="screenCustomName" class="text-input" placeholder="기타 창 이름 입력 (예: 다용도실 창)" />
+            <button type="button" class="add-btn" onclick="addCustomScreen()">1창 추가</button>
+          </div>
+        </div>
+      `;
+    }
+
+    function setScreenMat(matId) {
+      const found = SCREEN_MATERIALS.find(m => m.id === matId);
+      if (found) {
+        state.activeScreenMat = found;
+        renderDetailPanels();
+        updateDockSummary();
+      }
+    }
+
+    function changeScreenCount(win, delta) {
+      const curr = state.screenCounts[win] || 0;
+      const next = Math.max(0, curr + delta);
+      if (next === 0) {
+        delete state.screenCounts[win];
+      } else {
+        state.screenCounts[win] = next;
+      }
+      renderDetailPanels();
+      updateDockSummary();
+    }
+
+    function addCustomScreen() {
+      const el = document.getElementById('screenCustomName');
+      const val = el.value.trim();
+      if (!val) return;
+      state.screenCounts[val] = (state.screenCounts[val] || 0) + 1;
+      el.value = '';
+      renderDetailPanels();
+      updateDockSummary();
+    }
+
+    // 03. 욕실·타일 코팅 패널
+    function renderCoatingPanel() {
+      const matButtons = COATING_MATERIALS.map(m => `
+        <button type="button" class="mat-btn ${state.activeCoatingMat.id === m.id ? 'active' : ''}" data-color="${m.color}" onclick="setCoatingMat('${m.id}')">
+          <span class="mat-grade">${m.grade}</span>
+          <span class="mat-name">${m.name}</span>
+          <span class="mat-note">${m.note}</span>
+        </button>
+      `).join('');
+
+      const areaChips = COATING_AREAS.map(item => {
+        const mapped = state.coatingMap[item.name];
+        const cls = mapped ? `active-${mapped.color}` : '';
+        return `
+          <button type="button" class="area-chip ${cls}" onclick="toggleCoatingArea('${item.name}')">
+            <span>${item.name} <span class="rec-tag">${item.rec}</span></span>
+            ${mapped ? `<span class="chip-sub-tag">적용 코팅제: ${mapped.name}</span>` : ''}
+          </button>
+        `;
+      }).join('');
+
+      const customKeys = Object.keys(state.coatingMap).filter(
+        k => !COATING_AREAS.some(a => a.name === k)
+      );
+
+      const customChips = customKeys.map(k => {
+        const mapped = state.coatingMap[k];
+        return `
+          <button type="button" class="area-chip active-${mapped.color}" onclick="toggleCoatingArea('${k}')">
+            <span>${k}</span>
+            <span class="chip-sub-tag">적용 코팅제: ${mapped.name}</span>
+          </button>
+        `;
+      }).join('');
+
+      return `
+        <div class="detail-panel" id="panel_coating">
+          <div class="panel-header">
+            <span class="panel-title">03 욕실·타일 코팅</span>
+            <span class="panel-badge">일본 아크바리아 700</span>
+          </div>
+
+          <div class="sub-label">
+            <span>1. 아크바리아 700 시리즈 선택</span>
+            <span class="sub-hint">현재 선택: ${state.activeCoatingMat.name}</span>
+          </div>
+          <div class="mat-grid-3">${matButtons}</div>
+
+          <div class="sub-label">
+            <span>2. 코팅 시공 구역 (베란다·세탁실 제외)</span>
+          </div>
+          <div class="area-grid">${areaChips}${customChips}</div>
+
+          <div class="custom-input-row">
+            <input type="text" id="coatingEtcCustom" class="text-input" placeholder="기타 코팅 공간 직접입력 (예: 현관 바닥타일)" />
+            <button type="button" class="add-btn" onclick="addCustomCoating()">추가</button>
+          </div>
+        </div>
+      `;
+    }
+
+    function setCoatingMat(matId) {
+      const found = COATING_MATERIALS.find(m => m.id === matId);
+      if (found) {
+        state.activeCoatingMat = found;
+        renderDetailPanels();
+      }
+    }
+
+    function toggleCoatingArea(areaName) {
+      const existing = state.coatingMap[areaName];
+      if (existing && existing.id === state.activeCoatingMat.id) {
+        delete state.coatingMap[areaName];
+      } else {
+        state.coatingMap[areaName] = state.activeCoatingMat;
+      }
+      renderDetailPanels();
+      updateDockSummary();
+    }
+
+    function addCustomCoating() {
+      const el = document.getElementById('coatingEtcCustom');
+      const val = el.value.trim();
+      if (!val) return;
+      state.coatingMap[val] = state.activeCoatingMat;
+      el.value = '';
+      renderDetailPanels();
+      updateDockSummary();
+    }
+
+    // 04. 바이오 실리콘 패널
+    function renderSiliconePanel() {
+      const matButtons = SILICONE_MATERIALS.map(m => `
+        <button type="button" class="mat-btn ${state.activeSiliconeMat.id === m.id ? 'active' : ''}" data-color="${m.color}" onclick="setSiliconeMat('${m.id}')">
+          <span class="mat-grade">${m.grade}</span>
+          <span class="mat-name">${m.name}</span>
+          <span class="mat-note">${m.note}</span>
+        </button>
+      `).join('');
+
+      const allAreas = [...SILICONE_AREAS];
+      Object.keys(state.siliconeMap).forEach(k => {
+        if (!allAreas.includes(k)) allAreas.push(k);
+      });
+
+      const chips = allAreas.map(area => {
+        const mapped = state.siliconeMap[area];
+        const cls = mapped ? `active-${mapped.color}` : '';
+        return `
+          <button type="button" class="area-chip ${cls}" onclick="toggleSiliconeArea('${area}')">
+            <span>${area}</span>
+            ${mapped ? `<span class="chip-sub-tag">${mapped.name}</span>` : ''}
+          </button>
+        `;
+      }).join('');
+
+      return `
+        <div class="detail-panel" id="panel_silicone">
+          <div class="panel-header">
+            <span class="panel-title">04 바이오 실리콘</span>
+            <span class="panel-badge">항균 실리콘 마감</span>
+          </div>
+
+          <div class="sub-label">
+            <span>1. 실리콘 타입 선택</span>
+            <span class="sub-hint">현재 선택: ${state.activeSiliconeMat.name}</span>
+          </div>
+          <div class="mat-grid-2">${matButtons}</div>
+
+          <div class="sub-label">
+            <span>2. 시공 구역 (베란다·세탁실 제외)</span>
+          </div>
+          <div class="area-grid">${chips}</div>
+
+          <div class="custom-input-row">
+            <input type="text" id="siliconeEtcCustom" class="text-input" placeholder="기타 실리콘 구역 직접입력" />
+            <button type="button" class="add-btn" onclick="addCustomSilicone()">추가</button>
+          </div>
+        </div>
+      `;
+    }
+
+    function setSiliconeMat(matId) {
+      const found = SILICONE_MATERIALS.find(m => m.id === matId);
+      if (found) {
+        state.activeSiliconeMat = found;
+        renderDetailPanels();
+      }
+    }
+
+    function toggleSiliconeArea(area) {
+      const existing = state.siliconeMap[area];
+      if (existing && existing.id === state.activeSiliconeMat.id) {
+        delete state.siliconeMap[area];
+      } else {
+        state.siliconeMap[area] = state.activeSiliconeMat;
+      }
+      renderDetailPanels();
+      updateDockSummary();
+    }
+
+    function addCustomSilicone() {
+      const el = document.getElementById('siliconeEtcCustom');
+      const val = el.value.trim();
+      if (!val) return;
+      state.siliconeMap[val] = state.activeSiliconeMat;
+      el.value = '';
+      renderDetailPanels();
+      updateDockSummary();
+    }
+
+    // STEP 03: 거주 상태 렌더 (아이콘 없는 텍스트 카드)
+    function renderStatusCards() {
+      const grid = document.getElementById('statusGrid');
+      grid.innerHTML = RESIDENCE_STATUSES.map(st => {
+        const active = state.selectedStatuses.includes(st.id);
+        return `
+          <button type="button" class="status-card ${active ? 'active' : ''}" onclick="toggleStatus('${st.id}')">
+            <div>
+              <div class="status-title">${st.title}</div>
+              <div class="status-sub">${st.sub}</div>
+            </div>
+            <span class="status-check-text">${active ? '선택됨' : '선택'}</span>
           </button>
         `;
       }).join('');
     }
 
-    function renderZoneRow(svc, z) {
-      const selItem = selections[svc.key][z.id];
-      const isChecked = !!selItem;
-      const matListHtml = isChecked ? `
-        <div class="zone-controls" onclick="event.stopPropagation()">
-          <div class="mini-mat-row">
-            ${svc.materials.map(m => `
-              <button type="button"
-                class="mini-mat-pill ${selItem.matId === m.id ? 'active m-' + m.color : ''}"
-                onclick="changeZoneMaterial(event, '${svc.key}', '${z.id}', '${m.id}')">
-                ${m.name}
-              </button>
-            `).join('')}
-          </div>
-          ${(z.hasQty || z.hasSize) ? `
-            <div class="qty-size-row">
-              ${z.hasQty ? `
-                <div class="qty-box">
-                  <button type="button" class="qty-btn" onclick="changeZoneQty(event, '${svc.key}', '${z.id}', -1)">-</button>
-                  <span class="qty-val">${selItem.qty}개</span>
-                  <button type="button" class="qty-btn" onclick="changeZoneQty(event, '${svc.key}', '${z.id}', 1)">+</button>
-                </div>
-              ` : ''}
-              ${z.hasSize ? `
-                <div class="size-toggle-group">
-                  <button type="button" class="size-btn ${selItem.size === '거실 대창과 같은 크기' ? 'active' : ''}" onclick="changeZoneSize(event, '${svc.key}', '${z.id}', '거실 대창과 같은 크기')">거실 대창 크기</button>
-                  <button type="button" class="size-btn ${selItem.size === '중간창 크기' ? 'active' : ''}" onclick="changeZoneSize(event, '${svc.key}', '${z.id}', '중간창 크기')">중간창 크기</button>
-                </div>
-              ` : ''}
-            </div>
-          ` : ''}
-          ${z.hasInput ? `
-            <input type="text" class="zone-text-input"
-              value="${(selItem.note || '').replace(/"/g, '&quot;')}"
-              placeholder="${z.placeholder || '세부 내용을 입력해 주세요'}"
-              oninput="updateZoneNote('${svc.key}', '${z.id}', this.value)" />
-          ` : ''}
-        </div>
-      ` : '';
-
-      return `
-        <div class="zone-item ${isChecked ? 'checked' : ''}">
-          <div class="zone-top-row" onclick="toggleZone('${svc.key}', '${z.id}')">
-            <div class="zone-left">
-              <span class="zone-checkbox">✓</span>
-              <div class="zone-text-wrap">
-                <div class="zone-name-row">
-                  <span class="zone-name">${z.name}</span>
-                  ${z.badge ? `<span class="zone-rec-badge">${z.badge}</span>` : ''}
-                </div>
-                ${z.sub ? `<span class="zone-sub-text">${z.sub}</span>` : ''}
-              </div>
-            </div>
-          </div>
-          ${matListHtml}
-        </div>
-      `;
-    }
-
-    function renderDetailPanel() {
-      const panel = document.getElementById('detailPanel');
-      const svc = config.services[activeTab];
-      const curMat = activeMat[activeTab] || svc.materials[0].id;
-      const gridClass = svc.materials.length === 3 ? 'mat-grid-3' : 'mat-grid-2';
-
-      let zonesHtml = '';
-      if (svc.key === 'grout') {
-        const topZones = svc.zones.filter(z => z.priority);
-        const extZones = svc.zones.filter(z => !z.priority);
-        zonesHtml = `
-          <div class="zone-group-title">기본 5바닥 구역</div>
-          <div class="zone-list">${topZones.map(z => renderZoneRow(svc, z)).join('')}</div>
-          <div class="zone-group-title">추가 확장 구역</div>
-          <div class="zone-list">${extZones.map(z => renderZoneRow(svc, z)).join('')}</div>
-        `;
+    function toggleStatus(statusId) {
+      const idx = state.selectedStatuses.indexOf(statusId);
+      if (idx > -1) {
+        state.selectedStatuses.splice(idx, 1);
       } else {
-        zonesHtml = `<div class="zone-list">${svc.zones.map(z => renderZoneRow(svc, z)).join('')}</div>`;
+        state.selectedStatuses.push(statusId);
       }
-
-      panel.innerHTML = `
-        <div class="panel-header-row">
-          <div class="panel-title">${svc.num}. ${svc.title}</div>
-          <span class="panel-sub-pill">공간별 자재 선택</span>
-        </div>
-        ${svc.notice ? `<div class="service-notice-banner">${svc.notice}</div>` : ''}
-        <div class="sub-label">
-          <span>적용 자재 선택</span>
-          <span class="hint">기본 적용할 자재를 눌러주세요</span>
-        </div>
-        <div class="${gridClass}">
-          ${svc.materials.map(m => `
-            <button type="button" class="mat-card c-${m.color} ${curMat === m.id ? 'active' : ''}" onclick="selectMaterial('${svc.key}', '${m.id}')">
-              ${m.grade ? `<span class="mat-grade">${m.grade}</span>` : ''}
-              <span class="mat-name">${m.name}</span>
-              ${m.desc ? `<span class="mat-desc">${m.desc}</span>` : ''}
-            </button>
-          `).join('')}
-        </div>
-        <div class="sub-label">
-          <span>시공 구역 체크</span>
-          <span class="hint">체크 후 공간별 자재 변경 가능</span>
-        </div>
-        ${zonesHtml}
-      `;
+      renderStatusCards();
+      updateDockSummary();
     }
 
-    function buildCartItemsHtml() {
-      const order = ['grout', 'screen', 'coating', 'silicone'];
-      let totalCount = 0;
-      let html = '';
+    // 장바구니 집계
+    function collectCartItems() {
+      const items = [];
 
-      order.forEach(key => {
-        const svc = config.services[key];
-        const zoneIds = Object.keys(selections[key]);
-        if (zoneIds.length === 0) return;
-
-        html += `<div class="cart-group"><div class="cart-group-head">${svc.num}. ${svc.title}</div>`;
-        zoneIds.forEach(zId => {
-          const item = selections[key][zId];
-          const zone = svc.zones.find(z => z.id === zId);
-          const mat = svc.materials.find(m => m.id === item.matId) || svc.materials[0];
-          if (!zone) return;
-          totalCount++;
-
-          let extra = [];
-          if (zone.hasSize && item.size) extra.push(item.size);
-          if (zone.hasQty) extra.push(`${item.qty}개`);
-          if (item.note && item.note.trim()) extra.push(item.note.trim());
-          const extraStr = extra.length ? ` (${extra.join(' / ')})` : '';
-
-          html += `
-            <div class="cart-row">
-              <div class="cart-row-info">
-                <span>${zone.name}${extraStr}</span>
-                <span class="cart-mat-tag tag-${mat.color}">${mat.name}</span>
-              </div>
-              <button type="button" class="cart-del-btn" onclick="removeCartItem('${key}', '${zId}')">✕</button>
-            </div>
-          `;
+      if (state.selectedServices.includes('grout')) {
+        Object.entries(state.groutMap).forEach(([area, mat]) => {
+          items.push({
+            cat: '프리미엄 줄눈',
+            label: `${area} - ${mat.name}`,
+            removeFn: () => { delete state.groutMap[area]; renderDetailPanels(); updateDockSummary(); }
+          });
         });
-        html += `</div>`;
-      });
+      }
 
-      return { totalCount, html };
-    }
-
-    function renderCartBoard() {
-      const { totalCount, html } = buildCartItemsHtml();
-      const emptyHtml = `<div class="cart-empty">아직 선택된 시공 구역이 없습니다.<br />위에서 원하시는 시공과 구역을 체크해 주세요.</div>`;
-      document.getElementById('cartBoardBody').innerHTML = totalCount === 0 ? emptyHtml : html;
-      document.getElementById('dockDrawer').innerHTML = totalCount === 0 ? emptyHtml : html;
-    }
-
-    function renderResidence() {
-      const grid = document.getElementById('residenceGrid');
-      grid.innerHTML = RESIDENCE_OPTIONS.map(r => `
-        <button type="button" class="res-card ${r.fullWidth ? 'full-width' : ''} ${selectedResidence.has(r.id) ? 'active' : ''}" onclick="toggleResidence('${r.id}')">
-          <span class="res-title">${r.title}</span>
-          <span class="res-desc">${r.desc}</span>
-        </button>
-      `).join('');
-    }
-
-    function toggleDockDrawer() {
-      dockOpen = !dockOpen;
-      const drawer = document.getElementById('dockDrawer');
-      drawer.classList.toggle('open', dockOpen);
-      updateDock();
-    }
-
-    function updateDock() {
-      const order = ['grout', 'screen', 'coating', 'silicone'];
-      let total = 0;
-      let names = [];
-      order.forEach(k => {
-        const c = Object.keys(selections[k]).length;
-        if (c > 0) {
-          total += c;
-          names.push(`${config.services[k].title}(${c})`);
-        }
-      });
-
-      const arrow = dockOpen ? '▼' : '▲';
-      document.getElementById('dockCountText').textContent = `${total}건 선택됨 ${arrow}`;
-      document.getElementById('dockSummaryText').textContent =
-        total > 0 ? names.join(' · ') : '시공 항목과 구역을 선택해 주세요';
-    }
-
-    function buildSmsBody() {
-      const site = document.getElementById('siteNameInput').value.trim();
-      const date = document.getElementById('hopeDateInput').value.trim();
-      const memo = document.getElementById('memoInput').value.trim();
-
-      const resNames = RESIDENCE_OPTIONS
-        .filter(r => selectedResidence.has(r.id))
-        .map(r => r.title);
-
-      let lines = ['[부산딥클린 올인원 홈케어 견적문의]', ''];
-      if (site) lines.push(`현장명: ${site}`);
-      if (resNames.length > 0) lines.push(`거주 상태: ${resNames.join(', ')}`);
-      if (date) lines.push(`시공 희망일: ${date}`);
-      if (site || resNames.length > 0 || date) lines.push('');
-
-      lines.push('[선택 시공 및 자재 내역]');
-      const order = ['grout', 'screen', 'coating', 'silicone'];
-      let hasAny = false;
-
-      order.forEach(key => {
-        const svc = config.services[key];
-        const zoneIds = Object.keys(selections[key]);
-        if (zoneIds.length === 0) return;
-        hasAny = true;
-        lines.push(`${svc.num}. ${svc.title}`);
-        zoneIds.forEach(zId => {
-          const item = selections[key][zId];
-          const zone = svc.zones.find(z => z.id === zId);
-          const mat = svc.materials.find(m => m.id === item.matId) || svc.materials[0];
-          if (!zone) return;
-
-          let extra = [];
-          if (zone.hasSize && item.size) extra.push(item.size);
-          if (zone.hasQty) extra.push(`${item.qty}개`);
-          if (item.note && item.note.trim()) extra.push(item.note.trim());
-          const extraStr = extra.length ? ` (${extra.join(' / ')})` : '';
-
-          lines.push(`- ${zone.name}${extraStr} - ${mat.name}`);
+      if (state.selectedServices.includes('screen')) {
+        Object.entries(state.screenCounts).forEach(([win, cnt]) => {
+          if (cnt > 0) {
+            items.push({
+              cat: `방충망 (${state.activeScreenMat.name})`,
+              label: `${win} ${cnt}창`,
+              removeFn: () => { delete state.screenCounts[win]; renderDetailPanels(); updateDockSummary(); }
+            });
+          }
         });
-        lines.push('');
-      });
-
-      if (!hasAny) {
-        lines.push('- 시공 상담 문의드립니다.');
-        lines.push('');
       }
 
-      if (memo) {
-        lines.push('[추가 요청사항]');
-        lines.push(memo);
+      if (state.selectedServices.includes('coating')) {
+        Object.entries(state.coatingMap).forEach(([area, mat]) => {
+          items.push({
+            cat: '욕실·타일 코팅',
+            label: `${area} - 아크바리아 ${mat.name}`,
+            removeFn: () => { delete state.coatingMap[area]; renderDetailPanels(); updateDockSummary(); }
+          });
+        });
       }
 
-      return lines.join('\n').trim();
+      if (state.selectedServices.includes('silicone')) {
+        Object.entries(state.siliconeMap).forEach(([area, mat]) => {
+          items.push({
+            cat: '바이오 실리콘',
+            label: `${area} - ${mat.name}`,
+            removeFn: () => { delete state.siliconeMap[area]; renderDetailPanels(); updateDockSummary(); }
+          });
+        });
+      }
+
+      return items;
     }
 
-    function openSmsModal() {
-      document.getElementById('smsPreviewText').value = buildSmsBody();
-      document.getElementById('smsModal').classList.add('open');
-    }
+    let currentCartSnapshot = [];
 
-    function closeModal(id) {
-      document.getElementById(id).classList.remove('open');
-    }
+    function updateDockSummary() {
+      currentCartSnapshot = collectCartItems();
+      const count = currentCartSnapshot.length;
+      const hintEl = document.getElementById('dockHintText');
+      const countEl = document.getElementById('dockCountText');
+      const drawer = document.getElementById('cartDrawer');
 
-    function closeModalOnBackdrop(e, id) {
-      if (e.target.id === id) closeModal(id);
-    }
-
-    function copySmsText() {
-      const ta = document.getElementById('smsPreviewText');
-      const text = ta.value;
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(text).then(() => {
-          showToast('견적 문구가 클립보드에 복사되었습니다.');
-        }).catch(() => fallbackCopy(ta));
+      if (count === 0) {
+        hintEl.textContent = state.selectedServices.length > 0
+          ? '아래에서 세부 구역을 체크해 주세요'
+          : '시공 항목과 구역을 선택해 주세요';
+        countEl.textContent = '0건 선택됨 ▲';
       } else {
-        fallbackCopy(ta);
+        hintEl.textContent = '선택 내역 확인하기 (터치)';
+        countEl.textContent = `${count}건 선택됨 ${drawer.classList.contains('open') ? '▼' : '▲'}`;
       }
+
+      renderCartDrawerList();
     }
 
-    function fallbackCopy(ta) {
-      ta.select();
-      ta.setSelectionRange(0, 99999);
-      document.execCommand('copy');
-      showToast('견적 문구가 복사되었습니다.');
-    }
-
-    function launchSmsApp() {
-      const text = document.getElementById('smsPreviewText').value;
-      const cleanTel = (config.phone || '010-4944-6831').replace(/[^0-9]/g, '');
-      const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-      const sep = isIOS ? '&' : '?';
-      window.location.href = `sms:${cleanTel}${sep}body=${encodeURIComponent(text)}`;
-    }
-
-    function openAdminModal() {
-      document.getElementById('adminModal').classList.add('open');
-      renderAdminBody();
-    }
-
-    function checkAdminPw() {
-      const input = document.getElementById('adminPwInput').value;
-      if (input === config.adminPw) {
-        adminUnlocked = true;
-        renderAdminBody();
-      } else {
-        showToast('비밀번호가 일치하지 않습니다.');
-      }
-    }
-
-    function renderAdminBody() {
-      const box = document.getElementById('adminBody');
-      if (!adminUnlocked) {
-        box.innerHTML = `
-          <div class="admin-card">
-            <div class="admin-card-title">관리자 비밀번호 입력 (초기값: 0000)</div>
-            <div class="admin-row">
-              <input id="adminPwInput" type="password" class="field-input" placeholder="비밀번호 4자리 입력" />
-              <button type="button" class="admin-mini-btn" onclick="checkAdminPw()">잠금 해제</button>
-            </div>
-          </div>
-        `;
+    function renderCartDrawerList() {
+      const listEl = document.getElementById('cartItemsList');
+      if (currentCartSnapshot.length === 0) {
+        listEl.innerHTML = '<p style="font-size: 13px; color: var(--text-muted); padding: 14px 0; text-align: center;">아직 선택된 시공 구역이 없습니다.</p>';
         return;
       }
 
-      const order = ['grout', 'screen', 'coating', 'silicone'];
-      box.innerHTML = `
-        <div class="admin-card">
-          <div class="admin-card-title">1. 대표 연락처 및 사업자 정보</div>
-          <div class="admin-row">
-            <label class="field-label">상담 전화번호 (문자 수신 번호)</label>
-            <input id="admPhone" type="text" class="field-input" value="${config.phone}" />
-            <label class="field-label">대표자 성명</label>
-            <input id="admOwner" type="text" class="field-input" value="${config.biz.owner || ''}" placeholder="예: 양상인" />
-            <label class="field-label">사업자등록번호</label>
-            <input id="admBizNo" type="text" class="field-input" value="${config.biz.bizNo || ''}" placeholder="예: 000-00-00000" />
-            <label class="field-label">사업장 주소</label>
-            <input id="admAddr" type="text" class="field-input" value="${config.biz.address || ''}" />
+      listEl.innerHTML = currentCartSnapshot.map((item, idx) => `
+        <div class="cart-item">
+          <div>
+            <span class="cart-item-cat">${item.cat}</span>
+            <span>${item.label}</span>
           </div>
+          <button type="button" class="cart-remove" onclick="removeCartItem(${idx})">삭제</button>
         </div>
-
-        <div class="admin-card">
-          <div class="admin-card-title">2. SNS 채널 링크</div>
-          <div class="admin-row">
-            <label class="field-label">네이버 블로그 URL</label>
-            <input id="admBlog" type="text" class="field-input" value="${config.sns.blog}" />
-            <label class="field-label">유튜브 URL</label>
-            <input id="admYoutube" type="text" class="field-input" value="${config.sns.youtube}" />
-            <label class="field-label">인스타그램 URL</label>
-            <input id="admInsta" type="text" class="field-input" value="${config.sns.instagram}" />
-          </div>
-        </div>
-
-        <div class="admin-card">
-          <div class="admin-card-title">3. 4대 시공 카드 실사진 교체 (자동 압축 · URL · 초기화)</div>
-          ${order.map(k => `
-            <div class="admin-row">
-              <label class="field-label">${config.services[k].num}. ${config.services[k].title}</label>
-              <input type="file" accept="image/*" onchange="handlePhotoUpload(event, '${k}')" />
-              <div class="admin-inline-btns">
-                <button type="button" class="admin-sub-btn" onclick="setPhotoUrl('${k}')">이미지 URL 입력</button>
-                <button type="button" class="admin-sub-btn" onclick="resetPhoto('${k}')">기본 이미지 복원</button>
-              </div>
-            </div>
-          `).join('')}
-        </div>
-
-        <div class="admin-card">
-          <div class="admin-card-title">4. 비밀번호 및 설정 JSON 백업/복원</div>
-          <div class="admin-row">
-            <label class="field-label">관리자 비밀번호</label>
-            <input id="admNewPw" type="text" class="field-input" value="${config.adminPw}" />
-          </div>
-          <div class="admin-inline-btns">
-            <button type="button" class="admin-sub-btn" onclick="exportConfigJson()">설정 백업(JSON 복사)</button>
-            <button type="button" class="admin-sub-btn" onclick="importConfigJson()">설정 복원(JSON 붙여넣기)</button>
-          </div>
-        </div>
-
-        <button type="button" class="primary-sms-btn" onclick="saveAdminSettings()">설정 저장 및 즉시 반영</button>
-      `;
+      `).join('');
     }
 
-    function handlePhotoUpload(e, svcKey) {
-      const file = e.target.files[0];
+    function removeCartItem(index) {
+      if (currentCartSnapshot[index]) {
+        currentCartSnapshot[index].removeFn();
+      }
+    }
+
+    function toggleCartDrawer() {
+      const drawer = document.getElementById('cartDrawer');
+      drawer.classList.toggle('open');
+      updateDockSummary();
+    }
+
+    function resetAllSelections() {
+      state.selectedServices = [];
+      state.groutMap = {};
+      state.screenCounts = {};
+      state.coatingMap = {};
+      state.siliconeMap = {};
+      state.selectedStatuses = [];
+      document.getElementById('aptInput').value = '';
+      renderServiceCards();
+      renderDetailPanels();
+      renderStatusCards();
+      updateDockSummary();
+    }
+
+    // 문자 견적 본문 생성 (별표 기호 절대 미사용)
+    function buildQuoteMessage() {
+      const lines = [];
+      lines.push('[부산딥클린 올인원 홈케어 견적 문의]');
+      lines.push('');
+
+      const aptVal = document.getElementById('aptInput').value.trim();
+      if (aptVal) {
+        lines.push(`지역/아파트: ${aptVal}`);
+      }
+
+      if (state.selectedStatuses.length > 0) {
+        const statusLabels = state.selectedStatuses.map(id => {
+          const found = RESIDENCE_STATUSES.find(s => s.id === id);
+          return found ? found.title : '';
+        }).filter(Boolean);
+        lines.push(`거주상태: ${statusLabels.join(', ')}`);
+      }
+
+      if (aptVal || state.selectedStatuses.length > 0) {
+        lines.push('');
+      }
+
+      let hasDetail = false;
+
+      if (state.selectedServices.includes('grout')) {
+        const entries = Object.entries(state.groutMap);
+        lines.push('[01 프리미엄 줄눈]');
+        if (entries.length > 0) {
+          entries.forEach(([area, mat]) => lines.push(`- ${area} : ${mat.name}`));
+          hasDetail = true;
+        } else {
+          lines.push(`- 희망 자재: ${state.activeGroutMat.name} (구역 상담 희망)`);
+          hasDetail = true;
+        }
+        lines.push('');
+      }
+
+      if (state.selectedServices.includes('screen')) {
+        const entries = Object.entries(state.screenCounts).filter(([, c]) => c > 0);
+        lines.push(`[02 방충망 - ${state.activeScreenMat.name}]`);
+        if (entries.length > 0) {
+          entries.forEach(([win, cnt]) => lines.push(`- ${win} : ${cnt}창`));
+        } else {
+          lines.push('- 창 개수 상담 희망');
+        }
+        lines.push('- 물구멍 스티커 및 모헤어 교체 포함');
+        lines.push('');
+        hasDetail = true;
+      }
+
+      if (state.selectedServices.includes('coating')) {
+        const entries = Object.entries(state.coatingMap);
+        lines.push('[03 욕실·타일 코팅 - 일본 아크바리아 700]');
+        if (entries.length > 0) {
+          entries.forEach(([area, mat]) => lines.push(`- ${area} : ${mat.name}`));
+        } else {
+          lines.push(`- 희망 코팅제: ${state.activeCoatingMat.name} (구역 상담 희망)`);
+        }
+        lines.push('');
+        hasDetail = true;
+      }
+
+      if (state.selectedServices.includes('silicone')) {
+        const entries = Object.entries(state.siliconeMap);
+        lines.push('[04 바이오 실리콘]');
+        if (entries.length > 0) {
+          entries.forEach(([area, mat]) => lines.push(`- ${area} : ${mat.name}`));
+        } else {
+          lines.push(`- 희망 타입: ${state.activeSiliconeMat.name} (구역 상담 희망)`);
+        }
+        lines.push('');
+        hasDetail = true;
+      }
+
+      if (!hasDetail) {
+        lines.push('시공 항목 및 견적 상담 요청드립니다.');
+      } else {
+        lines.push('위 내역으로 시공 가능 일정과 견적 안내 부탁드립니다.');
+      }
+
+      return lines.join('\n');
+    }
+
+    function sendSmsQuote() {
+      const msg = buildQuoteMessage();
+      const phoneClean = siteConfig.phone.replace(/[^0-9]/g, '');
+      const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+      const sep = isIOS ? '&' : '?';
+      window.location.href = `sms:${phoneClean}${sep}body=${encodeURIComponent(msg)}`;
+    }
+
+    function copyQuoteText() {
+      const msg = buildQuoteMessage();
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(msg).then(() => {
+          alert('견적 문의 내용이 클립보드에 복사되었습니다.');
+        });
+      } else {
+        const ta = document.createElement('textarea');
+        ta.value = msg;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        alert('견적 문의 내용이 복사되었습니다.');
+      }
+    }
+
+    // 관리자 모드 로직
+    function openAdminModal() {
+      document.getElementById('adminModal').classList.add('open');
+      document.getElementById('adminAuthView').style.display = 'block';
+      document.getElementById('adminPanelView').style.display = 'none';
+      document.getElementById('adminPwInput').value = '';
+    }
+
+    function closeAdminModal() {
+      document.getElementById('adminModal').classList.remove('open');
+    }
+
+    function verifyAdminPw() {
+      const input = document.getElementById('adminPwInput').value;
+      if (input === siteConfig.pw) {
+        document.getElementById('adminAuthView').style.display = 'none';
+        document.getElementById('adminPanelView').style.display = 'block';
+        renderAdminPanel();
+      } else {
+        alert('비밀번호가 일치하지 않습니다.');
+      }
+    }
+
+    function renderAdminPanel() {
+      const imgList = document.getElementById('adminImgList');
+      imgList.innerHTML = SERVICES.map(srv => {
+        const hasCustom = Boolean(siteConfig.customImages[srv.id]);
+        return `
+          <div class="admin-img-row">
+            <span><strong>${srv.num} ${srv.name}</strong> (${hasCustom ? '브라우저 임시사진' : srv.defaultImg})</span>
+            <label class="admin-small-btn" style="cursor: pointer;">
+              사진 교체
+              <input type="file" accept="image/*" style="display: none;" onchange="handleAdminImageUpload(event, '${srv.id}')" />
+            </label>
+          </div>
+        `;
+      }).join('');
+
+      document.getElementById('cfgPhone').value = siteConfig.phone;
+      document.getElementById('cfgBlog').value = siteConfig.blog;
+      document.getElementById('cfgYoutube').value = siteConfig.youtube;
+      document.getElementById('cfgInsta').value = siteConfig.insta;
+    }
+
+    function handleAdminImageUpload(event, serviceId) {
+      const file = event.target.files[0];
       if (!file) return;
+
       const reader = new FileReader();
-      reader.onload = function(ev) {
+      reader.onload = function(e) {
         const img = new Image();
         img.onload = function() {
           const canvas = document.createElement('canvas');
-          const maxW = 720;
+          const maxW = 560;
           const scale = Math.min(1, maxW / img.width);
-          canvas.width = img.width * scale;
-          canvas.height = img.height * scale;
+          canvas.width = Math.round(img.width * scale);
+          canvas.height = Math.round(img.height * scale);
           const ctx = canvas.getContext('2d');
           ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-          config.services[svcKey].img = canvas.toDataURL('image/jpeg', 0.78);
-          saveConfig();
-          renderServiceGrid();
-          showToast('사진이 압축되어 적용되었습니다.');
+          const compressed = canvas.toDataURL('image/jpeg', 0.65);
+
+          try {
+            siteConfig.customImages[serviceId] = compressed;
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(siteConfig));
+            renderServiceCards();
+            renderAdminPanel();
+            alert('현재 기기 브라우저에 테스트 사진이 적용되었습니다.');
+          } catch (err) {
+            alert('브라우저 저장 용량이 부족합니다. 깃허브 저장소에 img1~4.jpg 파일을 직접 올려주세요.');
+          }
         };
-        img.src = ev.target.result;
+        img.src = e.target.result;
       };
       reader.readAsDataURL(file);
     }
 
-    function setPhotoUrl(svcKey) {
-      const url = prompt('적용할 이미지 주소(URL)를 입력해 주세요:', '');
-      if (url && url.trim()) {
-        config.services[svcKey].img = url.trim();
-        saveConfig();
-        renderServiceGrid();
-        showToast('이미지 URL이 적용되었습니다.');
-      }
+    function resetImagesToGithubDefault() {
+      siteConfig.customImages = {};
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(siteConfig));
+      renderServiceCards();
+      renderAdminPanel();
+      alert('깃허브 기본 이미지(img1.jpg ~ img4.jpg)로 복원되었습니다.');
     }
 
-    function resetPhoto(svcKey) {
-      config.services[svcKey].img = DEFAULT_THUMBS[svcKey];
-      saveConfig();
-      renderServiceGrid();
-      showToast('기본 이미지로 복원되었습니다.');
+    function saveSiteConfig() {
+      siteConfig.phone = document.getElementById('cfgPhone').value.trim() || '010-4944-6831';
+      siteConfig.blog = document.getElementById('cfgBlog').value.trim();
+      siteConfig.youtube = document.getElementById('cfgYoutube').value.trim();
+      siteConfig.insta = document.getElementById('cfgInsta').value.trim();
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(siteConfig));
+      applySiteConfig();
+      alert('연락처 및 SNS 링크가 저장되었습니다.');
+    }
+
+    function changeAdminPw() {
+      const nextPw = document.getElementById('newAdminPw').value.trim();
+      if (!nextPw) {
+        alert('새 비밀번호를 입력해 주세요.');
+        return;
+      }
+      siteConfig.pw = nextPw;
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(siteConfig));
+      document.getElementById('newAdminPw').value = '';
+      alert('관리자 비밀번호가 변경되었습니다.');
     }
 
     function exportConfigJson() {
-      const jsonStr = JSON.stringify(config, null, 2);
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(jsonStr).then(() => {
-          showToast('설정 JSON이 클립보드에 복사되었습니다.');
-        });
-      } else {
-        prompt('아래 설정 JSON을 복사해 보관하세요:', jsonStr);
-      }
+      const blob = new Blob([JSON.stringify(siteConfig, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'busandeepclean_config.json';
+      a.click();
+      URL.revokeObjectURL(url);
     }
 
-    function importConfigJson() {
-      const raw = prompt('백업해 둔 설정 JSON 문자열을 붙여넣어 주세요:', '');
-      if (!raw) return;
-      try {
-        const parsed = JSON.parse(raw);
-        config = Object.assign({}, JSON.parse(JSON.stringify(DEFAULT_CONFIG)), parsed);
-        saveConfig();
-        renderAll();
-        renderAdminBody();
-        showToast('설정이 성공적으로 복원되었습니다.');
-      } catch (e) {
-        showToast('올바른 JSON 형식이 아닙니다.');
-      }
+    function importConfigJson(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        try {
+          const parsed = JSON.parse(e.target.result);
+          siteConfig = { ...siteConfig, ...parsed };
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(siteConfig));
+          applySiteConfig();
+          renderServiceCards();
+          renderAdminPanel();
+          alert('설정 백업 파일이 복원되었습니다.');
+        } catch (err) {
+          alert('올바른 JSON 백업 파일이 아닙니다.');
+        }
+      };
+      reader.readAsText(file);
     }
 
-    function saveAdminSettings() {
-      config.phone = document.getElementById('admPhone').value.trim() || '010-4944-6831';
-      config.biz.owner = document.getElementById('admOwner').value.trim();
-      config.biz.bizNo = document.getElementById('admBizNo').value.trim();
-      config.biz.address = document.getElementById('admAddr').value.trim();
-      config.sns.blog = normalizeUrl(document.getElementById('admBlog').value, 'https://blog.naver.com/deepclean6831');
-      config.sns.youtube = normalizeUrl(document.getElementById('admYoutube').value, 'https://www.youtube.com/@줄눈.방충망.타일코팅');
-      config.sns.instagram = normalizeUrl(document.getElementById('admInsta').value, 'https://www.instagram.com/deep_clean_6831');
-      const newPw = document.getElementById('admNewPw').value.trim();
-      if (newPw) config.adminPw = newPw;
-
-      saveConfig();
-      renderHeaderAndLinks();
-      closeModal('adminModal');
-      showToast('관리자 설정이 저장되었습니다.');
-    }
-
-    function renderAll() {
-      renderHeaderAndLinks();
-      renderServiceGrid();
-      renderTabBar();
-      renderDetailPanel();
-      renderCartBoard();
-      renderResidence();
-      updateDock();
-    }
-
-    renderAll();
+    // 초기 실행
+    loadSiteConfig();
+    renderServiceCards();
+    renderStatusCards();
+    updateDockSummary();
   </script>
 </body>
 </html>
