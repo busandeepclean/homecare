@@ -9,246 +9,1228 @@
   <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" rel="stylesheet" />
   <style>
     :root {
-      --bg-canvas: #FAFAF9; --bg-card: #FFFFFF; --bg-subtle: #F5F5F4;
-      --border-light: #E7E5E4; --border-mid: #D6D3D1;
-      --text-primary: #111827; --text-secondary: #44403C; --text-muted: #78716C;
-      --emerald: #047857; --emerald-light: #ECFDF5; --emerald-border: #A7F3D0;
-      --gold: #B45309; --gold-light: #FFFBEB; --gold-border: #FDE68A;
-      --blue: #1D4ED8; --blue-light: #EFF6FF; --blue-border: #BFDBFE;
-      --purple: #6D28D9; --purple-light: #F5F3FF; --purple-border: #DDD6FE;
+      --bg-canvas: #FAFAF9;
+      --bg-card: #FFFFFF;
+      --bg-subtle: #F5F5F4;
+      --border-light: #E7E5E4;
+      --border-mid: #D6D3D1;
+      --text-primary: #111827;
+      --text-secondary: #44403C;
+      --text-muted: #78716C;
+
+      --emerald: #047857;
+      --emerald-light: #ECFDF5;
+      --emerald-border: #A7F3D0;
+
+      --gold: #B45309;
+      --gold-light: #FFFBEB;
+      --gold-border: #FDE68A;
+
+      --blue: #1D4ED8;
+      --blue-light: #EFF6FF;
+      --blue-border: #BFDBFE;
+
+      --purple: #6D28D9;
+      --purple-light: #F5F3FF;
+      --purple-border: #DDD6FE;
+
       --charcoal: #1F2937;
-      --shadow-sm: 0 2px 8px rgba(17,24,39,0.04);
-      --shadow-md: 0 6px 20px rgba(17,24,39,0.06);
-      --shadow-lg: 0 12px 32px rgba(17,24,39,0.14);
+      --charcoal-light: #F3F4F6;
+
+      --shadow-sm: 0 2px 8px rgba(17, 24, 39, 0.04);
+      --shadow-md: 0 6px 20px rgba(17, 24, 39, 0.06);
+      --shadow-lg: 0 12px 32px rgba(17, 24, 39, 0.14);
     }
-    html, body, div, header, section, footer, h1, h2, p, a, span, button, input, textarea, label {
-      box-sizing: border-box; -webkit-tap-highlight-color: transparent; margin: 0; padding: 0;
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+      margin: 0;
+      padding: 0;
     }
-    html { scroll-behavior: smooth; background-color: #EFECE8; }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: #EFECE8;
+    }
+
     body {
       font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
-      background-color: var(--bg-canvas); color: var(--text-primary);
-      max-width: 520px; margin: 0 auto; min-height: 100vh; padding-bottom: 132px;
-      line-height: 1.5; box-shadow: 0 0 40px rgba(0,0,0,0.05); overflow-x: hidden;
+      background-color: var(--bg-canvas);
+      color: var(--text-primary);
+      max-width: 520px;
+      margin: 0 auto;
+      min-height: 100vh;
+      padding-bottom: 132px;
+      line-height: 1.5;
+      box-shadow: 0 0 40px rgba(0, 0, 0, 0.05);
+      overflow-x: hidden;
     }
-    button, input, textarea { font-family: inherit; }
 
+    button, input, textarea, select {
+      font-family: inherit;
+    }
+
+    /* 1. 초미니멀 상단 헤더 */
     .top-header {
-      position: sticky; top: 0; z-index: 40;
-      background: rgba(250,250,249,0.94); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border-light); padding: 13px 18px;
-      display: flex; align-items: center; justify-content: space-between; gap: 10px;
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: rgba(250, 250, 249, 0.94);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-light);
+      padding: 13px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
     }
-    .brand-wrap { display: flex; flex-direction: column; gap: 2px; }
-    .brand-name { font-size: 16px; font-weight: 800; letter-spacing: -0.02em; color: var(--text-primary); }
-    .brand-region { font-size: 11.5px; font-weight: 500; color: var(--text-muted); letter-spacing: -0.01em; }
+
+    .brand-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .brand-name {
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+    }
+
+    .brand-region {
+      font-size: 11.5px;
+      font-weight: 500;
+      color: var(--text-muted);
+      letter-spacing: -0.01em;
+    }
+
     .admin-trigger-btn {
-      background: var(--bg-card); border: 1px solid var(--border-mid); color: var(--text-secondary);
-      font-size: 12px; font-weight: 600; padding: 6px 11px; border-radius: 8px; cursor: pointer; white-space: nowrap;
+      background: var(--bg-card);
+      border: 1px solid var(--border-mid);
+      color: var(--text-secondary);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 11px;
+      border-radius: 8px;
+      cursor: pointer;
+      white-space: nowrap;
     }
 
-    .hero-section { padding: 26px 18px 18px; text-align: left; }
-    .hero-eyebrow { font-size: 13px; font-weight: 700; color: var(--gold); margin-bottom: 9px; }
-    .hero-title { font-size: 26px; font-weight: 800; line-height: 1.32; letter-spacing: -0.03em; margin-bottom: 10px; }
-    .hero-title .accent { color: var(--emerald); }
-    .hero-subtitle { font-size: 14.5px; font-weight: 500; color: #57534E; margin-bottom: 20px; }
-    .spec-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 9px; }
+    .admin-trigger-btn:active {
+      background: var(--bg-subtle);
+    }
+
+    /* 2. 박스 없는 미니멀 히어로 + 2x2 정품 스펙 라벨 그리드 */
+    .hero-section {
+      padding: 26px 18px 18px;
+      text-align: left;
+    }
+
+    .hero-eyebrow {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: -0.01em;
+      margin-bottom: 9px;
+    }
+
+    .hero-title {
+      font-size: 26px;
+      font-weight: 800;
+      line-height: 1.32;
+      letter-spacing: -0.03em;
+      color: var(--text-primary);
+      margin-bottom: 10px;
+    }
+
+    .hero-title .accent {
+      color: var(--emerald);
+    }
+
+    .hero-subtitle {
+      font-size: 14.5px;
+      font-weight: 500;
+      color: #57534E;
+      line-height: 1.5;
+      letter-spacing: -0.01em;
+      margin-bottom: 20px;
+    }
+
+    .spec-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 9px;
+    }
+
     .spec-item {
-      background: var(--bg-card); border: 1px solid var(--border-light); border-radius: 12px;
-      padding: 12px 13px; text-align: left; cursor: pointer; box-shadow: var(--shadow-sm);
-      display: flex; flex-direction: column; gap: 4px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: 12px;
+      padding: 12px 13px;
+      text-align: left;
+      cursor: pointer;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
     }
-    .spec-item:active { transform: scale(0.98); }
-    .spec-top { display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; color: var(--text-secondary); }
-    .spec-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
-    .dot-emerald { background: var(--emerald); } .dot-gold { background: var(--gold); }
-    .dot-blue { background: var(--blue); } .dot-charcoal { background: var(--charcoal); }
-    .spec-value { font-size: 13px; font-weight: 700; color: var(--text-primary); letter-spacing: -0.02em; }
 
-    .sns-section { padding: 4px 18px 22px; }
-    .sns-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .spec-item:active {
+      transform: scale(0.98);
+    }
+
+    .spec-top {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-secondary);
+    }
+
+    .spec-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .dot-emerald { background: var(--emerald); }
+    .dot-gold { background: var(--gold); }
+    .dot-blue { background: var(--blue); }
+    .dot-charcoal { background: var(--charcoal); }
+
+    .spec-value {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: -0.02em;
+    }
+
+    /* 3. SNS 3열 입체 뱃지 */
+    .sns-section {
+      padding: 4px 18px 22px;
+    }
+
+    .sns-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+
     .sns-btn {
-      display: flex; align-items: center; justify-content: center; gap: 6px;
-      background: var(--bg-card); border: 1px solid var(--border-light); border-radius: 12px;
-      padding: 11px 6px; text-decoration: none; color: var(--text-primary);
-      font-size: 12.5px; font-weight: 700; box-shadow: 0 3px 0 #E7E5E4, var(--shadow-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: 12px;
+      padding: 11px 6px;
+      text-decoration: none;
+      color: var(--text-primary);
+      font-size: 12.5px;
+      font-weight: 700;
+      box-shadow: 0 3px 0 #E7E5E4, var(--shadow-sm);
     }
-    .sns-btn:active { transform: translateY(2px); box-shadow: 0 1px 0 #E7E5E4; }
+
+    .sns-btn:active {
+      transform: translateY(2px);
+      box-shadow: 0 1px 0 #E7E5E4;
+    }
+
     .sns-badge-icon {
-      width: 20px; height: 20px; border-radius: 6px; display: inline-flex;
-      align-items: center; justify-content: center; color: #FFF; font-size: 11px; font-weight: 900; flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      border-radius: 6px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #FFFFFF;
+      font-size: 11px;
+      font-weight: 900;
+      flex-shrink: 0;
     }
-    .sns-naver { background: #03C75A; } .sns-youtube { background: #FF0000; }
-    .sns-insta { background: linear-gradient(135deg, #F58529 0%, #DD2A7B 55%, #8134AF 100%); }
 
-    .section-block { padding: 22px 18px; border-top: 1px solid var(--border-light); }
+    .sns-naver { background: #03C75A; }
+    .sns-youtube { background: #FF0000; }
+    .sns-insta {
+      background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+    }
+
+    /* 섹션 공통 */
+    .section-block {
+      padding: 22px 18px;
+      border-top: 1px solid var(--border-light);
+    }
+
     .step-badge {
-      display: inline-block; font-size: 11px; font-weight: 800; letter-spacing: 0.04em;
-      color: var(--emerald); background: var(--emerald-light); border: 1px solid var(--emerald-border);
-      padding: 3px 8px; border-radius: 6px; margin-bottom: 6px;
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      color: var(--emerald);
+      background: var(--emerald-light);
+      border: 1px solid var(--emerald-border);
+      padding: 3px 8px;
+      border-radius: 6px;
+      margin-bottom: 6px;
     }
-    .section-title { font-size: 19px; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 4px; }
-    .section-desc { font-size: 13px; color: var(--text-muted); margin-bottom: 16px; }
 
-    .service-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 11px; }
+    .section-title {
+      font-size: 19px;
+      font-weight: 800;
+      color: var(--text-primary);
+      letter-spacing: -0.02em;
+      margin-bottom: 4px;
+    }
+
+    .section-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    /* 4. STEP 1: 4대 핵심 시공 2x2 동일 비율 실사진 카드 */
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 11px;
+    }
+
     .service-card {
-      background: var(--bg-card); border: 1.5px solid var(--border-light); border-radius: 14px;
-      overflow: hidden; cursor: pointer; box-shadow: var(--shadow-sm);
-      display: flex; flex-direction: column; position: relative;
+      background: var(--bg-card);
+      border: 1.5px solid var(--border-light);
+      border-radius: 14px;
+      overflow: hidden;
+      cursor: pointer;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      position: relative;
     }
-    .service-card.selected { border-color: var(--emerald); box-shadow: 0 4px 14px rgba(4,120,87,0.14); }
-    .service-card.active-tab { outline: 2px solid rgba(4,120,87,0.28); }
-    .service-img-box { width: 100%; aspect-ratio: 4 / 3; background: #E7E5E4; position: relative; overflow: hidden; }
-    .service-img-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    .service-card.selected {
+      border-color: var(--emerald);
+      box-shadow: 0 4px 14px rgba(4, 120, 87, 0.14);
+    }
+
+    .service-card.active-tab {
+      outline: 2px solid rgba(4, 120, 87, 0.28);
+    }
+
+    .service-img-box {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      background: #E7E5E4;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-img-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
     .service-check-pill {
-      position: absolute; top: 9px; right: 9px; width: 26px; height: 26px; border-radius: 50%;
-      background: rgba(255,255,255,0.92); border: 1.5px solid var(--border-mid);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 13px; font-weight: 800; color: transparent; box-shadow: 0 2px 6px rgba(0,0,0,0.12); z-index: 2;
+      position: absolute;
+      top: 9px;
+      right: 9px;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.92);
+      border: 1.5px solid var(--border-mid);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 800;
+      color: transparent;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+      z-index: 2;
     }
-    .service-card.selected .service-check-pill { background: var(--emerald); border-color: var(--emerald); color: #FFF; }
-    .service-card-body { padding: 11px 12px 12px; display: flex; flex-direction: column; gap: 2px; flex: 1; justify-content: center; }
-    .service-num { font-size: 11px; font-weight: 800; color: var(--gold); }
-    .service-card-title { font-size: 15px; font-weight: 800; letter-spacing: -0.02em; }
-    .service-card-sub { font-size: 11.5px; color: var(--text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
-    .tab-bar { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-bottom: 14px; }
+    .service-card.selected .service-check-pill {
+      background: var(--emerald);
+      border-color: var(--emerald);
+      color: #FFFFFF;
+    }
+
+    .service-card-body {
+      padding: 11px 12px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      flex: 1;
+      justify-content: center;
+    }
+
+    .service-num {
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--gold);
+    }
+
+    .service-card-title {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--text-primary);
+      letter-spacing: -0.02em;
+    }
+
+    .service-card-sub {
+      font-size: 11.5px;
+      color: var(--text-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* 5. STEP 2: 스마트 탭 전환형 자재·공간 세부 선택기 */
+    .tab-bar {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+
     .tab-btn {
-      background: var(--bg-card); border: 1px solid var(--border-light); border-radius: 10px;
-      padding: 10px 4px; font-size: 12.5px; font-weight: 700; color: var(--text-muted); cursor: pointer; text-align: center;
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: 10px;
+      padding: 10px 4px;
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--text-muted);
+      cursor: pointer;
+      text-align: center;
     }
-    .tab-btn.active { background: var(--text-primary); border-color: var(--text-primary); color: #FFF; }
-    .tab-btn .tab-dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--emerald); margin-left: 3px; vertical-align: middle; }
-    .detail-panel { background: var(--bg-card); border: 1px solid var(--border-light); border-radius: 16px; padding: 16px; box-shadow: var(--shadow-sm); }
-    .panel-header-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 12px; padding-bottom: 10px; border-bottom: 1px solid var(--bg-subtle); }
-    .panel-title { font-size: 16px; font-weight: 800; }
-    .panel-sub-pill { font-size: 11px; font-weight: 700; color: var(--emerald); background: var(--emerald-light); border: 1px solid var(--emerald-border); padding: 3px 8px; border-radius: 6px; }
-    .service-notice-banner { background: var(--gold-light); border: 1px solid var(--gold-border); color: #92400E; font-size: 12.5px; font-weight: 700; padding: 9px 12px; border-radius: 10px; margin-bottom: 14px; }
-    .sub-label { font-size: 13px; font-weight: 800; color: var(--text-secondary); margin-bottom: 8px; display: flex; align-items: center; justify-content: space-between; }
-    .sub-label span.hint { font-size: 11.5px; font-weight: 500; color: var(--text-muted); }
 
-    .mat-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-bottom: 16px; }
-    .mat-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 7px; margin-bottom: 16px; }
-    .mat-card {
-      background: var(--bg-subtle); border: 1.5px solid var(--border-light); border-radius: 11px;
-      padding: 10px; text-align: left; cursor: pointer; display: flex; flex-direction: column; gap: 4px;
+    .tab-btn.active {
+      background: var(--text-primary);
+      border-color: var(--text-primary);
+      color: #FFFFFF;
     }
-    .mat-grade { font-size: 10px; font-weight: 800; letter-spacing: 0.04em; padding: 2px 6px; border-radius: 5px; align-self: flex-start; }
-    .mat-name { font-size: 13px; font-weight: 800; color: var(--text-primary); line-height: 1.3; }
-    .mat-desc { font-size: 11px; color: var(--text-muted); line-height: 1.3; }
+
+    .tab-btn .tab-dot {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--emerald);
+      margin-left: 3px;
+      vertical-align: middle;
+    }
+
+    .detail-panel {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: 16px;
+      padding: 16px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .panel-header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 12px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--bg-subtle);
+    }
+
+    .panel-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--text-primary);
+    }
+
+    .panel-sub-pill {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--emerald);
+      background: var(--emerald-light);
+      border: 1px solid var(--emerald-border);
+      padding: 3px 8px;
+      border-radius: 6px;
+    }
+
+    .service-notice-banner {
+      background: var(--gold-light);
+      border: 1px solid var(--gold-border);
+      color: #92400E;
+      font-size: 12.5px;
+      font-weight: 700;
+      padding: 9px 12px;
+      border-radius: 10px;
+      margin-bottom: 14px;
+    }
+
+    .sub-label {
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .sub-label span.hint {
+      font-size: 11.5px;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+
+    .mat-grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .mat-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 7px;
+      margin-bottom: 16px;
+    }
+
+    .mat-card {
+      background: var(--bg-subtle);
+      border: 1.5px solid var(--border-light);
+      border-radius: 11px;
+      padding: 10px;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .mat-grade {
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      padding: 2px 6px;
+      border-radius: 5px;
+      align-self: flex-start;
+    }
+
+    .mat-name {
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--text-primary);
+      line-height: 1.3;
+    }
+
+    .mat-desc {
+      font-size: 11px;
+      color: var(--text-muted);
+      line-height: 1.3;
+    }
+
     .c-emerald .mat-grade { background: var(--emerald-light); color: var(--emerald); }
     .c-emerald.active { background: var(--emerald-light); border-color: var(--emerald); }
+
     .c-gold .mat-grade { background: var(--gold-light); color: var(--gold); }
     .c-gold.active { background: var(--gold-light); border-color: var(--gold); }
+
     .c-purple .mat-grade { background: var(--purple-light); color: var(--purple); }
     .c-purple.active { background: var(--purple-light); border-color: var(--purple); }
+
     .c-blue .mat-grade { background: var(--blue-light); color: var(--blue); }
     .c-blue.active { background: var(--blue-light); border-color: var(--blue); }
 
-    .zone-group-title { font-size: 11.5px; font-weight: 700; color: var(--text-muted); margin: 12px 0 7px; }
-    .zone-list { display: flex; flex-direction: column; gap: 8px; }
-    .zone-item { border: 1.5px solid var(--border-light); background: var(--bg-canvas); border-radius: 12px; padding: 11px 12px; }
-    .zone-item.checked { background: #FFF; border-color: var(--emerald); box-shadow: var(--shadow-sm); }
-    .zone-top-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; cursor: pointer; }
-    .zone-left { display: flex; align-items: center; gap: 9px; flex: 1; min-width: 0; }
-    .zone-checkbox {
-      width: 20px; height: 20px; border-radius: 6px; border: 1.5px solid var(--border-mid); background: #FFF;
-      display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; color: transparent; flex-shrink: 0;
+    /* 구역 리스트 */
+    .zone-group-title {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin: 12px 0 7px;
     }
-    .zone-item.checked .zone-checkbox { background: var(--emerald); border-color: var(--emerald); color: #FFF; }
-    .zone-text-wrap { display: flex; flex-direction: column; gap: 1px; }
-    .zone-name-row { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
-    .zone-name { font-size: 14px; font-weight: 700; }
-    .zone-rec-badge { font-size: 10.5px; font-weight: 700; color: var(--gold); background: var(--gold-light); border: 1px solid var(--gold-border); padding: 1px 6px; border-radius: 5px; }
-    .zone-sub-text { font-size: 11.5px; color: var(--text-muted); }
-    .zone-controls { margin-top: 10px; padding-top: 9px; border-top: 1px dashed var(--border-light); display: flex; flex-direction: column; gap: 8px; }
-    .mini-mat-row { display: flex; flex-wrap: wrap; gap: 5px; }
-    .mini-mat-pill { font-size: 11px; font-weight: 700; padding: 4px 8px; border-radius: 7px; border: 1px solid var(--border-light); background: var(--bg-subtle); color: var(--text-secondary); cursor: pointer; }
-    .mini-mat-pill.active.m-emerald { background: var(--emerald); border-color: var(--emerald); color: #FFF; }
-    .mini-mat-pill.active.m-gold { background: var(--gold); border-color: var(--gold); color: #FFF; }
-    .mini-mat-pill.active.m-purple { background: var(--purple); border-color: var(--purple); color: #FFF; }
-    .mini-mat-pill.active.m-blue { background: var(--blue); border-color: var(--blue); color: #FFF; }
-    .qty-size-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
-    .qty-box { display: inline-flex; align-items: center; border: 1px solid var(--border-mid); border-radius: 8px; overflow: hidden; background: #FFF; }
-    .qty-btn { width: 28px; height: 26px; border: none; background: var(--bg-subtle); font-size: 14px; font-weight: 800; cursor: pointer; }
-    .qty-val { padding: 0 10px; font-size: 12.5px; font-weight: 800; }
-    .size-toggle-group { display: inline-flex; gap: 4px; flex-wrap: wrap; }
-    .size-btn { font-size: 11px; font-weight: 700; padding: 5px 8px; border-radius: 7px; border: 1px solid var(--border-mid); background: #FFF; color: var(--text-secondary); cursor: pointer; }
-    .size-btn.active { background: var(--charcoal); border-color: var(--charcoal); color: #FFF; }
-    .zone-text-input { width: 100%; border: 1px solid var(--border-mid); border-radius: 8px; padding: 8px 10px; font-size: 13px; background: #FFF; }
-    .zone-text-input:focus { outline: none; border-color: var(--emerald); }
 
-    .cart-board { background: var(--bg-card); border: 1.5px solid var(--gold-border); border-radius: 16px; padding: 16px; box-shadow: var(--shadow-md); }
-    .cart-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; padding-bottom: 10px; border-bottom: 1px solid var(--border-light); }
-    .cart-title { font-size: 16px; font-weight: 800; }
-    .cart-reset-btn { font-size: 12px; font-weight: 700; color: var(--text-muted); background: var(--bg-subtle); border: 1px solid var(--border-light); padding: 4px 9px; border-radius: 7px; cursor: pointer; }
-    .cart-empty { text-align: center; padding: 20px 10px; font-size: 13px; color: var(--text-muted); line-height: 1.6; }
-    .cart-group { margin-bottom: 12px; } .cart-group:last-child { margin-bottom: 0; }
-    .cart-group-head { font-size: 13px; font-weight: 800; color: var(--emerald); margin-bottom: 6px; }
-    .cart-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; background: var(--bg-canvas); border: 1px solid var(--border-light); border-radius: 10px; padding: 8px 10px; margin-bottom: 5px; }
-    .cart-row-info { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; font-size: 13px; font-weight: 700; }
-    .cart-mat-tag { font-size: 11px; font-weight: 800; padding: 2px 7px; border-radius: 5px; }
+    .zone-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .zone-item {
+      border: 1.5px solid var(--border-light);
+      background: var(--bg-canvas);
+      border-radius: 12px;
+      padding: 11px 12px;
+    }
+
+    .zone-item.checked {
+      background: #FFFFFF;
+      border-color: var(--emerald);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .zone-top-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      cursor: pointer;
+    }
+
+    .zone-left {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .zone-checkbox {
+      width: 20px;
+      height: 20px;
+      border-radius: 6px;
+      border: 1.5px solid var(--border-mid);
+      background: #FFFFFF;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 800;
+      color: transparent;
+      flex-shrink: 0;
+    }
+
+    .zone-item.checked .zone-checkbox {
+      background: var(--emerald);
+      border-color: var(--emerald);
+      color: #FFFFFF;
+    }
+
+    .zone-text-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+
+    .zone-name-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .zone-name {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .zone-rec-badge {
+      font-size: 10.5px;
+      font-weight: 700;
+      color: var(--gold);
+      background: var(--gold-light);
+      border: 1px solid var(--gold-border);
+      padding: 1px 6px;
+      border-radius: 5px;
+    }
+
+    .zone-sub-text {
+      font-size: 11.5px;
+      color: var(--text-muted);
+    }
+
+    .zone-controls {
+      margin-top: 10px;
+      padding-top: 9px;
+      border-top: 1px dashed var(--border-light);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .mini-mat-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+
+    .mini-mat-pill {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 8px;
+      border-radius: 7px;
+      border: 1px solid var(--border-light);
+      background: var(--bg-subtle);
+      color: var(--text-secondary);
+      cursor: pointer;
+    }
+
+    .mini-mat-pill.active.m-emerald {
+      background: var(--emerald);
+      border-color: var(--emerald);
+      color: #FFFFFF;
+    }
+
+    .mini-mat-pill.active.m-gold {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: #FFFFFF;
+    }
+
+    .mini-mat-pill.active.m-purple {
+      background: var(--purple);
+      border-color: var(--purple);
+      color: #FFFFFF;
+    }
+
+    .mini-mat-pill.active.m-blue {
+      background: var(--blue);
+      border-color: var(--blue);
+      color: #FFFFFF;
+    }
+
+    .qty-size-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .qty-box {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid var(--border-mid);
+      border-radius: 8px;
+      overflow: hidden;
+      background: #FFFFFF;
+    }
+
+    .qty-btn {
+      width: 28px;
+      height: 26px;
+      border: none;
+      background: var(--bg-subtle);
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--text-primary);
+      cursor: pointer;
+    }
+
+    .qty-val {
+      padding: 0 10px;
+      font-size: 12.5px;
+      font-weight: 800;
+      color: var(--text-primary);
+    }
+
+    .size-toggle-group {
+      display: inline-flex;
+      gap: 4px;
+      flex-wrap: wrap;
+    }
+
+    .size-btn {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 5px 8px;
+      border-radius: 7px;
+      border: 1px solid var(--border-mid);
+      background: #FFFFFF;
+      color: var(--text-secondary);
+      cursor: pointer;
+    }
+
+    .size-btn.active {
+      background: var(--charcoal);
+      border-color: var(--charcoal);
+      color: #FFFFFF;
+    }
+
+    .zone-text-input {
+      width: 100%;
+      border: 1px solid var(--border-mid);
+      border-radius: 8px;
+      padding: 8px 10px;
+      font-size: 13px;
+      color: var(--text-primary);
+      background: #FFFFFF;
+    }
+
+    .zone-text-input:focus {
+      outline: none;
+      border-color: var(--emerald);
+    }
+
+    /* 6. 실시간 선택 장바구니 보드 */
+    .cart-board {
+      background: var(--bg-card);
+      border: 1.5px solid var(--gold-border);
+      border-radius: 16px;
+      padding: 16px;
+      box-shadow: var(--shadow-md);
+    }
+
+    .cart-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .cart-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--text-primary);
+    }
+
+    .cart-reset-btn {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-muted);
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-light);
+      padding: 4px 9px;
+      border-radius: 7px;
+      cursor: pointer;
+    }
+
+    .cart-empty {
+      text-align: center;
+      padding: 20px 10px;
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .cart-group {
+      margin-bottom: 12px;
+    }
+
+    .cart-group:last-child {
+      margin-bottom: 0;
+    }
+
+    .cart-group-head {
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--emerald);
+      margin-bottom: 6px;
+    }
+
+    .cart-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      background: var(--bg-canvas);
+      border: 1px solid var(--border-light);
+      border-radius: 10px;
+      padding: 8px 10px;
+      margin-bottom: 5px;
+    }
+
+    .cart-row-info {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .cart-mat-tag {
+      font-size: 11px;
+      font-weight: 800;
+      padding: 2px 7px;
+      border-radius: 5px;
+    }
+
     .tag-emerald { background: var(--emerald-light); color: var(--emerald); }
     .tag-gold { background: var(--gold-light); color: var(--gold); }
     .tag-purple { background: var(--purple-light); color: var(--purple); }
     .tag-blue { background: var(--blue-light); color: var(--blue); }
-    .cart-del-btn { border: none; background: transparent; color: var(--text-muted); font-size: 14px; font-weight: 800; padding: 2px 6px; cursor: pointer; }
 
-    .res-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-bottom: 16px; }
-    .res-card { background: var(--bg-card); border: 1.5px solid var(--border-light); border-radius: 12px; padding: 12px; text-align: left; cursor: pointer; display: flex; flex-direction: column; gap: 3px; }
-    .res-card.active { background: var(--emerald-light); border-color: var(--emerald); }
-    .res-title { font-size: 14px; font-weight: 800; color: var(--text-primary); }
-    .res-card.active .res-title { color: var(--emerald); }
-    .res-desc { font-size: 11.5px; color: var(--text-muted); line-height: 1.35; }
-    .form-stack { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
-    .field-group { display: flex; flex-direction: column; gap: 5px; }
-    .field-label { font-size: 12.5px; font-weight: 700; color: var(--text-secondary); }
-    .field-input, .field-textarea { width: 100%; background: var(--bg-card); border: 1px solid var(--border-mid); border-radius: 10px; padding: 11px 12px; font-size: 14px; color: var(--text-primary); }
-    .field-textarea { min-height: 76px; resize: vertical; }
-    .field-input:focus, .field-textarea:focus { outline: none; border-color: var(--emerald); }
-    .primary-sms-btn { width: 100%; background: var(--emerald); color: #FFF; border: none; border-radius: 13px; padding: 15px 16px; font-size: 15.5px; font-weight: 800; cursor: pointer; box-shadow: 0 4px 14px rgba(4,120,87,0.25); }
-
-    .biz-footer { padding: 20px 18px 28px; border-top: 1px solid var(--border-light); font-size: 11.5px; color: var(--text-muted); line-height: 1.7; }
-
-    .bottom-dock {
-      position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 520px;
-      background: rgba(255,255,255,0.97); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-      border-top: 1px solid var(--border-light); box-shadow: 0 -6px 24px rgba(0,0,0,0.08);
-      z-index: 50; padding: 10px 14px calc(10px + env(safe-area-inset-bottom));
+    .cart-del-btn {
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      font-size: 14px;
+      font-weight: 800;
+      padding: 2px 6px;
+      cursor: pointer;
     }
-    .dock-drawer { display: none; max-height: 210px; overflow-y: auto; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid var(--border-light); }
-    .dock-drawer.open { display: block; }
-    .dock-ticker { display: flex; align-items: center; justify-content: space-between; font-size: 12px; font-weight: 700; color: var(--text-secondary); padding: 2px 2px 8px; cursor: pointer; gap: 8px; }
-    .dock-ticker-summary { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex: 1; }
-    .dock-ticker-count { color: var(--emerald); font-weight: 800; white-space: nowrap; }
-    .dock-actions { display: grid; grid-template-columns: 1fr 1.6fr; gap: 8px; }
-    .dock-call-btn { background: var(--charcoal); color: #FFF; border: none; border-radius: 11px; padding: 12px 10px; font-size: 14px; font-weight: 800; text-decoration: none; display: flex; align-items: center; justify-content: center; }
-    .dock-sms-btn { background: var(--emerald); color: #FFF; border: none; border-radius: 11px; padding: 12px 10px; font-size: 14px; font-weight: 800; cursor: pointer; }
 
-    .modal-backdrop { position: fixed; inset: 0; background: rgba(17,24,39,0.55); z-index: 80; display: none; align-items: flex-end; justify-content: center; }
-    .modal-backdrop.open { display: flex; }
-    .sheet-box { width: 100%; max-width: 520px; max-height: 88vh; overflow-y: auto; background: #FFF; border-radius: 20px 20px 0 0; padding: 20px 18px calc(24px + env(safe-area-inset-bottom)); box-shadow: var(--shadow-lg); }
-    .sheet-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid var(--border-light); }
-    .sheet-title { font-size: 17px; font-weight: 800; }
-    .sheet-close { background: var(--bg-subtle); border: none; border-radius: 8px; padding: 6px 10px; font-size: 13px; font-weight: 700; cursor: pointer; }
-    .sms-preview-box { width: 100%; min-height: 210px; background: var(--bg-canvas); border: 1px solid var(--border-mid); border-radius: 12px; padding: 12px; font-size: 13px; line-height: 1.55; margin-bottom: 12px; white-space: pre-wrap; }
-    .sheet-btn-row { display: grid; grid-template-columns: 1fr 1.4fr; gap: 8px; }
-    .copy-btn { background: var(--bg-subtle); border: 1px solid var(--border-mid); color: var(--text-primary); border-radius: 11px; padding: 13px; font-size: 14px; font-weight: 800; cursor: pointer; }
-    .send-now-btn { background: var(--emerald); border: none; color: #FFF; border-radius: 11px; padding: 13px; font-size: 14px; font-weight: 800; cursor: pointer; }
+    /* 7. STEP 3: 거주 상태 (아이콘 없음, 중복 선택) & 현장 정보 */
+    .res-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      margin-bottom: 16px;
+    }
 
-    .admin-card { border: 1px solid var(--border-light); border-radius: 12px; padding: 12px; margin-bottom: 12px; background: var(--bg-canvas); }
-    .admin-card-title { font-size: 14px; font-weight: 800; margin-bottom: 8px; }
-    .admin-row { display: flex; flex-direction: column; gap: 6px; margin-bottom: 10px; }
-    .admin-inline-btns { display: flex; gap: 6px; flex-wrap: wrap; }
-    .admin-mini-btn { background: var(--charcoal); color: #FFF; border: none; border-radius: 8px; padding: 8px 12px; font-size: 12px; font-weight: 700; cursor: pointer; }
-    .admin-sub-btn { background: var(--bg-card); color: var(--text-secondary); border: 1px solid var(--border-mid); border-radius: 8px; padding: 7px 10px; font-size: 12px; font-weight: 700; cursor: pointer; }
-    .toast-msg { position: fixed; top: 70px; left: 50%; transform: translateX(-50%); background: rgba(17,24,39,0.92); color: #FFF; padding: 10px 16px; border-radius: 999px; font-size: 13px; font-weight: 700; z-index: 100; display: none; white-space: nowrap; }
+    .res-card {
+      background: var(--bg-card);
+      border: 1.5px solid var(--border-light);
+      border-radius: 12px;
+      padding: 12px;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .res-card.active {
+      background: var(--emerald-light);
+      border-color: var(--emerald);
+    }
+
+    .res-title {
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--text-primary);
+    }
+
+    .res-card.active .res-title {
+      color: var(--emerald);
+    }
+
+    .res-desc {
+      font-size: 11.5px;
+      color: var(--text-muted);
+      line-height: 1.35;
+    }
+
+    .form-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .field-group {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .field-label {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--text-secondary);
+    }
+
+    .field-input, .field-textarea {
+      width: 100%;
+      background: var(--bg-card);
+      border: 1px solid var(--border-mid);
+      border-radius: 10px;
+      padding: 11px 12px;
+      font-size: 14px;
+      color: var(--text-primary);
+    }
+
+    .field-textarea {
+      min-height: 76px;
+      resize: vertical;
+    }
+
+    .field-input:focus, .field-textarea:focus {
+      outline: none;
+      border-color: var(--emerald);
+    }
+
+    .primary-sms-btn {
+      width: 100%;
+      background: var(--emerald);
+      color: #FFFFFF;
+      border: none;
+      border-radius: 13px;
+      padding: 15px 16px;
+      font-size: 15.5px;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(4, 120, 87, 0.25);
+    }
+
+    .primary-sms-btn:active {
+      transform: scale(0.99);
+    }
+
+    /* 푸터 사업자 정보 */
+    .biz-footer {
+      padding: 20px 18px 28px;
+      border-top: 1px solid var(--border-light);
+      font-size: 11.5px;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    /* 8. 하단 고정 스마트 독 & 확장형 드로어 */
+    .bottom-dock {
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 520px;
+      background: rgba(255, 255, 255, 0.97);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-top: 1px solid var(--border-light);
+      box-shadow: 0 -6px 24px rgba(0, 0, 0, 0.08);
+      z-index: 50;
+      padding: 10px 14px calc(10px + env(safe-area-inset-bottom));
+    }
+
+    .dock-drawer {
+      display: none;
+      max-height: 210px;
+      overflow-y: auto;
+      margin-bottom: 10px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .dock-drawer.open {
+      display: block;
+    }
+
+    .dock-ticker {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-secondary);
+      padding: 2px 2px 8px;
+      cursor: pointer;
+      gap: 8px;
+    }
+
+    .dock-ticker-summary {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      flex: 1;
+    }
+
+    .dock-ticker-count {
+      color: var(--emerald);
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .dock-actions {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 8px;
+    }
+
+    .dock-call-btn {
+      background: var(--charcoal);
+      color: #FFFFFF;
+      border: none;
+      border-radius: 11px;
+      padding: 12px 10px;
+      font-size: 14px;
+      font-weight: 800;
+      text-align: center;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .dock-sms-btn {
+      background: var(--emerald);
+      color: #FFFFFF;
+      border: none;
+      border-radius: 11px;
+      padding: 12px 10px;
+      font-size: 14px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    /* 모달 및 바텀시트 */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(17, 24, 39, 0.55);
+      z-index: 80;
+      display: none;
+      align-items: flex-end;
+      justify-content: center;
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+    }
+
+    .sheet-box {
+      width: 100%;
+      max-width: 520px;
+      max-height: 88vh;
+      overflow-y: auto;
+      background: #FFFFFF;
+      border-radius: 20px 20px 0 0;
+      padding: 20px 18px calc(24px + env(safe-area-inset-bottom));
+      box-shadow: var(--shadow-lg);
+    }
+
+    .sheet-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .sheet-title {
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--text-primary);
+    }
+
+    .sheet-close {
+      background: var(--bg-subtle);
+      border: none;
+      border-radius: 8px;
+      padding: 6px 10px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .sms-preview-box {
+      width: 100%;
+      min-height: 210px;
+      background: var(--bg-canvas);
+      border: 1px solid var(--border-mid);
+      border-radius: 12px;
+      padding: 12px;
+      font-size: 13px;
+      line-height: 1.55;
+      color: var(--text-primary);
+      margin-bottom: 12px;
+      white-space: pre-wrap;
+    }
+
+    .sheet-btn-row {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 8px;
+    }
+
+    .copy-btn {
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-mid);
+      color: var(--text-primary);
+      border-radius: 11px;
+      padding: 13px;
+      font-size: 14px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .send-now-btn {
+      background: var(--emerald);
+      border: none;
+      color: #FFFFFF;
+      border-radius: 11px;
+      padding: 13px;
+      font-size: 14px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    /* 관리자 전용 스타일 */
+    .admin-card {
+      border: 1px solid var(--border-light);
+      border-radius: 12px;
+      padding: 12px;
+      margin-bottom: 12px;
+      background: var(--bg-canvas);
+    }
+
+    .admin-card-title {
+      font-size: 14px;
+      font-weight: 800;
+      margin-bottom: 8px;
+      color: var(--text-primary);
+    }
+
+    .admin-row {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+
+    .admin-inline-btns {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .admin-mini-btn {
+      background: var(--charcoal);
+      color: #FFFFFF;
+      border: none;
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .admin-sub-btn {
+      background: var(--bg-card);
+      color: var(--text-secondary);
+      border: 1px solid var(--border-mid);
+      border-radius: 8px;
+      padding: 7px 10px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .toast-msg {
+      position: fixed;
+      top: 70px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(17, 24, 39, 0.92);
+      color: #FFFFFF;
+      padding: 10px 16px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
+      z-index: 100;
+      display: none;
+      white-space: nowrap;
+    }
   </style>
 </head>
 <body>
 
   <div id="toastMsg" class="toast-msg"></div>
 
+  <!-- 1. 초미니멀 상단 헤더 -->
   <header class="top-header">
     <div class="brand-wrap">
       <div class="brand-name">부산딥클린 올인원 홈케어</div>
@@ -257,10 +1239,12 @@
     <button type="button" class="admin-trigger-btn" onclick="openAdminModal()">관리자</button>
   </header>
 
+  <!-- 2. 박스 없는 미니멀 히어로 + 2x2 정품 스펙 라벨 그리드 -->
   <section class="hero-section">
     <div class="hero-eyebrow">부산 · 경남 4대 홈케어 전문</div>
     <h1 class="hero-title">실속형부터 하이엔드까지,<br />우리 집에 딱 맞는 <span class="accent">정석 시공</span></h1>
     <p class="hero-subtitle">예산에 맞춘 자재 선택, 결과로 증명하는 꼼꼼한 마감.</p>
+
     <div class="spec-grid">
       <button type="button" class="spec-item" onclick="quickSelectService('grout')">
         <span class="spec-top"><span class="spec-dot dot-emerald"></span>줄눈 정석 시공</span>
@@ -281,20 +1265,31 @@
     </div>
   </section>
 
+  <!-- 3. SNS 3열 입체 뱃지 -->
   <section class="sns-section">
     <div class="sns-grid">
       <a id="snsBlogLink" href="https://blog.naver.com/deepclean6831" target="_blank" rel="noopener" class="sns-btn">
-        <span class="sns-badge-icon sns-naver">N</span><span>네이버 블로그</span>
+        <span class="sns-badge-icon sns-naver">N</span>
+        <span>네이버 블로그</span>
       </a>
       <a id="snsYoutubeLink" href="https://www.youtube.com" target="_blank" rel="noopener" class="sns-btn">
-        <span class="sns-badge-icon sns-youtube">▶</span><span>유튜브</span>
+        <span class="sns-badge-icon sns-youtube">▶</span>
+        <span>유튜브</span>
       </a>
       <a id="snsInstaLink" href="https://www.instagram.com" target="_blank" rel="noopener" class="sns-btn">
-        <span class="sns-badge-icon sns-insta">IG</span><span>인스타그램</span>
+        <span class="sns-badge-icon sns-insta" aria-hidden="true">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+          </svg>
+        </span>
+        <span>인스타그램</span>
       </a>
     </div>
   </section>
 
+  <!-- 4. STEP 1: 4대 핵심 시공 선택 (2x2 동일 비율 4분할 실사진 카드) -->
   <section class="section-block" id="step1Section">
     <span class="step-badge">STEP 01</span>
     <h2 class="section-title">시공 항목 선택</h2>
@@ -302,14 +1297,17 @@
     <div id="serviceGrid" class="service-grid"></div>
   </section>
 
+  <!-- 5. STEP 2: 스마트 탭 전환형 자재·공간 세부 선택기 -->
   <section class="section-block" id="step2Section">
     <span class="step-badge">STEP 02</span>
     <h2 class="section-title">자재 및 시공 구역 선택</h2>
     <p class="section-desc">자재를 먼저 고른 뒤 구역을 체크하거나, 공간마다 다른 자재를 지정할 수 있습니다.</p>
+
     <div id="tabBar" class="tab-bar"></div>
     <div id="detailPanel" class="detail-panel"></div>
   </section>
 
+  <!-- 6. 실시간 선택 장바구니 보드 -->
   <section class="section-block" id="cartSection">
     <div class="cart-board">
       <div class="cart-header">
@@ -320,11 +1318,14 @@
     </div>
   </section>
 
+  <!-- 7. STEP 3: 거주 상태 및 현장 정보 -->
   <section class="section-block" id="step3Section">
     <span class="step-badge">STEP 03</span>
     <h2 class="section-title">거주 상태 및 현장 정보</h2>
     <p class="section-desc">해당하는 공간(항목)에 체크해 주세요. (중복 선택 가능)</p>
+
     <div id="residenceGrid" class="res-grid"></div>
+
     <div class="form-stack">
       <div class="field-group">
         <label class="field-label" for="siteNameInput">아파트 / 현장명 (지역 포함)</label>
@@ -339,11 +1340,14 @@
         <textarea id="memoInput" class="field-textarea" placeholder="궁금하신 점이나 현장 특이사항을 편하게 적어주세요."></textarea>
       </div>
     </div>
+
     <button type="button" class="primary-sms-btn" onclick="openSmsModal()">선택 내역으로 문자 견적 문의하기</button>
   </section>
 
+  <!-- 푸터 -->
   <footer class="biz-footer" id="bizFooter"></footer>
 
+  <!-- 8. 하단 고정 스마트 독 -->
   <div class="bottom-dock">
     <div id="dockDrawer" class="dock-drawer"></div>
     <div class="dock-ticker" onclick="toggleDockDrawer()">
@@ -356,6 +1360,7 @@
     </div>
   </div>
 
+  <!-- 문자 미리보기 및 전송 바텀시트 -->
   <div id="smsModal" class="modal-backdrop" onclick="closeModalOnBackdrop(event, 'smsModal')">
     <div class="sheet-box">
       <div class="sheet-head">
@@ -370,6 +1375,7 @@
     </div>
   </div>
 
+  <!-- 관리자 모드 바텀시트 -->
   <div id="adminModal" class="modal-backdrop" onclick="closeModalOnBackdrop(event, 'adminModal')">
     <div class="sheet-box">
       <div class="sheet-head">
@@ -384,7 +1390,21 @@
     const STORAGE_KEY = 'busandeepclean_homecare_v1';
 
     function makeSvgThumb(bg1, bg2, lineColor) {
-      const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="600" height="450" viewBox="0 0 600 450"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="${bg1}"/><stop offset="100%" stop-color="${bg2}"/></linearGradient></defs><rect width="600" height="450" fill="url(#g)"/><g stroke="${lineColor}" stroke-width="2" opacity="0.45"><line x1="0" y1="150" x2="600" y2="150"/><line x1="0" y1="300" x2="600" y2="300"/><line x1="200" y1="0" x2="200" y2="450"/><line x1="400" y1="0" x2="400" y2="450"/></g></svg>`;
+      const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="600" height="450" viewBox="0 0 600 450">
+        <defs>
+          <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="${bg1}"/>
+            <stop offset="100%" stop-color="${bg2}"/>
+          </linearGradient>
+        </defs>
+        <rect width="600" height="450" fill="url(#g)"/>
+        <g stroke="${lineColor}" stroke-width="2" opacity="0.45">
+          <line x1="0" y1="150" x2="600" y2="150"/>
+          <line x1="0" y1="300" x2="600" y2="300"/>
+          <line x1="200" y1="0" x2="200" y2="450"/>
+          <line x1="400" y1="0" x2="400" y2="450"/>
+        </g>
+      </svg>`;
       return 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);
     }
 
@@ -412,8 +1432,12 @@
       },
       services: {
         grout: {
-          key: 'grout', num: '01', title: '프리미엄 줄눈', sub: '정밀 ㄷ자 시공 · 스타라이크 프로 · 아스팍톤',
-          img: DEFAULT_THUMBS.grout, notice: '',
+          key: 'grout',
+          num: '01',
+          title: '프리미엄 줄눈',
+          sub: '정밀 ㄷ자 시공 · 스타라이크 프로 · 아스팍톤',
+          img: DEFAULT_THUMBS.grout,
+          notice: '',
           materials: [
             { id: 'starlike', name: '스타라이크 프로', grade: 'MASTER', desc: '이태리 최상위 프리미엄', color: 'emerald' },
             { id: 'aspakton', name: '아스팍톤', grade: 'SIGNATURE', desc: '고강도 특허 프리미엄', color: 'gold' },
@@ -435,8 +1459,12 @@
           ]
         },
         screen: {
-          key: 'screen', num: '02', title: '블랙스텐 방충망', sub: '고강도 블랙스텐 · 미세 촘촘망',
-          img: DEFAULT_THUMBS.screen, notice: '교체된 방충망 물구멍 스티커, 모헤어 교체 서비스 포함',
+          key: 'screen',
+          num: '02',
+          title: '블랙스텐 방충망',
+          sub: '고강도 블랙스텐 · 미세 촘촘망',
+          img: DEFAULT_THUMBS.screen,
+          notice: '교체된 방충망 물구멍 스티커, 모헤어 교체 서비스 포함',
           materials: [
             { id: 'blacksteel', name: '고강도 블랙스텐', grade: 'MASTER', desc: '선명한 시야 · 최고 내구성', color: 'emerald' },
             { id: 'micro', name: '미세 촘촘망', grade: 'PREMIUM', desc: '날벌레 · 미세먼지 차단', color: 'gold' },
@@ -455,8 +1483,12 @@
           ]
         },
         coating: {
-          key: 'coating', num: '03', title: '욕실·타일 코팅', sub: '일본 아크바리아 700 Z · X · R',
-          img: DEFAULT_THUMBS.coating, notice: '',
+          key: 'coating',
+          num: '03',
+          title: '욕실·타일 코팅',
+          sub: '일본 아크바리아 700 Z · X · R',
+          img: DEFAULT_THUMBS.coating,
+          notice: '',
           materials: [
             { id: '700z', name: '아크바리아 700 Z', grade: '700 Z', desc: '포세린 타일 바닥 등', color: 'emerald' },
             { id: '700x', name: '아크바리아 700 X', grade: '700 X', desc: '타일, 상판, 다목적', color: 'gold' },
@@ -473,8 +1505,12 @@
           ]
         },
         silicone: {
-          key: 'silicone', num: '04', title: '바이오 실리콘', sub: '무펄 · 펄 항균 실리콘 마감',
-          img: DEFAULT_THUMBS.silicone, notice: '',
+          key: 'silicone',
+          num: '04',
+          title: '바이오 실리콘',
+          sub: '무펄 · 펄 항균 실리콘 마감',
+          img: DEFAULT_THUMBS.silicone,
+          notice: '',
           materials: [
             { id: 'matte', name: '무펄', grade: '', desc: '깔끔하고 차분한 무광 마감', color: 'emerald' },
             { id: 'pearl', name: '펄', grade: '', desc: '은은한 광택 포인트 마감', color: 'blue' }
@@ -502,7 +1538,8 @@
       try {
         const raw = localStorage.getItem(STORAGE_KEY);
         if (!raw) return JSON.parse(JSON.stringify(DEFAULT_CONFIG));
-        return Object.assign({}, JSON.parse(JSON.stringify(DEFAULT_CONFIG)), JSON.parse(raw));
+        const parsed = JSON.parse(raw);
+        return Object.assign({}, JSON.parse(JSON.stringify(DEFAULT_CONFIG)), parsed);
       } catch (e) {
         return JSON.parse(JSON.stringify(DEFAULT_CONFIG));
       }
@@ -510,90 +1547,146 @@
 
     let config = loadConfig();
     let activeTab = 'grout';
-    let activeMat = { grout: 'starlike', screen: 'blacksteel', coating: '700z', silicone: 'matte' };
+    let activeMat = {
+      grout: 'starlike',
+      screen: 'blacksteel',
+      coating: '700z',
+      silicone: 'matte'
+    };
     let selectedServices = new Set(['grout']);
-    let selections = { grout: {}, screen: {}, coating: {}, silicone: {} };
+    let selections = {
+      grout: {},
+      screen: {},
+      coating: {},
+      silicone: {}
+    };
     let selectedResidence = new Set();
     let adminUnlocked = false;
     let dockOpen = false;
 
     function saveConfig() {
-      try { localStorage.setItem(STORAGE_KEY, JSON.stringify(config)); }
-      catch (e) { showToast('저장 공간이 부족해 일부 설정이 저장되지 않았습니다.'); }
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(config));
+      } catch (e) {
+        showToast('저장 공간이 부족해 일부 설정이 저장되지 않았습니다.');
+      }
     }
 
     function showToast(msg) {
       const el = document.getElementById('toastMsg');
-      el.textContent = msg; el.style.display = 'block';
+      el.textContent = msg;
+      el.style.display = 'block';
       clearTimeout(window._toastTimer);
-      window._toastTimer = setTimeout(() => { el.style.display = 'none'; }, 2200);
+      window._toastTimer = setTimeout(() => {
+        el.style.display = 'none';
+      }, 2200);
     }
 
     function quickSelectService(svcKey) {
-      selectedServices.add(svcKey); activeTab = svcKey; renderAll();
+      selectedServices.add(svcKey);
+      activeTab = svcKey;
+      renderAll();
       document.getElementById('step2Section').scrollIntoView({ behavior: 'smooth' });
     }
 
     function toggleServiceCard(svcKey) {
       if (selectedServices.has(svcKey)) {
         if (activeTab === svcKey && Object.keys(selections[svcKey]).length === 0 && selectedServices.size > 1) {
-          selectedServices.delete(svcKey); activeTab = Array.from(selectedServices)[0];
-        } else { activeTab = svcKey; }
+          selectedServices.delete(svcKey);
+          activeTab = Array.from(selectedServices)[0];
+        } else {
+          activeTab = svcKey;
+        }
       } else {
-        selectedServices.add(svcKey); activeTab = svcKey;
+        selectedServices.add(svcKey);
+        activeTab = svcKey;
       }
       renderAll();
     }
 
-    function switchTab(svcKey) { activeTab = svcKey; selectedServices.add(svcKey); renderAll(); }
-    function selectMaterial(svcKey, matId) { activeMat[svcKey] = matId; renderDetailPanel(); }
+    function switchTab(svcKey) {
+      activeTab = svcKey;
+      selectedServices.add(svcKey);
+      renderAll();
+    }
+
+    function selectMaterial(svcKey, matId) {
+      activeMat[svcKey] = matId;
+      renderDetailPanel();
+    }
 
     function toggleZone(svcKey, zoneId) {
       const svc = config.services[svcKey];
       const zone = svc.zones.find(z => z.id === zoneId);
       if (!zone) return;
-      if (selections[svcKey][zoneId]) { delete selections[svcKey][zoneId]; }
-      else {
+
+      if (selections[svcKey][zoneId]) {
+        delete selections[svcKey][zoneId];
+      } else {
         selectedServices.add(svcKey);
+        const defaultMatId = activeMat[svcKey] || (zone.defaultMat || svc.materials[0].id);
         selections[svcKey][zoneId] = {
-          matId: activeMat[svcKey] || zone.defaultMat || svc.materials[0].id,
-          qty: 1, size: '거실 대창과 같은 크기', note: ''
+          matId: defaultMatId,
+          qty: 1,
+          size: '거실 대창과 같은 크기',
+          note: ''
         };
       }
       renderAll();
     }
 
     function changeZoneMaterial(e, svcKey, zoneId, matId) {
-      e.stopPropagation(); if (!selections[svcKey][zoneId]) return;
-      selections[svcKey][zoneId].matId = matId; activeMat[svcKey] = matId; renderAll();
+      e.stopPropagation();
+      if (!selections[svcKey][zoneId]) return;
+      selections[svcKey][zoneId].matId = matId;
+      activeMat[svcKey] = matId;
+      renderAll();
     }
 
     function changeZoneQty(e, svcKey, zoneId, delta) {
-      e.stopPropagation(); const item = selections[svcKey][zoneId]; if (!item) return;
-      const next = (item.qty || 1) + delta; if (next < 1) return;
-      item.qty = next; renderAll();
+      e.stopPropagation();
+      const item = selections[svcKey][zoneId];
+      if (!item) return;
+      const next = (item.qty || 1) + delta;
+      if (next < 1) return;
+      item.qty = next;
+      renderAll();
     }
 
     function changeZoneSize(e, svcKey, zoneId, sizeLabel) {
-      e.stopPropagation(); const item = selections[svcKey][zoneId]; if (!item) return;
-      item.size = sizeLabel; renderAll();
+      e.stopPropagation();
+      const item = selections[svcKey][zoneId];
+      if (!item) return;
+      item.size = sizeLabel;
+      renderAll();
     }
 
     function updateZoneNote(svcKey, zoneId, val) {
-      const item = selections[svcKey][zoneId]; if (!item) return;
-      item.note = val; renderCartBoard(); updateDock();
+      const item = selections[svcKey][zoneId];
+      if (!item) return;
+      item.note = val;
+      renderCartBoard();
+      updateDock();
     }
 
-    function removeCartItem(svcKey, zoneId) { delete selections[svcKey][zoneId]; renderAll(); }
+    function removeCartItem(svcKey, zoneId) {
+      delete selections[svcKey][zoneId];
+      renderAll();
+    }
 
     function resetAllSelections() {
       selections = { grout: {}, screen: {}, coating: {}, silicone: {} };
-      selectedResidence.clear(); renderAll(); showToast('선택 목록이 초기화되었습니다.');
+      selectedResidence.clear();
+      renderAll();
+      showToast('선택 목록이 초기화되었습니다.');
     }
 
     function toggleResidence(resId) {
-      if (selectedResidence.has(resId)) selectedResidence.delete(resId);
-      else selectedResidence.add(resId);
+      if (selectedResidence.has(resId)) {
+        selectedResidence.delete(resId);
+      } else {
+        selectedResidence.add(resId);
+      }
       renderResidence();
     }
 
@@ -615,13 +1708,15 @@
     }
 
     function renderServiceGrid() {
+      const grid = document.getElementById('serviceGrid');
       const order = ['grout', 'screen', 'coating', 'silicone'];
-      document.getElementById('serviceGrid').innerHTML = order.map(key => {
+      grid.innerHTML = order.map(key => {
         const s = config.services[key];
         const count = Object.keys(selections[key]).length;
         const isSel = selectedServices.has(key) || count > 0;
+        const isAct = activeTab === key;
         return `
-          <div class="service-card ${isSel ? 'selected' : ''} ${activeTab === key ? 'active-tab' : ''}" onclick="toggleServiceCard('${key}')">
+          <div class="service-card ${isSel ? 'selected' : ''} ${isAct ? 'active-tab' : ''}" onclick="toggleServiceCard('${key}')">
             <div class="service-img-box">
               <img src="${s.img || DEFAULT_THUMBS[key]}" alt="${s.title}" onerror="this.src='${DEFAULT_THUMBS[key]}'" />
               <div class="service-check-pill">✓</div>
@@ -631,18 +1726,26 @@
               <div class="service-card-title">${s.title}</div>
               <div class="service-card-sub">${s.sub}</div>
             </div>
-          </div>`;
+          </div>
+        `;
       }).join('');
     }
 
     function renderTabBar() {
+      const bar = document.getElementById('tabBar');
       const order = [
-        { key: 'grout', label: '줄눈' }, { key: 'screen', label: '방충망' },
-        { key: 'coating', label: '타일코팅' }, { key: 'silicone', label: '실리콘' }
+        { key: 'grout', label: '줄눈' },
+        { key: 'screen', label: '방충망' },
+        { key: 'coating', label: '타일코팅' },
+        { key: 'silicone', label: '실리콘' }
       ];
-      document.getElementById('tabBar').innerHTML = order.map(t => {
+      bar.innerHTML = order.map(t => {
         const hasItems = Object.keys(selections[t.key]).length > 0;
-        return `<button type="button" class="tab-btn ${activeTab === t.key ? 'active' : ''}" onclick="switchTab('${t.key}')">${t.label}${hasItems ? '<span class="tab-dot"></span>' : ''}</button>`;
+        return `
+          <button type="button" class="tab-btn ${activeTab === t.key ? 'active' : ''}" onclick="switchTab('${t.key}')">
+            ${t.label}${hasItems ? '<span class="tab-dot"></span>' : ''}
+          </button>
+        `;
       }).join('');
     }
 
@@ -652,19 +1755,43 @@
       const matListHtml = isChecked ? `
         <div class="zone-controls" onclick="event.stopPropagation()">
           <div class="mini-mat-row">
-            ${svc.materials.map(m => `<button type="button" class="mini-mat-pill ${selItem.matId === m.id ? 'active m-' + m.color : ''}" onclick="changeZoneMaterial(event,'${svc.key}','${z.id}','${m.id}')">${m.name}</button>`).join('')}
+            ${svc.materials.map(m => `
+              <button type="button"
+                class="mini-mat-pill ${selItem.matId === m.id ? 'active m-' + m.color : ''}"
+                onclick="changeZoneMaterial(event, '${svc.key}', '${z.id}', '${m.id}')">
+                ${m.name}
+              </button>
+            `).join('')}
           </div>
           ${(z.hasQty || z.hasSize) ? `
             <div class="qty-size-row">
-              ${z.hasQty ? `<div class="qty-box"><button type="button" class="qty-btn" onclick="changeZoneQty(event,'${svc.key}','${z.id}',-1)">-</button><span class="qty-val">${selItem.qty}개</span><button type="button" class="qty-btn" onclick="changeZoneQty(event,'${svc.key}','${z.id}',1)">+</button></div>` : ''}
-              ${z.hasSize ? `<div class="size-toggle-group"><button type="button" class="size-btn ${selItem.size === '거실 대창과 같은 크기' ? 'active' : ''}" onclick="changeZoneSize(event,'${svc.key}','${z.id}','거실 대창과 같은 크기')">거실 대창 크기</button><button type="button" class="size-btn ${selItem.size === '중간창 크기' ? 'active' : ''}" onclick="changeZoneSize(event,'${svc.key}','${z.id}','중간창 크기')">중간창 크기</button></div>` : ''}
-            </div>` : ''}
-          ${z.hasInput ? `<input type="text" class="zone-text-input" value="${(selItem.note || '').replace(/"/g, '&quot;')}" placeholder="${z.placeholder || '세부 내용을 입력해 주세요'}" oninput="updateZoneNote('${svc.key}','${z.id}',this.value)" />` : ''}
-        </div>` : '';
+              ${z.hasQty ? `
+                <div class="qty-box">
+                  <button type="button" class="qty-btn" onclick="changeZoneQty(event, '${svc.key}', '${z.id}', -1)">-</button>
+                  <span class="qty-val">${selItem.qty}개</span>
+                  <button type="button" class="qty-btn" onclick="changeZoneQty(event, '${svc.key}', '${z.id}', 1)">+</button>
+                </div>
+              ` : ''}
+              ${z.hasSize ? `
+                <div class="size-toggle-group">
+                  <button type="button" class="size-btn ${selItem.size === '거실 대창과 같은 크기' ? 'active' : ''}" onclick="changeZoneSize(event, '${svc.key}', '${z.id}', '거실 대창과 같은 크기')">거실 대창 크기</button>
+                  <button type="button" class="size-btn ${selItem.size === '중간창 크기' ? 'active' : ''}" onclick="changeZoneSize(event, '${svc.key}', '${z.id}', '중간창 크기')">중간창 크기</button>
+                </div>
+              ` : ''}
+            </div>
+          ` : ''}
+          ${z.hasInput ? `
+            <input type="text" class="zone-text-input"
+              value="${(selItem.note || '').replace(/"/g, '&quot;')}"
+              placeholder="${z.placeholder || '세부 내용을 입력해 주세요'}"
+              oninput="updateZoneNote('${svc.key}', '${z.id}', this.value)" />
+          ` : ''}
+        </div>
+      ` : '';
 
       return `
         <div class="zone-item ${isChecked ? 'checked' : ''}">
-          <div class="zone-top-row" onclick="toggleZone('${svc.key}','${z.id}')">
+          <div class="zone-top-row" onclick="toggleZone('${svc.key}', '${z.id}')">
             <div class="zone-left">
               <span class="zone-checkbox">✓</span>
               <div class="zone-text-wrap">
@@ -677,49 +1804,67 @@
             </div>
           </div>
           ${matListHtml}
-        </div>`;
+        </div>
+      `;
     }
 
     function renderDetailPanel() {
+      const panel = document.getElementById('detailPanel');
       const svc = config.services[activeTab];
       const curMat = activeMat[activeTab] || svc.materials[0].id;
       const gridClass = svc.materials.length === 3 ? 'mat-grid-3' : 'mat-grid-2';
+
       let zonesHtml = '';
       if (svc.key === 'grout') {
+        const topZones = svc.zones.filter(z => z.priority);
+        const extZones = svc.zones.filter(z => !z.priority);
         zonesHtml = `
           <div class="zone-group-title">기본 5바닥 구역</div>
-          <div class="zone-list">${svc.zones.filter(z => z.priority).map(z => renderZoneRow(svc, z)).join('')}</div>
+          <div class="zone-list">${topZones.map(z => renderZoneRow(svc, z)).join('')}</div>
           <div class="zone-group-title">추가 확장 구역</div>
-          <div class="zone-list">${svc.zones.filter(z => !z.priority).map(z => renderZoneRow(svc, z)).join('')}</div>`;
+          <div class="zone-list">${extZones.map(z => renderZoneRow(svc, z)).join('')}</div>
+        `;
       } else {
         zonesHtml = `<div class="zone-list">${svc.zones.map(z => renderZoneRow(svc, z)).join('')}</div>`;
       }
-      document.getElementById('detailPanel').innerHTML = `
+
+      panel.innerHTML = `
         <div class="panel-header-row">
           <div class="panel-title">${svc.num}. ${svc.title}</div>
           <span class="panel-sub-pill">공간별 자재 선택</span>
         </div>
         ${svc.notice ? `<div class="service-notice-banner">${svc.notice}</div>` : ''}
-        <div class="sub-label"><span>적용 자재 선택</span><span class="hint">기본 적용할 자재를 눌러주세요</span></div>
+        <div class="sub-label">
+          <span>적용 자재 선택</span>
+          <span class="hint">기본 적용할 자재를 눌러주세요</span>
+        </div>
         <div class="${gridClass}">
           ${svc.materials.map(m => `
-            <button type="button" class="mat-card c-${m.color} ${curMat === m.id ? 'active' : ''}" onclick="selectMaterial('${svc.key}','${m.id}')">
+            <button type="button" class="mat-card c-${m.color} ${curMat === m.id ? 'active' : ''}" onclick="selectMaterial('${svc.key}', '${m.id}')">
               ${m.grade ? `<span class="mat-grade">${m.grade}</span>` : ''}
               <span class="mat-name">${m.name}</span>
               ${m.desc ? `<span class="mat-desc">${m.desc}</span>` : ''}
-            </button>`).join('')}
+            </button>
+          `).join('')}
         </div>
-        <div class="sub-label"><span>시공 구역 체크</span><span class="hint">체크 후 공간별 자재 변경 가능</span></div>
-        ${zonesHtml}`;
+        <div class="sub-label">
+          <span>시공 구역 체크</span>
+          <span class="hint">체크 후 공간별 자재 변경 가능</span>
+        </div>
+        ${zonesHtml}
+      `;
     }
 
     function buildCartItemsHtml() {
       const order = ['grout', 'screen', 'coating', 'silicone'];
-      let totalCount = 0, html = '';
+      let totalCount = 0;
+      let html = '';
+
       order.forEach(key => {
         const svc = config.services[key];
         const zoneIds = Object.keys(selections[key]);
-        if (!zoneIds.length) return;
+        if (zoneIds.length === 0) return;
+
         html += `<div class="cart-group"><div class="cart-group-head">${svc.num}. ${svc.title}</div>`;
         zoneIds.forEach(zId => {
           const item = selections[key][zId];
@@ -727,22 +1872,26 @@
           const mat = svc.materials.find(m => m.id === item.matId) || svc.materials[0];
           if (!zone) return;
           totalCount++;
+
           let extra = [];
           if (zone.hasSize && item.size) extra.push(item.size);
           if (zone.hasQty) extra.push(`${item.qty}개`);
           if (item.note && item.note.trim()) extra.push(item.note.trim());
           const extraStr = extra.length ? ` (${extra.join(' / ')})` : '';
+
           html += `
             <div class="cart-row">
               <div class="cart-row-info">
                 <span>${zone.name}${extraStr}</span>
                 <span class="cart-mat-tag tag-${mat.color}">${mat.name}</span>
               </div>
-              <button type="button" class="cart-del-btn" onclick="removeCartItem('${key}','${zId}')">✕</button>
-            </div>`;
+              <button type="button" class="cart-del-btn" onclick="removeCartItem('${key}', '${zId}')">✕</button>
+            </div>
+          `;
         });
         html += `</div>`;
       });
+
       return { totalCount, html };
     }
 
@@ -754,47 +1903,63 @@
     }
 
     function renderResidence() {
-      document.getElementById('residenceGrid').innerHTML = RESIDENCE_OPTIONS.map(r => `
+      const grid = document.getElementById('residenceGrid');
+      grid.innerHTML = RESIDENCE_OPTIONS.map(r => `
         <button type="button" class="res-card ${selectedResidence.has(r.id) ? 'active' : ''}" onclick="toggleResidence('${r.id}')">
-          <span class="res-title">${r.title}</span><span class="res-desc">${r.desc}</span>
-        </button>`).join('');
+          <span class="res-title">${r.title}</span>
+          <span class="res-desc">${r.desc}</span>
+        </button>
+      `).join('');
     }
 
     function toggleDockDrawer() {
       dockOpen = !dockOpen;
-      document.getElementById('dockDrawer').classList.toggle('open', dockOpen);
+      const drawer = document.getElementById('dockDrawer');
+      drawer.classList.toggle('open', dockOpen);
       updateDock();
     }
 
     function updateDock() {
       const order = ['grout', 'screen', 'coating', 'silicone'];
-      let total = 0, names = [];
+      let total = 0;
+      let names = [];
       order.forEach(k => {
         const c = Object.keys(selections[k]).length;
-        if (c > 0) { total += c; names.push(`${config.services[k].title}(${c})`); }
+        if (c > 0) {
+          total += c;
+          names.push(`${config.services[k].title}(${c})`);
+        }
       });
-      document.getElementById('dockCountText').textContent = `${total}건 선택됨 ${dockOpen ? '▼' : '▲'}`;
-      document.getElementById('dockSummaryText').textContent = total > 0 ? names.join(' · ') : '시공 항목과 구역을 선택해 주세요';
+
+      const arrow = dockOpen ? '▼' : '▲';
+      document.getElementById('dockCountText').textContent = `${total}건 선택됨 ${arrow}`;
+      document.getElementById('dockSummaryText').textContent =
+        total > 0 ? names.join(' · ') : '시공 항목과 구역을 선택해 주세요';
     }
 
     function buildSmsBody() {
       const site = document.getElementById('siteNameInput').value.trim();
       const date = document.getElementById('hopeDateInput').value.trim();
       const memo = document.getElementById('memoInput').value.trim();
-      const resNames = RESIDENCE_OPTIONS.filter(r => selectedResidence.has(r.id)).map(r => r.title);
+
+      const resNames = RESIDENCE_OPTIONS
+        .filter(r => selectedResidence.has(r.id))
+        .map(r => r.title);
 
       let lines = ['[부산딥클린 올인원 홈케어 견적문의]', ''];
       if (site) lines.push(`현장명: ${site}`);
-      if (resNames.length) lines.push(`거주 상태: ${resNames.join(', ')}`);
+      if (resNames.length > 0) lines.push(`거주 상태: ${resNames.join(', ')}`);
       if (date) lines.push(`시공 희망일: ${date}`);
-      if (site || resNames.length || date) lines.push('');
+      if (site || resNames.length > 0 || date) lines.push('');
 
       lines.push('[선택 시공 및 자재 내역]');
+      const order = ['grout', 'screen', 'coating', 'silicone'];
       let hasAny = false;
-      ['grout', 'screen', 'coating', 'silicone'].forEach(key => {
+
+      order.forEach(key => {
         const svc = config.services[key];
         const zoneIds = Object.keys(selections[key]);
-        if (!zoneIds.length) return;
+        if (zoneIds.length === 0) return;
         hasAny = true;
         lines.push(`${svc.num}. ${svc.title}`);
         zoneIds.forEach(zId => {
@@ -802,16 +1967,28 @@
           const zone = svc.zones.find(z => z.id === zId);
           const mat = svc.materials.find(m => m.id === item.matId) || svc.materials[0];
           if (!zone) return;
+
           let extra = [];
           if (zone.hasSize && item.size) extra.push(item.size);
           if (zone.hasQty) extra.push(`${item.qty}개`);
           if (item.note && item.note.trim()) extra.push(item.note.trim());
-          lines.push(`- ${zone.name}${extra.length ? ' (' + extra.join(' / ') + ')' : ''} - ${mat.name}`);
+          const extraStr = extra.length ? ` (${extra.join(' / ')})` : '';
+
+          lines.push(`- ${zone.name}${extraStr} - ${mat.name}`);
         });
         lines.push('');
       });
-      if (!hasAny) { lines.push('- 시공 상담 문의드립니다.', ''); }
-      if (memo) { lines.push('[추가 요청사항]', memo); }
+
+      if (!hasAny) {
+        lines.push('- 시공 상담 문의드립니다.');
+        lines.push('');
+      }
+
+      if (memo) {
+        lines.push('[추가 요청사항]');
+        lines.push(memo);
+      }
+
       return lines.join('\n').trim();
     }
 
@@ -819,36 +1996,72 @@
       document.getElementById('smsPreviewText').value = buildSmsBody();
       document.getElementById('smsModal').classList.add('open');
     }
-    function closeModal(id) { document.getElementById(id).classList.remove('open'); }
-    function closeModalOnBackdrop(e, id) { if (e.target.id === id) closeModal(id); }
+
+    function closeModal(id) {
+      document.getElementById(id).classList.remove('open');
+    }
+
+    function closeModalOnBackdrop(e, id) {
+      if (e.target.id === id) closeModal(id);
+    }
 
     function copySmsText() {
       const ta = document.getElementById('smsPreviewText');
+      const text = ta.value;
       if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(ta.value).then(() => showToast('견적 문구가 클립보드에 복사되었습니다.')).catch(() => fallbackCopy(ta));
-      } else { fallbackCopy(ta); }
+        navigator.clipboard.writeText(text).then(() => {
+          showToast('견적 문구가 클립보드에 복사되었습니다.');
+        }).catch(() => fallbackCopy(ta));
+      } else {
+        fallbackCopy(ta);
+      }
     }
-    function fallbackCopy(ta) { ta.select(); ta.setSelectionRange(0, 99999); document.execCommand('copy'); showToast('견적 문구가 복사되었습니다.'); }
+
+    function fallbackCopy(ta) {
+      ta.select();
+      ta.setSelectionRange(0, 99999);
+      document.execCommand('copy');
+      showToast('견적 문구가 복사되었습니다.');
+    }
 
     function launchSmsApp() {
       const text = document.getElementById('smsPreviewText').value;
       const cleanTel = (config.phone || '010-0000-0000').replace(/[^0-9]/g, '');
       const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-      window.location.href = `sms:${cleanTel}${isIOS ? '&' : '?'}body=${encodeURIComponent(text)}`;
+      const sep = isIOS ? '&' : '?';
+      window.location.href = `sms:${cleanTel}${sep}body=${encodeURIComponent(text)}`;
     }
 
-    function openAdminModal() { document.getElementById('adminModal').classList.add('open'); renderAdminBody(); }
+    function openAdminModal() {
+      document.getElementById('adminModal').classList.add('open');
+      renderAdminBody();
+    }
+
     function checkAdminPw() {
-      if (document.getElementById('adminPwInput').value === config.adminPw) { adminUnlocked = true; renderAdminBody(); }
-      else { showToast('비밀번호가 일치하지 않습니다.'); }
+      const input = document.getElementById('adminPwInput').value;
+      if (input === config.adminPw) {
+        adminUnlocked = true;
+        renderAdminBody();
+      } else {
+        showToast('비밀번호가 일치하지 않습니다.');
+      }
     }
 
     function renderAdminBody() {
       const box = document.getElementById('adminBody');
       if (!adminUnlocked) {
-        box.innerHTML = `<div class="admin-card"><div class="admin-card-title">관리자 비밀번호 입력 (초기값: 0000)</div><div class="admin-row"><input id="adminPwInput" type="password" class="field-input" placeholder="비밀번호 4자리 입력" /><button type="button" class="admin-mini-btn" onclick="checkAdminPw()">잠금 해제</button></div></div>`;
+        box.innerHTML = `
+          <div class="admin-card">
+            <div class="admin-card-title">관리자 비밀번호 입력 (초기값: 0000)</div>
+            <div class="admin-row">
+              <input id="adminPwInput" type="password" class="field-input" placeholder="비밀번호 4자리 입력" />
+              <button type="button" class="admin-mini-btn" onclick="checkAdminPw()">잠금 해제</button>
+            </div>
+          </div>
+        `;
         return;
       }
+
       const order = ['grout', 'screen', 'coating', 'silicone'];
       box.innerHTML = `
         <div class="admin-card">
@@ -864,6 +2077,7 @@
             <input id="admAddr" type="text" class="field-input" value="${config.biz.address || ''}" />
           </div>
         </div>
+
         <div class="admin-card">
           <div class="admin-card-title">2. SNS 채널 링크</div>
           <div class="admin-row">
@@ -875,18 +2089,21 @@
             <input id="admInsta" type="text" class="field-input" value="${config.sns.instagram}" />
           </div>
         </div>
+
         <div class="admin-card">
-          <div class="admin-card-title">3. 4대 시공 카드 실사진 교체</div>
+          <div class="admin-card-title">3. 4대 시공 카드 실사진 교체 (자동 압축 · URL · 초기화)</div>
           ${order.map(k => `
             <div class="admin-row">
               <label class="field-label">${config.services[k].num}. ${config.services[k].title}</label>
-              <input type="file" accept="image/*" onchange="handlePhotoUpload(event,'${k}')" />
+              <input type="file" accept="image/*" onchange="handlePhotoUpload(event, '${k}')" />
               <div class="admin-inline-btns">
                 <button type="button" class="admin-sub-btn" onclick="setPhotoUrl('${k}')">이미지 URL 입력</button>
                 <button type="button" class="admin-sub-btn" onclick="resetPhoto('${k}')">기본 이미지 복원</button>
               </div>
-            </div>`).join('')}
+            </div>
+          `).join('')}
         </div>
+
         <div class="admin-card">
           <div class="admin-card-title">4. 비밀번호 및 설정 JSON 백업/복원</div>
           <div class="admin-row">
@@ -898,21 +2115,29 @@
             <button type="button" class="admin-sub-btn" onclick="importConfigJson()">설정 복원(JSON 붙여넣기)</button>
           </div>
         </div>
-        <button type="button" class="primary-sms-btn" onclick="saveAdminSettings()">설정 저장 및 즉시 반영</button>`;
+
+        <button type="button" class="primary-sms-btn" onclick="saveAdminSettings()">설정 저장 및 즉시 반영</button>
+      `;
     }
 
     function handlePhotoUpload(e, svcKey) {
-      const file = e.target.files[0]; if (!file) return;
+      const file = e.target.files[0];
+      if (!file) return;
       const reader = new FileReader();
       reader.onload = function(ev) {
         const img = new Image();
         img.onload = function() {
           const canvas = document.createElement('canvas');
-          const scale = Math.min(1, 720 / img.width);
-          canvas.width = img.width * scale; canvas.height = img.height * scale;
-          canvas.getContext('2d').drawImage(img, 0, 0, canvas.width, canvas.height);
+          const maxW = 720;
+          const scale = Math.min(1, maxW / img.width);
+          canvas.width = img.width * scale;
+          canvas.height = img.height * scale;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
           config.services[svcKey].img = canvas.toDataURL('image/jpeg', 0.78);
-          saveConfig(); renderServiceGrid(); showToast('사진이 압축되어 적용되었습니다.');
+          saveConfig();
+          renderServiceGrid();
+          showToast('사진이 압축되어 적용되었습니다.');
         };
         img.src = ev.target.result;
       };
@@ -921,21 +2146,45 @@
 
     function setPhotoUrl(svcKey) {
       const url = prompt('적용할 이미지 주소(URL)를 입력해 주세요:', '');
-      if (url && url.trim()) { config.services[svcKey].img = url.trim(); saveConfig(); renderServiceGrid(); showToast('이미지 URL이 적용되었습니다.'); }
+      if (url && url.trim()) {
+        config.services[svcKey].img = url.trim();
+        saveConfig();
+        renderServiceGrid();
+        showToast('이미지 URL이 적용되었습니다.');
+      }
     }
-    function resetPhoto(svcKey) { config.services[svcKey].img = DEFAULT_THUMBS[svcKey]; saveConfig(); renderServiceGrid(); showToast('기본 이미지로 복원되었습니다.'); }
+
+    function resetPhoto(svcKey) {
+      config.services[svcKey].img = DEFAULT_THUMBS[svcKey];
+      saveConfig();
+      renderServiceGrid();
+      showToast('기본 이미지로 복원되었습니다.');
+    }
 
     function exportConfigJson() {
       const jsonStr = JSON.stringify(config, null, 2);
-      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(jsonStr).then(() => showToast('설정 JSON이 복사되었습니다.'));
-      else prompt('아래 설정 JSON을 복사해 보관하세요:', jsonStr);
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(jsonStr).then(() => {
+          showToast('설정 JSON이 클립보드에 복사되었습니다.');
+        });
+      } else {
+        prompt('아래 설정 JSON을 복사해 보관하세요:', jsonStr);
+      }
     }
+
     function importConfigJson() {
-      const raw = prompt('백업해 둔 설정 JSON 문자열을 붙여넣어 주세요:', ''); if (!raw) return;
+      const raw = prompt('백업해 둔 설정 JSON 문자열을 붙여넣어 주세요:', '');
+      if (!raw) return;
       try {
-        config = Object.assign({}, JSON.parse(JSON.stringify(DEFAULT_CONFIG)), JSON.parse(raw));
-        saveConfig(); renderAll(); renderAdminBody(); showToast('설정이 복원되었습니다.');
-      } catch (e) { showToast('올바른 JSON 형식이 아닙니다.'); }
+        const parsed = JSON.parse(raw);
+        config = Object.assign({}, JSON.parse(JSON.stringify(DEFAULT_CONFIG)), parsed);
+        saveConfig();
+        renderAll();
+        renderAdminBody();
+        showToast('설정이 성공적으로 복원되었습니다.');
+      } catch (e) {
+        showToast('올바른 JSON 형식이 아닙니다.');
+      }
     }
 
     function saveAdminSettings() {
@@ -948,12 +2197,21 @@
       config.sns.instagram = document.getElementById('admInsta').value.trim();
       const newPw = document.getElementById('admNewPw').value.trim();
       if (newPw) config.adminPw = newPw;
-      saveConfig(); renderHeaderAndLinks(); closeModal('adminModal'); showToast('관리자 설정이 저장되었습니다.');
+
+      saveConfig();
+      renderHeaderAndLinks();
+      closeModal('adminModal');
+      showToast('관리자 설정이 저장되었습니다.');
     }
 
     function renderAll() {
-      renderHeaderAndLinks(); renderServiceGrid(); renderTabBar();
-      renderDetailPanel(); renderCartBoard(); renderResidence(); updateDock();
+      renderHeaderAndLinks();
+      renderServiceGrid();
+      renderTabBar();
+      renderDetailPanel();
+      renderCartBoard();
+      renderResidence();
+      updateDock();
     }
 
     renderAll();
