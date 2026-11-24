@@ -1030,7 +1030,7 @@
       </div>
     </section>
 
-    <!-- 4대 시공 동일 비율 2x2 카드 -->
+    <!-- 4대 시공 동일 비율 2x2 카드 (1.png ~ 4.png 자동 송출 + 미업로드 시 자동 대체 그래픽) -->
     <section class="section-block">
       <div class="section-head">
         <div class="section-kicker">ALL-IN-ONE CARE</div>
@@ -1210,21 +1210,21 @@
       </div>
 
       <div class="admin-section">
-        <div class="admin-label">4대 시공 실사진 교체 (자동 압축 저장)</div>
+        <div class="admin-label">4대 시공 실사진 교체 (기본값: 깃허브 1.png ~ 4.png 자동 연결)</div>
         <div class="admin-photo-row">
-          <span>01 프리미엄 줄눈</span>
+          <span>01 프리미엄 줄눈 (1.png)</span>
           <input type="file" accept="image/*" onchange="handlePhotoUpload(event, 'grout')" />
         </div>
         <div class="admin-photo-row">
-          <span>02 블랙스텐 방충망</span>
+          <span>02 블랙스텐 방충망 (2.png)</span>
           <input type="file" accept="image/*" onchange="handlePhotoUpload(event, 'screen')" />
         </div>
         <div class="admin-photo-row">
-          <span>03 욕실·타일 코팅</span>
+          <span>03 욕실·타일 코팅 (3.png)</span>
           <input type="file" accept="image/*" onchange="handlePhotoUpload(event, 'coating')" />
         </div>
         <div class="admin-photo-row">
-          <span>04 항균 바이오 실리콘</span>
+          <span>04 항균 바이오 실리콘 (4.png)</span>
           <input type="file" accept="image/*" onchange="handlePhotoUpload(event, 'silicone')" />
         </div>
       </div>
@@ -1243,9 +1243,9 @@
   </div>
 
   <script>
-    const STORAGE_KEY = 'busandeepclean_master_v4';
+    const STORAGE_KEY = 'busandeepclean_master_v5';
 
-    function makeDefaultSvg(num, title, subtitle, bg1, bg2) {
+    function makeFallbackSvg(num, title, subtitle, bg1, bg2) {
       const svg = '<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">' +
         '<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1">' +
         '<stop offset="0%" stop-color="' + bg1 + '"/><stop offset="100%" stop-color="' + bg2 + '"/>' +
@@ -1258,6 +1258,13 @@
       return 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(svg);
     }
 
+    const FALLBACK_PHOTOS = {
+      grout: makeFallbackSvg('01', '프리미엄 줄눈 시공', '스타라이크 프로 · 아스팍톤 · 아스팍샤인 · 폴리', '#065F46', '#047857'),
+      screen: makeFallbackSvg('02', '블랙스텐 방충망', '물구멍 스티커 및 모헤어 교체 포함', '#1E3A8A', '#1D4ED8'),
+      coating: makeFallbackSvg('03', '욕실 · 타일 코팅', '일본 아크바리아 700 Z · X · R 정품 시공', '#92400E', '#B45309'),
+      silicone: makeFallbackSvg('04', '항균 바이오 실리콘', '기존 실리콘 제거 후 무펄 · 펄 정석 마감', '#292524', '#44403C')
+    };
+
     const defaultConfig = {
       phone: '01049446831',
       blog: 'https://m.blog.naver.com/deepclean6831',
@@ -1265,10 +1272,10 @@
       insta: 'https://www.instagram.com/deep_clean_6831',
       pw: '0000',
       photos: {
-        grout: makeDefaultSvg('01', '프리미엄 줄눈 시공', '스타라이크 프로 · 아스팍톤 · 아스팍샤인 · 폴리', '#065F46', '#047857'),
-        screen: makeDefaultSvg('02', '블랙스텐 방충망', '물구멍 스티커 및 모헤어 교체 포함', '#1E3A8A', '#1D4ED8'),
-        coating: makeDefaultSvg('03', '욕실 · 타일 코팅', '일본 아크바리아 700 Z · X · R 정품 시공', '#92400E', '#B45309'),
-        silicone: makeDefaultSvg('04', '항균 바이오 실리콘', '기존 실리콘 제거 후 무펄 · 펄 정석 마감', '#292524', '#44403C')
+        grout: '1.png',
+        screen: '2.png',
+        coating: '3.png',
+        silicone: '4.png'
       }
     };
 
@@ -1286,14 +1293,23 @@
       applyConfigToDom();
     }
 
+    function setPhotoWithFallback(imgId, key) {
+      const imgEl = document.getElementById(imgId);
+      imgEl.onerror = function () {
+        this.onerror = null;
+        this.src = FALLBACK_PHOTOS[key];
+      };
+      imgEl.src = config.photos[key] || defaultConfig.photos[key];
+    }
+
     function applyConfigToDom() {
       document.getElementById('linkBlog').href = config.blog;
       document.getElementById('linkYoutube').href = config.youtube;
       document.getElementById('linkInsta').href = config.insta;
-      document.getElementById('imgGrout').src = config.photos.grout;
-      document.getElementById('imgScreen').src = config.photos.screen;
-      document.getElementById('imgCoating').src = config.photos.coating;
-      document.getElementById('imgSilicone').src = config.photos.silicone;
+      setPhotoWithFallback('imgGrout', 'grout');
+      setPhotoWithFallback('imgScreen', 'screen');
+      setPhotoWithFallback('imgCoating', 'coating');
+      setPhotoWithFallback('imgSilicone', 'silicone');
     }
 
     const CATALOG = {
