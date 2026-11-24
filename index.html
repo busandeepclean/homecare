@@ -167,7 +167,7 @@
       margin-top: 2px;
     }
 
-    /* SNS 3열 입체 뱃지 (정식 브랜드 SVG 아이콘) */
+    /* SNS 3열 입체 뱃지 */
     .sns-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -184,12 +184,11 @@
       border: 1px solid var(--border-light);
       border-bottom: 2px solid var(--border-mid);
       border-radius: 10px;
-      padding: 10px 6px;
+      padding: 9px 6px;
       text-decoration: none;
       color: var(--text-main);
       font-size: 12px;
       font-weight: 700;
-      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
     }
 
     .sns-badge:active {
@@ -197,12 +196,16 @@
       border-bottom-width: 1px;
     }
 
-    .sns-icon {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
+    .sns-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
       flex-shrink: 0;
     }
+
+    .sns-dot.naver { background: #03C75A; }
+    .sns-dot.youtube { background: #FF0000; }
+    .sns-dot.insta { background: #E1306C; }
 
     /* 공통 섹션 헤더 */
     .section-block {
@@ -978,43 +981,16 @@
         </button>
       </div>
 
-      <!-- SNS 3열 입체 뱃지 (정식 브랜드 로고 아이콘) -->
+      <!-- SNS 3열 입체 뱃지 -->
       <div class="sns-grid">
         <a id="snsBlogLink" href="https://m.blog.naver.com/deepclean6831" target="_blank" rel="noopener" class="sns-badge">
-          <span class="sns-icon">
-            <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
-              <rect width="24" height="24" rx="5" fill="#03C75A"/>
-              <path d="M14.7 12.6L9.1 5.5H6.5V18.5H9.3V11.4L14.9 18.5H17.5V5.5H14.7V12.6Z" fill="#FFFFFF"/>
-            </svg>
-          </span>
-          <span>네이버 블로그</span>
+          <span class="sns-dot naver"></span>네이버 블로그
         </a>
         <a id="snsYoutubeLink" href="https://www.youtube.com" target="_blank" rel="noopener" class="sns-badge">
-          <span class="sns-icon">
-            <svg width="18" height="16" viewBox="0 0 24 24" aria-hidden="true">
-              <rect y="3" width="24" height="18" rx="5" fill="#FF0000"/>
-              <path d="M10 8.5L16 12L10 15.5V8.5Z" fill="#FFFFFF"/>
-            </svg>
-          </span>
-          <span>유튜브</span>
+          <span class="sns-dot youtube"></span>유튜브
         </a>
         <a id="snsInstaLink" href="https://www.instagram.com" target="_blank" rel="noopener" class="sns-badge">
-          <span class="sns-icon">
-            <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
-              <defs>
-                <linearGradient id="igGrad" x1="0%" y1="100%" x2="100%" y2="0%">
-                  <stop offset="0%" stop-color="#FD5949"/>
-                  <stop offset="50%" stop-color="#D6249F"/>
-                  <stop offset="100%" stop-color="#285AEB"/>
-                </linearGradient>
-              </defs>
-              <rect width="24" height="24" rx="6" fill="url(#igGrad)"/>
-              <rect x="4.5" y="4.5" width="15" height="15" rx="4" fill="none" stroke="#FFFFFF" stroke-width="1.8"/>
-              <circle cx="12" cy="12" r="3.4" fill="none" stroke="#FFFFFF" stroke-width="1.8"/>
-              <circle cx="16.4" cy="7.6" r="1.1" fill="#FFFFFF"/>
-            </svg>
-          </span>
-          <span>인스타그램</span>
+          <span class="sns-dot insta"></span>인스타그램
         </a>
       </div>
     </section>
@@ -1113,7 +1089,7 @@
         <div class="admin-section">
           <h4>1. 시공 카드 대표 사진 관리</h4>
           <p style="font-size: 11.5px; color: var(--text-muted); margin-bottom: 10px;">
-            기본값은 깃허브 저장소에 업로드된 1~4번 시공 사진입니다.
+            기본값은 깃허브 저장소에 업로드된 원본 사진 파일입니다.
           </p>
           <div id="adminImgList"></div>
           <button type="button" class="admin-outline-btn" onclick="resetImagesToGithubDefault()">깃허브 기본 이미지로 복원</button>
@@ -1151,30 +1127,30 @@
   </div>
 
   <script>
-    const STORAGE_KEY = 'bdc_homecare_config_v8';
+    const STORAGE_KEY = 'bdc_homecare_config_v6';
 
-    // 4대 시공 마스터 데이터 (1:현관줄눈, 2:방충망, 3:욕실코팅, 4:주방실리콘 확정 배치)
+    // 4대 시공 마스터 데이터 (1~4번 순서 정렬)
     const SERVICES = [
       {
         id: 'grout',
         num: '01',
         name: '프리미엄 줄눈',
         tagline: '정밀 ㄷ자 시공 · 스타라이크 프로 · 아스팍톤',
-        defaultImg: '1795510513405.png'
+        defaultImg: '1795510504311.png'
       },
       {
         id: 'screen',
         num: '02',
         name: '블랙스텐 방충망',
         tagline: '고강도 블랙스텐 · 미세 촘촘망 · 물구멍·모헤어 포함',
-        defaultImg: '1795510504311.png'
+        defaultImg: '1795510511415.png'
       },
       {
         id: 'coating',
         num: '03',
         name: '욕실·타일 코팅',
         tagline: '일본 아크바리아 700 Z · X · R',
-        defaultImg: '1795510511415.png'
+        defaultImg: '1795510513405.png'
       },
       {
         id: 'silicone',
@@ -1899,7 +1875,7 @@
       updateDockSummary();
     }
 
-    // 문자 견적 본문 생성 (별표 기호 미사용)
+    // 문자 견적 본문 생성 (별표 기호 절대 미사용)
     function buildQuoteMessage() {
       const lines = [];
       lines.push('[부산딥클린 올인원 홈케어 견적 문의]');
