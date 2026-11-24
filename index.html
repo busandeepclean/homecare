@@ -180,11 +180,11 @@
       border-bottom-width: 1px;
     }
 
-    .sns-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
+    .sns-icon {
+      width: 16px;
+      height: 16px;
       flex-shrink: 0;
+      display: block;
     }
 
     /* 섹션 공통 */
@@ -215,6 +215,7 @@
       font-size: 12.5px;
       color: var(--text-muted);
       margin-top: 3px;
+      word-break: keep-all;
     }
 
     /* 4대 시공 동일 비율 2x2 실사진 카드 */
@@ -280,14 +281,14 @@
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 8px;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
 
     .service-tab {
       background: var(--bg-card);
       border: 1.5px solid var(--border-light);
       border-radius: 12px;
-      padding: 12px 10px;
+      padding: 11px 10px;
       text-align: left;
       cursor: pointer;
       transition: all 0.15s ease;
@@ -304,7 +305,7 @@
       font-size: 11px;
       font-weight: 700;
       color: var(--emerald);
-      margin-bottom: 2px;
+      margin-bottom: 1px;
     }
 
     .service-tab.active .tab-num {
@@ -323,117 +324,18 @@
       background: var(--bg-card);
       border: 1px solid var(--border-light);
       border-radius: 16px;
-      padding: 18px 16px;
+      padding: 16px 14px;
     }
 
-    .step-badge {
-      display: inline-block;
-      font-size: 11px;
-      font-weight: 800;
+    .panel-guide {
+      font-size: 12px;
+      font-weight: 600;
       color: var(--text-sub);
       background: var(--bg-subtle);
-      padding: 3px 9px;
-      border-radius: 6px;
-      margin-bottom: 8px;
-    }
-
-    .panel-subtitle {
-      font-size: 15px;
-      font-weight: 800;
-      color: var(--text-main);
-      margin-bottom: 10px;
-    }
-
-    /* 자재 선택 버튼 그리드 */
-    .mat-grid-2 {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 8px;
-      margin-bottom: 16px;
-    }
-
-    .mat-grid-3 {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 7px;
-      margin-bottom: 16px;
-    }
-
-    .mat-btn {
-      background: var(--bg-card);
-      border: 1.5px solid var(--border-light);
-      border-radius: 12px;
-      padding: 11px 10px;
-      text-align: left;
-      cursor: pointer;
-      transition: all 0.15s ease;
-    }
-
-    .mat-grade {
-      display: block;
-      font-size: 10px;
-      font-weight: 800;
-      letter-spacing: 0.03em;
-      margin-bottom: 3px;
-    }
-
-    .mat-name {
-      display: block;
-      font-size: 13.5px;
-      font-weight: 800;
-      color: var(--text-main);
-      letter-spacing: -0.02em;
+      padding: 8px 11px;
+      border-radius: 9px;
+      margin-bottom: 12px;
       word-break: keep-all;
-    }
-
-    .mat-sub {
-      display: block;
-      font-size: 11px;
-      color: var(--text-muted);
-      margin-top: 2px;
-      word-break: keep-all;
-    }
-
-    /* 색상 테마별 자재 스타일 */
-    .tone-emerald .mat-grade { color: var(--emerald); }
-    .tone-emerald.selected {
-      background: var(--emerald-bg);
-      border-color: var(--emerald);
-    }
-
-    .tone-gold .mat-grade { color: var(--gold); }
-    .tone-gold.selected {
-      background: var(--gold-bg);
-      border-color: var(--gold);
-    }
-
-    .tone-indigo .mat-grade { color: var(--indigo); }
-    .tone-indigo.selected {
-      background: var(--indigo-bg);
-      border-color: var(--indigo);
-    }
-
-    .tone-blue .mat-grade { color: var(--blue); }
-    .tone-blue.selected {
-      background: var(--blue-bg);
-      border-color: var(--blue);
-    }
-
-    .active-brush-bar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: var(--bg-subtle);
-      border-radius: 10px;
-      padding: 9px 12px;
-      margin-bottom: 14px;
-      font-size: 12.5px;
-      color: var(--text-sub);
-    }
-
-    .active-brush-val {
-      font-weight: 800;
-      color: var(--text-main);
     }
 
     /* 서비스 포함 안내 박스 */
@@ -441,43 +343,56 @@
       background: var(--emerald-bg);
       border: 1px solid var(--emerald-border);
       color: var(--emerald);
-      font-size: 12.5px;
+      font-size: 12px;
       font-weight: 700;
-      padding: 10px 12px;
-      border-radius: 10px;
-      margin-bottom: 14px;
+      padding: 9px 11px;
+      border-radius: 9px;
+      margin-bottom: 12px;
+      word-break: keep-all;
     }
 
-    /* 구역 그룹 & 버튼 */
+    /* 구역 그룹 & 컴팩트 카드 */
     .zone-group-label {
       font-size: 12px;
       font-weight: 800;
       color: var(--text-sub);
-      margin: 14px 0 8px;
+      margin: 12px 0 7px;
+    }
+
+    .zone-group-label:first-of-type {
+      margin-top: 2px;
     }
 
     .zone-list {
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 7px;
     }
 
-    .zone-row {
+    .zone-card {
+      background: var(--bg-canvas);
+      border: 1.5px solid var(--border-light);
+      border-radius: 11px;
+      padding: 10px 12px;
+      transition: border-color 0.15s ease, background-color 0.15s ease;
+    }
+
+    .zone-card.mapped {
+      background: var(--bg-card);
+      border-color: var(--charcoal);
+    }
+
+    .zone-card.tone-border-emerald { border-color: var(--emerald); }
+    .zone-card.tone-border-gold { border-color: var(--gold); }
+    .zone-card.tone-border-indigo { border-color: var(--indigo); }
+    .zone-card.tone-border-blue { border-color: var(--blue); }
+
+    .zone-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 10px;
-      background: var(--bg-canvas);
-      border: 1.5px solid var(--border-light);
-      border-radius: 12px;
-      padding: 12px 13px;
+      gap: 8px;
       cursor: pointer;
-      transition: all 0.15s ease;
-    }
-
-    .zone-row.mapped {
-      background: var(--bg-card);
-      border-color: var(--charcoal);
     }
 
     .zone-info {
@@ -486,10 +401,11 @@
     }
 
     .zone-title {
-      font-size: 14px;
+      font-size: 13.5px;
       font-weight: 700;
       color: var(--text-main);
       word-break: keep-all;
+      line-height: 1.35;
     }
 
     .rec-pill {
@@ -505,15 +421,102 @@
       vertical-align: middle;
     }
 
-    .mapped-pill {
+    .zone-add-hint {
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--text-muted);
+      flex-shrink: 0;
+    }
+
+    .mapped-badge {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      font-size: 11.5px;
+      gap: 4px;
+      font-size: 11px;
       font-weight: 800;
-      padding: 4px 9px;
-      border-radius: 7px;
+      padding: 3px 8px;
+      border-radius: 6px;
       flex-shrink: 0;
+    }
+
+    /* 초소형 인라인 제품 선택 칩 바 */
+    .mini-chip-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 5px;
+      margin-top: 8px;
+      padding-top: 8px;
+      border-top: 1px dashed var(--border-light);
+    }
+
+    .mini-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-mid);
+      border-radius: 7px;
+      padding: 5px 9px;
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--text-sub);
+      cursor: pointer;
+      line-height: 1.2;
+      transition: all 0.12s ease;
+    }
+
+    .mini-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .dot-emerald { background: var(--emerald); }
+    .dot-gold { background: var(--gold); }
+    .dot-indigo { background: var(--indigo); }
+    .dot-blue { background: var(--blue); }
+
+    /* 선택된 칩 컬러 */
+    .mini-chip.active-emerald {
+      background: var(--emerald);
+      border-color: var(--emerald);
+      color: #FFFFFF;
+    }
+    .mini-chip.active-emerald .mini-dot { background: #FFFFFF; }
+
+    .mini-chip.active-gold {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: #FFFFFF;
+    }
+    .mini-chip.active-gold .mini-dot { background: #FFFFFF; }
+
+    .mini-chip.active-indigo {
+      background: var(--indigo);
+      border-color: var(--indigo);
+      color: #FFFFFF;
+    }
+    .mini-chip.active-indigo .mini-dot { background: #FFFFFF; }
+
+    .mini-chip.active-blue {
+      background: var(--blue);
+      border-color: var(--blue);
+      color: #FFFFFF;
+    }
+    .mini-chip.active-blue .mini-dot { background: #FFFFFF; }
+
+    .mini-clear {
+      margin-left: auto;
+      background: transparent;
+      border: 1px solid var(--border-mid);
+      border-radius: 7px;
+      padding: 5px 8px;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-muted);
+      cursor: pointer;
     }
 
     .pill-emerald { background: var(--emerald-bg); color: var(--emerald); }
@@ -521,88 +524,50 @@
     .pill-indigo { background: var(--indigo-bg); color: var(--indigo); }
     .pill-blue { background: var(--blue-bg); color: var(--blue); }
 
-    .zone-add-hint {
-      font-size: 12px;
-      font-weight: 600;
-      color: var(--text-muted);
-      flex-shrink: 0;
-    }
-
-    .remove-mini {
-      background: rgba(0, 0, 0, 0.08);
-      border: none;
-      border-radius: 4px;
-      padding: 1px 5px;
-      font-size: 10.5px;
-      font-weight: 800;
-      color: inherit;
-      cursor: pointer;
-    }
-
-    /* 방충망 개수 & 크기 선택 */
-    .screen-row {
-      background: var(--bg-canvas);
-      border: 1.5px solid var(--border-light);
-      border-radius: 12px;
-      padding: 12px 13px;
-    }
-
-    .screen-row.active-count {
-      background: var(--bg-card);
-      border-color: var(--charcoal);
-    }
-
-    .screen-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 8px;
-    }
-
+    /* 방충망 스테퍼 및 크기 선택 */
     .stepper {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
       background: var(--bg-card);
       border: 1px solid var(--border-mid);
-      border-radius: 8px;
-      padding: 3px 6px;
+      border-radius: 7px;
+      padding: 2px 5px;
+      flex-shrink: 0;
     }
 
     .step-btn {
-      width: 26px;
-      height: 26px;
+      width: 24px;
+      height: 24px;
       border: none;
       background: var(--bg-subtle);
-      border-radius: 6px;
-      font-size: 15px;
+      border-radius: 5px;
+      font-size: 14px;
       font-weight: 800;
       color: var(--text-main);
       cursor: pointer;
     }
 
     .step-val {
-      min-width: 20px;
+      min-width: 18px;
       text-align: center;
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 800;
     }
 
     .size-toggle-wrap {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 6px;
-      margin-top: 9px;
-      padding-top: 9px;
-      border-top: 1px dashed var(--border-light);
+      gap: 5px;
+      margin-top: 7px;
     }
 
     .size-btn {
       border: 1px solid var(--border-mid);
       background: var(--bg-card);
-      border-radius: 7px;
-      padding: 6px 8px;
-      font-size: 11.5px;
+      border-radius: 6px;
+      padding: 5px 6px;
+      font-size: 11px;
       font-weight: 700;
       color: var(--text-sub);
       cursor: pointer;
@@ -616,18 +581,19 @@
 
     /* 직접 입력 박스 */
     .custom-input-box {
-      margin-top: 10px;
+      margin-top: 8px;
       display: flex;
       gap: 6px;
     }
 
     .text-input {
       flex: 1;
+      min-width: 0;
       border: 1px solid var(--border-mid);
       background: var(--bg-card);
-      border-radius: 10px;
-      padding: 10px 12px;
-      font-size: 13.5px;
+      border-radius: 9px;
+      padding: 9px 11px;
+      font-size: 13px;
       font-family: inherit;
       color: var(--text-main);
       outline: none;
@@ -641,30 +607,48 @@
       background: var(--charcoal);
       color: #FFFFFF;
       border: none;
-      border-radius: 10px;
-      padding: 0 14px;
-      font-size: 13px;
+      border-radius: 9px;
+      padding: 0 13px;
+      font-size: 12.5px;
       font-weight: 700;
       cursor: pointer;
       white-space: nowrap;
     }
 
-    /* 거주 상태 카드 (아이콘 없음, 중복 선택) */
-    .res-grid {
+    /* 거주 상태 4열 가로 배치 + 2행 리모델링/현장정보 동일 규격 카드 */
+    .res-row-top {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+
+    .res-row-bottom {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 9px;
-      margin-bottom: 12px;
+      gap: 8px;
+      align-items: stretch;
     }
 
     .res-card {
       background: var(--bg-card);
       border: 1.5px solid var(--border-light);
       border-radius: 12px;
-      padding: 14px 13px;
-      text-align: left;
+      padding: 11px 8px;
+      text-align: center;
       cursor: pointer;
       transition: all 0.15s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .res-card.left-align {
+      text-align: left;
+      align-items: flex-start;
+      padding: 12px 12px;
+      min-height: 78px;
     }
 
     .res-card.selected {
@@ -674,10 +658,11 @@
 
     .res-title {
       display: block;
-      font-size: 14.5px;
+      font-size: 13.5px;
       font-weight: 800;
       color: var(--text-main);
-      margin-bottom: 3px;
+      margin-bottom: 2px;
+      word-break: keep-all;
     }
 
     .res-card.selected .res-title {
@@ -686,30 +671,46 @@
 
     .res-desc {
       display: block;
-      font-size: 12px;
+      font-size: 10.5px;
       color: var(--text-sub);
       word-break: keep-all;
+      line-height: 1.3;
     }
 
-    .memo-box {
+    .site-card {
       background: var(--bg-card);
-      border: 1px solid var(--border-light);
-      border-radius: 14px;
-      padding: 14px;
+      border: 1.5px solid var(--border-light);
+      border-radius: 12px;
+      padding: 12px 12px;
+      min-height: 78px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
-    .memo-label {
+    .site-card-label {
       display: block;
       font-size: 12.5px;
-      font-weight: 700;
-      color: var(--text-sub);
-      margin-bottom: 7px;
+      font-weight: 800;
+      color: var(--text-main);
+      margin-bottom: 5px;
     }
 
-    .memo-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 8px;
+    .site-card-input {
+      width: 100%;
+      border: 1px solid var(--border-mid);
+      background: var(--bg-canvas);
+      border-radius: 8px;
+      padding: 7px 9px;
+      font-size: 12px;
+      font-family: inherit;
+      color: var(--text-main);
+      outline: none;
+    }
+
+    .site-card-input:focus {
+      border-color: var(--emerald);
+      background: var(--bg-card);
     }
 
     /* 실시간 장바구니 보드 */
@@ -789,6 +790,7 @@
       font-weight: 700;
       cursor: pointer;
       padding: 2px 6px;
+      flex-shrink: 0;
     }
 
     /* 푸터 */
@@ -993,18 +995,36 @@
         </button>
       </div>
 
-      <!-- SNS 3열 입체 뱃지 -->
+      <!-- SNS 3열 입체 뱃지 (정석 브랜드 SVG 아이콘) -->
       <div class="sns-grid">
         <a id="linkBlog" class="sns-badge" href="https://m.blog.naver.com/deepclean6831" target="_blank" rel="noopener">
-          <span class="sns-dot" style="background:#03C75A;"></span>
+          <svg class="sns-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <rect width="24" height="24" rx="5" fill="#03C75A"/>
+            <path d="M14.3 12.4L9.5 5.5H5.8v13h3.9v-6.9l4.8 6.9h3.7v-13h-3.9v6.9z" fill="#FFFFFF"/>
+          </svg>
           <span>네이버 블로그</span>
         </a>
         <a id="linkYoutube" class="sns-badge" href="https://www.youtube.com/channel/UChThxOIUbsBCIYgWad-3FuQ" target="_blank" rel="noopener">
-          <span class="sns-dot" style="background:#FF0000;"></span>
+          <svg class="sns-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31.4 31.4 0 0 0 0 12a31.4 31.4 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31.4 31.4 0 0 0 24 12a31.4 31.4 0 0 0-.5-5.8z" fill="#FF0000"/>
+            <path d="M9.6 15.6V8.4L15.8 12l-6.2 3.6z" fill="#FFFFFF"/>
+          </svg>
           <span>유튜브</span>
         </a>
         <a id="linkInsta" class="sns-badge" href="https://www.instagram.com" target="_blank" rel="noopener">
-          <span class="sns-dot" style="background:#E1306C;"></span>
+          <svg class="sns-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <defs>
+              <linearGradient id="igGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#FD5949"/>
+                <stop offset="50%" stop-color="#D6249F"/>
+                <stop offset="100%" stop-color="#285AEB"/>
+              </linearGradient>
+            </defs>
+            <rect width="24" height="24" rx="6" fill="url(#igGrad)"/>
+            <rect x="4.5" y="4.5" width="15" height="15" rx="4" fill="none" stroke="#FFFFFF" stroke-width="1.8"/>
+            <circle cx="12" cy="12" r="3.4" fill="none" stroke="#FFFFFF" stroke-width="1.8"/>
+            <circle cx="16.3" cy="7.7" r="1.1" fill="#FFFFFF"/>
+          </svg>
           <span>인스타그램</span>
         </a>
       </div>
@@ -1054,11 +1074,11 @@
 
         <div class="photo-card" onclick="jumpToService('silicone')">
           <div class="photo-frame">
-            <img id="imgSilicone" alt="04 바이오 실리콘 시공" />
+            <img id="imgSilicone" alt="04 항균 바이오 실리콘 시공" />
           </div>
           <div class="photo-meta">
             <div class="photo-num">04</div>
-            <div class="photo-name">바이오 실리콘</div>
+            <div class="photo-name">항균 바이오 실리콘</div>
             <div class="photo-tag">기존 제거 후 항균 재시공</div>
           </div>
         </div>
@@ -1070,7 +1090,7 @@
       <div class="section-head">
         <div class="section-kicker">CUSTOM SELECTION</div>
         <h2 class="section-title">시공 품목 및 공간별 자재 선택</h2>
-        <p class="section-note">원하시는 자재를 먼저 누른 뒤 구역을 선택하면 공간별로 각각 매핑됩니다.</p>
+        <p class="section-note">원하시는 구역을 터치하면 바로 아래 소형 자재 버튼이 열려 공간마다 다르게 선택할 수 있습니다.</p>
       </div>
 
       <div class="service-tabs">
@@ -1088,25 +1108,26 @@
         </button>
         <button type="button" class="service-tab" data-tab="silicone" onclick="switchTab('silicone')">
           <span class="tab-num">04</span>
-          <span class="tab-label">바이오 실리콘</span>
+          <span class="tab-label">항균 바이오 실리콘</span>
         </button>
       </div>
 
       <div id="servicePanel" class="panel-card"></div>
     </section>
 
-    <!-- 거주 상태 선택 (아이콘 없음, 중복 선택) -->
+    <!-- 거주 상태 및 현장 정보 선택 (아이콘 없음, 중복 선택) -->
     <section class="section-block">
       <div class="section-head">
         <div class="section-kicker">RESIDENCE STATUS</div>
-        <h2 class="section-title">거주 상태 선택</h2>
+        <h2 class="section-title">거주 상태 및 현장 정보</h2>
         <p class="section-note">해당하는 공간에 체크해 주세요 (중복 선택 가능)</p>
       </div>
 
-      <div class="res-grid" id="resGrid">
-        <button type="button" class="res-card" data-res="신축 (올해 준공되고 입주하는 아파트)" onclick="toggleResidence(this)">
+      <!-- 1행: 신축 / 준신축 / 구축 / 거주 중 4열 가로 배치 -->
+      <div class="res-row-top">
+        <button type="button" class="res-card" data-res="신축 (올해 준공 입주)" onclick="toggleResidence(this)">
           <span class="res-title">신축</span>
-          <span class="res-desc">올해 준공되고 입주하는 아파트</span>
+          <span class="res-desc">올해 준공 입주</span>
         </button>
         <button type="button" class="res-card" data-res="준신축 (2~4년)" onclick="toggleResidence(this)">
           <span class="res-title">준신축</span>
@@ -1118,14 +1139,19 @@
         </button>
         <button type="button" class="res-card" data-res="거주 중" onclick="toggleResidence(this)">
           <span class="res-title">거주 중</span>
-          <span class="res-desc">현재 거주 중인 세대</span>
+          <span class="res-desc">현재 거주</span>
         </button>
       </div>
 
-      <div class="memo-box">
-        <label class="memo-label" for="clientRegion">지역 · 아파트명 · 평수 및 희망 시공일 (선택 입력)</label>
-        <div class="memo-grid">
-          <input id="clientRegion" class="text-input" type="text" placeholder="예: 부산 남구 해링턴 마레 34평 / 12월 중순 희망" oninput="renderCart()" />
+      <!-- 2행: 리모델링 공사 후 카드 + 지역·아파트 입력 카드 동일 크기 일체형 배치 -->
+      <div class="res-row-bottom">
+        <button type="button" class="res-card left-align" data-res="리모델링 공사 후" onclick="toggleResidence(this)">
+          <span class="res-title">리모델링 공사 후</span>
+          <span class="res-desc">인테리어 완료 후 입주 전</span>
+        </button>
+        <div class="site-card">
+          <label class="site-card-label" for="clientRegion">지역 · 아파트명 · 평수</label>
+          <input id="clientRegion" class="site-card-input" type="text" placeholder="예: 부산 남구 해링턴 마레 34평" oninput="renderCart()" />
         </div>
       </div>
     </section>
@@ -1198,7 +1224,7 @@
           <input type="file" accept="image/*" onchange="handlePhotoUpload(event, 'coating')" />
         </div>
         <div class="admin-photo-row">
-          <span>04 바이오 실리콘</span>
+          <span>04 항균 바이오 실리콘</span>
           <input type="file" accept="image/*" onchange="handlePhotoUpload(event, 'silicone')" />
         </div>
       </div>
@@ -1217,9 +1243,9 @@
   </div>
 
   <script>
-    const STORAGE_KEY = 'busandeepclean_master_v1';
+    const STORAGE_KEY = 'busandeepclean_master_v2';
 
-    function makeDefaultSvg(num, title, subtitle, bg1, bg2) {
+    function makeFallbackSvg(num, title, subtitle, bg1, bg2) {
       const svg = '<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">' +
         '<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1">' +
         '<stop offset="0%" stop-color="' + bg1 + '"/><stop offset="100%" stop-color="' + bg2 + '"/>' +
@@ -1232,6 +1258,13 @@
       return 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(svg);
     }
 
+    const FALLBACK_PHOTOS = {
+      grout: makeFallbackSvg('01', '프리미엄 줄눈 시공', '스타라이크 프로 · 아스팍톤 · 아스팍샤인 · 폴리', '#065F46', '#047857'),
+      screen: makeFallbackSvg('02', '블랙스텐 방충망', '물구멍 스티커 및 모헤어 교체 포함', '#1E3A8A', '#1D4ED8'),
+      coating: makeFallbackSvg('03', '욕실 · 타일 코팅', '일본 아크바리아 700 Z · X · R 정품 시공', '#92400E', '#B45309'),
+      silicone: makeFallbackSvg('04', '항균 바이오 실리콘', '기존 실리콘 제거 후 무펄 · 펄 정석 마감', '#292524', '#44403C')
+    };
+
     const defaultConfig = {
       phone: '01000000000',
       blog: 'https://m.blog.naver.com/deepclean6831',
@@ -1239,10 +1272,10 @@
       insta: 'https://www.instagram.com',
       pw: '0000',
       photos: {
-        grout: makeDefaultSvg('01', '프리미엄 줄눈 시공', '스타라이크 프로 · 아스팍톤 · 아스팍샤인 · 폴리', '#065F46', '#047857'),
-        screen: makeDefaultSvg('02', '블랙스텐 방충망', '물구멍 스티커 및 모헤어 교체 포함', '#1E3A8A', '#1D4ED8'),
-        coating: makeDefaultSvg('03', '욕실 · 타일 코팅', '일본 아크바리아 700 Z · X · R 정품 시공', '#92400E', '#B45309'),
-        silicone: makeDefaultSvg('04', '항균 바이오 실리콘', '기존 실리콘 제거 후 무펄 · 펄 정석 마감', '#292524', '#44403C')
+        grout: '1.png',
+        screen: '2.png',
+        coating: '3.png',
+        silicone: '4.png'
       }
     };
 
@@ -1260,25 +1293,34 @@
       applyConfigToDom();
     }
 
+    function setPhotoWithFallback(imgId, key) {
+      const imgEl = document.getElementById(imgId);
+      imgEl.onerror = function () {
+        this.onerror = null;
+        this.src = FALLBACK_PHOTOS[key];
+      };
+      imgEl.src = config.photos[key] || defaultConfig.photos[key];
+    }
+
     function applyConfigToDom() {
       document.getElementById('linkBlog').href = config.blog;
       document.getElementById('linkYoutube').href = config.youtube;
       document.getElementById('linkInsta').href = config.insta;
-      document.getElementById('imgGrout').src = config.photos.grout;
-      document.getElementById('imgScreen').src = config.photos.screen;
-      document.getElementById('imgCoating').src = config.photos.coating;
-      document.getElementById('imgSilicone').src = config.photos.silicone;
+      setPhotoWithFallback('imgGrout', 'grout');
+      setPhotoWithFallback('imgScreen', 'screen');
+      setPhotoWithFallback('imgCoating', 'coating');
+      setPhotoWithFallback('imgSilicone', 'silicone');
     }
 
     const CATALOG = {
       grout: {
         title: '01 프리미엄 줄눈',
-        gridClass: 'mat-grid-2',
+        guide: '시공할 구역을 누르면 자재 버튼이 바로 열려 공간마다 다르게 선택할 수 있습니다.',
         materials: [
-          { id: '스타라이크 프로', name: '스타라이크 프로', grade: 'HIGH-END EPOXY', sub: '이태리 리토콜 항균 에폭시', tone: 'emerald' },
-          { id: '아스팍톤', name: '아스팍톤', grade: 'PREMIUM MATTE', sub: '고강도 무광무펄 프리미엄', tone: 'gold' },
-          { id: '아스팍샤인', name: '아스팍샤인', grade: 'SIGNATURE POLY', sub: '고급 폴리 아스파틱 라인', tone: 'indigo' },
-          { id: '폴리아스파틱', name: '폴리아스파틱', grade: 'STANDARD POLY', sub: '펄 · 유광무펄 실속형', tone: 'blue' }
+          { id: '스타라이크 프로', name: '스타라이크 프로', tone: 'emerald' },
+          { id: '아스팍톤', name: '아스팍톤', tone: 'gold' },
+          { id: '아스팍샤인', name: '아스팍샤인', tone: 'indigo' },
+          { id: '폴리아스파틱', name: '폴리아스파틱', tone: 'blue' }
         ],
         baseZones: ['현관', '안방 욕실 바닥', '공용 욕실 바닥', '세탁실', '안방 베란다'],
         extraZones: [
@@ -1291,12 +1333,12 @@
       },
       screen: {
         title: '02 블랙스텐 방충망',
-        gridClass: 'mat-grid-3',
+        guide: '창문 위치를 누르거나 + 버튼으로 개수를 올린 뒤 방충망 종류를 바로 선택하세요.',
         includeNotice: '교체된 방충망 물구멍 스티커 및 모헤어 교체 서비스 포함',
         materials: [
-          { id: '고강도 블랙스텐', name: '고강도 블랙스텐', grade: 'HEAVY-DUTY', sub: '반영구 고강도 안전망', tone: 'emerald' },
-          { id: '미세 촘촘망', name: '미세 촘촘망', grade: 'MICRO MESH', sub: '날벌레 차단 미세망', tone: 'gold' },
-          { id: '알루미늄망', name: '알루미늄망', grade: 'STANDARD', sub: '기본 알루미늄 교체', tone: 'blue' }
+          { id: '고강도 블랙스텐', name: '고강도 블랙스텐', tone: 'emerald' },
+          { id: '미세 촘촘망', name: '미세 촘촘망', tone: 'gold' },
+          { id: '알루미늄망', name: '알루미늄망', tone: 'blue' }
         ],
         windows: [
           { name: '거실 대창', hasSize: false },
@@ -1311,46 +1353,40 @@
       },
       coating: {
         title: '03 욕실·타일 코팅 (일본 아크바리아 700)',
-        gridClass: 'mat-grid-3',
+        guide: '코팅할 구역을 누르면 700 Z · 700 X · 700 R 선택 버튼이 바로 열립니다.',
         materials: [
-          { id: '700 Z', name: '700 Z', grade: 'FLOOR & TOP', sub: '타일·상판 전용 코팅', tone: 'emerald' },
-          { id: '700 X', name: '700 X', grade: 'MULTI-SURFACE', sub: '타일·상판·다목적 코팅', tone: 'gold' },
-          { id: '700 R', name: '700 R', grade: 'SANITARY & GLASS', sub: '도기·유리·수전 전용', tone: 'blue' }
+          { id: '700 Z', name: '700 Z', tone: 'emerald' },
+          { id: '700 X', name: '700 X', tone: 'gold' },
+          { id: '700 R', name: '700 R', tone: 'blue' }
         ],
         zones: [
-          { name: '주방 상판', rec: '추천 · Z 추천' },
-          { name: '거실 타일', rec: '추천' },
-          { name: '공용욕실 바닥타일', rec: '추천' },
-          { name: '안방욕실 바닥타일', rec: '추천' },
-          { name: '공용욕실 (거울·세면대·변기·수전)', rec: '추천 X, R' },
-          { name: '안방욕실 (샤워부스·거울·변기·수전·세면대)', rec: '추천 X, R' }
+          { name: '주방 상판', rec: '추천 Z', defaultMat: '700 Z' },
+          { name: '거실 타일', rec: '추천 Z', defaultMat: '700 Z' },
+          { name: '공용욕실 바닥타일', rec: '추천 Z, X', defaultMat: '700 Z' },
+          { name: '안방욕실 바닥타일', rec: '추천 Z, X', defaultMat: '700 Z' },
+          { name: '공용욕실 (거울·세면대·변기·수전)', rec: '추천 X, R', defaultMat: '700 X' },
+          { name: '안방욕실 (샤워부스·거울·변기·수전·세면대)', rec: '추천 X, R', defaultMat: '700 X' }
         ]
       },
       silicone: {
-        title: '04 바이오 실리콘',
-        gridClass: 'mat-grid-2',
+        title: '04 항균 바이오 실리콘',
+        guide: '실리콘 시공할 구역을 누르면 무펄 · 펄 선택 버튼이 바로 열립니다.',
         materials: [
-          { id: '무펄', name: '무펄', grade: '', sub: '깔끔한 매트 마감', tone: 'emerald' },
-          { id: '펄', name: '펄', grade: '', sub: '은은한 펄 마감', tone: 'blue' }
+          { id: '무펄', name: '무펄', tone: 'emerald' },
+          { id: '펄', name: '펄', tone: 'blue' }
         ],
         zones: [
-          { name: '주방 상판 테두리', rec: '' },
-          { name: '안방 욕실 (세로줄 벽면·젠다이 포함)', rec: '' },
-          { name: '공용 욕실 (욕조 테두리·세로줄 벽면·젠다이 포함)', rec: '' },
-          { name: '샷시(유리창) 실리콘', rec: '' },
-          { name: '집 전체 걸레받이 테두리', rec: '' }
+          { name: '주방 상판 테두리', rec: '', defaultMat: '무펄' },
+          { name: '안방 욕실 (세로줄 벽면·젠다이 포함)', rec: '', defaultMat: '무펄' },
+          { name: '공용 욕실 (욕조 테두리·세로줄 벽면·젠다이 포함)', rec: '', defaultMat: '무펄' },
+          { name: '샷시(유리창) 실리콘', rec: '', defaultMat: '무펄' },
+          { name: '집 전체 걸레받이 테두리', rec: '', defaultMat: '무펄' }
         ]
       }
     };
 
     const state = {
       activeTab: 'grout',
-      selectedMat: {
-        grout: '스타라이크 프로',
-        screen: '고강도 블랙스텐',
-        coating: '700 Z',
-        silicone: '무펄'
-      },
       groutMap: {},
       groutLivingNote: '',
       groutCustomList: [],
@@ -1385,108 +1421,111 @@
       renderPanel();
     }
 
-    function selectMaterial(serviceKey, matId) {
-      state.selectedMat[serviceKey] = matId;
-      renderPanel();
+    function renderMiniChips(serviceKey, selectedMatId, onSelectExpr, onClearExpr) {
+      const mats = CATALOG[serviceKey].materials;
+      let html = '<div class="mini-chip-bar" onclick="event.stopPropagation()">';
+      mats.forEach(function (m) {
+        const isSel = selectedMatId === m.id;
+        const activeCls = isSel ? ' active-' + m.tone : '';
+        html += '<button type="button" class="mini-chip' + activeCls + '" onclick="' + onSelectExpr.replace('__MAT__', m.id) + '">' +
+          '<span class="mini-dot dot-' + m.tone + '"></span>' +
+          '<span>' + m.name + '</span>' +
+          '</button>';
+      });
+      html += '<button type="button" class="mini-clear" onclick="' + onClearExpr + '">해제</button>';
+      html += '</div>';
+      return html;
     }
 
     function renderPanel() {
       const key = state.activeTab;
       const cat = CATALOG[key];
-      const activeMat = state.selectedMat[key];
       const panel = document.getElementById('servicePanel');
 
-      let matHtml = '<div class="step-badge">STEP 1 · 자재 선택</div>' +
-        '<div class="panel-subtitle">적용할 자재를 먼저 선택하세요</div>' +
-        '<div class="' + cat.gridClass + '">';
-
-      cat.materials.forEach(function (m) {
-        const isSel = activeMat === m.id ? ' selected' : '';
-        const gradeHtml = m.grade ? '<span class="mat-grade">' + m.grade + '</span>' : '';
-        matHtml += '<button type="button" class="mat-btn tone-' + m.tone + isSel + '" onclick="selectMaterial(\'' + key + '\', \'' + m.id + '\')">' +
-          gradeHtml +
-          '<span class="mat-name">' + m.name + '</span>' +
-          '<span class="mat-sub">' + m.sub + '</span>' +
-          '</button>';
-      });
-      matHtml += '</div>';
-
-      matHtml += '<div class="active-brush-bar">' +
-        '<span>현재 선택된 자재</span>' +
-        '<span class="active-brush-val">' + activeMat + '</span>' +
-        '</div>';
+      let html = '<div class="panel-guide">' + cat.guide + '</div>';
 
       if (cat.includeNotice) {
-        matHtml += '<div class="service-include-box">' + cat.includeNotice + '</div>';
+        html += '<div class="service-include-box">' + cat.includeNotice + '</div>';
       }
 
-      matHtml += '<div class="step-badge">STEP 2 · 시공 구역 선택</div>';
-
       if (key === 'grout') {
-        matHtml += '<div class="zone-group-label">기본 5바닥 (최우선 추천 구역)</div><div class="zone-list">';
+        html += '<div class="zone-group-label">기본 5바닥 (최우선 추천 구역)</div><div class="zone-list">';
         cat.baseZones.forEach(function (z) {
-          matHtml += renderZoneRow('grout', z, '');
+          html += renderZoneCard('grout', z, '', '스타라이크 프로');
         });
-        matHtml += '</div>';
+        html += '</div>';
 
-        matHtml += '<div class="zone-group-label">추가 확장 구역</div><div class="zone-list">';
+        html += '<div class="zone-group-label">추가 확장 구역</div><div class="zone-list">';
         cat.extraZones.forEach(function (z) {
-          matHtml += renderZoneRow('grout', z, '');
+          html += renderZoneCard('grout', z, '', '스타라이크 프로');
           if (z === '거실·주방·복도 바닥' && state.groutMap[z]) {
-            matHtml += '<input class="text-input" type="text" placeholder="거실·주방·복도 면적 또는 평수 입력 (예: 34평 전체)" value="' + escapeHtml(state.groutLivingNote) + '" oninput="updateGroutLivingNote(this.value)" />';
+            html += '<input class="text-input" type="text" placeholder="거실·주방·복도 면적 또는 평수 입력 (예: 34평 전체)" value="' + escapeHtml(state.groutLivingNote) + '" oninput="updateGroutLivingNote(this.value)" />';
           }
         });
-        matHtml += '</div>';
+        html += '</div>';
 
-        matHtml += renderCustomZoneSection('grout', '기타 공간 직접 입력 (예: 드레스룸 바닥)');
+        html += renderCustomZoneSection('grout', '기타 공간 직접 입력 (예: 드레스룸 바닥)', '스타라이크 프로');
       } else if (key === 'screen') {
-        matHtml += '<div class="panel-subtitle">교체할 창문 개수를 선택하세요</div><div class="zone-list">';
+        html += '<div class="zone-group-label">창문 위치 및 개수 선택</div><div class="zone-list">';
         cat.windows.forEach(function (w) {
-          const entry = state.screenMap[w.name] || { count: 0, mat: activeMat, size: '거실 대창과 같은 크기' };
-          const activeCls = entry.count > 0 ? ' active-count' : '';
-          const tone = getToneClass('screen', entry.mat);
-          matHtml += '<div class="screen-row' + activeCls + '">' +
-            '<div class="screen-top">' +
+          const entry = state.screenMap[w.name];
+          const count = entry ? entry.count : 0;
+          const activeMat = entry ? entry.mat : '고강도 블랙스텐';
+          const tone = getToneClass('screen', activeMat);
+          const cardCls = count > 0 ? ' mapped tone-border-' + tone : '';
+
+          html += '<div class="zone-card' + cardCls + '">' +
+            '<div class="zone-header" onclick="toggleScreenRow(\'' + w.name + '\')">' +
               '<div class="zone-info">' +
-                '<div class="zone-title">' + w.name + '</div>' +
-                (entry.count > 0 ? '<span class="mapped-pill pill-' + tone + '" style="margin-top:4px;">' + entry.mat + '</span>' : '<span class="zone-add-hint">0개</span>') +
+                '<div class="zone-title">' + w.name +
+                  (count > 0 ? ' <span class="mapped-badge pill-' + tone + '">' + activeMat + '</span>' : '') +
+                '</div>' +
               '</div>' +
-              '<div class="stepper">' +
+              '<div class="stepper" onclick="event.stopPropagation()">' +
                 '<button type="button" class="step-btn" onclick="changeScreenCount(\'' + w.name + '\', -1)">-</button>' +
-                '<span class="step-val">' + entry.count + '</span>' +
+                '<span class="step-val">' + count + '</span>' +
                 '<button type="button" class="step-btn" onclick="changeScreenCount(\'' + w.name + '\', 1)">+</button>' +
               '</div>' +
             '</div>';
 
-          if (w.hasSize && entry.count > 0) {
-            const s1 = entry.size === '거실 대창과 같은 크기' ? ' selected' : '';
-            const s2 = entry.size === '중간창 크기' ? ' selected' : '';
-            matHtml += '<div class="size-toggle-wrap">' +
-              '<button type="button" class="size-btn' + s1 + '" onclick="changeScreenSize(\'' + w.name + '\', \'거실 대창과 같은 크기\')">거실 대창과 같은 크기</button>' +
-              '<button type="button" class="size-btn' + s2 + '" onclick="changeScreenSize(\'' + w.name + '\', \'중간창 크기\')">중간창 크기</button>' +
-              '</div>';
+          if (count > 0) {
+            if (w.hasSize) {
+              const s1 = entry.size === '거실 대창과 같은 크기' ? ' selected' : '';
+              const s2 = entry.size === '중간창 크기' ? ' selected' : '';
+              html += '<div class="size-toggle-wrap" onclick="event.stopPropagation()">' +
+                '<button type="button" class="size-btn' + s1 + '" onclick="changeScreenSize(\'' + w.name + '\', \'거실 대창과 같은 크기\')">거실 대창과 같은 크기</button>' +
+                '<button type="button" class="size-btn' + s2 + '" onclick="changeScreenSize(\'' + w.name + '\', \'중간창 크기\')">중간창 크기</button>' +
+                '</div>';
+            }
+            html += renderMiniChips(
+              'screen',
+              activeMat,
+              'setScreenMaterial(\'' + w.name + '\', \'__MAT__\')',
+              'clearScreenRow(\'' + w.name + '\')'
+            );
           }
-          matHtml += '</div>';
+
+          html += '</div>';
         });
-        matHtml += '</div>';
-        matHtml += renderCustomScreenSection();
+        html += '</div>';
+        html += renderCustomScreenSection();
       } else if (key === 'coating') {
-        matHtml += '<div class="panel-subtitle">코팅 진행할 구역을 선택하세요</div><div class="zone-list">';
+        html += '<div class="zone-group-label">코팅 시공 구역 선택</div><div class="zone-list">';
         cat.zones.forEach(function (z) {
-          matHtml += renderZoneRow('coating', z.name, z.rec);
+          html += renderZoneCard('coating', z.name, z.rec, z.defaultMat);
         });
-        matHtml += '</div>';
-        matHtml += renderCustomZoneSection('coating', '기타 공간 직접 입력 (예: 현관 타일)');
+        html += '</div>';
+        html += renderCustomZoneSection('coating', '기타 공간 직접 입력 (예: 현관 타일)', '700 Z');
       } else if (key === 'silicone') {
-        matHtml += '<div class="panel-subtitle">실리콘 시공 구역을 선택하세요</div><div class="zone-list">';
+        html += '<div class="zone-group-label">실리콘 시공 구역 선택</div><div class="zone-list">';
         cat.zones.forEach(function (z) {
-          matHtml += renderZoneRow('silicone', z.name, z.rec);
+          html += renderZoneCard('silicone', z.name, z.rec, z.defaultMat);
         });
-        matHtml += '</div>';
-        matHtml += renderCustomZoneSection('silicone', '기타 공간 직접 입력 (예: 아트월 테두리)');
+        html += '</div>';
+        html += renderCustomZoneSection('silicone', '기타 공간 직접 입력 (예: 아트월 테두리)', '무펄');
       }
 
-      panel.innerHTML = matHtml;
+      panel.innerHTML = html;
     }
 
     function getMapObj(serviceKey) {
@@ -1495,44 +1534,60 @@
       return state.siliconeMap;
     }
 
-    function renderZoneRow(serviceKey, zoneName, recText) {
+    function renderZoneCard(serviceKey, zoneName, recText, defaultMat) {
       const mapObj = getMapObj(serviceKey);
       const assignedMat = mapObj[zoneName];
-      const mappedCls = assignedMat ? ' mapped' : '';
       const recHtml = recText ? '<span class="rec-pill">' + recText + '</span>' : '';
-      let rightHtml = '<span class="zone-add-hint">터치하여 담기</span>';
+
+      let cardCls = '';
+      let rightHtml = '<span class="zone-add-hint">터치하여 선택</span>';
+      let chipsHtml = '';
 
       if (assignedMat) {
         const tone = getToneClass(serviceKey, assignedMat);
-        rightHtml = '<span class="mapped-pill pill-' + tone + '">' +
-          assignedMat +
-          '<button type="button" class="remove-mini" onclick="event.stopPropagation(); removeZone(\'' + serviceKey + '\', \'' + zoneName + '\')">해제</button>' +
-          '</span>';
+        cardCls = ' mapped tone-border-' + tone;
+        rightHtml = '<span class="mapped-badge pill-' + tone + '">' + assignedMat + '</span>';
+        chipsHtml = renderMiniChips(
+          serviceKey,
+          assignedMat,
+          'setZoneMaterial(\'' + serviceKey + '\', \'' + zoneName + '\', \'__MAT__\')',
+          'removeZone(\'' + serviceKey + '\', \'' + zoneName + '\')'
+        );
       }
 
-      return '<div class="zone-row' + mappedCls + '" onclick="toggleZone(\'' + serviceKey + '\', \'' + zoneName + '\')">' +
-        '<div class="zone-info"><div class="zone-title">' + zoneName + recHtml + '</div></div>' +
-        rightHtml +
+      return '<div class="zone-card' + cardCls + '">' +
+        '<div class="zone-header" onclick="toggleZone(\'' + serviceKey + '\', \'' + zoneName + '\', \'' + defaultMat + '\')">' +
+          '<div class="zone-info"><div class="zone-title">' + zoneName + recHtml + '</div></div>' +
+          rightHtml +
+        '</div>' +
+        chipsHtml +
         '</div>';
     }
 
-    function renderCustomZoneSection(serviceKey, placeholder) {
+    function renderCustomZoneSection(serviceKey, placeholder, defaultMat) {
       const list = serviceKey === 'grout' ? state.groutCustomList : (serviceKey === 'coating' ? state.coatingCustomList : state.siliconeCustomList);
       let html = '<div class="zone-group-label">기타 공간 직접 입력</div>' +
         '<div class="custom-input-box">' +
         '<input id="customInput_' + serviceKey + '" class="text-input" type="text" placeholder="' + placeholder + '" />' +
-        '<button type="button" class="add-custom-btn" onclick="addCustomZone(\'' + serviceKey + '\')">담기</button>' +
+        '<button type="button" class="add-custom-btn" onclick="addCustomZone(\'' + serviceKey + '\', \'' + defaultMat + '\')">추가</button>' +
         '</div>';
 
       if (list.length > 0) {
         html += '<div class="zone-list" style="margin-top:8px;">';
         list.forEach(function (item, idx) {
           const tone = getToneClass(serviceKey, item.mat);
-          html += '<div class="zone-row mapped">' +
-            '<div class="zone-info"><div class="zone-title">' + escapeHtml(item.name) + '</div></div>' +
-            '<span class="mapped-pill pill-' + tone + '">' + item.mat +
-            '<button type="button" class="remove-mini" onclick="removeCustomZone(\'' + serviceKey + '\', ' + idx + ')">해제</button>' +
-            '</span></div>';
+          html += '<div class="zone-card mapped tone-border-' + tone + '">' +
+            '<div class="zone-header">' +
+              '<div class="zone-info"><div class="zone-title">' + escapeHtml(item.name) + '</div></div>' +
+              '<span class="mapped-badge pill-' + tone + '">' + item.mat + '</span>' +
+            '</div>' +
+            renderMiniChips(
+              serviceKey,
+              item.mat,
+              'setCustomZoneMaterial(\'' + serviceKey + '\', ' + idx + ', \'__MAT__\')',
+              'removeCustomZone(\'' + serviceKey + '\', ' + idx + ')'
+            ) +
+            '</div>';
         });
         html += '</div>';
       }
@@ -1543,33 +1598,46 @@
       let html = '<div class="zone-group-label">기타 창 직접 입력</div>' +
         '<div class="custom-input-box">' +
         '<input id="customScreenName" class="text-input" type="text" placeholder="창 위치 (예: 드레스룸 창)" />' +
-        '<input id="customScreenCount" class="text-input" type="number" min="1" value="1" style="max-width:68px; text-align:center;" />' +
-        '<button type="button" class="add-custom-btn" onclick="addCustomScreen()">담기</button>' +
+        '<input id="customScreenCount" class="text-input" type="number" min="1" value="1" style="max-width:62px; text-align:center;" />' +
+        '<button type="button" class="add-custom-btn" onclick="addCustomScreen()">추가</button>' +
         '</div>';
 
       if (state.screenCustomList.length > 0) {
         html += '<div class="zone-list" style="margin-top:8px;">';
         state.screenCustomList.forEach(function (item, idx) {
           const tone = getToneClass('screen', item.mat);
-          html += '<div class="zone-row mapped">' +
-            '<div class="zone-info"><div class="zone-title">' + escapeHtml(item.name) + ' (' + item.count + '개)</div></div>' +
-            '<span class="mapped-pill pill-' + tone + '">' + item.mat +
-            '<button type="button" class="remove-mini" onclick="removeCustomScreen(' + idx + ')">해제</button>' +
-            '</span></div>';
+          html += '<div class="zone-card mapped tone-border-' + tone + '">' +
+            '<div class="zone-header">' +
+              '<div class="zone-info"><div class="zone-title">' + escapeHtml(item.name) + ' (' + item.count + '개)</div></div>' +
+              '<span class="mapped-badge pill-' + tone + '">' + item.mat + '</span>' +
+            '</div>' +
+            renderMiniChips(
+              'screen',
+              item.mat,
+              'setCustomScreenMaterial(' + idx + ', \'__MAT__\')',
+              'removeCustomScreen(' + idx + ')'
+            ) +
+            '</div>';
         });
         html += '</div>';
       }
       return html;
     }
 
-    function toggleZone(serviceKey, zoneName) {
+    function toggleZone(serviceKey, zoneName, defaultMat) {
       const mapObj = getMapObj(serviceKey);
-      const currentMat = state.selectedMat[serviceKey];
-      if (mapObj[zoneName] === currentMat) {
+      if (mapObj[zoneName]) {
         delete mapObj[zoneName];
       } else {
-        mapObj[zoneName] = currentMat;
+        mapObj[zoneName] = defaultMat;
       }
+      renderPanel();
+      renderCart();
+    }
+
+    function setZoneMaterial(serviceKey, zoneName, matId) {
+      const mapObj = getMapObj(serviceKey);
+      mapObj[zoneName] = matId;
       renderPanel();
       renderCart();
     }
@@ -1586,7 +1654,7 @@
       renderCart();
     }
 
-    function addCustomZone(serviceKey) {
+    function addCustomZone(serviceKey, defaultMat) {
       const input = document.getElementById('customInput_' + serviceKey);
       const val = (input.value || '').trim();
       if (!val) {
@@ -1594,10 +1662,19 @@
         return;
       }
       const list = serviceKey === 'grout' ? state.groutCustomList : (serviceKey === 'coating' ? state.coatingCustomList : state.siliconeCustomList);
-      list.push({ name: val, mat: state.selectedMat[serviceKey] });
+      list.push({ name: val, mat: defaultMat });
       input.value = '';
       renderPanel();
       renderCart();
+    }
+
+    function setCustomZoneMaterial(serviceKey, idx, matId) {
+      const list = serviceKey === 'grout' ? state.groutCustomList : (serviceKey === 'coating' ? state.coatingCustomList : state.siliconeCustomList);
+      if (list[idx]) {
+        list[idx].mat = matId;
+        renderPanel();
+        renderCart();
+      }
     }
 
     function removeCustomZone(serviceKey, idx) {
@@ -1607,19 +1684,46 @@
       renderCart();
     }
 
+    function toggleScreenRow(winName) {
+      if (state.screenMap[winName]) {
+        delete state.screenMap[winName];
+      } else {
+        state.screenMap[winName] = {
+          count: 1,
+          mat: '고강도 블랙스텐',
+          size: '거실 대창과 같은 크기'
+        };
+      }
+      renderPanel();
+      renderCart();
+    }
+
     function changeScreenCount(winName, delta) {
-      const activeMat = state.selectedMat.screen;
-      const cur = state.screenMap[winName] || { count: 0, mat: activeMat, size: '거실 대창과 같은 크기' };
+      const cur = state.screenMap[winName] || { count: 0, mat: '고강도 블랙스텐', size: '거실 대창과 같은 크기' };
       const nextCount = Math.max(0, cur.count + delta);
       if (nextCount === 0) {
         delete state.screenMap[winName];
       } else {
         state.screenMap[winName] = {
           count: nextCount,
-          mat: activeMat,
+          mat: cur.mat,
           size: cur.size
         };
       }
+      renderPanel();
+      renderCart();
+    }
+
+    function setScreenMaterial(winName, matId) {
+      if (state.screenMap[winName]) {
+        state.screenMap[winName].mat = matId;
+        renderPanel();
+        renderCart();
+      }
+    }
+
+    function clearScreenRow(winName) {
+      delete state.screenMap[winName];
       renderPanel();
       renderCart();
     }
@@ -1644,12 +1748,20 @@
       state.screenCustomList.push({
         name: name,
         count: Math.max(1, count),
-        mat: state.selectedMat.screen
+        mat: '고강도 블랙스텐'
       });
       nameEl.value = '';
       countEl.value = '1';
       renderPanel();
       renderCart();
+    }
+
+    function setCustomScreenMaterial(idx, matId) {
+      if (state.screenCustomList[idx]) {
+        state.screenCustomList[idx].mat = matId;
+        renderPanel();
+        renderCart();
+      }
     }
 
     function removeCustomScreen(idx) {
@@ -1723,7 +1835,7 @@
       state.siliconeCustomList.forEach(function (c, idx) {
         siliconeItems.push({ text: c.name + ' [' + c.mat + ']', type: 'siliconeCustom', key: idx });
       });
-      if (siliconeItems.length) groups.push({ title: '04 바이오 실리콘', items: siliconeItems });
+      if (siliconeItems.length) groups.push({ title: '04 항균 바이오 실리콘', items: siliconeItems });
 
       return groups;
     }
