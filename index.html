@@ -218,7 +218,7 @@
       word-break: keep-all;
     }
 
-    /* 4대 시공 동일 비율 2x2 실사진 카드 */
+    /* 4대 시공 동일 비율 2x2 카드 */
     .photo-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -1011,7 +1011,7 @@
           </svg>
           <span>유튜브</span>
         </a>
-        <a id="linkInsta" class="sns-badge" href="https://www.instagram.com" target="_blank" rel="noopener">
+        <a id="linkInsta" class="sns-badge" href="https://www.instagram.com/deep_clean_6831" target="_blank" rel="noopener">
           <svg class="sns-icon" viewBox="0 0 24 24" aria-hidden="true">
             <defs>
               <linearGradient id="igGrad" x1="0%" y1="100%" x2="100%" y2="0%">
@@ -1030,7 +1030,7 @@
       </div>
     </section>
 
-    <!-- 4대 시공 동일 비율 2x2 실사진 카드 -->
+    <!-- 4대 시공 동일 비율 2x2 카드 -->
     <section class="section-block">
       <div class="section-head">
         <div class="section-kicker">ALL-IN-ONE CARE</div>
@@ -1194,7 +1194,7 @@
 
       <div>
         <label class="admin-label">상담 수신 전화번호</label>
-        <input id="cfgPhone" class="text-input" type="tel" placeholder="01012345678" style="width:100%; margin-bottom:10px;" />
+        <input id="cfgPhone" class="text-input" type="tel" placeholder="01049446831" style="width:100%; margin-bottom:10px;" />
 
         <label class="admin-label">네이버 블로그 주소</label>
         <input id="cfgBlog" class="text-input" type="url" style="width:100%; margin-bottom:10px;" />
@@ -1243,9 +1243,9 @@
   </div>
 
   <script>
-    const STORAGE_KEY = 'busandeepclean_master_v2';
+    const STORAGE_KEY = 'busandeepclean_master_v4';
 
-    function makeFallbackSvg(num, title, subtitle, bg1, bg2) {
+    function makeDefaultSvg(num, title, subtitle, bg1, bg2) {
       const svg = '<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">' +
         '<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1">' +
         '<stop offset="0%" stop-color="' + bg1 + '"/><stop offset="100%" stop-color="' + bg2 + '"/>' +
@@ -1258,24 +1258,17 @@
       return 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(svg);
     }
 
-    const FALLBACK_PHOTOS = {
-      grout: makeFallbackSvg('01', '프리미엄 줄눈 시공', '스타라이크 프로 · 아스팍톤 · 아스팍샤인 · 폴리', '#065F46', '#047857'),
-      screen: makeFallbackSvg('02', '블랙스텐 방충망', '물구멍 스티커 및 모헤어 교체 포함', '#1E3A8A', '#1D4ED8'),
-      coating: makeFallbackSvg('03', '욕실 · 타일 코팅', '일본 아크바리아 700 Z · X · R 정품 시공', '#92400E', '#B45309'),
-      silicone: makeFallbackSvg('04', '항균 바이오 실리콘', '기존 실리콘 제거 후 무펄 · 펄 정석 마감', '#292524', '#44403C')
-    };
-
     const defaultConfig = {
-      phone: '01000000000',
+      phone: '01049446831',
       blog: 'https://m.blog.naver.com/deepclean6831',
       youtube: 'https://www.youtube.com/channel/UChThxOIUbsBCIYgWad-3FuQ',
-      insta: 'https://www.instagram.com',
+      insta: 'https://www.instagram.com/deep_clean_6831',
       pw: '0000',
       photos: {
-        grout: '1.png',
-        screen: '2.png',
-        coating: '3.png',
-        silicone: '4.png'
+        grout: makeDefaultSvg('01', '프리미엄 줄눈 시공', '스타라이크 프로 · 아스팍톤 · 아스팍샤인 · 폴리', '#065F46', '#047857'),
+        screen: makeDefaultSvg('02', '블랙스텐 방충망', '물구멍 스티커 및 모헤어 교체 포함', '#1E3A8A', '#1D4ED8'),
+        coating: makeDefaultSvg('03', '욕실 · 타일 코팅', '일본 아크바리아 700 Z · X · R 정품 시공', '#92400E', '#B45309'),
+        silicone: makeDefaultSvg('04', '항균 바이오 실리콘', '기존 실리콘 제거 후 무펄 · 펄 정석 마감', '#292524', '#44403C')
       }
     };
 
@@ -1293,23 +1286,14 @@
       applyConfigToDom();
     }
 
-    function setPhotoWithFallback(imgId, key) {
-      const imgEl = document.getElementById(imgId);
-      imgEl.onerror = function () {
-        this.onerror = null;
-        this.src = FALLBACK_PHOTOS[key];
-      };
-      imgEl.src = config.photos[key] || defaultConfig.photos[key];
-    }
-
     function applyConfigToDom() {
       document.getElementById('linkBlog').href = config.blog;
       document.getElementById('linkYoutube').href = config.youtube;
       document.getElementById('linkInsta').href = config.insta;
-      setPhotoWithFallback('imgGrout', 'grout');
-      setPhotoWithFallback('imgScreen', 'screen');
-      setPhotoWithFallback('imgCoating', 'coating');
-      setPhotoWithFallback('imgSilicone', 'silicone');
+      document.getElementById('imgGrout').src = config.photos.grout;
+      document.getElementById('imgScreen').src = config.photos.screen;
+      document.getElementById('imgCoating').src = config.photos.coating;
+      document.getElementById('imgSilicone').src = config.photos.silicone;
     }
 
     const CATALOG = {
@@ -1933,7 +1917,7 @@
       });
 
       lines.push('위 선택 내역 기준으로 시공 상담 요청드립니다.');
-      return lines.join('\n').replace(/\*/g, '');
+      return lines.join('\n').split(String.fromCharCode(42)).join('');
     }
 
     function copyEstimate() {
@@ -1970,7 +1954,7 @@
         showToast('먼저 시공 항목을 1개 이상 선택해 주세요');
         return;
       }
-      const phone = (config.phone || '01000000000').replace(/[^0-9]/g, '');
+      const phone = (config.phone || '01049446831').replace(/[^0-9]/g, '');
       const body = encodeURIComponent(buildMessageText());
       const isIos = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
       const sep = isIos ? '&' : '?';
