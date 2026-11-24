@@ -1089,10 +1089,10 @@
         <div class="admin-section">
           <h4>1. 시공 카드 대표 사진 관리</h4>
           <p style="font-size: 11.5px; color: var(--text-muted); margin-bottom: 10px;">
-            기본값은 깃허브 저장소의 img1.jpg ~ img4.jpg 파일입니다.
+            기본값은 깃허브 저장소 원본 파일(1000056961~1000056964.png)입니다.
           </p>
           <div id="adminImgList"></div>
-          <button type="button" class="admin-outline-btn" onclick="resetImagesToGithubDefault()">깃허브 기본 이미지(img1~4.jpg)로 복원</button>
+          <button type="button" class="admin-outline-btn" onclick="resetImagesToGithubDefault()">깃허브 기본 이미지로 복원</button>
         </div>
 
         <div class="admin-section">
@@ -1127,37 +1127,37 @@
   </div>
 
   <script>
-    const STORAGE_KEY = 'bdc_homecare_config_v3';
+    const STORAGE_KEY = 'bdc_homecare_config_v4';
 
-    // 4대 시공 마스터 데이터 (깃허브 img1.jpg ~ img4.jpg 기본 연결)
+    // 4대 시공 마스터 데이터 (갤러리 원본 파일명 그대로 연결)
     const SERVICES = [
       {
         id: 'grout',
         num: '01',
         name: '프리미엄 줄눈',
         tagline: '정밀 ㄷ자 시공 · 스타라이크 프로 · 아스팍톤',
-        defaultImg: 'img1.jpg'
+        defaultImg: '1000056963.png'
       },
       {
         id: 'screen',
         num: '02',
         name: '블랙스텐 방충망',
         tagline: '고강도 블랙스텐 · 미세 촘촘망 · 물구멍·모헤어 포함',
-        defaultImg: 'img2.jpg'
+        defaultImg: '1000056961.png'
       },
       {
         id: 'coating',
         num: '03',
         name: '욕실·타일 코팅',
         tagline: '일본 아크바리아 700 Z · X · R',
-        defaultImg: 'img3.jpg'
+        defaultImg: '1000056962.png'
       },
       {
         id: 'silicone',
         num: '04',
         name: '바이오 실리콘',
         tagline: '무펄 · 펄 항균 실리콘 정밀 마감',
-        defaultImg: 'img4.jpg'
+        defaultImg: '1000056964.png'
       }
     ];
 
@@ -1252,19 +1252,14 @@
 
     let state = {
       selectedServices: [],
-      // 줄눈: 현재 선택 자재 및 { 구역명: 자재객체 }
       activeGroutMat: GROUT_MATERIALS[0],
       groutMap: {},
-      // 방충망: 선택 자재 및 { 창이름: 개수 }
       activeScreenMat: SCREEN_MATERIALS[0],
       screenCounts: {},
-      // 코팅: 현재 선택 자재 및 { 구역명: 자재객체 }
       activeCoatingMat: COATING_MATERIALS[0],
       coatingMap: {},
-      // 실리콘: 현재 선택 자재 및 { 구역명: 자재객체 }
       activeSiliconeMat: SILICONE_MATERIALS[0],
       siliconeMap: {},
-      // 거주 상태 (중복 선택)
       selectedStatuses: []
     };
 
@@ -1289,6 +1284,23 @@
       document.getElementById('snsInstaLink').href = siteConfig.insta || 'https://www.instagram.com';
     }
 
+    function handleImgFallback(imgEl, baseFile) {
+      const tried = imgEl.dataset.tried || '';
+      const baseName = baseFile.replace(/\.[^.]+$/, '');
+      if (!tried) {
+        imgEl.dataset.tried = 'jpg';
+        imgEl.src = baseName + '.jpg';
+      } else if (tried === 'jpg') {
+        imgEl.dataset.tried = 'PNG';
+        imgEl.src = baseName + '.PNG';
+      } else {
+        imgEl.style.display = 'none';
+        if (imgEl.nextElementSibling) {
+          imgEl.nextElementSibling.style.display = 'flex';
+        }
+      }
+    }
+
     function renderServiceCards() {
       const grid = document.getElementById('serviceGrid');
       grid.innerHTML = SERVICES.map(srv => {
@@ -1297,7 +1309,7 @@
         return `
           <div class="service-card ${isSelected ? 'selected' : ''}" onclick="toggleService('${srv.id}')">
             <div class="service-img-wrap">
-              <img src="${imgSrc}" alt="${srv.name}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+              <img src="${imgSrc}" alt="${srv.name}" onerror="handleImgFallback(this, '${srv.defaultImg}')" />
               <div class="img-fallback" style="display:none;">
                 <strong>${srv.defaultImg}</strong>
                 <span>깃허브 업로드 대기</span>
@@ -1381,7 +1393,6 @@
         `;
       }).join('');
 
-      // 직접 추가된 커스텀 구역 추출
       const customAreas = Object.keys(state.groutMap).filter(
         k => !GROUT_BASIC_AREAS.includes(k) && !GROUT_EXTRA_AREAS.includes(k)
       );
@@ -2041,7 +2052,7 @@
             renderAdminPanel();
             alert('현재 기기 브라우저에 테스트 사진이 적용되었습니다.');
           } catch (err) {
-            alert('브라우저 저장 용량이 부족합니다. 깃허브 저장소에 img1~4.jpg 파일을 직접 올려주세요.');
+            alert('브라우저 저장 용량이 부족합니다. 깃허브 저장소에 사진 파일을 직접 올려주세요.');
           }
         };
         img.src = e.target.result;
@@ -2054,7 +2065,7 @@
       localStorage.setItem(STORAGE_KEY, JSON.stringify(siteConfig));
       renderServiceCards();
       renderAdminPanel();
-      alert('깃허브 기본 이미지(img1.jpg ~ img4.jpg)로 복원되었습니다.');
+      alert('깃허브 기본 이미지로 복원되었습니다.');
     }
 
     function saveSiteConfig() {
