@@ -1,0 +1,2148 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="딥클린 견적기" />
+  <meta name="theme-color" content="#047857" />
+  <title>부산딥클린 전용 견적기</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 128'%3E%3Crect width='128' height='128' rx='28' fill='%23047857'/%3E%3Ctext x='64' y='78' text-anchor='middle' fill='%23FFFFFF' font-family='sans-serif' font-size='48' font-weight='800'%3EDC%3C/text%3E%3C/svg%3E" />
+  <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 128'%3E%3Crect width='128' height='128' rx='28' fill='%23047857'/%3E%3Ctext x='64' y='78' text-anchor='middle' fill='%23FFFFFF' font-family='sans-serif' font-size='48' font-weight='800'%3EDC%3C/text%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
+  <style>
+    :root {
+      --bg-canvas: #FAFAF9;
+      --bg-card: #FFFFFF;
+      --bg-subtle: #F5F5F4;
+      --border-light: #E7E5E4;
+      --border-mid: #D6D3D1;
+      --text-main: #1C1917;
+      --text-sub: #57534E;
+      --text-muted: #78716C;
+      --emerald: #047857;
+      --emerald-bg: #ECFDF5;
+      --emerald-border: #A7F3D0;
+      --gold: #B45309;
+      --gold-bg: #FFFBEB;
+      --gold-border: #FDE68A;
+      --blue: #1D4ED8;
+      --blue-bg: #EFF6FF;
+      --indigo: #4338CA;
+      --indigo-bg: #EEF2FF;
+      --red: #B91C1C;
+      --red-bg: #FEF2F2;
+      --charcoal: #292524;
+    }
+
+    html, body, div, span, h1, h2, h3, p, a, button, input, textarea, select, label, section, header {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      background-color: var(--bg-canvas);
+      color: var(--text-main);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* 8자리 비밀번호 잠금 화면 */
+    .lock-screen {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 18px;
+      background: var(--bg-canvas);
+    }
+
+    .lock-card {
+      width: 100%;
+      max-width: 390px;
+      background: var(--bg-card);
+      border: 1.5px solid var(--border-light);
+      border-radius: 20px;
+      padding: 28px 22px;
+      text-align: center;
+    }
+
+    .lock-badge {
+      display: inline-block;
+      font-size: 11.5px;
+      font-weight: 800;
+      color: var(--emerald);
+      background: var(--emerald-bg);
+      padding: 4px 10px;
+      border-radius: 999px;
+      margin-bottom: 12px;
+    }
+
+    .lock-title {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 6px;
+    }
+
+    .lock-desc {
+      font-size: 13px;
+      color: var(--text-sub);
+      margin-bottom: 20px;
+      word-break: keep-all;
+    }
+
+    .lock-input {
+      width: 100%;
+      border: 1.5px solid var(--border-mid);
+      background: var(--bg-canvas);
+      border-radius: 12px;
+      padding: 13px 14px;
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: 0.22em;
+      text-align: center;
+      font-family: inherit;
+      color: var(--text-main);
+      outline: none;
+      margin-bottom: 12px;
+    }
+
+    .lock-input:focus {
+      border-color: var(--emerald);
+      background: var(--bg-card);
+    }
+
+    .lock-remember {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-sub);
+      margin-bottom: 16px;
+      cursor: pointer;
+    }
+
+    .lock-remember input {
+      width: 16px;
+      height: 16px;
+      accent-color: var(--emerald);
+    }
+
+    .lock-btn {
+      width: 100%;
+      background: var(--emerald);
+      color: #FFFFFF;
+      border: none;
+      border-radius: 12px;
+      padding: 14px;
+      font-size: 15px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .lock-err {
+      margin-top: 10px;
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--red);
+      min-height: 18px;
+    }
+
+    .lock-sub-note {
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border-light);
+      font-size: 11.5px;
+      color: var(--text-muted);
+      word-break: keep-all;
+    }
+
+    /* 메인 앱 쉘 */
+    .app-shell {
+      display: none;
+      padding-bottom: 104px;
+    }
+
+    .app-shell.open {
+      display: block;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      background: rgba(250, 250, 249, 0.94);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .topbar-inner {
+      max-width: 560px;
+      margin: 0 auto;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .brand-title {
+      font-size: 15.5px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-sub {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--emerald);
+    }
+
+    .topbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .top-btn {
+      background: var(--bg-card);
+      border: 1px solid var(--border-mid);
+      border-radius: 9px;
+      padding: 7px 11px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-main);
+      cursor: pointer;
+    }
+
+    .top-btn.primary {
+      background: var(--charcoal);
+      border-color: var(--charcoal);
+      color: #FFFFFF;
+    }
+
+    .wrap {
+      max-width: 560px;
+      margin: 0 auto;
+      padding: 14px 16px 0;
+    }
+
+    .status-banner {
+      display: none;
+      background: var(--emerald-bg);
+      border: 1px solid var(--emerald-border);
+      color: var(--emerald);
+      border-radius: 12px;
+      padding: 10px 13px;
+      font-size: 12.5px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      word-break: keep-all;
+    }
+
+    .status-banner.show {
+      display: block;
+    }
+
+    .warn-banner {
+      display: none;
+      background: var(--gold-bg);
+      border: 1px solid var(--gold-border);
+      color: var(--gold);
+      border-radius: 12px;
+      padding: 11px 13px;
+      font-size: 12.5px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      word-break: keep-all;
+      cursor: pointer;
+    }
+
+    .warn-banner.show {
+      display: block;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: 16px;
+      padding: 16px 14px;
+      margin-bottom: 14px;
+    }
+
+    .card-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .step-badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--emerald);
+      background: var(--emerald-bg);
+      padding: 2px 8px;
+      border-radius: 6px;
+      margin-bottom: 3px;
+    }
+
+    .card-title {
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .mini-btn-group {
+      display: flex;
+      gap: 5px;
+      flex-shrink: 0;
+    }
+
+    .mini-btn {
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-light);
+      border-radius: 8px;
+      padding: 6px 9px;
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--text-sub);
+      cursor: pointer;
+    }
+
+    .sms-textarea {
+      width: 100%;
+      min-height: 108px;
+      border: 1px solid var(--border-mid);
+      background: var(--bg-canvas);
+      border-radius: 11px;
+      padding: 10px 11px;
+      font-size: 12.5px;
+      font-family: inherit;
+      color: var(--text-main);
+      resize: vertical;
+      outline: none;
+    }
+
+    .sms-textarea:focus {
+      border-color: var(--emerald);
+      background: var(--bg-card);
+    }
+
+    .parse-btn {
+      width: 100%;
+      margin-top: 8px;
+      background: var(--charcoal);
+      color: #FFFFFF;
+      border: none;
+      border-radius: 10px;
+      padding: 11px;
+      font-size: 13.5px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    /* 고객 메타 정보 */
+    .meta-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 7px;
+      margin-bottom: 12px;
+      background: var(--bg-canvas);
+      border: 1px solid var(--border-light);
+      border-radius: 11px;
+      padding: 10px;
+    }
+
+    .meta-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .meta-label {
+      width: 62px;
+      flex-shrink: 0;
+      font-size: 11.5px;
+      font-weight: 800;
+      color: var(--text-sub);
+    }
+
+    .meta-input {
+      flex: 1;
+      min-width: 0;
+      border: 1px solid var(--border-light);
+      background: var(--bg-card);
+      border-radius: 8px;
+      padding: 6px 9px;
+      font-size: 12.5px;
+      font-family: inherit;
+      color: var(--text-main);
+      outline: none;
+    }
+
+    .meta-input:focus {
+      border-color: var(--emerald);
+    }
+
+    /* 계산 항목 리스트 */
+    .empty-box {
+      text-align: center;
+      padding: 24px 12px;
+      font-size: 13px;
+      color: var(--text-muted);
+      background: var(--bg-canvas);
+      border-radius: 11px;
+    }
+
+    .group-block {
+      margin-bottom: 14px;
+    }
+
+    .group-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 12.5px;
+      font-weight: 800;
+      color: var(--emerald);
+      margin-bottom: 6px;
+      padding: 0 2px;
+    }
+
+    .calc-row {
+      background: var(--bg-canvas);
+      border: 1.5px solid var(--border-light);
+      border-radius: 11px;
+      padding: 10px 11px;
+      margin-bottom: 7px;
+    }
+
+    .calc-row.need-price {
+      background: var(--gold-bg);
+      border-color: var(--gold-border);
+    }
+
+    .calc-row-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .calc-name {
+      font-size: 13.5px;
+      font-weight: 800;
+      color: var(--text-main);
+      word-break: keep-all;
+    }
+
+    .calc-meta-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-top: 3px;
+    }
+
+    .tag-pill {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 5px;
+      background: var(--emerald-bg);
+      color: var(--emerald);
+    }
+
+    .tag-pill.warn {
+      background: #FEF3C7;
+      color: var(--gold);
+    }
+
+    .row-del-btn {
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      font-size: 11.5px;
+      font-weight: 700;
+      cursor: pointer;
+      padding: 2px 5px;
+      flex-shrink: 0;
+    }
+
+    .price-control-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+    }
+
+    .price-input-wrap {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-mid);
+      border-radius: 8px;
+      padding: 4px 8px;
+    }
+
+    .price-input {
+      width: 58px;
+      border: none;
+      background: transparent;
+      font-size: 14px;
+      font-weight: 800;
+      text-align: right;
+      font-family: inherit;
+      color: var(--text-main);
+      outline: none;
+    }
+
+    .price-unit {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-sub);
+    }
+
+    .step-btn-group {
+      display: flex;
+      gap: 4px;
+    }
+
+    .adj-step {
+      border: 1px solid var(--border-mid);
+      background: var(--bg-card);
+      border-radius: 7px;
+      padding: 5px 8px;
+      font-size: 11.5px;
+      font-weight: 800;
+      color: var(--text-main);
+      cursor: pointer;
+    }
+
+    /* 현장 변수 및 할인 버튼 */
+    .section-sub-label {
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--text-sub);
+      margin: 12px 0 7px;
+    }
+
+    .quick-adj-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+
+    .quick-adj-btn {
+      border: 1.5px solid var(--border-light);
+      background: var(--bg-canvas);
+      border-radius: 9px;
+      padding: 9px 8px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-main);
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .quick-adj-btn.active-minus {
+      background: var(--emerald-bg);
+      border-color: var(--emerald);
+      color: var(--emerald);
+      font-weight: 800;
+    }
+
+    .quick-adj-btn.active-plus {
+      background: var(--gold-bg);
+      border-color: var(--gold);
+      color: var(--gold);
+      font-weight: 800;
+    }
+
+    .custom-adj-form {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+
+    .text-input {
+      flex: 1;
+      min-width: 0;
+      border: 1px solid var(--border-mid);
+      background: var(--bg-card);
+      border-radius: 9px;
+      padding: 8px 10px;
+      font-size: 12.5px;
+      font-family: inherit;
+      color: var(--text-main);
+      outline: none;
+    }
+
+    .add-btn {
+      background: var(--charcoal);
+      color: #FFFFFF;
+      border: none;
+      border-radius: 9px;
+      padding: 0 12px;
+      font-size: 12px;
+      font-weight: 800;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .adj-chip-list {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      margin-bottom: 10px;
+    }
+
+    .adj-chip-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--bg-subtle);
+      border-radius: 8px;
+      padding: 7px 10px;
+      font-size: 12.5px;
+      font-weight: 700;
+    }
+
+    /* 합계 보드 */
+    .total-box {
+      background: var(--charcoal);
+      color: #FFFFFF;
+      border-radius: 13px;
+      padding: 14px;
+      margin-top: 10px;
+    }
+
+    .total-line {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 12.5px;
+      color: rgba(255, 255, 255, 0.78);
+      margin-bottom: 5px;
+    }
+
+    .total-final {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 9px;
+      margin-top: 6px;
+      border-top: 1px solid rgba(255, 255, 255, 0.16);
+      font-size: 15px;
+      font-weight: 800;
+    }
+
+    .total-final-val {
+      font-size: 20px;
+      color: #6EE7B7;
+    }
+
+    /* 출력 설정 탭 */
+    .seg-row {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+
+    .seg-row.three {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .seg-btn {
+      border: 1.5px solid var(--border-light);
+      background: var(--bg-canvas);
+      border-radius: 9px;
+      padding: 9px 6px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-sub);
+      cursor: pointer;
+    }
+
+    .seg-btn.active {
+      background: var(--emerald);
+      border-color: var(--emerald);
+      color: #FFFFFF;
+      font-weight: 800;
+    }
+
+    .reply-preview {
+      width: 100%;
+      min-height: 230px;
+      border: 1px solid var(--border-mid);
+      background: var(--bg-canvas);
+      border-radius: 11px;
+      padding: 12px;
+      font-size: 13px;
+      line-height: 1.58;
+      font-family: inherit;
+      color: var(--text-main);
+      resize: vertical;
+      outline: none;
+    }
+
+    .reply-sms-row {
+      display: flex;
+      gap: 6px;
+      margin-top: 8px;
+    }
+
+    /* 하단 고정 바 */
+    .bottom-dock {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(8px);
+      border-top: 1px solid var(--border-light);
+      padding: 10px 16px;
+      z-index: 40;
+    }
+
+    .dock-inner {
+      max-width: 560px;
+      margin: 0 auto;
+      display: flex;
+      gap: 8px;
+    }
+
+    .dock-reset {
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-mid);
+      border-radius: 12px;
+      padding: 13px 14px;
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--text-main);
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .dock-copy {
+      flex: 1;
+      background: var(--emerald);
+      border: none;
+      border-radius: 12px;
+      padding: 13px 16px;
+      font-size: 14.5px;
+      font-weight: 800;
+      color: #FFFFFF;
+      cursor: pointer;
+    }
+
+    /* 설정 모달 */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.55);
+      display: none;
+      align-items: flex-end;
+      justify-content: center;
+      z-index: 100;
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+    }
+
+    .modal-sheet {
+      width: 100%;
+      max-width: 560px;
+      max-height: 90vh;
+      overflow-y: auto;
+      background: var(--bg-card);
+      border-radius: 20px 20px 0 0;
+      padding: 18px 16px 30px;
+    }
+
+    .modal-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .modal-title {
+      font-size: 16.5px;
+      font-weight: 800;
+    }
+
+    .modal-close {
+      border: none;
+      background: var(--bg-subtle);
+      border-radius: 8px;
+      padding: 6px 11px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .cfg-tabs {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 4px;
+      margin-bottom: 12px;
+    }
+
+    .cfg-tab {
+      border: 1px solid var(--border-light);
+      background: var(--bg-canvas);
+      border-radius: 8px;
+      padding: 8px 2px;
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--text-sub);
+      cursor: pointer;
+    }
+
+    .cfg-tab.active {
+      background: var(--charcoal);
+      border-color: var(--charcoal);
+      color: #FFFFFF;
+    }
+
+    .cfg-note {
+      font-size: 12px;
+      color: var(--text-sub);
+      background: var(--bg-subtle);
+      border-radius: 9px;
+      padding: 8px 10px;
+      margin-bottom: 10px;
+      word-break: keep-all;
+    }
+
+    .cfg-zone-box {
+      background: var(--bg-canvas);
+      border: 1px solid var(--border-light);
+      border-radius: 11px;
+      padding: 10px;
+      margin-bottom: 8px;
+    }
+
+    .cfg-zone-name {
+      font-size: 13px;
+      font-weight: 800;
+      margin-bottom: 7px;
+      word-break: keep-all;
+    }
+
+    .cfg-mat-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 6px;
+    }
+
+    .cfg-mat-grid.three {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .cfg-mat-field {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: 8px;
+      padding: 6px 8px;
+    }
+
+    .cfg-mat-label {
+      display: block;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-sub);
+      margin-bottom: 3px;
+    }
+
+    .cfg-mat-input-line {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+    }
+
+    .cfg-mat-input {
+      width: 100%;
+      border: none;
+      background: transparent;
+      font-size: 13.5px;
+      font-weight: 800;
+      font-family: inherit;
+      color: var(--text-main);
+      outline: none;
+    }
+
+    .cfg-save-btn {
+      width: 100%;
+      margin-top: 12px;
+      background: var(--emerald);
+      color: #FFFFFF;
+      border: none;
+      border-radius: 11px;
+      padding: 13px;
+      font-size: 14px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .sec-box {
+      background: var(--bg-canvas);
+      border: 1px solid var(--border-light);
+      border-radius: 11px;
+      padding: 12px;
+      margin-bottom: 10px;
+    }
+
+    .sec-title {
+      font-size: 13px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .sec-field {
+      width: 100%;
+      border: 1px solid var(--border-mid);
+      background: var(--bg-card);
+      border-radius: 8px;
+      padding: 9px 10px;
+      font-size: 13px;
+      font-family: inherit;
+      margin-bottom: 7px;
+      outline: none;
+    }
+
+    .sec-btn-row {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 78px;
+      transform: translateX(-50%);
+      background: var(--charcoal);
+      color: #FFFFFF;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 10px 16px;
+      border-radius: 999px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+      z-index: 150;
+      white-space: nowrap;
+    }
+
+    .toast.show {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 8자리 비밀번호 잠금 화면 -->
+  <div id="lockScreen" class="lock-screen">
+    <div class="lock-card">
+      <div class="lock-badge">OWNER ONLY</div>
+      <h1 class="lock-title">부산딥클린 전용 견적기</h1>
+      <p class="lock-desc">사장님 전용 관리 페이지입니다.<br />8자리 비밀번호를 입력해 주세요.</p>
+      <input id="lockInput" class="lock-input" type="password" maxlength="8" inputmode="numeric" placeholder="8자리 입력" onkeydown="if(event.key==='Enter') tryUnlock();" />
+      <label class="lock-remember">
+        <input id="keepLogin" type="checkbox" checked />
+        <span>이 기기에서 로그인 유지</span>
+      </label>
+      <button type="button" class="lock-btn" onclick="tryUnlock()">잠금 해제</button>
+      <div id="lockErr" class="lock-err"></div>
+      <div class="lock-sub-note">단가표는 현재 사용 중인 기기 내부에만 안전하게 보관되며 외부로 전송되지 않습니다.</div>
+    </div>
+  </div>
+
+  <!-- 메인 계산기 화면 -->
+  <div id="appShell" class="app-shell">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <div>
+          <div class="brand-title">부산딥클린 전용 견적기</div>
+          <div class="brand-sub">원터치 자동 계산 및 답장 생성</div>
+        </div>
+        <div class="topbar-actions">
+          <button type="button" class="top-btn primary" onclick="openSettings()">단가표·보안</button>
+          <button type="button" class="top-btn" onclick="lockNow()">잠금</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <div id="linkBanner" class="status-banner"></div>
+      <div id="priceEmptyWarn" class="warn-banner" onclick="openSettings()">
+        현재 저장된 단가표가 비어 있습니다. 여기를 눌러 우리 업체 단가를 한 번만 입력해 두시면 다음부터 1초 만에 자동 계산됩니다.
+      </div>
+
+      <!-- 1단계: 접수 문자 확인 및 수동 붙여넣기 -->
+      <section class="card">
+        <div class="card-head">
+          <div>
+            <span class="step-badge">STEP 1</span>
+            <h2 class="card-title">접수 문자 불러오기</h2>
+          </div>
+          <div class="mini-btn-group">
+            <button type="button" class="mini-btn" onclick="loadSampleSms()">예시 넣기</button>
+            <button type="button" class="mini-btn" onclick="toggleSmsBox()" id="toggleSmsBtn">접기</button>
+          </div>
+        </div>
+        <div id="smsBoxWrap">
+          <textarea id="smsInput" class="sms-textarea" placeholder="문자 끝 링크를 눌러 들어오시면 자동 입력됩니다. 일반 문자를 받으신 경우 여기에 그대로 붙여넣고 아래 버튼을 누르세요."></textarea>
+          <button type="button" class="parse-btn" onclick="parseFromTextarea()">문자 내용 자동 분석 및 계산</button>
+        </div>
+      </section>
+
+      <!-- 2단계: 항목별 단가 확인 및 현장 변수 조정 -->
+      <section class="card">
+        <div class="card-head">
+          <div>
+            <span class="step-badge">STEP 2</span>
+            <h2 class="card-title">시공 항목 및 금액 조정</h2>
+          </div>
+          <button type="button" class="mini-btn" onclick="reapplyPriceTable()">단가표 다시 적용</button>
+        </div>
+
+        <div class="meta-grid">
+          <div class="meta-row">
+            <span class="meta-label">현장 정보</span>
+            <input id="metaRegion" class="meta-input" type="text" placeholder="예: 부산 남구 해링턴 마레 34평" oninput="syncMetaAndReply()" />
+          </div>
+          <div class="meta-row">
+            <span class="meta-label">거주 상태</span>
+            <input id="metaResidence" class="meta-input" type="text" placeholder="예: 신축 (올해 준공 입주)" oninput="syncMetaAndReply()" />
+          </div>
+          <div class="meta-row">
+            <span class="meta-label">희망 일정</span>
+            <input id="metaSchedule" class="meta-input" type="text" placeholder="예: 11월 27일(금) ~ 29일(일) (총 3일)" oninput="syncMetaAndReply()" />
+          </div>
+        </div>
+
+        <div id="calcListWrap"></div>
+
+        <div class="section-sub-label">현장 변수 및 할인 원터치 반영 (만원 단위)</div>
+        <div class="quick-adj-grid" id="quickAdjGrid"></div>
+
+        <div class="custom-adj-form">
+          <input id="customAdjLabel" class="text-input" type="text" placeholder="직접 입력 (예: 지인 소개 할인)" />
+          <input id="customAdjVal" class="text-input" type="number" step="0.5" placeholder="-5 또는 +5" style="max-width:96px; text-align:center;" />
+          <button type="button" class="add-btn" onclick="addCustomAdj()">추가</button>
+        </div>
+
+        <div id="adjChipList" class="adj-chip-list"></div>
+
+        <div class="total-box">
+          <div class="total-line">
+            <span>시공 정가 합계</span>
+            <strong id="sumSubtotal">0원</strong>
+          </div>
+          <div class="total-line">
+            <span>할인 및 현장 조정</span>
+            <strong id="sumAdj">0원</strong>
+          </div>
+          <div class="total-final">
+            <span>최종 안내 금액</span>
+            <span id="sumFinal" class="total-final-val">0원</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3단계: 고객 발송용 견적 문자 생성 -->
+      <section class="card">
+        <div class="card-head">
+          <div>
+            <span class="step-badge">STEP 3</span>
+            <h2 class="card-title">고객 발송용 견적 문자</h2>
+          </div>
+          <button type="button" class="mini-btn" onclick="rebuildReplyText(true)">문구 새로고침</button>
+        </div>
+
+        <div class="seg-row">
+          <button type="button" class="seg-btn active" data-mode="confirmed" onclick="setReplyMode('confirmed')">통화 후 확정 견적서</button>
+          <button type="button" class="seg-btn" data-mode="value" onclick="setReplyMode('value')">바쁠 때 1차 가치 안내형</button>
+        </div>
+
+        <div class="seg-row three">
+          <button type="button" class="seg-btn active" data-pview="item" onclick="setPriceView('item')">항목별 금액</button>
+          <button type="button" class="seg-btn" data-pview="group" onclick="setPriceView('group')">시공별 소계</button>
+          <button type="button" class="seg-btn" data-pview="total" onclick="setPriceView('total')">총액만 표기</button>
+        </div>
+
+        <textarea id="replyPreview" class="reply-preview" placeholder="항목을 불러오면 고객 발송용 문자가 자동으로 생성됩니다."></textarea>
+
+        <div class="reply-sms-row">
+          <input id="replyPhone" class="text-input" type="tel" placeholder="고객 번호 입력 시 바로 문자 앱 열기 (선택)" />
+          <button type="button" class="add-btn" onclick="openReplySms()">문자 앱 열기</button>
+        </div>
+      </section>
+    </main>
+
+    <!-- 하단 고정 액션 바 -->
+    <div class="bottom-dock">
+      <div class="dock-inner">
+        <button type="button" class="dock-reset" onclick="resetEstimate()">새 견적</button>
+        <button type="button" class="dock-copy" onclick="copyReplyText()">견적 문자 복사하기</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 단가표 및 보안 설정 모달 -->
+  <div id="settingsModal" class="modal-backdrop">
+    <div class="modal-sheet">
+      <div class="modal-head">
+        <div class="modal-title">단가표 및 보안 설정</div>
+        <button type="button" class="modal-close" onclick="closeSettings()">닫기</button>
+      </div>
+
+      <div class="cfg-tabs">
+        <button type="button" class="cfg-tab active" data-ctab="grout" onclick="switchCfgTab('grout')">01 줄눈</button>
+        <button type="button" class="cfg-tab" data-ctab="screen" onclick="switchCfgTab('screen')">02 방충망</button>
+        <button type="button" class="cfg-tab" data-ctab="coating" onclick="switchCfgTab('coating')">03 코팅</button>
+        <button type="button" class="cfg-tab" data-ctab="silicone" onclick="switchCfgTab('silicone')">04 실리콘</button>
+        <button type="button" class="cfg-tab" data-ctab="security" onclick="switchCfgTab('security')">보안·백업</button>
+      </div>
+
+      <div id="cfgTabBody"></div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast"></div>
+
+  <script>
+    const CFG_STORAGE_KEY = 'bdc_calc_cfg_v1';
+    const AUTH_STORAGE_KEY = 'bdc_calc_auth_v1';
+    const DEFAULT_PW = '00000000';
+
+    /* index.html과 정확히 일치하는 4대 시공 기준표 (단축코드 복원용) */
+    const CATALOG = {
+      grout: {
+        title: '01 프리미엄 줄눈',
+        mats: ['스타라이크 프로', '아스팍톤', '아스팍샤인', '폴리아스파틱'],
+        zones: [
+          '현관',
+          '안방 욕실 바닥',
+          '공용 욕실 바닥',
+          '세탁실',
+          '안방 베란다',
+          '안방 샤워부스 벽면',
+          '공용욕실 욕조부분 벽면',
+          '안방 벽전체',
+          '공용욕실 벽전체',
+          '거실·주방·복도 바닥'
+        ]
+      },
+      screen: {
+        title: '02 블랙스텐 방충망',
+        mats: ['고강도 블랙스텐', '미세 촘촘망', '알루미늄망'],
+        wins: [
+          '거실 대창',
+          '안방 베란다창',
+          '안방 팬트리창',
+          '주방 옆 세탁실 창',
+          '주방 창',
+          '방 1',
+          '방 2',
+          '방 3'
+        ],
+        sizes: ['', '거실 대창과 같은 크기', '중간창 크기'],
+        tiers: ['대창 (거실·안방베란다·방 대창)', '중간창 (세탁실·방 중간창)', '소창 (안방팬트리·주방창)']
+      },
+      coating: {
+        title: '03 욕실·타일 코팅',
+        mats: ['700 Z', '700 X', '700 R'],
+        zones: [
+          '주방 상판',
+          '거실 타일',
+          '공용욕실 바닥타일',
+          '안방욕실 바닥타일',
+          '공용욕실 (거울·세면대·변기·수전)',
+          '안방욕실 (샤워부스·거울·변기·수전·세면대)'
+        ]
+      },
+      silicone: {
+        title: '04 항균 바이오 실리콘',
+        mats: ['무펄', '펄'],
+        zones: [
+          '주방 상판 테두리',
+          '안방 욕실 (세로줄 벽면·젠다이 포함)',
+          '공용 욕실 (욕조 테두리·세로줄 벽면·젠다이 포함)',
+          '샷시(유리창) 실리콘',
+          '집 전체 걸레받이 테두리'
+        ]
+      }
+    };
+
+    const QUICK_ADJ_PRESETS = [
+      { id: 'bundle5', label: '올인원 동시 시공 할인', amount: -5 },
+      { id: 'bundle10', label: '올인원 동시 시공 할인', amount: -10 },
+      { id: 'living5', label: '거주 중 시공 보양·작업', amount: 5 },
+      { id: 'old5', label: '구축 기존 제거·난이도 추가', amount: 5 }
+    ];
+
+    function createEmptyPrices() {
+      const p = { grout: {}, screen: {}, coating: {}, silicone: {} };
+      CATALOG.grout.zones.forEach(function (z) {
+        p.grout[z] = {};
+        CATALOG.grout.mats.forEach(function (m) { p.grout[z][m] = 0; });
+      });
+      CATALOG.screen.tiers.forEach(function (t) {
+        p.screen[t] = {};
+        CATALOG.screen.mats.forEach(function (m) { p.screen[t][m] = 0; });
+      });
+      CATALOG.coating.zones.forEach(function (z) {
+        p.coating[z] = {};
+        CATALOG.coating.mats.forEach(function (m) { p.coating[z][m] = 0; });
+      });
+      CATALOG.silicone.zones.forEach(function (z) {
+        p.silicone[z] = {};
+        CATALOG.silicone.mats.forEach(function (m) { p.silicone[z][m] = 0; });
+      });
+      return p;
+    }
+
+    let ownerCfg = {
+      pw: DEFAULT_PW,
+      prices: createEmptyPrices()
+    };
+
+    const appState = {
+      region: '',
+      residence: '',
+      schedule: '',
+      items: [],
+      quickAdjIds: [],
+      customAdjs: [],
+      replyMode: 'confirmed',
+      priceView: 'item',
+      cfgTab: 'grout',
+      smsCollapsed: false
+    };
+
+    function loadOwnerCfg() {
+      try {
+        const raw = localStorage.getItem(CFG_STORAGE_KEY);
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          const base = createEmptyPrices();
+          ['grout', 'screen', 'coating', 'silicone'].forEach(function (svc) {
+            if (parsed.prices && parsed.prices[svc]) {
+              Object.keys(base[svc]).forEach(function (k) {
+                if (parsed.prices[svc][k]) {
+                  Object.keys(base[svc][k]).forEach(function (m) {
+                    const v = Number(parsed.prices[svc][k][m]);
+                    base[svc][k][m] = isNaN(v) ? 0 : v;
+                  });
+                }
+              });
+            }
+          });
+          ownerCfg = {
+            pw: (parsed.pw && String(parsed.pw).length === 8) ? String(parsed.pw) : DEFAULT_PW,
+            prices: base
+          };
+        }
+      } catch (e) {}
+    }
+
+    function saveOwnerCfg() {
+      localStorage.setItem(CFG_STORAGE_KEY, JSON.stringify(ownerCfg));
+      updatePriceEmptyWarning();
+    }
+
+    function hasAnyPriceConfigured() {
+      let found = false;
+      ['grout', 'screen', 'coating', 'silicone'].forEach(function (svc) {
+        Object.keys(ownerCfg.prices[svc]).forEach(function (z) {
+          Object.keys(ownerCfg.prices[svc][z]).forEach(function (m) {
+            if (Number(ownerCfg.prices[svc][z][m]) > 0) found = true;
+          });
+        });
+      });
+      return found;
+    }
+
+    function updatePriceEmptyWarning() {
+      const el = document.getElementById('priceEmptyWarn');
+      if (el) el.classList.toggle('show', !hasAnyPriceConfigured());
+    }
+
+    /* 잠금 인증 */
+    function checkAutoLogin() {
+      try {
+        const savedToken = localStorage.getItem(AUTH_STORAGE_KEY);
+        if (savedToken && savedToken === ownerCfg.pw) {
+          openAppShell();
+          return;
+        }
+      } catch (e) {}
+      document.getElementById('lockScreen').style.display = 'flex';
+      document.getElementById('appShell').classList.remove('open');
+    }
+
+    function tryUnlock() {
+      const input = document.getElementById('lockInput').value.trim();
+      const errEl = document.getElementById('lockErr');
+      if (input.length !== 8) {
+        errEl.textContent = '비밀번호는 8자리로 입력해 주세요.';
+        return;
+      }
+      if (input !== ownerCfg.pw) {
+        errEl.textContent = '비밀번호가 일치하지 않습니다.';
+        return;
+      }
+      errEl.textContent = '';
+      if (document.getElementById('keepLogin').checked) {
+        localStorage.setItem(AUTH_STORAGE_KEY, ownerCfg.pw);
+      } else {
+        localStorage.removeItem(AUTH_STORAGE_KEY);
+      }
+      document.getElementById('lockInput').value = '';
+      openAppShell();
+    }
+
+    function lockNow() {
+      localStorage.removeItem(AUTH_STORAGE_KEY);
+      document.getElementById('appShell').classList.remove('open');
+      document.getElementById('lockScreen').style.display = 'flex';
+      showToast('화면이 잠겼습니다');
+    }
+
+    function openAppShell() {
+      document.getElementById('lockScreen').style.display = 'none';
+      document.getElementById('appShell').classList.add('open');
+      updatePriceEmptyWarning();
+      loadFromUrlIfPresent();
+      renderAll();
+    }
+
+    /* URL 파라미터 (?q=...) 자동 복원 */
+    function decodeBase64Url(str) {
+      let b64 = str.replace(/-/g, '+').replace(/_/g, '/');
+      while (b64.length % 4) b64 += '=';
+      const bin = atob(b64);
+      const bytes = new Uint8Array(bin.length);
+      for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+      return new TextDecoder().decode(bytes);
+    }
+
+    function resolveRef(val, arr) {
+      if (typeof val === 'number' && arr[val] !== undefined) return arr[val];
+      return String(val || '');
+    }
+
+    function loadFromUrlIfPresent() {
+      const params = new URLSearchParams(window.location.search);
+      const q = params.get('q');
+      if (!q) return;
+
+      try {
+        const jsonStr = decodeBase64Url(q);
+        const data = JSON.parse(jsonStr);
+        appState.region = data.r || '';
+        appState.residence = Array.isArray(data.s) ? data.s.join(', ') : (data.s || '');
+        appState.schedule = data.d || '';
+        appState.items = [];
+        appState.quickAdjIds = [];
+        appState.customAdjs = [];
+
+        if (Array.isArray(data.g)) {
+          data.g.forEach(function (row) {
+            const zone = resolveRef(row[0], CATALOG.grout.zones);
+            const mat = resolveRef(row[1], CATALOG.grout.mats);
+            const note = row[2] || '';
+            addItemObj('grout', zone, mat, 1, '', note);
+          });
+        }
+        if (Array.isArray(data.sc)) {
+          data.sc.forEach(function (row) {
+            const win = resolveRef(row[0], CATALOG.screen.wins);
+            const mat = resolveRef(row[1], CATALOG.screen.mats);
+            const count = Math.max(1, Number(row[2]) || 1);
+            const size = resolveRef(row[3], CATALOG.screen.sizes);
+            addItemObj('screen', win, mat, count, size, '');
+          });
+        }
+        if (Array.isArray(data.c)) {
+          data.c.forEach(function (row) {
+            const zone = resolveRef(row[0], CATALOG.coating.zones);
+            const mat = resolveRef(row[1], CATALOG.coating.mats);
+            addItemObj('coating', zone, mat, 1, '', '');
+          });
+        }
+        if (Array.isArray(data.si)) {
+          data.si.forEach(function (row) {
+            const zone = resolveRef(row[0], CATALOG.silicone.zones);
+            const mat = resolveRef(row[1], CATALOG.silicone.mats);
+            addItemObj('silicone', zone, mat, 1, '', '');
+          });
+        }
+
+        const banner = document.getElementById('linkBanner');
+        banner.textContent = '문자 접수 링크에서 고객 선택 내역 ' + appState.items.length + '건을 자동으로 불러왔습니다.';
+        banner.classList.add('show');
+
+        appState.smsCollapsed = true;
+        document.getElementById('smsBoxWrap').style.display = 'none';
+        document.getElementById('toggleSmsBtn').textContent = '열기';
+      } catch (e) {
+        showToast('접수 링크를 읽지 못했습니다. 문자 붙여넣기를 이용해 주세요.');
+      }
+    }
+
+    function getScreenTier(winName, sizeLabel) {
+      if (winName === '거실 대창' || winName === '안방 베란다창') return CATALOG.screen.tiers[0];
+      if (winName === '방 1' || winName === '방 2' || winName === '방 3') {
+        return (sizeLabel && sizeLabel.indexOf('대창') >= 0) ? CATALOG.screen.tiers[0] : CATALOG.screen.tiers[1];
+      }
+      if (winName === '주방 옆 세탁실 창') return CATALOG.screen.tiers[1];
+      if (winName === '안방 팬트리창' || winName === '주방 창') return CATALOG.screen.tiers[2];
+      return '';
+    }
+
+    function lookupDefaultPrice(service, zone, mat, count, sizeLabel) {
+      if (service === 'screen') {
+        const tier = getScreenTier(zone, sizeLabel);
+        if (!tier || !ownerCfg.prices.screen[tier]) return 0;
+        const unit = Number(ownerCfg.prices.screen[tier][mat]) || 0;
+        return round1(unit * (count || 1));
+      }
+      if (ownerCfg.prices[service] && ownerCfg.prices[service][zone]) {
+        return round1(Number(ownerCfg.prices[service][zone][mat]) || 0);
+      }
+      return 0;
+    }
+
+    function addItemObj(service, zone, mat, count, sizeLabel, note) {
+      const price = lookupDefaultPrice(service, zone, mat, count, sizeLabel);
+      appState.items.push({
+        id: 'it_' + Date.now() + '_' + Math.random().toString(36).slice(2, 6),
+        service: service,
+        zone: zone,
+        mat: mat,
+        count: count || 1,
+        size: sizeLabel || '',
+        note: note || '',
+        price: price
+      });
+    }
+
+    /* 수동 문자 붙여넣기 파싱 */
+    function toggleSmsBox() {
+      appState.smsCollapsed = !appState.smsCollapsed;
+      document.getElementById('smsBoxWrap').style.display = appState.smsCollapsed ? 'none' : 'block';
+      document.getElementById('toggleSmsBtn').textContent = appState.smsCollapsed ? '열기' : '접기';
+    }
+
+    function loadSampleSms() {
+      appState.smsCollapsed = false;
+      document.getElementById('smsBoxWrap').style.display = 'block';
+      document.getElementById('toggleSmsBtn').textContent = '접기';
+      document.getElementById('smsInput').value = [
+        '[부산딥클린 올인원 홈케어 견적 문의]',
+        '',
+        '현장 정보: 부산 남구 해링턴 마레 34평',
+        '거주 상태: 신축 (올해 준공 입주)',
+        '시공 희망 날짜: 11월 27일(금) ~ 11월 29일(일) (총 3일) · 앞뒤 날짜 조율 가능',
+        '',
+        '[01 프리미엄 줄눈]',
+        '- 현관 [스타라이크 프로]',
+        '- 안방 욕실 바닥 [아스팍톤]',
+        '- 공용 욕실 바닥 [아스팍톤]',
+        '- 거실·주방·복도 바닥 [스타라이크 프로] (34평 전체)',
+        '',
+        '[02 블랙스텐 방충망]',
+        '- 거실 대창 1개 [고강도 블랙스텐]',
+        '- 방 1 · 중간창 크기 2개 [고강도 블랙스텐]',
+        '',
+        '[03 욕실·타일 코팅]',
+        '- 주방 상판 [700 Z]',
+        '',
+        '[04 항균 바이오 실리콘]',
+        '- 주방 상판 테두리 [무펄]',
+        '',
+        '위 선택 내역 기준으로 시공 상담 요청드립니다.'
+      ].join('\n');
+      parseFromTextarea();
+    }
+
+    function parseFromTextarea() {
+      const raw = (document.getElementById('smsInput').value || '').trim();
+      if (!raw) {
+        showToast('먼저 고객에게 받은 문자를 붙여넣어 주세요');
+        return;
+      }
+
+      appState.region = '';
+      appState.residence = '';
+      appState.schedule = '';
+      appState.items = [];
+      appState.quickAdjIds = [];
+      appState.customAdjs = [];
+
+      const lines = raw.split(/\r?\n/);
+      let currentService = '';
+
+      lines.forEach(function (lineRaw) {
+        const line = lineRaw.trim();
+        if (!line) return;
+        if (line.indexOf('현장 정보:') === 0) {
+          appState.region = line.replace('현장 정보:', '').trim();
+          return;
+        }
+        if (line.indexOf('거주 상태:') === 0) {
+          appState.residence = line.replace('거주 상태:', '').trim();
+          return;
+        }
+        if (line.indexOf('시공 희망 날짜:') === 0) {
+          appState.schedule = line.replace('시공 희망 날짜:', '').trim();
+          return;
+        }
+        if (line.indexOf('[01') === 0) { currentService = 'grout'; return; }
+        if (line.indexOf('[02') === 0) { currentService = 'screen'; return; }
+        if (line.indexOf('[03') === 0) { currentService = 'coating'; return; }
+        if (line.indexOf('[04') === 0) { currentService = 'silicone'; return; }
+
+        if (currentService && line.indexOf('- ') === 0) {
+          const content = line.slice(2).trim();
+          let note = '';
+          let mainPart = content;
+
+          const matMatch = content.match(/\[([^\]]+)\]/);
+          const mat = matMatch ? matMatch[1].trim() : '';
+          if (matMatch) {
+            const afterMat = content.slice(matMatch.index + matMatch[0].length).trim();
+            if (afterMat.indexOf('(') === 0 && afterMat.lastIndexOf(')') === afterMat.length - 1) {
+              note = afterMat.slice(1, -1).trim();
+            }
+            mainPart = content.slice(0, matMatch.index).trim();
+          }
+
+          if (currentService === 'screen') {
+            let count = 1;
+            const cntMatch = mainPart.match(/(\d+)\s*개$/);
+            if (cntMatch) {
+              count = Math.max(1, parseInt(cntMatch[1], 10));
+              mainPart = mainPart.slice(0, cntMatch.index).trim();
+            }
+            let size = '';
+            if (mainPart.indexOf('·') >= 0) {
+              const parts = mainPart.split('·');
+              mainPart = parts[0].trim();
+              size = parts.slice(1).join('·').trim();
+            }
+            addItemObj('screen', mainPart, mat, count, size, note);
+          } else {
+            addItemObj(currentService, mainPart, mat, 1, '', note);
+          }
+        }
+      });
+
+      document.getElementById('linkBanner').classList.remove('show');
+      renderAll();
+      showToast(appState.items.length + '개 항목이 정리되었습니다');
+    }
+
+    function reapplyPriceTable() {
+      appState.items.forEach(function (it) {
+        it.price = lookupDefaultPrice(it.service, it.zone, it.mat, it.count, it.size);
+      });
+      renderAll();
+      showToast('저장된 단가표 기준으로 재계산했습니다');
+    }
+
+    /* 2단계 UI 렌더링 */
+    function renderAll() {
+      document.getElementById('metaRegion').value = appState.region;
+      document.getElementById('metaResidence').value = appState.residence;
+      document.getElementById('metaSchedule').value = appState.schedule;
+      renderCalcList();
+      renderQuickAdjs();
+      renderAdjChips();
+      renderTotals();
+      rebuildReplyText(true);
+    }
+
+    function syncMetaAndReply() {
+      appState.region = document.getElementById('metaRegion').value;
+      appState.residence = document.getElementById('metaResidence').value;
+      appState.schedule = document.getElementById('metaSchedule').value;
+      rebuildReplyText(true);
+    }
+
+    function renderCalcList() {
+      const wrap = document.getElementById('calcListWrap');
+      if (appState.items.length === 0) {
+        wrap.innerHTML = '<div class="empty-box">불러온 시공 항목이 없습니다. 위에서 문자를 붙여넣거나 예시 넣기를 눌러 확인해 보세요.</div>';
+        return;
+      }
+
+      const order = ['grout', 'screen', 'coating', 'silicone'];
+      let html = '';
+
+      order.forEach(function (svc) {
+        const groupItems = appState.items.filter(function (i) { return i.service === svc; });
+        if (groupItems.length === 0) return;
+
+        let groupSum = 0;
+        groupItems.forEach(function (i) { groupSum += Number(i.price) || 0; });
+
+        html += '<div class="group-block">';
+        html += '<div class="group-head"><span>' + CATALOG[svc].title + ' (' + groupItems.length + ')</span><span>소계 ' + formatWonText(groupSum) + '</span></div>';
+
+        groupItems.forEach(function (it) {
+          const isZero = !(Number(it.price) > 0);
+          let titleText = it.zone;
+          if (svc === 'screen') {
+            titleText += (it.size ? ' · ' + it.size : '') + ' (' + it.count + '개)';
+          }
+          if (it.note) {
+            titleText += ' - ' + it.note;
+          }
+
+          html += '<div class="calc-row' + (isZero ? ' need-price' : '') + '">' +
+            '<div class="calc-row-top">' +
+              '<div>' +
+                '<div class="calc-name">' + escapeHtml(titleText) + '</div>' +
+                '<div class="calc-meta-tags">' +
+                  (it.mat ? '<span class="tag-pill">' + escapeHtml(it.mat) + '</span>' : '') +
+                  (isZero ? '<span class="tag-pill warn">금액 확인 필요</span>' : '') +
+                '</div>' +
+              '</div>' +
+              '<button type="button" class="row-del-btn" onclick="deleteItem(\'' + it.id + '\')">삭제</button>' +
+            '</div>' +
+            '<div class="price-control-row">' +
+              '<div class="price-input-wrap">' +
+                '<input class="price-input" type="number" step="0.5" min="0" value="' + it.price + '" oninput="setItemPrice(\'' + it.id + '\', this.value)" />' +
+                '<span class="price-unit">만원</span>' +
+              '</div>' +
+              '<div class="step-btn-group">' +
+                '<button type="button" class="adj-step" onclick="nudgeItemPrice(\'' + it.id + '\', -5)">-5만</button>' +
+                '<button type="button" class="adj-step" onclick="nudgeItemPrice(\'' + it.id + '\', -1)">-1만</button>' +
+                '<button type="button" class="adj-step" onclick="nudgeItemPrice(\'' + it.id + '\', 1)">+1만</button>' +
+                '<button type="button" class="adj-step" onclick="nudgeItemPrice(\'' + it.id + '\', 5)">+5만</button>' +
+              '</div>' +
+            '</div>' +
+            '</div>';
+        });
+
+        html += '</div>';
+      });
+
+      wrap.innerHTML = html;
+    }
+
+    function setItemPrice(id, val) {
+      const it = appState.items.find(function (x) { return x.id === id; });
+      if (!it) return;
+      const num = parseFloat(val);
+      it.price = isNaN(num) || num < 0 ? 0 : round1(num);
+      renderTotals();
+      rebuildReplyText(true);
+    }
+
+    function nudgeItemPrice(id, delta) {
+      const it = appState.items.find(function (x) { return x.id === id; });
+      if (!it) return;
+      it.price = Math.max(0, round1((Number(it.price) || 0) + delta));
+      renderCalcList();
+      renderTotals();
+      rebuildReplyText(true);
+    }
+
+    function deleteItem(id) {
+      appState.items = appState.items.filter(function (x) { return x.id !== id; });
+      renderAll();
+    }
+
+    function renderQuickAdjs() {
+      let html = '';
+      QUICK_ADJ_PRESETS.forEach(function (p) {
+        const isActive = appState.quickAdjIds.indexOf(p.id) >= 0;
+        const cls = isActive ? (p.amount < 0 ? ' active-minus' : ' active-plus') : '';
+        const signStr = p.amount > 0 ? '+' + p.amount + '만' : p.amount + '만';
+        html += '<button type="button" class="quick-adj-btn' + cls + '" onclick="toggleQuickAdj(\'' + p.id + '\')">' +
+          p.label + ' (' + signStr + ')</button>';
+      });
+      document.getElementById('quickAdjGrid').innerHTML = html;
+    }
+
+    function toggleQuickAdj(id) {
+      const idx = appState.quickAdjIds.indexOf(id);
+      if (idx >= 0) {
+        appState.quickAdjIds.splice(idx, 1);
+      } else {
+        if (id === 'bundle5') {
+          appState.quickAdjIds = appState.quickAdjIds.filter(function (x) { return x !== 'bundle10'; });
+        } else if (id === 'bundle10') {
+          appState.quickAdjIds = appState.quickAdjIds.filter(function (x) { return x !== 'bundle5'; });
+        }
+        appState.quickAdjIds.push(id);
+      }
+      renderQuickAdjs();
+      renderTotals();
+      rebuildReplyText(true);
+    }
+
+    function addCustomAdj() {
+      const labelEl = document.getElementById('customAdjLabel');
+      const valEl = document.getElementById('customAdjVal');
+      const label = (labelEl.value || '').trim();
+      const amount = parseFloat(valEl.value);
+      if (!label || isNaN(amount) || amount === 0) {
+        showToast('항목명과 금액(만원)을 입력해 주세요');
+        return;
+      }
+      appState.customAdjs.push({ label: label, amount: round1(amount) });
+      labelEl.value = '';
+      valEl.value = '';
+      renderAdjChips();
+      renderTotals();
+      rebuildReplyText(true);
+    }
+
+    function removeCustomAdj(idx) {
+      appState.customAdjs.splice(idx, 1);
+      renderAdjChips();
+      renderTotals();
+      rebuildReplyText(true);
+    }
+
+    function renderAdjChips() {
+      const wrap = document.getElementById('adjChipList');
+      if (appState.customAdjs.length === 0) {
+        wrap.innerHTML = '';
+        return;
+      }
+      let html = '';
+      appState.customAdjs.forEach(function (a, idx) {
+        const sign = a.amount > 0 ? '+' : '';
+        html += '<div class="adj-chip-row">' +
+          '<span>' + escapeHtml(a.label) + ' (' + sign + formatWonText(a.amount) + ')</span>' +
+          '<button type="button" class="row-del-btn" onclick="removeCustomAdj(' + idx + ')">삭제</button>' +
+          '</div>';
+      });
+      wrap.innerHTML = html;
+    }
+
+    function calcSums() {
+      let sub = 0;
+      appState.items.forEach(function (it) { sub += Number(it.price) || 0; });
+      let adj = 0;
+      const activeAdjs = [];
+      appState.quickAdjIds.forEach(function (id) {
+        const found = QUICK_ADJ_PRESETS.find(function (p) { return p.id === id; });
+        if (found) {
+          adj += found.amount;
+          activeAdjs.push({ label: found.label, amount: found.amount });
+        }
+      });
+      appState.customAdjs.forEach(function (c) {
+        adj += c.amount;
+        activeAdjs.push({ label: c.label, amount: c.amount });
+      });
+      sub = round1(sub);
+      adj = round1(adj);
+      const finalVal = Math.max(0, round1(sub + adj));
+      return { sub: sub, adj: adj, finalVal: finalVal, activeAdjs: activeAdjs };
+    }
+
+    function renderTotals() {
+      const sums = calcSums();
+      document.getElementById('sumSubtotal').textContent = formatWonText(sums.sub);
+      document.getElementById('sumAdj').textContent = (sums.adj > 0 ? '+' : '') + formatWonText(sums.adj);
+      document.getElementById('sumFinal').textContent = formatWonText(sums.finalVal);
+    }
+
+    /* 3단계: 고객 발송용 문자 생성 */
+    function setReplyMode(mode) {
+      appState.replyMode = mode;
+      document.querySelectorAll('[data-mode]').forEach(function (b) {
+        b.classList.toggle('active', b.getAttribute('data-mode') === mode);
+      });
+      rebuildReplyText(true);
+    }
+
+    function setPriceView(view) {
+      appState.priceView = view;
+      document.querySelectorAll('[data-pview]').forEach(function (b) {
+        b.classList.toggle('active', b.getAttribute('data-pview') === view);
+      });
+      rebuildReplyText(true);
+    }
+
+    function rebuildReplyText(force) {
+      const ta = document.getElementById('replyPreview');
+      if (!force) return;
+      if (appState.items.length === 0) {
+        ta.value = '';
+        return;
+      }
+
+      const sums = calcSums();
+      const lines = [];
+      const isValue = appState.replyMode === 'value';
+
+      lines.push(isValue
+        ? '[부산딥클린 올인원 홈케어 1차 맞춤 견적 안내]'
+        : '[부산딥클린 올인원 홈케어 최종 견적 안내]');
+      lines.push('');
+
+      if (appState.region.trim()) lines.push('현장: ' + appState.region.trim());
+      if (appState.residence.trim()) lines.push('거주 상태: ' + appState.residence.trim());
+      if (appState.schedule.trim()) lines.push('희망 일정: ' + appState.schedule.trim());
+      if (appState.region.trim() || appState.residence.trim() || appState.schedule.trim()) {
+        lines.push('');
+      }
+
+      const order = ['grout', 'screen', 'coating', 'silicone'];
+      order.forEach(function (svc) {
+        const list = appState.items.filter(function (i) { return i.service === svc; });
+        if (list.length === 0) return;
+
+        let gSum = 0;
+        list.forEach(function (i) { gSum += Number(i.price) || 0; });
+
+        if (appState.priceView === 'group') {
+          lines.push('[' + CATALOG[svc].title + '] ' + formatWonText(gSum));
+        } else {
+          lines.push('[' + CATALOG[svc].title + ']');
+        }
+
+        list.forEach(function (it) {
+          let rowStr = '- ' + it.zone;
+          if (svc === 'screen') {
+            rowStr += (it.size ? ' · ' + it.size : '') + ' ' + it.count + '개';
+          }
+          if (it.mat) rowStr += ' [' + it.mat + ']';
+          if (it.note) rowStr += ' (' + it.note + ')';
+          if (appState.priceView === 'item') {
+            rowStr += ' : ' + (it.price > 0 ? formatWonText(it.price) : '현장 확인 후 안내');
+          }
+          lines.push(rowStr);
+        });
+
+        if (isValue) {
+          if (svc === 'grout') {
+            lines.push('  백시멘트 깊은 ㄷ자 시공 제거 후 정품 자재 정석 마감 기준');
+            const hasStar = list.some(function (x) { return x.mat === '스타라이크 프로'; });
+            const hasTone = list.some(function (x) { return x.mat === '아스팍톤'; });
+            if (hasStar) lines.push('  이태리 리토콜사 항균 내장 스타라이크 프로 정품 적용');
+            if (hasTone) lines.push('  크린파파 특허 무광무펄 아스팍톤 정품 적용');
+          } else if (svc === 'screen') {
+            lines.push('  교체된 방충망 물구멍 스티커 및 모헤어 교체 무상 포함');
+          } else if (svc === 'coating') {
+            lines.push('  일본 정품 아크바리아 700 시리즈 구역별 맞춤 코팅 적용');
+          } else if (svc === 'silicone') {
+            lines.push('  기존 오염 실리콘 완전 제거 후 항균 바이오 실리콘 정석 재시공');
+          }
+        }
+        lines.push('');
+      });
+
+      if (sums.activeAdjs.length > 0) {
+        lines.push('시공 정가 합계: ' + formatWonText(sums.sub));
+        sums.activeAdjs.forEach(function (a) {
+          const sign = a.amount > 0 ? '+' : '';
+          lines.push(a.label + ': ' + sign + formatWonText(a.amount));
+        });
+      }
+      lines.push('최종 안내 금액: ' + formatWonText(sums.finalVal));
+      lines.push('');
+
+      if (isValue) {
+        lines.push('단순 저가 시공이 아닌 하루 한 집 정석 마감 원칙으로 꼼꼼하게 시공합니다.');
+        lines.push('현장 상황이나 자재 선택 고민이 있으시면 편하신 통화 시간 남겨주시면 가장 합리적인 조합으로 안내드리겠습니다.');
+      } else {
+        lines.push('방금 상담드린 내용 기준으로 정리해 드립니다.');
+        lines.push('예약 확정이나 일정 조율이 필요하시면 편하게 회신 부탁드립니다.');
+      }
+
+      ta.value = lines.join('\n').split(String.fromCharCode(42)).join('');
+    }
+
+    function copyReplyText() {
+      const text = (document.getElementById('replyPreview').value || '').trim();
+      if (!text) {
+        showToast('복사할 견적 문자가 없습니다');
+        return;
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function () {
+          showToast('고객 발송용 견적 문자가 복사되었습니다');
+        }).catch(function () {
+          fallbackCopy(text);
+        });
+      } else {
+        fallbackCopy(text);
+      }
+    }
+
+    function fallbackCopy(text) {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      showToast('고객 발송용 견적 문자가 복사되었습니다');
+    }
+
+    function openReplySms() {
+      const text = (document.getElementById('replyPreview').value || '').trim();
+      const phone = (document.getElementById('replyPhone').value || '').replace(/[^0-9]/g, '');
+      if (!text) {
+        showToast('먼저 견적 문자를 생성해 주세요');
+        return;
+      }
+      if (!phone) {
+        showToast('고객 전화번호를 입력해 주세요');
+        return;
+      }
+      const isIos = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+      const sep = isIos ? '&' : '?';
+      window.location.href = 'sms:' + phone + sep + 'body=' + encodeURIComponent(text);
+    }
+
+    function resetEstimate() {
+      appState.region = '';
+      appState.residence = '';
+      appState.schedule = '';
+      appState.items = [];
+      appState.quickAdjIds = [];
+      appState.customAdjs = [];
+      document.getElementById('smsInput').value = '';
+      document.getElementById('replyPhone').value = '';
+      document.getElementById('linkBanner').classList.remove('show');
+      appState.smsCollapsed = false;
+      document.getElementById('smsBoxWrap').style.display = 'block';
+      document.getElementById('toggleSmsBtn').textContent = '접기';
+      renderAll();
+      showToast('새 견적 작성을 위해 초기화되었습니다');
+    }
+
+    /* 단가표 및 보안 설정 모달 */
+    function openSettings() {
+      document.getElementById('settingsModal').classList.add('open');
+      renderCfgTab();
+    }
+
+    function closeSettings() {
+      document.getElementById('settingsModal').classList.remove('open');
+    }
+
+    function switchCfgTab(tab) {
+      appState.cfgTab = tab;
+      document.querySelectorAll('.cfg-tab').forEach(function (b) {
+        b.classList.toggle('active', b.getAttribute('data-ctab') === tab);
+      });
+      renderCfgTab();
+    }
+
+    function renderCfgTab() {
+      const body = document.getElementById('cfgTabBody');
+      const tab = appState.cfgTab;
+
+      if (tab === 'security') {
+        body.innerHTML = '' +
+          '<div class="sec-box">' +
+            '<div class="sec-title">8자리 비밀번호 변경</div>' +
+            '<input id="pwCur" class="sec-field" type="password" maxlength="8" inputmode="numeric" placeholder="현재 8자리 비밀번호 (초기값 00000000)" />' +
+            '<input id="pwNew1" class="sec-field" type="password" maxlength="8" inputmode="numeric" placeholder="새 8자리 비밀번호" />' +
+            '<input id="pwNew2" class="sec-field" type="password" maxlength="8" inputmode="numeric" placeholder="새 8자리 비밀번호 확인" />' +
+            '<button type="button" class="cfg-save-btn" style="margin-top:4px;" onclick="changePassword()">비밀번호 변경 저장</button>' +
+          '</div>' +
+          '<div class="sec-box">' +
+            '<div class="sec-title">단가표 및 설정 백업 / 복원</div>' +
+            '<div class="cfg-note">입력해 둔 단가표와 비밀번호를 파일로 저장해 두면 폰을 바꾸거나 PC에서 쓸 때 1초 만에 그대로 복원할 수 있습니다.</div>' +
+            '<div class="sec-btn-row">' +
+              '<button type="button" class="mini-btn" style="padding:11px;" onclick="exportCfgBackup()">백업 파일 저장</button>' +
+              '<label class="mini-btn" style="padding:11px; text-align:center; cursor:pointer;">백업 파일 복원' +
+                '<input type="file" accept="application/json" style="display:none;" onchange="importCfgBackup(event)" />' +
+              '</label>' +
+            '</div>' +
+          '</div>';
+        return;
+      }
+
+      const svc = CATALOG[tab];
+      const rows = (tab === 'screen') ? svc.tiers : svc.zones;
+      const mats = svc.mats;
+      const gridCls = mats.length === 3 ? 'cfg-mat-grid three' : 'cfg-mat-grid';
+
+      let noteText = '모든 금액은 만원 단위로 입력합니다 (예: 15만원은 15, 12만 5천원은 12.5). 0으로 두면 계산 시 현장 확인 항목으로 표시됩니다.';
+      if (tab === 'screen') {
+        noteText = '방충망은 창문 1개당 단가(만원)를 입력합니다. 고객이 개수를 선택하면 자동으로 곱해집니다.';
+      }
+
+      let html = '<div class="cfg-note">' + noteText + '</div>';
+
+      rows.forEach(function (zoneName, rIdx) {
+        html += '<div class="cfg-zone-box">' +
+          '<div class="cfg-zone-name">' + escapeHtml(zoneName) + '</div>' +
+          '<div class="' + gridCls + '">';
+        mats.forEach(function (matName, mIdx) {
+          const val = (ownerCfg.prices[tab][zoneName] && ownerCfg.prices[tab][zoneName][matName]) || 0;
+          html += '<div class="cfg-mat-field">' +
+            '<label class="cfg-mat-label">' + escapeHtml(matName) + '</label>' +
+            '<div class="cfg-mat-input-line">' +
+              '<input class="cfg-mat-input" data-r="' + rIdx + '" data-m="' + mIdx + '" type="number" step="0.5" min="0" value="' + val + '" />' +
+              '<span style="font-size:11px; color:var(--text-muted); font-weight:700;">만</span>' +
+            '</div>' +
+            '</div>';
+        });
+        html += '</div></div>';
+      });
+
+      html += '<button type="button" class="cfg-save-btn" onclick="saveCurrentTabPrices()">이 탭 단가표 저장하기</button>';
+      body.innerHTML = html;
+    }
+
+    function saveCurrentTabPrices() {
+      const tab = appState.cfgTab;
+      const svc = CATALOG[tab];
+      const rows = (tab === 'screen') ? svc.tiers : svc.zones;
+      const mats = svc.mats;
+
+      document.querySelectorAll('#cfgTabBody .cfg-mat-input').forEach(function (inp) {
+        const r = Number(inp.getAttribute('data-r'));
+        const m = Number(inp.getAttribute('data-m'));
+        const val = parseFloat(inp.value);
+        ownerCfg.prices[tab][rows[r]][mats[m]] = isNaN(val) || val < 0 ? 0 : round1(val);
+      });
+
+      saveOwnerCfg();
+      if (appState.items.length > 0) {
+        reapplyPriceTable();
+      }
+      showToast('단가표가 저장되었습니다');
+    }
+
+    function changePassword() {
+      const cur = (document.getElementById('pwCur').value || '').trim();
+      const n1 = (document.getElementById('pwNew1').value || '').trim();
+      const n2 = (document.getElementById('pwNew2').value || '').trim();
+
+      if (cur !== ownerCfg.pw) {
+        showToast('현재 비밀번호가 일치하지 않습니다');
+        return;
+      }
+      if (n1.length !== 8) {
+        showToast('새 비밀번호는 정확히 8자리로 입력해 주세요');
+        return;
+      }
+      if (n1 !== n2) {
+        showToast('새 비밀번호 확인이 서로 다릅니다');
+        return;
+      }
+
+      ownerCfg.pw = n1;
+      saveOwnerCfg();
+      if (localStorage.getItem(AUTH_STORAGE_KEY)) {
+        localStorage.setItem(AUTH_STORAGE_KEY, n1);
+      }
+      document.getElementById('pwCur').value = '';
+      document.getElementById('pwNew1').value = '';
+      document.getElementById('pwNew2').value = '';
+      showToast('8자리 비밀번호가 변경되었습니다');
+    }
+
+    function exportCfgBackup() {
+      const blob = new Blob([JSON.stringify(ownerCfg, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'busandeepclean_price_backup.json';
+      a.click();
+      URL.revokeObjectURL(url);
+      showToast('단가표 백업 파일이 저장되었습니다');
+    }
+
+    function importCfgBackup(event) {
+      const file = event.target.files && event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        try {
+          const parsed = JSON.parse(e.target.result);
+          if (!parsed || !parsed.prices) throw new Error('invalid');
+          localStorage.setItem(CFG_STORAGE_KEY, JSON.stringify(parsed));
+          loadOwnerCfg();
+          if (localStorage.getItem(AUTH_STORAGE_KEY)) {
+            localStorage.setItem(AUTH_STORAGE_KEY, ownerCfg.pw);
+          }
+          renderCfgTab();
+          if (appState.items.length > 0) reapplyPriceTable();
+          showToast('단가표와 설정이 복원되었습니다');
+        } catch (err) {
+          showToast('올바른 백업 파일이 아닙니다');
+        }
+      };
+      reader.readAsText(file);
+    }
+
+    /* 유틸리티 */
+    function round1(num) {
+      return Math.round(num * 10) / 10;
+    }
+
+    function formatWonText(man) {
+      const won = Math.round(Number(man || 0) * 10000);
+      if (won === 0) return '0원';
+      const sign = won < 0 ? '-' : '';
+      const abs = Math.abs(won);
+      if (abs % 10000 === 0) {
+        return sign + (abs / 10000).toLocaleString('ko-KR') + '만원';
+      }
+      if (abs % 1000 === 0) {
+        const m = Math.floor(abs / 10000);
+        const k = (abs % 10000) / 1000;
+        if (m > 0) return sign + m.toLocaleString('ko-KR') + '만 ' + k + '천원';
+        return sign + k + '천원';
+      }
+      return sign + abs.toLocaleString('ko-KR') + '원';
+    }
+
+    function escapeHtml(str) {
+      return String(str || '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    function showToast(text) {
+      const el = document.getElementById('toast');
+      el.textContent = text;
+      el.classList.add('show');
+      clearTimeout(window._toastTimer);
+      window._toastTimer = setTimeout(function () {
+        el.classList.remove('show');
+      }, 2200);
+    }
+
+    loadOwnerCfg();
+    checkAutoLogin();
+  </script>
+</body>
+</html>
