@@ -1339,7 +1339,7 @@
   <script>
     const CFG_STORAGE_KEY = 'bdc_calc_cfg_v3';
     const AUTH_STORAGE_KEY = 'bdc_calc_auth_v3';
-    const DEFAULT_PW = '00000000';
+    const DEFAULT_PW = '19795834';
 
     /* 5가지 거주 환경 기준표 */
     const ENV_DEFS = [
@@ -1554,8 +1554,11 @@
             });
           }
 
+          const savedPwStr = parsed.pw ? String(parsed.pw) : '';
+          const resolvedPw = (savedPwStr.length === 8 && savedPwStr !== '00000000') ? savedPwStr : DEFAULT_PW;
+
           ownerCfg = {
-            pw: (parsed.pw && String(parsed.pw).length === 8) ? String(parsed.pw) : DEFAULT_PW,
+            pw: resolvedPw,
             prices: base,
             envPrices: envBase,
             envDupMode: parsed.envDupMode === 'max' ? 'max' : 'sum',
@@ -2699,7 +2702,7 @@
         body.innerHTML = '' +
           '<div class="sec-box">' +
             '<div class="sec-title">8자리 비밀번호 변경</div>' +
-            '<input id="pwCur" class="sec-field" type="password" maxlength="8" inputmode="numeric" placeholder="현재 8자리 비밀번호 (초기값 00000000)" />' +
+            '<input id="pwCur" class="sec-field" type="password" maxlength="8" inputmode="numeric" placeholder="현재 8자리 비밀번호 입력" />' +
             '<input id="pwNew1" class="sec-field" type="password" maxlength="8" inputmode="numeric" placeholder="새 8자리 비밀번호" />' +
             '<input id="pwNew2" class="sec-field" type="password" maxlength="8" inputmode="numeric" placeholder="새 8자리 비밀번호 확인" />' +
             '<button type="button" class="cfg-save-btn" style="margin-top:4px;" onclick="changePassword()">비밀번호 변경 저장</button>' +
