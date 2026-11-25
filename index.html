@@ -32,6 +32,9 @@
       --indigo-border: #C7D2FE;
       --charcoal: #292524;
       --sun-red: #DC2626;
+      --req-red: #DC2626;
+      --req-bg: #FEF2F2;
+      --req-border: #FECACA;
     }
 
     html, body, div, span, h1, h2, h3, h4, p, a, button, input, textarea, select, img, label, section, header, footer {
@@ -192,6 +195,7 @@
     /* 섹션 공통 */
     .section-block {
       margin-bottom: 28px;
+      scroll-margin-top: 16px;
     }
 
     .section-head {
@@ -206,6 +210,13 @@
       margin-bottom: 2px;
     }
 
+    .section-title-row {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      flex-wrap: wrap;
+    }
+
     .section-title {
       font-size: 19px;
       font-weight: 800;
@@ -213,11 +224,57 @@
       color: var(--text-main);
     }
 
+    .req-badge {
+      display: inline-flex;
+      align-items: center;
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--req-red);
+      background: var(--req-bg);
+      border: 1px solid var(--req-border);
+      padding: 2px 7px;
+      border-radius: 999px;
+      line-height: 1.2;
+      transition: all 0.15s ease;
+    }
+
+    .req-badge.done {
+      color: var(--emerald);
+      background: var(--emerald-bg);
+      border-color: var(--emerald-border);
+    }
+
     .section-note {
       font-size: 12.5px;
       color: var(--text-muted);
       margin-top: 3px;
       word-break: keep-all;
+    }
+
+    /* 필수 미입력 경고 하이라이트 */
+    .invalid-highlight {
+      border-color: var(--req-red) !important;
+      box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.14);
+      animation: shakeCard 0.32s ease;
+    }
+
+    @keyframes shakeCard {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-4px); }
+      75% { transform: translateX(4px); }
+    }
+
+    .field-error-msg {
+      display: none;
+      margin-top: 7px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--req-red);
+      word-break: keep-all;
+    }
+
+    .field-error-msg.show {
+      display: block;
     }
 
     /* 4대 시공 동일 비율 2x2 카드 */
@@ -324,9 +381,10 @@
     /* 시공 패널 카드 */
     .panel-card {
       background: var(--bg-card);
-      border: 1px solid var(--border-light);
+      border: 1.5px solid var(--border-light);
       border-radius: 16px;
       padding: 16px 14px;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
     }
 
     .panel-guide {
@@ -617,7 +675,12 @@
       white-space: nowrap;
     }
 
-    /* 거주 상태 4열 가로 배치 + 2행 리모델링/현장정보 동일 규격 카드 */
+    /* 거주 상태 4열 가로 배치 + 2행 리모델링/현장정보 카드 */
+    .res-group-box {
+      border-radius: 14px;
+      transition: box-shadow 0.15s ease;
+    }
+
     .res-row-top {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -683,19 +746,31 @@
       background: var(--bg-card);
       border: 1.5px solid var(--border-light);
       border-radius: 12px;
-      padding: 12px 12px;
+      padding: 11px 11px;
       min-height: 78px;
       display: flex;
       flex-direction: column;
       justify-content: center;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .site-card.filled-ok {
+      border-color: var(--emerald);
+    }
+
+    .site-card-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 4px;
+      margin-bottom: 5px;
     }
 
     .site-card-label {
-      display: block;
-      font-size: 12.5px;
+      font-size: 12px;
       font-weight: 800;
       color: var(--text-main);
-      margin-bottom: 5px;
+      letter-spacing: -0.02em;
     }
 
     .site-card-input {
@@ -715,12 +790,34 @@
       background: var(--bg-card);
     }
 
+    .site-parsed-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-top: 6px;
+    }
+
+    .site-pill {
+      font-size: 10.5px;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 5px;
+      background: var(--emerald-bg);
+      color: var(--emerald);
+    }
+
+    .site-pill.warn {
+      background: var(--gold-bg);
+      color: var(--gold);
+    }
+
     /* 시공 희망 날짜 인라인 멀티 달력 카드 */
     .schedule-card {
       background: var(--bg-card);
       border: 1.5px solid var(--border-light);
       border-radius: 16px;
       padding: 16px 14px;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
     }
 
     .cal-topbar {
@@ -1330,7 +1427,10 @@
     <section id="estimatorSection" class="section-block">
       <div class="section-head">
         <div class="section-kicker">CUSTOM SELECTION</div>
-        <h2 class="section-title">시공 품목 및 공간별 자재 선택</h2>
+        <div class="section-title-row">
+          <h2 class="section-title">시공 품목 및 공간별 자재 선택</h2>
+          <span id="badgeItems" class="req-badge">필수</span>
+        </div>
         <p class="section-note">원하시는 구역을 터치하면 바로 아래 소형 자재 버튼이 열려 공간마다 다르게 선택할 수 있습니다.</p>
       </div>
 
@@ -1354,58 +1454,73 @@
       </div>
 
       <div id="servicePanel" class="panel-card"></div>
+      <div id="errItems" class="field-error-msg">시공하실 구역을 1개 이상 선택해 주세요.</div>
     </section>
 
-    <!-- 거주 상태 및 현장 정보 선택 (아이콘 없음, 중복 선택) -->
-    <section class="section-block">
+    <!-- 거주 상태 및 현장 정보 선택 (필수) -->
+    <section id="residenceSection" class="section-block">
       <div class="section-head">
         <div class="section-kicker">RESIDENCE STATUS</div>
-        <h2 class="section-title">거주 상태 및 현장 정보</h2>
-        <p class="section-note">해당하는 공간에 체크해 주세요 (중복 선택 가능)</p>
+        <div class="section-title-row">
+          <h2 class="section-title">거주 상태 및 현장 정보</h2>
+          <span id="badgeResidence" class="req-badge">거주상태 필수</span>
+        </div>
+        <p class="section-note">연식 및 거주 상태 체크와 지역·아파트명·평수 입력은 필수입니다.</p>
       </div>
 
-      <!-- 1행: 신축 / 준신축 / 구축 / 거주 중 4열 가로 배치 -->
-      <div class="res-row-top">
-        <button type="button" class="res-card" data-res="신축 (올해 준공 입주)" onclick="toggleResidence(this)">
-          <span class="res-title">신축</span>
-          <span class="res-desc">올해 준공 입주</span>
-        </button>
-        <button type="button" class="res-card" data-res="준신축 (2~4년)" onclick="toggleResidence(this)">
-          <span class="res-title">준신축</span>
-          <span class="res-desc">2~4년</span>
-        </button>
-        <button type="button" class="res-card" data-res="구축 (5년 이상)" onclick="toggleResidence(this)">
-          <span class="res-title">구축</span>
-          <span class="res-desc">5년 이상</span>
-        </button>
-        <button type="button" class="res-card" data-res="거주 중" onclick="toggleResidence(this)">
-          <span class="res-title">거주 중</span>
-          <span class="res-desc">현재 거주</span>
-        </button>
-      </div>
+      <div id="resGroupBox" class="res-group-box">
+        <!-- 1행: 신축 / 준신축 / 구축 / 거주 중 4열 가로 배치 -->
+        <div class="res-row-top">
+          <button type="button" class="res-card" data-res="신축 (올해 준공 입주)" onclick="toggleResidence(this)">
+            <span class="res-title">신축</span>
+            <span class="res-desc">올해 준공 입주</span>
+          </button>
+          <button type="button" class="res-card" data-res="준신축 (2~4년)" onclick="toggleResidence(this)">
+            <span class="res-title">준신축</span>
+            <span class="res-desc">2~4년</span>
+          </button>
+          <button type="button" class="res-card" data-res="구축 (5년 이상)" onclick="toggleResidence(this)">
+            <span class="res-title">구축</span>
+            <span class="res-desc">5년 이상</span>
+          </button>
+          <button type="button" class="res-card" data-res="거주 중" onclick="toggleResidence(this)">
+            <span class="res-title">거주 중</span>
+            <span class="res-desc">현재 거주</span>
+          </button>
+        </div>
 
-      <!-- 2행: 리모델링 공사 후 카드 + 지역·아파트 입력 카드 동일 크기 일체형 배치 -->
-      <div class="res-row-bottom">
-        <button type="button" class="res-card left-align" data-res="리모델링 공사 후" onclick="toggleResidence(this)">
-          <span class="res-title">리모델링 공사 후</span>
-          <span class="res-desc">인테리어 완료 후 입주 전</span>
-        </button>
-        <div class="site-card">
-          <label class="site-card-label" for="clientRegion">지역 · 아파트명 · 평수</label>
-          <input id="clientRegion" class="site-card-input" type="text" placeholder="예: 부산 남구 해링턴 마레 34평" oninput="renderCart()" />
+        <!-- 2행: 리모델링 공사 후 카드 + 지역·아파트·평수 필수 입력 카드 -->
+        <div class="res-row-bottom">
+          <button type="button" class="res-card left-align" data-res="리모델링 공사 후" onclick="toggleResidence(this)">
+            <span class="res-title">리모델링 공사 후</span>
+            <span class="res-desc">인테리어 완료 후 입주 전</span>
+          </button>
+          <div id="siteCardBox" class="site-card">
+            <div class="site-card-head">
+              <label class="site-card-label" for="clientRegion">지역 · 아파트명 · 평수</label>
+              <span id="badgeSite" class="req-badge">필수</span>
+            </div>
+            <input id="clientRegion" class="site-card-input" type="text" placeholder="예: 부산, 감만우성, 34평" oninput="onSiteInput()" />
+            <div id="siteParsedPreview" class="site-parsed-bar"></div>
+          </div>
         </div>
       </div>
+      <div id="errResidence" class="field-error-msg">거주 상태(신축·준신축·구축·거주 중·리모델링 중 1개 이상)를 선택해 주세요.</div>
+      <div id="errSite" class="field-error-msg">지역, 아파트명, 평수를 모두 입력해 주세요 (예: 부산, 감만우성, 34평).</div>
     </section>
 
-    <!-- 시공 희망 날짜 (인라인 멀티 날짜 달력 + 빠른 일정 옵션) -->
-    <section class="section-block">
+    <!-- 시공 희망 날짜 (필수 · 인라인 멀티 날짜 달력 + 빠른 일정 옵션) -->
+    <section id="scheduleSection" class="section-block">
       <div class="section-head">
         <div class="section-kicker">PREFERRED SCHEDULE</div>
-        <h2 class="section-title">시공 희망 날짜</h2>
-        <p class="section-note">1일 시공부터 2~4일 연속 시공까지 원하시는 날짜를 여러 개 터치해 선택해 주세요.</p>
+        <div class="section-title-row">
+          <h2 class="section-title">시공 희망 날짜</h2>
+          <span id="badgeSchedule" class="req-badge">필수</span>
+        </div>
+        <p class="section-note">1일 시공부터 2~4일 연속 시공까지 희망 날짜를 선택하거나 아래 빠른 일정 옵션을 체크해 주세요.</p>
       </div>
 
-      <div class="schedule-card">
+      <div id="scheduleCardBox" class="schedule-card">
         <div class="cal-topbar">
           <button type="button" id="calPrevBtn" class="cal-nav-btn" onclick="changeCalMonth(-1)" aria-label="이전 달">&lt;</button>
           <div id="calMonthTitle" class="cal-month-title"></div>
@@ -1428,6 +1543,7 @@
         <div class="date-opt-label">빠른 일정 옵션</div>
         <div id="dateOptGrid" class="date-opt-grid"></div>
       </div>
+      <div id="errSchedule" class="field-error-msg">시공 희망 날짜를 달력에서 선택하거나 빠른 일정 옵션을 선택해 주세요.</div>
     </section>
 
     <!-- 실시간 장바구니 보드 -->
@@ -1691,6 +1807,208 @@
       dateOptions: []
     };
 
+    /* 지역 · 아파트명 · 평수 실시간 분석 (예: "부산, 감만우성, 34평" 또는 "부산 남구 해링턴 마레 84타입") */
+    const REGION_KEYWORDS = ['부산', '양산', '김해', '창원', '울산', '밀양', '진해', '마산', '거제', '경남'];
+    const TYPE_TO_PYEONG = {
+      '59': 25,
+      '72': 29,
+      '74': 30,
+      '76': 31,
+      '84': 34,
+      '99': 39,
+      '101': 40,
+      '114': 45
+    };
+
+    function parseSiteInfo(raw) {
+      const text = (raw || '').trim();
+      if (!text) {
+        return { raw: '', region: '', complex: '', pyeong: 0, pyeongLabel: '', hasAnyText: false, isComplete: false };
+      }
+
+      let foundRegion = '';
+      for (let i = 0; i < REGION_KEYWORDS.length; i++) {
+        if (text.indexOf(REGION_KEYWORDS[i]) >= 0) {
+          foundRegion = REGION_KEYWORDS[i];
+          break;
+        }
+      }
+
+      let pyeong = 0;
+      let pyeongLabel = '';
+      const pyMatch = text.match(/(\d{2,3})\s*(?:평형|평|py|PY)/);
+      if (pyMatch) {
+        pyeong = parseInt(pyMatch[1], 10);
+        pyeongLabel = pyeong + '평';
+      } else {
+        const typeMatch = text.match(/\b(59|72|74|76|84|99|101|114)\s*(?:타입|형|A|B|C|D|㎡|m2)?\b/i);
+        if (typeMatch) {
+          const sq = typeMatch[1];
+          pyeong = TYPE_TO_PYEONG[sq] || 0;
+          pyeongLabel = sq + '타입(' + pyeong + '평형)';
+        }
+      }
+
+      let cleaned = text.replace(/[,/·]+/g, ' ');
+      if (foundRegion) {
+        cleaned = cleaned.replace(foundRegion, ' ');
+      }
+      cleaned = cleaned
+        .replace(/(\d{2,3})\s*(?:평형|평|py|PY)/g, ' ')
+        .replace(/\b(59|72|74|76|84|99|101|114)\s*(?:타입|형|A|B|C|D|㎡|m2)?\b/gi, ' ')
+        .replace(/\s+/g, ' ')
+        .trim();
+
+      const hasComplexOrRegion = cleaned.length >= 2 || foundRegion.length > 0;
+      const isComplete = text.length >= 2 && pyeong > 0 && hasComplexOrRegion;
+
+      return {
+        raw: text,
+        region: foundRegion,
+        complex: cleaned,
+        pyeong: pyeong,
+        pyeongLabel: pyeongLabel,
+        hasAnyText: text.length > 0,
+        isComplete: isComplete
+      };
+    }
+
+    function onSiteInput() {
+      clearFieldError('siteCardBox', 'errSite');
+      renderSitePreview();
+      updateRequiredBadges();
+      renderCart();
+    }
+
+    function renderSitePreview() {
+      const raw = (document.getElementById('clientRegion').value || '').trim();
+      const info = parseSiteInfo(raw);
+      const previewEl = document.getElementById('siteParsedPreview');
+      const cardEl = document.getElementById('siteCardBox');
+
+      cardEl.classList.toggle('filled-ok', info.isComplete);
+
+      if (!info.hasAnyText) {
+        previewEl.innerHTML = '';
+        return;
+      }
+
+      let html = '';
+      if (info.region) {
+        html += '<span class="site-pill">지역: ' + escapeHtml(info.region) + '</span>';
+      }
+      if (info.complex) {
+        html += '<span class="site-pill">단지: ' + escapeHtml(info.complex) + '</span>';
+      }
+      if (info.pyeongLabel) {
+        html += '<span class="site-pill">평형: ' + escapeHtml(info.pyeongLabel) + '</span>';
+      } else {
+        html += '<span class="site-pill warn">평수 입력 필요</span>';
+      }
+      previewEl.innerHTML = html;
+    }
+
+    function updateRequiredBadges() {
+      const groups = collectGroupedItems();
+      let itemCount = 0;
+      groups.forEach(function (g) { itemCount += g.items.length; });
+
+      const bItems = document.getElementById('badgeItems');
+      if (itemCount > 0) {
+        bItems.textContent = '선택완료';
+        bItems.classList.add('done');
+        clearFieldError('servicePanel', 'errItems');
+      } else {
+        bItems.textContent = '필수';
+        bItems.classList.remove('done');
+      }
+
+      const bRes = document.getElementById('badgeResidence');
+      if (state.residences.length > 0) {
+        bRes.textContent = '선택완료';
+        bRes.classList.add('done');
+        clearFieldError('resGroupBox', 'errResidence');
+      } else {
+        bRes.textContent = '거주상태 필수';
+        bRes.classList.remove('done');
+      }
+
+      const siteInfo = parseSiteInfo(document.getElementById('clientRegion').value);
+      const bSite = document.getElementById('badgeSite');
+      if (siteInfo.isComplete) {
+        bSite.textContent = '입력완료';
+        bSite.classList.add('done');
+      } else {
+        bSite.textContent = '필수';
+        bSite.classList.remove('done');
+      }
+
+      const hasSchedule = state.selectedDates.length > 0 || state.dateOptions.length > 0;
+      const bSch = document.getElementById('badgeSchedule');
+      if (hasSchedule) {
+        bSch.textContent = '선택완료';
+        bSch.classList.add('done');
+        clearFieldError('scheduleCardBox', 'errSchedule');
+      } else {
+        bSch.textContent = '필수';
+        bSch.classList.remove('done');
+      }
+    }
+
+    function markFieldError(boxId, errId, sectionId, toastMsg) {
+      const box = document.getElementById(boxId);
+      const err = document.getElementById(errId);
+      const sec = document.getElementById(sectionId);
+      if (box) {
+        box.classList.remove('invalid-highlight');
+        void box.offsetWidth;
+        box.classList.add('invalid-highlight');
+      }
+      if (err) err.classList.add('show');
+      if (sec) sec.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      showToast(toastMsg);
+    }
+
+    function clearFieldError(boxId, errId) {
+      const box = document.getElementById(boxId);
+      const err = document.getElementById(errId);
+      if (box) box.classList.remove('invalid-highlight');
+      if (err) err.classList.remove('show');
+    }
+
+    function validateRequired() {
+      const groups = collectGroupedItems();
+      if (groups.length === 0) {
+        markFieldError('servicePanel', 'errItems', 'estimatorSection', '먼저 시공할 구역을 1개 이상 선택해 주세요');
+        return false;
+      }
+
+      if (state.residences.length === 0) {
+        markFieldError('resGroupBox', 'errResidence', 'residenceSection', '거주 상태(신축·준신축·구축·거주 중·리모델링)를 선택해 주세요');
+        return false;
+      }
+
+      const siteInfo = parseSiteInfo(document.getElementById('clientRegion').value);
+      if (!siteInfo.hasAnyText) {
+        markFieldError('siteCardBox', 'errSite', 'residenceSection', '지역 · 아파트명 · 평수를 입력해 주세요');
+        setTimeout(function () { document.getElementById('clientRegion').focus(); }, 350);
+        return false;
+      }
+      if (!siteInfo.isComplete) {
+        markFieldError('siteCardBox', 'errSite', 'residenceSection', '평수까지 함께 입력해 주세요 (예: 부산, 감만우성, 34평)');
+        setTimeout(function () { document.getElementById('clientRegion').focus(); }, 350);
+        return false;
+      }
+
+      const hasSchedule = state.selectedDates.length > 0 || state.dateOptions.length > 0;
+      if (!hasSchedule) {
+        markFieldError('scheduleCardBox', 'errSchedule', 'scheduleSection', '시공 희망 날짜 또는 빠른 일정 옵션을 선택해 주세요');
+        return false;
+      }
+
+      return true;
+    }
+
     function pad2(n) {
       return n < 10 ? '0' + n : String(n);
     }
@@ -1793,12 +2111,14 @@
       }
       renderCalendar();
       renderDateOptions();
+      updateRequiredBadges();
       renderCart();
     }
 
     function clearSelectedDates() {
       state.selectedDates = [];
       renderCalendar();
+      updateRequiredBadges();
       renderCart();
     }
 
@@ -1807,6 +2127,7 @@
       state.dateOptions = [];
       renderCalendar();
       renderDateOptions();
+      updateRequiredBadges();
       renderCart();
     }
 
@@ -1827,6 +2148,7 @@
       }
       renderCalendar();
       renderDateOptions();
+      updateRequiredBadges();
       renderCart();
     }
 
@@ -2153,6 +2475,7 @@
         mapObj[zoneName] = defaultMat;
       }
       renderPanel();
+      updateRequiredBadges();
       renderCart();
     }
 
@@ -2160,6 +2483,7 @@
       const mapObj = getMapObj(serviceKey);
       mapObj[zoneName] = matId;
       renderPanel();
+      updateRequiredBadges();
       renderCart();
     }
 
@@ -2167,6 +2491,7 @@
       const mapObj = getMapObj(serviceKey);
       delete mapObj[zoneName];
       renderPanel();
+      updateRequiredBadges();
       renderCart();
     }
 
@@ -2186,6 +2511,7 @@
       list.push({ name: val, mat: defaultMat });
       input.value = '';
       renderPanel();
+      updateRequiredBadges();
       renderCart();
     }
 
@@ -2202,6 +2528,7 @@
       const list = serviceKey === 'grout' ? state.groutCustomList : (serviceKey === 'coating' ? state.coatingCustomList : state.siliconeCustomList);
       list.splice(idx, 1);
       renderPanel();
+      updateRequiredBadges();
       renderCart();
     }
 
@@ -2216,6 +2543,7 @@
         };
       }
       renderPanel();
+      updateRequiredBadges();
       renderCart();
     }
 
@@ -2232,6 +2560,7 @@
         };
       }
       renderPanel();
+      updateRequiredBadges();
       renderCart();
     }
 
@@ -2246,6 +2575,7 @@
     function clearScreenRow(winName) {
       delete state.screenMap[winName];
       renderPanel();
+      updateRequiredBadges();
       renderCart();
     }
 
@@ -2274,6 +2604,7 @@
       nameEl.value = '';
       countEl.value = '1';
       renderPanel();
+      updateRequiredBadges();
       renderCart();
     }
 
@@ -2288,6 +2619,7 @@
     function removeCustomScreen(idx) {
       state.screenCustomList.splice(idx, 1);
       renderPanel();
+      updateRequiredBadges();
       renderCart();
     }
 
@@ -2301,6 +2633,7 @@
         state.residences.push(val);
         btn.classList.add('selected');
       }
+      updateRequiredBadges();
       renderCart();
     }
 
@@ -2363,7 +2696,7 @@
 
     function renderCart() {
       const groups = collectGroupedItems();
-      const region = (document.getElementById('clientRegion').value || '').trim();
+      const siteInfo = parseSiteInfo(document.getElementById('clientRegion').value);
       const scheduleText = getScheduleSummaryText();
 
       let count = 0;
@@ -2373,8 +2706,8 @@
       document.getElementById('dockCount').textContent = count;
 
       const body = document.getElementById('cartBody');
-      if (count === 0 && state.residences.length === 0 && !scheduleText && !region) {
-        body.innerHTML = '<div class="cart-empty">위에서 시공할 구역과 자재를 선택하시면 실시간으로 정리됩니다.</div>';
+      if (count === 0 && state.residences.length === 0 && !scheduleText && !siteInfo.raw) {
+        body.innerHTML = '<div class="cart-empty">위에서 시공할 구역과 자재, 현장 정보, 희망 날짜를 선택하시면 실시간으로 정리됩니다.</div>';
         return;
       }
 
@@ -2390,9 +2723,9 @@
         html += '</div>';
       });
 
-      if (region) {
+      if (siteInfo.raw) {
         html += '<div class="cart-group"><div class="cart-group-name">현장 정보</div>' +
-          '<div class="cart-item"><span class="cart-item-text">' + escapeHtml(region) + '</span></div></div>';
+          '<div class="cart-item"><span class="cart-item-text">' + escapeHtml(siteInfo.raw) + '</span></div></div>';
       }
 
       if (state.residences.length > 0) {
@@ -2422,6 +2755,7 @@
       else if (type === 'siliconeCustom') state.siliconeCustomList.splice(Number(key), 1);
 
       renderPanel();
+      updateRequiredBadges();
       renderCart();
     }
 
@@ -2440,14 +2774,20 @@
       state.dateOptions = [];
       document.getElementById('clientRegion').value = '';
       document.querySelectorAll('.res-card').forEach(function (b) { b.classList.remove('selected'); });
+      clearFieldError('servicePanel', 'errItems');
+      clearFieldError('resGroupBox', 'errResidence');
+      clearFieldError('siteCardBox', 'errSite');
+      clearFieldError('scheduleCardBox', 'errSchedule');
+      renderSitePreview();
       renderPanel();
       renderCalendar();
       renderDateOptions();
+      updateRequiredBadges();
       renderCart();
       showToast('선택 내역이 초기화되었습니다');
     }
 
-    /* 사장님 전용 원터치 계산기 링크 생성 (가격 정보 없음) */
+    /* 사장님 전용 원터치 계산기 링크 생성 (가격 정보 없음 · 지역/단지/평수 자동 분리 포함) */
     function encodeBase64Url(str) {
       const bytes = new TextEncoder().encode(str);
       let bin = '';
@@ -2464,10 +2804,13 @@
 
     function buildCalcLink() {
       const payload = {};
-      const region = (document.getElementById('clientRegion').value || '').trim();
+      const siteInfo = parseSiteInfo(document.getElementById('clientRegion').value);
       const scheduleText = getScheduleSummaryText();
 
-      if (region) payload.r = region;
+      if (siteInfo.raw) payload.r = siteInfo.raw;
+      if (siteInfo.region) payload.rg = siteInfo.region;
+      if (siteInfo.complex) payload.cx = siteInfo.complex;
+      if (siteInfo.pyeong > 0) payload.py = siteInfo.pyeong;
       if (state.residences.length > 0) payload.s = state.residences;
       if (scheduleText) payload.d = scheduleText;
 
@@ -2535,15 +2878,15 @@
 
     function buildMessageText() {
       const groups = collectGroupedItems();
-      const region = (document.getElementById('clientRegion').value || '').trim();
+      const siteInfo = parseSiteInfo(document.getElementById('clientRegion').value);
       const scheduleText = getScheduleSummaryText();
       const lines = [
         '[부산딥클린 올인원 홈케어 견적 문의]',
         ''
       ];
 
-      if (region) {
-        lines.push('현장 정보: ' + region);
+      if (siteInfo.raw) {
+        lines.push('현장 정보: ' + siteInfo.raw);
       }
       if (state.residences.length > 0) {
         lines.push('거주 상태: ' + state.residences.join(', '));
@@ -2551,7 +2894,7 @@
       if (scheduleText) {
         lines.push('시공 희망 날짜: ' + scheduleText);
       }
-      if (region || state.residences.length > 0 || scheduleText) {
+      if (siteInfo.raw || state.residences.length > 0 || scheduleText) {
         lines.push('');
       }
 
@@ -2576,11 +2919,7 @@
     }
 
     function copyEstimate() {
-      const groups = collectGroupedItems();
-      if (groups.length === 0) {
-        showToast('먼저 시공 항목을 1개 이상 선택해 주세요');
-        return;
-      }
+      if (!validateRequired()) return;
       const msg = buildMessageText();
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(msg).then(function () {
@@ -2604,11 +2943,7 @@
     }
 
     function sendSms() {
-      const groups = collectGroupedItems();
-      if (groups.length === 0) {
-        showToast('먼저 시공 항목을 1개 이상 선택해 주세요');
-        return;
-      }
+      if (!validateRequired()) return;
       const phone = (config.phone || '01049446831').replace(/[^0-9]/g, '');
       const body = encodeURIComponent(buildMessageText());
       const isIos = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
@@ -2623,7 +2958,7 @@
       clearTimeout(window._toastTimer);
       window._toastTimer = setTimeout(function () {
         el.classList.remove('show');
-      }, 2200);
+      }, 2400);
     }
 
     /* 관리자 모드 */
@@ -2725,6 +3060,7 @@
     renderPanel();
     renderCalendar();
     renderDateOptions();
+    updateRequiredBadges();
     renderCart();
   </script>
 </body>
