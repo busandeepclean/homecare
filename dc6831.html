@@ -407,13 +407,13 @@
       color: var(--blue);
     }
 
-    /* 거주 환경 5가지 조건 카드 */
+    /* 거주 환경 5가지 조건 및 평수별 추가금 카드 */
     .env-box {
       background: var(--bg-subtle);
       border: 1px solid var(--border-light);
       border-radius: 12px;
       padding: 10px;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
 
     .env-head {
@@ -447,6 +447,12 @@
       gap: 4px;
     }
 
+    .pyeong-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 5px;
+    }
+
     .env-btn {
       border: 1.5px solid var(--border-light);
       background: var(--bg-card);
@@ -466,6 +472,11 @@
       border-color: var(--indigo);
     }
 
+    .env-btn.active-py {
+      background: var(--blue-bg);
+      border-color: var(--blue);
+    }
+
     .env-btn-name {
       font-size: 11px;
       font-weight: 800;
@@ -478,6 +489,10 @@
       color: var(--indigo);
     }
 
+    .env-btn.active-py .env-btn-name {
+      color: var(--blue);
+    }
+
     .env-btn-val {
       font-size: 10.5px;
       font-weight: 700;
@@ -486,6 +501,10 @@
 
     .env-btn.active .env-btn-val {
       color: var(--indigo);
+    }
+
+    .env-btn.active-py .env-btn-val {
+      color: var(--blue);
     }
 
     .env-rule-note {
@@ -901,7 +920,7 @@
 
     .cfg-tabs {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: 5px;
       margin-bottom: 12px;
     }
@@ -1171,7 +1190,7 @@
         </div>
       </section>
 
-      <!-- 2단계: 항목별 단가 확인 및 거주 환경·현장 변수 조정 -->
+      <!-- 2단계: 항목별 단가 확인 및 거주 환경·평수·현장 변수 조정 -->
       <section class="card">
         <div class="card-head">
           <div>
@@ -1207,6 +1226,16 @@
           <div id="envRuleNote" class="env-rule-note"></div>
         </div>
 
+        <!-- 평수별 추가금 4가지 조건 스위치 -->
+        <div class="env-box">
+          <div class="env-head">
+            <span class="env-title">평수별 추가금 (터치하여 켜기/끄기)</span>
+            <button type="button" class="env-cfg-link" onclick="openSettings('pyeong')">금액 설정</button>
+          </div>
+          <div id="pyeongBtnGrid" class="pyeong-grid"></div>
+          <div id="pyeongRuleNote" class="env-rule-note"></div>
+        </div>
+
         <div id="calcListWrap"></div>
 
         <div class="section-sub-label">현장 변수 · 출장비 · 할인 원터치 반영 (만원 단위)</div>
@@ -1228,6 +1257,10 @@
           <div class="total-line">
             <span id="sumEnvLabel">거주 환경 추가금</span>
             <strong id="sumEnv">0원</strong>
+          </div>
+          <div class="total-line">
+            <span id="sumPyeongLabel">평수별 추가금</span>
+            <strong id="sumPyeong">0원</strong>
           </div>
           <div class="total-line">
             <span>할인 및 현장 조정</span>
@@ -1252,7 +1285,7 @@
 
         <div class="seg-row">
           <button type="button" class="seg-btn active" data-mode="confirmed" onclick="setReplyMode('confirmed')">통화 후 확정 견적서</button>
-          <button type="button" class="seg-btn" data-mode="value" onclick="setReplyMode('value')">바쁠 때 1차 가치 안내형</button>
+          <button type="button" class="seg-btn" data-mode="value" onclick="setReplyMode('value')">신속견적</button>
         </div>
 
         <div class="seg-row three">
@@ -1293,6 +1326,7 @@
         <button type="button" class="cfg-tab" data-ctab="coating" onclick="switchCfgTab('coating')">03 코팅</button>
         <button type="button" class="cfg-tab" data-ctab="silicone" onclick="switchCfgTab('silicone')">04 실리콘</button>
         <button type="button" class="cfg-tab" data-ctab="env" onclick="switchCfgTab('env')">거주환경</button>
+        <button type="button" class="cfg-tab" data-ctab="pyeong" onclick="switchCfgTab('pyeong')">평수별</button>
         <button type="button" class="cfg-tab" data-ctab="security" onclick="switchCfgTab('security')">보안·백업</button>
       </div>
 
@@ -1314,6 +1348,14 @@
       { id: 'old', shortName: '구축', fullName: '구축 (5년 이상)', keywords: ['구축'] },
       { id: 'remodel', shortName: '리모델링', fullName: '리모델링 공사 후', keywords: ['리모델링'] },
       { id: 'living', shortName: '거주 중', fullName: '거주 중', keywords: ['거주'] }
+    ];
+
+    /* 4가지 평수 구간 기준표 */
+    const PYEONG_DEFS = [
+      { id: 'under24', shortName: '24평 미만', fullName: '24평 미만' },
+      { id: 'p25_35', shortName: '25~35평', fullName: '25~35평' },
+      { id: 'p36_50', shortName: '36~50평', fullName: '36~50평' },
+      { id: 'over51', shortName: '51평 이상', fullName: '51평 이상' }
     ];
 
     /* index.html과 100% 일치하는 4대 시공 기준표 */
@@ -1433,12 +1475,18 @@
       return { new: 0, semi: 0, old: 0, remodel: 0, living: 0 };
     }
 
+    function createEmptyPyeongPrices() {
+      return { under24: 0, p25_35: 0, p36_50: 0, over51: 0 };
+    }
+
     let ownerCfg = {
       pw: DEFAULT_PW,
       prices: createEmptyPrices(),
       envPrices: createEmptyEnvPrices(),
       envDupMode: 'sum',
-      envScope: 'once'
+      envScope: 'once',
+      pyeongPrices: createEmptyPyeongPrices(),
+      pyeongScope: 'once'
     };
 
     const appState = {
@@ -1448,6 +1496,7 @@
       parsedPyeong: 0,
       residence: '',
       activeEnvIds: [],
+      activePyeongId: '',
       schedule: '',
       items: [],
       quickAdjIds: [],
@@ -1497,12 +1546,22 @@
             });
           }
 
+          const pyBase = createEmptyPyeongPrices();
+          if (parsed.pyeongPrices) {
+            PYEONG_DEFS.forEach(function (pDef) {
+              const v = Number(parsed.pyeongPrices[pDef.id]);
+              pyBase[pDef.id] = isNaN(v) ? 0 : round1(v);
+            });
+          }
+
           ownerCfg = {
             pw: (parsed.pw && String(parsed.pw).length === 8) ? String(parsed.pw) : DEFAULT_PW,
             prices: base,
             envPrices: envBase,
             envDupMode: parsed.envDupMode === 'max' ? 'max' : 'sum',
-            envScope: parsed.envScope === 'per_service' ? 'per_service' : 'once'
+            envScope: parsed.envScope === 'per_service' ? 'per_service' : 'once',
+            pyeongPrices: pyBase,
+            pyeongScope: parsed.pyeongScope === 'per_service' ? 'per_service' : 'once'
           };
         }
       } catch (e) {}
@@ -1566,6 +1625,15 @@
       return { region: foundRegion, complex: cleaned, pyeong: pyeong };
     }
 
+    function detectPyeongIdFromNumber(py) {
+      const n = Number(py) || 0;
+      if (n <= 0) return '';
+      if (n <= 24) return 'under24';
+      if (n <= 35) return 'p25_35';
+      if (n <= 50) return 'p36_50';
+      return 'over51';
+    }
+
     function renderParsedSiteBar() {
       const bar = document.getElementById('parsedSiteBar');
       if (!bar) return;
@@ -1582,7 +1650,10 @@
       appState.parsedRegion = parsed.region;
       appState.parsedComplex = parsed.complex;
       appState.parsedPyeong = parsed.pyeong;
+      appState.activePyeongId = detectPyeongIdFromNumber(parsed.pyeong);
       renderParsedSiteBar();
+      renderPyeongButtons();
+      renderTotals();
       rebuildReplyText(true);
     }
 
@@ -1699,6 +1770,7 @@
         appState.parsedRegion = data.rg || fallbackParsed.region;
         appState.parsedComplex = data.cx || fallbackParsed.complex;
         appState.parsedPyeong = Number(data.py) || fallbackParsed.pyeong;
+        appState.activePyeongId = detectPyeongIdFromNumber(appState.parsedPyeong);
 
         appState.residence = Array.isArray(data.s) ? data.s.join(', ') : (data.s || '');
         appState.activeEnvIds = detectEnvIdsFromText(appState.residence);
@@ -1845,6 +1917,7 @@
       appState.parsedPyeong = 0;
       appState.residence = '';
       appState.activeEnvIds = [];
+      appState.activePyeongId = '';
       appState.schedule = '';
       appState.items = [];
       appState.quickAdjIds = [];
@@ -1862,6 +1935,7 @@
           appState.parsedRegion = p.region;
           appState.parsedComplex = p.complex;
           appState.parsedPyeong = p.pyeong;
+          appState.activePyeongId = detectPyeongIdFromNumber(p.pyeong);
           return;
         }
         if (line.indexOf('거주 상태:') === 0) {
@@ -1933,6 +2007,7 @@
       document.getElementById('metaSchedule').value = appState.schedule;
       renderParsedSiteBar();
       renderEnvButtons();
+      renderPyeongButtons();
       renderCalcList();
       renderQuickAdjs();
       renderAdjChips();
@@ -1979,6 +2054,38 @@
       const dupTxt = ownerCfg.envDupMode === 'max' ? '중복 시 최대 1개 적용' : '중복 시 각각 합산';
       const scopeTxt = ownerCfg.envScope === 'per_service' ? '시공 품목 수마다 적용' : '전체 1회 합산';
       noteEl.textContent = '적용 규칙: ' + dupTxt + ' · ' + scopeTxt;
+    }
+
+    function togglePyeongId(pyId) {
+      if (appState.activePyeongId === pyId) {
+        appState.activePyeongId = '';
+      } else {
+        appState.activePyeongId = pyId;
+      }
+      renderPyeongButtons();
+      renderTotals();
+      rebuildReplyText(true);
+    }
+
+    function renderPyeongButtons() {
+      const grid = document.getElementById('pyeongBtnGrid');
+      const noteEl = document.getElementById('pyeongRuleNote');
+      if (!grid) return;
+
+      let html = '';
+      PYEONG_DEFS.forEach(function (pDef) {
+        const isOn = appState.activePyeongId === pDef.id;
+        const val = Number(ownerCfg.pyeongPrices[pDef.id]) || 0;
+        const signStr = val > 0 ? '+' + val + '만' : (val < 0 ? val + '만' : '+0만');
+        html += '<button type="button" class="env-btn' + (isOn ? ' active-py' : '') + '" onclick="togglePyeongId(\'' + pDef.id + '\')">' +
+          '<span class="env-btn-name">' + escapeHtml(pDef.shortName) + '</span>' +
+          '<span class="env-btn-val">' + signStr + '</span>' +
+          '</button>';
+      });
+      grid.innerHTML = html;
+
+      const scopeTxt = ownerCfg.pyeongScope === 'per_service' ? '시공 품목 수마다 적용' : '전체 1회 합산';
+      noteEl.textContent = '적용 규칙: ' + scopeTxt;
     }
 
     function getDisplayMatLabel(service, matId) {
@@ -2166,7 +2273,7 @@
       });
 
       if (activeList.length === 0) {
-        return { total: 0, names: [] };
+        return { total: 0, names: [], mult: 1 };
       }
 
       let base = 0;
@@ -2201,11 +2308,35 @@
       };
     }
 
+    function calcPyeongAmount() {
+      if (!appState.activePyeongId) {
+        return { total: 0, name: '', mult: 1 };
+      }
+      const found = PYEONG_DEFS.find(function (p) { return p.id === appState.activePyeongId; });
+      if (!found) {
+        return { total: 0, name: '', mult: 1 };
+      }
+      const base = Number(ownerCfg.pyeongPrices[found.id]) || 0;
+      let mult = 1;
+      if (ownerCfg.pyeongScope === 'per_service') {
+        const distinctServices = {};
+        appState.items.forEach(function (it) { distinctServices[it.service] = true; });
+        const svcCount = Object.keys(distinctServices).length;
+        mult = svcCount > 0 ? svcCount : 1;
+      }
+      return {
+        total: round1(base * mult),
+        name: found.shortName,
+        mult: mult
+      };
+    }
+
     function calcSums() {
       let sub = 0;
       appState.items.forEach(function (it) { sub += Number(it.price) || 0; });
 
       const envInfo = calcEnvAmount();
+      const pyeongInfo = calcPyeongAmount();
 
       let adj = 0;
       const activeAdjs = [];
@@ -2223,12 +2354,15 @@
 
       sub = round1(sub);
       adj = round1(adj);
-      const finalVal = Math.max(0, round1(sub + envInfo.total + adj));
+      const finalVal = Math.max(0, round1(sub + envInfo.total + pyeongInfo.total + adj));
       return {
         sub: sub,
         envTotal: envInfo.total,
         envNames: envInfo.names,
         envMult: envInfo.mult || 1,
+        pyeongTotal: pyeongInfo.total,
+        pyeongName: pyeongInfo.name,
+        pyeongMult: pyeongInfo.mult || 1,
         adj: adj,
         finalVal: finalVal,
         activeAdjs: activeAdjs
@@ -2238,6 +2372,7 @@
     function renderTotals() {
       const sums = calcSums();
       document.getElementById('sumSubtotal').textContent = formatWonText(sums.sub);
+
       const envLabelEl = document.getElementById('sumEnvLabel');
       if (sums.envNames.length > 0) {
         const multTxt = sums.envMult > 1 ? ' × ' + sums.envMult + '품목' : '';
@@ -2246,6 +2381,16 @@
         envLabelEl.textContent = '거주 환경 추가금';
       }
       document.getElementById('sumEnv').textContent = (sums.envTotal > 0 ? '+' : '') + formatWonText(sums.envTotal);
+
+      const pyLabelEl = document.getElementById('sumPyeongLabel');
+      if (sums.pyeongName) {
+        const pyMultTxt = sums.pyeongMult > 1 ? ' × ' + sums.pyeongMult + '품목' : '';
+        pyLabelEl.textContent = '평수별 (' + sums.pyeongName + pyMultTxt + ')';
+      } else {
+        pyLabelEl.textContent = '평수별 추가금';
+      }
+      document.getElementById('sumPyeong').textContent = (sums.pyeongTotal > 0 ? '+' : '') + formatWonText(sums.pyeongTotal);
+
       document.getElementById('sumAdj').textContent = (sums.adj > 0 ? '+' : '') + formatWonText(sums.adj);
       document.getElementById('sumFinal').textContent = formatWonText(sums.finalVal);
     }
@@ -2280,7 +2425,7 @@
       const isValue = appState.replyMode === 'value';
 
       lines.push(isValue
-        ? '[부산딥클린 올인원 홈케어 1차 맞춤 견적 안내]'
+        ? '[부산딥클린 올인원 홈케어 신속 견적 안내]'
         : '[부산딥클린 올인원 홈케어 최종 견적 안내]');
       lines.push('');
 
@@ -2336,12 +2481,17 @@
         lines.push('');
       });
 
-      if (sums.envTotal !== 0 || sums.activeAdjs.length > 0) {
+      if (sums.envTotal !== 0 || sums.pyeongTotal !== 0 || sums.activeAdjs.length > 0) {
         lines.push('시공 정가 합계: ' + formatWonText(sums.sub));
         if (sums.envTotal !== 0) {
           const envSign = sums.envTotal > 0 ? '+' : '';
           const envTag = sums.envNames.length > 0 ? ' (' + sums.envNames.join(', ') + ')' : '';
           lines.push('거주 환경 추가금' + envTag + ': ' + envSign + formatWonText(sums.envTotal));
+        }
+        if (sums.pyeongTotal !== 0) {
+          const pySign = sums.pyeongTotal > 0 ? '+' : '';
+          const pyTag = sums.pyeongName ? ' (' + sums.pyeongName + ')' : '';
+          lines.push('평수별 추가금' + pyTag + ': ' + pySign + formatWonText(sums.pyeongTotal));
         }
         sums.activeAdjs.forEach(function (a) {
           const sign = a.amount > 0 ? '+' : '';
@@ -2412,6 +2562,7 @@
       appState.parsedPyeong = 0;
       appState.residence = '';
       appState.activeEnvIds = [];
+      appState.activePyeongId = '';
       appState.schedule = '';
       appState.items = [];
       appState.quickAdjIds = [];
@@ -2452,6 +2603,16 @@
       const num = parseFloat(valStr);
       const clean = isNaN(num) ? 0 : round1(num);
       const span = document.getElementById('envWon_' + envId);
+      if (span) {
+        const won = Math.round(clean * 10000);
+        span.textContent = '= ' + won.toLocaleString('ko-KR') + '원';
+      }
+    }
+
+    function updatePyeongPreviewWon(pyId, valStr) {
+      const num = parseFloat(valStr);
+      const clean = isNaN(num) ? 0 : round1(num);
+      const span = document.getElementById('pyWon_' + pyId);
       if (span) {
         const won = Math.round(clean * 10000);
         span.textContent = '= ' + won.toLocaleString('ko-KR') + '원';
@@ -2503,6 +2664,37 @@
         return;
       }
 
+      if (tab === 'pyeong') {
+        let html = '<div class="cfg-note">4가지 평수 구간별 추가 금액을 만원 단위로 입력합니다 (예: 30,000원은 3, 50,000원은 5). 현장 정보에 입력된 평수에 맞춰 자동으로 선택됩니다.</div>';
+
+        PYEONG_DEFS.forEach(function (pDef) {
+          const val = Number(ownerCfg.pyeongPrices[pDef.id]) || 0;
+          const won = Math.round(val * 10000);
+          html += '<div class="env-cfg-row">' +
+            '<div class="env-cfg-info">' +
+              '<div class="env-cfg-name">' + escapeHtml(pDef.fullName) + '</div>' +
+              '<div class="env-cfg-won" id="pyWon_' + pDef.id + '">= ' + won.toLocaleString('ko-KR') + '원</div>' +
+            '</div>' +
+            '<div class="env-cfg-input-box">' +
+              '<input class="env-cfg-input" data-pyid="' + pDef.id + '" type="number" step="0.5" value="' + val + '" oninput="updatePyeongPreviewWon(\'' + pDef.id + '\', this.value)" />' +
+              '<span style="font-size:12px; font-weight:700; color:var(--text-sub);">만원</span>' +
+            '</div>' +
+            '</div>';
+        });
+
+        html += '<div class="sec-box" style="margin-top:10px;">' +
+          '<div class="sec-title">평수별 추가금 적용 기준</div>' +
+          '<div class="seg-row">' +
+            '<button type="button" class="seg-btn' + (ownerCfg.pyeongScope === 'once' ? ' active' : '') + '" onclick="setCfgEnvRule(\'pyeongScope\', \'once\')">전체 견적에 1회 합산</button>' +
+            '<button type="button" class="seg-btn' + (ownerCfg.pyeongScope === 'per_service' ? ' active' : '') + '" onclick="setCfgEnvRule(\'pyeongScope\', \'per_service\')">시공 품목 수마다 적용</button>' +
+          '</div>' +
+        '</div>';
+
+        html += '<button type="button" class="cfg-save-btn" onclick="savePyeongPrices()">평수별 금액 저장하기</button>';
+        body.innerHTML = html;
+        return;
+      }
+
       if (tab === 'security') {
         body.innerHTML = '' +
           '<div class="sec-box">' +
@@ -2514,7 +2706,7 @@
           '</div>' +
           '<div class="sec-box">' +
             '<div class="sec-title">단가표 및 설정 백업 / 복원</div>' +
-            '<div class="cfg-note">입력해 둔 단가표, 거주 환경 금액, 비밀번호를 파일로 저장해 두면 폰을 바꾸거나 PC에서 쓸 때 1초 만에 그대로 복원할 수 있습니다.</div>' +
+            '<div class="cfg-note">입력해 둔 단가표, 거주 환경·평수별 금액, 비밀번호를 파일로 저장해 두면 폰을 바꾸거나 PC에서 쓸 때 1초 만에 그대로 복원할 수 있습니다.</div>' +
             '<div class="sec-btn-row">' +
               '<button type="button" class="mini-btn" style="padding:11px;" onclick="exportCfgBackup()">백업 파일 저장</button>' +
               '<label class="mini-btn" style="padding:11px; text-align:center; cursor:pointer;">백업 파일 복원' +
@@ -2574,7 +2766,7 @@
     }
 
     function saveEnvPrices() {
-      document.querySelectorAll('#cfgTabBody .env-cfg-input').forEach(function (inp) {
+      document.querySelectorAll('#cfgTabBody .env-cfg-input[data-envid]').forEach(function (inp) {
         const eid = inp.getAttribute('data-envid');
         const val = parseFloat(inp.value);
         ownerCfg.envPrices[eid] = isNaN(val) ? 0 : round1(val);
@@ -2584,6 +2776,19 @@
       renderTotals();
       rebuildReplyText(true);
       showToast('거주 환경 금액이 저장되었습니다');
+    }
+
+    function savePyeongPrices() {
+      document.querySelectorAll('#cfgTabBody .env-cfg-input[data-pyid]').forEach(function (inp) {
+        const pid = inp.getAttribute('data-pyid');
+        const val = parseFloat(inp.value);
+        ownerCfg.pyeongPrices[pid] = isNaN(val) ? 0 : round1(val);
+      });
+      saveOwnerCfg();
+      renderPyeongButtons();
+      renderTotals();
+      rebuildReplyText(true);
+      showToast('평수별 금액이 저장되었습니다');
     }
 
     function saveCurrentTabPrices() {
@@ -2667,6 +2872,7 @@
           }
           renderCfgTab();
           renderEnvButtons();
+          renderPyeongButtons();
           if (appState.items.length > 0) reapplyPriceTable();
           else { renderTotals(); rebuildReplyText(true); }
           showToast('단가표와 설정이 복원되었습니다');
