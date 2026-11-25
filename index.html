@@ -1518,6 +1518,7 @@
 
   <script>
     const STORAGE_KEY = 'busandeepclean_master_v5';
+    const CALC_BASE_URL = 'https://busandeepclean.co.kr/dc6831.html';
 
     function makeFallbackSvg(num, title, subtitle, bg1, bg2) {
       const svg = '<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">' +
@@ -2446,6 +2447,92 @@
       showToast('선택 내역이 초기화되었습니다');
     }
 
+    /* 사장님 전용 원터치 계산기 링크 생성 (가격 정보 없음) */
+    function encodeBase64Url(str) {
+      const bytes = new TextEncoder().encode(str);
+      let bin = '';
+      for (let i = 0; i < bytes.length; i++) {
+        bin += String.fromCharCode(bytes[i]);
+      }
+      return btoa(bin).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+    }
+
+    function toRef(val, list) {
+      const idx = list.indexOf(val);
+      return idx >= 0 ? idx : val;
+    }
+
+    function buildCalcLink() {
+      const payload = {};
+      const region = (document.getElementById('clientRegion').value || '').trim();
+      const scheduleText = getScheduleSummaryText();
+
+      if (region) payload.r = region;
+      if (state.residences.length > 0) payload.s = state.residences;
+      if (scheduleText) payload.d = scheduleText;
+
+      const groutZones = CATALOG.grout.baseZones.concat(CATALOG.grout.extraZones);
+      const groutMats = CATALOG.grout.materials.map(function (m) { return m.id; });
+      const gArr = [];
+      Object.keys(state.groutMap).forEach(function (z) {
+        const row = [toRef(z, groutZones), toRef(state.groutMap[z], groutMats)];
+        if (z === '거실·주방·복도 바닥' && state.groutLivingNote.trim()) {
+          row.push(state.groutLivingNote.trim());
+        }
+        gArr.push(row);
+      });
+      state.groutCustomList.forEach(function (c) {
+        gArr.push([c.name, toRef(c.mat, groutMats)]);
+      });
+      if (gArr.length > 0) payload.g = gArr;
+
+      const screenWins = CATALOG.screen.windows.map(function (w) { return w.name; });
+      const screenMats = CATALOG.screen.materials.map(function (m) { return m.id; });
+      const screenSizes = ['', '거실 대창과 같은 크기', '중간창 크기'];
+      const scArr = [];
+      Object.keys(state.screenMap).forEach(function (w) {
+        const info = state.screenMap[w];
+        const isRoom = w === '방 1' || w === '방 2' || w === '방 3';
+        const row = [toRef(w, screenWins), toRef(info.mat, screenMats), info.count];
+        if (isRoom && info.size) {
+          row.push(toRef(info.size, screenSizes));
+        }
+        scArr.push(row);
+      });
+      state.screenCustomList.forEach(function (c) {
+        scArr.push([c.name, toRef(c.mat, screenMats), c.count]);
+      });
+      if (scArr.length > 0) payload.sc = scArr;
+
+      const coatingZones = CATALOG.coating.zones.map(function (z) { return z.name; });
+      const coatingMats = CATALOG.coating.materials.map(function (m) { return m.id; });
+      const cArr = [];
+      Object.keys(state.coatingMap).forEach(function (z) {
+        cArr.push([toRef(z, coatingZones), toRef(state.coatingMap[z], coatingMats)]);
+      });
+      state.coatingCustomList.forEach(function (c) {
+        cArr.push([c.name, toRef(c.mat, coatingMats)]);
+      });
+      if (cArr.length > 0) payload.c = cArr;
+
+      const siliconeZones = CATALOG.silicone.zones.map(function (z) { return z.name; });
+      const siliconeMats = CATALOG.silicone.materials.map(function (m) { return m.id; });
+      const siArr = [];
+      Object.keys(state.siliconeMap).forEach(function (z) {
+        siArr.push([toRef(z, siliconeZones), toRef(state.siliconeMap[z], siliconeMats)]);
+      });
+      state.siliconeCustomList.forEach(function (c) {
+        siArr.push([c.name, toRef(c.mat, siliconeMats)]);
+      });
+      if (siArr.length > 0) payload.si = siArr;
+
+      try {
+        return CALC_BASE_URL + '?q=' + encodeBase64Url(JSON.stringify(payload));
+      } catch (e) {
+        return '';
+      }
+    }
+
     function buildMessageText() {
       const groups = collectGroupedItems();
       const region = (document.getElementById('clientRegion').value || '').trim();
@@ -2477,6 +2564,14 @@
       });
 
       lines.push('위 선택 내역 기준으로 시공 상담 요청드립니다.');
+
+      const calcLink = buildCalcLink();
+      if (calcLink) {
+        lines.push('');
+        lines.push('상담접수코드:');
+        lines.push(calcLink);
+      }
+
       return lines.join('\n').split(String.fromCharCode(42)).join('');
     }
 
