@@ -3,14 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta property="og:title" content="관리자 전용" />
+  <meta property="og:description" content="접근 권한이 필요한 페이지입니다." />
+  <meta name="description" content="관리자 전용 페이지" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-  <meta name="apple-mobile-web-app-title" content="딥클린 견적기" />
-  <meta name="theme-color" content="#047857" />
-  <title>부산딥클린 전용 견적기</title>
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 128'%3E%3Crect width='128' height='128' rx='28' fill='%23047857'/%3E%3Ctext x='64' y='78' text-anchor='middle' fill='%23FFFFFF' font-family='sans-serif' font-size='48' font-weight='800'%3EDC%3C/text%3E%3C/svg%3E" />
-  <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 128'%3E%3Crect width='128' height='128' rx='28' fill='%23047857'/%3E%3Ctext x='64' y='78' text-anchor='middle' fill='%23FFFFFF' font-family='sans-serif' font-size='48' font-weight='800'%3EDC%3C/text%3E%3C/svg%3E" />
+  <meta name="apple-mobile-web-app-title" content="관리자 전용" />
+  <meta name="theme-color" content="#292524" />
+  <title>관리자 전용</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 128'%3E%3Crect width='128' height='128' rx='28' fill='%23292524'/%3E%3Ctext x='64' y='78' text-anchor='middle' fill='%23FFFFFF' font-family='sans-serif' font-size='44' font-weight='800'%3EADM%3C/text%3E%3C/svg%3E" />
+  <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 128'%3E%3Crect width='128' height='128' rx='28' fill='%23292524'/%3E%3Ctext x='64' y='78' text-anchor='middle' fill='%23FFFFFF' font-family='sans-serif' font-size='44' font-weight='800'%3EADM%3C/text%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://cdn.jsdelivr.net" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
   <style>
@@ -52,7 +56,7 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* 8자리 비밀번호 잠금 화면 */
+    /* 8자리 비밀번호 잠금 화면 (외부 노출 차단) */
     .lock-screen {
       min-height: 100vh;
       display: flex;
@@ -64,27 +68,28 @@
 
     .lock-card {
       width: 100%;
-      max-width: 390px;
+      max-width: 380px;
       background: var(--bg-card);
       border: 1.5px solid var(--border-light);
       border-radius: 20px;
-      padding: 28px 22px;
+      padding: 30px 22px;
       text-align: center;
     }
 
     .lock-badge {
       display: inline-block;
-      font-size: 11.5px;
+      font-size: 11px;
       font-weight: 800;
-      color: var(--emerald);
-      background: var(--emerald-bg);
+      letter-spacing: 0.08em;
+      color: var(--text-sub);
+      background: var(--bg-subtle);
       padding: 4px 10px;
       border-radius: 999px;
       margin-bottom: 12px;
     }
 
     .lock-title {
-      font-size: 20px;
+      font-size: 21px;
       font-weight: 800;
       letter-spacing: -0.02em;
       margin-bottom: 6px;
@@ -114,7 +119,7 @@
     }
 
     .lock-input:focus {
-      border-color: var(--emerald);
+      border-color: var(--charcoal);
       background: var(--bg-card);
     }
 
@@ -133,12 +138,12 @@
     .lock-remember input {
       width: 16px;
       height: 16px;
-      accent-color: var(--emerald);
+      accent-color: var(--charcoal);
     }
 
     .lock-btn {
       width: 100%;
-      background: var(--emerald);
+      background: var(--charcoal);
       color: #FFFFFF;
       border: none;
       border-radius: 12px;
@@ -154,15 +159,6 @@
       font-weight: 700;
       color: var(--red);
       min-height: 18px;
-    }
-
-    .lock-sub-note {
-      margin-top: 14px;
-      padding-top: 14px;
-      border-top: 1px solid var(--border-light);
-      font-size: 11.5px;
-      color: var(--text-muted);
-      word-break: keep-all;
     }
 
     /* 메인 앱 쉘 */
@@ -395,6 +391,111 @@
       border-color: var(--emerald);
     }
 
+    .parsed-site-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      padding-left: 70px;
+    }
+
+    .parsed-site-tag {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 5px;
+      background: var(--blue-bg);
+      color: var(--blue);
+    }
+
+    /* 거주 환경 5가지 조건 카드 */
+    .env-box {
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-light);
+      border-radius: 12px;
+      padding: 10px;
+      margin-bottom: 12px;
+    }
+
+    .env-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+      margin-bottom: 7px;
+    }
+
+    .env-title {
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--text-main);
+    }
+
+    .env-cfg-link {
+      border: 1px solid var(--border-mid);
+      background: var(--bg-card);
+      border-radius: 6px;
+      padding: 3px 8px;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-sub);
+      cursor: pointer;
+    }
+
+    .env-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 4px;
+    }
+
+    .env-btn {
+      border: 1.5px solid var(--border-light);
+      background: var(--bg-card);
+      border-radius: 8px;
+      padding: 7px 2px;
+      text-align: center;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1px;
+    }
+
+    .env-btn.active {
+      background: var(--indigo-bg);
+      border-color: var(--indigo);
+    }
+
+    .env-btn-name {
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--text-main);
+      word-break: keep-all;
+      line-height: 1.2;
+    }
+
+    .env-btn.active .env-btn-name {
+      color: var(--indigo);
+    }
+
+    .env-btn-val {
+      font-size: 10.5px;
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+
+    .env-btn.active .env-btn-val {
+      color: var(--indigo);
+    }
+
+    .env-rule-note {
+      margin-top: 6px;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-sub);
+      word-break: keep-all;
+    }
+
     /* 계산 항목 리스트 */
     .empty-box {
       text-align: center;
@@ -556,6 +657,7 @@
       color: var(--text-main);
       cursor: pointer;
       text-align: center;
+      word-break: keep-all;
     }
 
     .quick-adj-btn.active-minus {
@@ -799,8 +901,8 @@
 
     .cfg-tabs {
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 4px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 5px;
       margin-bottom: 12px;
     }
 
@@ -808,7 +910,7 @@
       border: 1px solid var(--border-light);
       background: var(--bg-canvas);
       border-radius: 8px;
-      padding: 8px 2px;
+      padding: 8px 4px;
       font-size: 11.5px;
       font-weight: 700;
       color: var(--text-sub);
@@ -856,6 +958,10 @@
       grid-template-columns: repeat(3, 1fr);
     }
 
+    .cfg-mat-grid.one {
+      grid-template-columns: 1fr;
+    }
+
     .cfg-mat-field {
       background: var(--bg-card);
       border: 1px solid var(--border-light);
@@ -883,6 +989,58 @@
       background: transparent;
       font-size: 13.5px;
       font-weight: 800;
+      font-family: inherit;
+      color: var(--text-main);
+      outline: none;
+    }
+
+    .env-cfg-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      background: var(--bg-canvas);
+      border: 1px solid var(--border-light);
+      border-radius: 10px;
+      padding: 9px 11px;
+      margin-bottom: 7px;
+    }
+
+    .env-cfg-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .env-cfg-name {
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--text-main);
+    }
+
+    .env-cfg-won {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--emerald);
+    }
+
+    .env-cfg-input-box {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-mid);
+      border-radius: 8px;
+      padding: 5px 9px;
+      flex-shrink: 0;
+    }
+
+    .env-cfg-input {
+      width: 56px;
+      border: none;
+      background: transparent;
+      font-size: 14px;
+      font-weight: 800;
+      text-align: right;
       font-family: inherit;
       color: var(--text-main);
       outline: none;
@@ -958,12 +1116,12 @@
 </head>
 <body>
 
-  <!-- 8자리 비밀번호 잠금 화면 -->
+  <!-- 8자리 비밀번호 잠금 화면 (외부 노출 차단) -->
   <div id="lockScreen" class="lock-screen">
     <div class="lock-card">
-      <div class="lock-badge">OWNER ONLY</div>
-      <h1 class="lock-title">부산딥클린 전용 견적기</h1>
-      <p class="lock-desc">사장님 전용 관리 페이지입니다.<br />8자리 비밀번호를 입력해 주세요.</p>
+      <div class="lock-badge">ADMIN ONLY</div>
+      <h1 class="lock-title">관리자 전용</h1>
+      <p class="lock-desc">접근 권한이 필요한 페이지입니다.<br />8자리 비밀번호를 입력해 주세요.</p>
       <input id="lockInput" class="lock-input" type="password" maxlength="8" inputmode="numeric" placeholder="8자리 입력" onkeydown="if(event.key==='Enter') tryUnlock();" />
       <label class="lock-remember">
         <input id="keepLogin" type="checkbox" checked />
@@ -971,7 +1129,6 @@
       </label>
       <button type="button" class="lock-btn" onclick="tryUnlock()">잠금 해제</button>
       <div id="lockErr" class="lock-err"></div>
-      <div class="lock-sub-note">단가표는 현재 사용 중인 기기 내부에만 안전하게 보관되며 외부로 전송되지 않습니다.</div>
     </div>
   </div>
 
@@ -980,11 +1137,11 @@
     <header class="topbar">
       <div class="topbar-inner">
         <div>
-          <div class="brand-title">부산딥클린 전용 견적기</div>
+          <div class="brand-title">관리자 전용</div>
           <div class="brand-sub">원터치 자동 계산 및 답장 생성</div>
         </div>
         <div class="topbar-actions">
-          <button type="button" class="top-btn primary" onclick="openSettings()">단가표·보안</button>
+          <button type="button" class="top-btn primary" onclick="openSettings('grout')">단가표·보안</button>
           <button type="button" class="top-btn" onclick="lockNow()">잠금</button>
         </div>
       </div>
@@ -992,7 +1149,7 @@
 
     <main class="wrap">
       <div id="linkBanner" class="status-banner"></div>
-      <div id="priceEmptyWarn" class="warn-banner" onclick="openSettings()">
+      <div id="priceEmptyWarn" class="warn-banner" onclick="openSettings('grout')">
         현재 저장된 단가표가 비어 있습니다. 여기를 눌러 우리 업체 단가를 한 번만 입력해 두시면 다음부터 1초 만에 자동 계산됩니다.
       </div>
 
@@ -1014,7 +1171,7 @@
         </div>
       </section>
 
-      <!-- 2단계: 항목별 단가 확인 및 현장 변수 조정 -->
+      <!-- 2단계: 항목별 단가 확인 및 거주 환경·현장 변수 조정 -->
       <section class="card">
         <div class="card-head">
           <div>
@@ -1027,11 +1184,12 @@
         <div class="meta-grid">
           <div class="meta-row">
             <span class="meta-label">현장 정보</span>
-            <input id="metaRegion" class="meta-input" type="text" placeholder="예: 부산 남구 해링턴 마레 34평" oninput="syncMetaAndReply()" />
+            <input id="metaRegion" class="meta-input" type="text" placeholder="예: 부산, 감만우성, 34평" oninput="onMetaRegionChange()" />
           </div>
+          <div id="parsedSiteBar" class="parsed-site-bar"></div>
           <div class="meta-row">
             <span class="meta-label">거주 상태</span>
-            <input id="metaResidence" class="meta-input" type="text" placeholder="예: 신축 (올해 준공 입주)" oninput="syncMetaAndReply()" />
+            <input id="metaResidence" class="meta-input" type="text" placeholder="예: 구축 (5년 이상), 거주 중" oninput="onMetaResidenceChange()" />
           </div>
           <div class="meta-row">
             <span class="meta-label">희망 일정</span>
@@ -1039,9 +1197,19 @@
           </div>
         </div>
 
+        <!-- 거주 환경 5가지 조건 추가금 스위치 -->
+        <div class="env-box">
+          <div class="env-head">
+            <span class="env-title">거주 환경 추가금 (터치하여 켜기/끄기)</span>
+            <button type="button" class="env-cfg-link" onclick="openSettings('env')">금액 설정</button>
+          </div>
+          <div id="envBtnGrid" class="env-grid"></div>
+          <div id="envRuleNote" class="env-rule-note"></div>
+        </div>
+
         <div id="calcListWrap"></div>
 
-        <div class="section-sub-label">현장 변수 및 할인 원터치 반영 (만원 단위)</div>
+        <div class="section-sub-label">현장 변수 · 출장비 · 할인 원터치 반영 (만원 단위)</div>
         <div class="quick-adj-grid" id="quickAdjGrid"></div>
 
         <div class="custom-adj-form">
@@ -1056,6 +1224,10 @@
           <div class="total-line">
             <span>시공 정가 합계</span>
             <strong id="sumSubtotal">0원</strong>
+          </div>
+          <div class="total-line">
+            <span id="sumEnvLabel">거주 환경 추가금</span>
+            <strong id="sumEnv">0원</strong>
           </div>
           <div class="total-line">
             <span>할인 및 현장 조정</span>
@@ -1120,6 +1292,7 @@
         <button type="button" class="cfg-tab" data-ctab="screen" onclick="switchCfgTab('screen')">02 방충망</button>
         <button type="button" class="cfg-tab" data-ctab="coating" onclick="switchCfgTab('coating')">03 코팅</button>
         <button type="button" class="cfg-tab" data-ctab="silicone" onclick="switchCfgTab('silicone')">04 실리콘</button>
+        <button type="button" class="cfg-tab" data-ctab="env" onclick="switchCfgTab('env')">거주환경</button>
         <button type="button" class="cfg-tab" data-ctab="security" onclick="switchCfgTab('security')">보안·백업</button>
       </div>
 
@@ -1130,15 +1303,29 @@
   <div id="toast" class="toast"></div>
 
   <script>
-    const CFG_STORAGE_KEY = 'bdc_calc_cfg_v1';
-    const AUTH_STORAGE_KEY = 'bdc_calc_auth_v1';
+    const CFG_STORAGE_KEY = 'bdc_calc_cfg_v3';
+    const AUTH_STORAGE_KEY = 'bdc_calc_auth_v3';
     const DEFAULT_PW = '00000000';
 
-    /* index.html과 정확히 일치하는 4대 시공 기준표 (단축코드 복원용) */
+    /* 5가지 거주 환경 기준표 */
+    const ENV_DEFS = [
+      { id: 'new', shortName: '신축', fullName: '신축 (올해 준공 입주)', keywords: ['신축'] },
+      { id: 'semi', shortName: '준신축', fullName: '준신축 (2~4년)', keywords: ['준신축'] },
+      { id: 'old', shortName: '구축', fullName: '구축 (5년 이상)', keywords: ['구축'] },
+      { id: 'remodel', shortName: '리모델링', fullName: '리모델링 공사 후', keywords: ['리모델링'] },
+      { id: 'living', shortName: '거주 중', fullName: '거주 중', keywords: ['거주'] }
+    ];
+
+    /* index.html과 100% 일치하는 4대 시공 기준표 */
     const CATALOG = {
       grout: {
         title: '01 프리미엄 줄눈',
-        mats: ['스타라이크 프로', '아스팍톤', '아스팍샤인', '폴리아스파틱'],
+        mats: [
+          { id: '스타라이크 프로', label: '스타라이크 프로' },
+          { id: '아스팍톤', label: '아스팍톤' },
+          { id: '아스팍샤인', label: '아스팍샤인' },
+          { id: '폴리아스파틱', label: '폴리아스파틱(기본)' }
+        ],
         zones: [
           '현관',
           '안방 욕실 바닥',
@@ -1154,7 +1341,11 @@
       },
       screen: {
         title: '02 블랙스텐 방충망',
-        mats: ['고강도 블랙스텐', '미세 촘촘망', '알루미늄망'],
+        mats: [
+          { id: '고강도 블랙스텐', label: '블랙스텐' },
+          { id: '미세 촘촘망', label: '미세촘촘망(기본형)' },
+          { id: '알루미늄망', label: '알루미늄(보급형)' }
+        ],
         wins: [
           '거실 대창',
           '안방 베란다창',
@@ -1166,11 +1357,27 @@
           '방 3'
         ],
         sizes: ['', '거실 대창과 같은 크기', '중간창 크기'],
-        tiers: ['대창 (거실·안방베란다·방 대창)', '중간창 (세탁실·방 중간창)', '소창 (안방팬트리·주방창)']
+        detailedWins: [
+          '거실 대창',
+          '안방 베란다창',
+          '안방 팬트리창',
+          '주방 옆 세탁실 창',
+          '주방 창',
+          '방 1 · 거실 대창과 같은 크기',
+          '방 1 · 중간창 크기',
+          '방 2 · 거실 대창과 같은 크기',
+          '방 2 · 중간창 크기',
+          '방 3 · 거실 대창과 같은 크기',
+          '방 3 · 중간창 크기'
+        ]
       },
       coating: {
         title: '03 욕실·타일 코팅',
-        mats: ['700 Z', '700 X', '700 R'],
+        mats: [
+          { id: '700 Z', label: '700 Z' },
+          { id: '700 X', label: '700 X' },
+          { id: '700 R', label: '700 R' }
+        ],
         zones: [
           '주방 상판',
           '거실 타일',
@@ -1182,7 +1389,9 @@
       },
       silicone: {
         title: '04 항균 바이오 실리콘',
-        mats: ['무펄', '펄'],
+        mats: [
+          { id: '통합단가', label: '무펄 · 펄 동일 단가' }
+        ],
         zones: [
           '주방 상판 테두리',
           '안방 욕실 (세로줄 벽면·젠다이 포함)',
@@ -1196,39 +1405,49 @@
     const QUICK_ADJ_PRESETS = [
       { id: 'bundle5', label: '올인원 동시 시공 할인', amount: -5 },
       { id: 'bundle10', label: '올인원 동시 시공 할인', amount: -10 },
-      { id: 'living5', label: '거주 중 시공 보양·작업', amount: 5 },
-      { id: 'old5', label: '구축 기존 제거·난이도 추가', amount: 5 }
+      { id: 'travel2', label: '시외 출장비 (양산·김해)', amount: 2 },
+      { id: 'travel3', label: '시외 출장비 (창원·울산·밀양)', amount: 3 }
     ];
 
     function createEmptyPrices() {
       const p = { grout: {}, screen: {}, coating: {}, silicone: {} };
       CATALOG.grout.zones.forEach(function (z) {
         p.grout[z] = {};
-        CATALOG.grout.mats.forEach(function (m) { p.grout[z][m] = 0; });
+        CATALOG.grout.mats.forEach(function (m) { p.grout[z][m.id] = 0; });
       });
-      CATALOG.screen.tiers.forEach(function (t) {
-        p.screen[t] = {};
-        CATALOG.screen.mats.forEach(function (m) { p.screen[t][m] = 0; });
+      CATALOG.screen.detailedWins.forEach(function (w) {
+        p.screen[w] = {};
+        CATALOG.screen.mats.forEach(function (m) { p.screen[w][m.id] = 0; });
       });
       CATALOG.coating.zones.forEach(function (z) {
         p.coating[z] = {};
-        CATALOG.coating.mats.forEach(function (m) { p.coating[z][m] = 0; });
+        CATALOG.coating.mats.forEach(function (m) { p.coating[z][m.id] = 0; });
       });
       CATALOG.silicone.zones.forEach(function (z) {
-        p.silicone[z] = {};
-        CATALOG.silicone.mats.forEach(function (m) { p.silicone[z][m] = 0; });
+        p.silicone[z] = 0;
       });
       return p;
     }
 
+    function createEmptyEnvPrices() {
+      return { new: 0, semi: 0, old: 0, remodel: 0, living: 0 };
+    }
+
     let ownerCfg = {
       pw: DEFAULT_PW,
-      prices: createEmptyPrices()
+      prices: createEmptyPrices(),
+      envPrices: createEmptyEnvPrices(),
+      envDupMode: 'sum',
+      envScope: 'once'
     };
 
     const appState = {
       region: '',
+      parsedRegion: '',
+      parsedComplex: '',
+      parsedPyeong: 0,
       residence: '',
+      activeEnvIds: [],
       schedule: '',
       items: [],
       quickAdjIds: [],
@@ -1245,21 +1464,45 @@
         if (raw) {
           const parsed = JSON.parse(raw);
           const base = createEmptyPrices();
-          ['grout', 'screen', 'coating', 'silicone'].forEach(function (svc) {
+          ['grout', 'screen', 'coating'].forEach(function (svc) {
             if (parsed.prices && parsed.prices[svc]) {
               Object.keys(base[svc]).forEach(function (k) {
                 if (parsed.prices[svc][k]) {
                   Object.keys(base[svc][k]).forEach(function (m) {
                     const v = Number(parsed.prices[svc][k][m]);
-                    base[svc][k][m] = isNaN(v) ? 0 : v;
+                    base[svc][k][m] = isNaN(v) || v < 0 ? 0 : round1(v);
                   });
                 }
               });
             }
           });
+          if (parsed.prices && parsed.prices.silicone) {
+            Object.keys(base.silicone).forEach(function (z) {
+              const rawVal = parsed.prices.silicone[z];
+              if (typeof rawVal === 'object' && rawVal !== null) {
+                const v = Number(rawVal['통합단가'] || rawVal['무펄'] || rawVal['펄'] || 0);
+                base.silicone[z] = isNaN(v) || v < 0 ? 0 : round1(v);
+              } else {
+                const v = Number(rawVal);
+                base.silicone[z] = isNaN(v) || v < 0 ? 0 : round1(v);
+              }
+            });
+          }
+
+          const envBase = createEmptyEnvPrices();
+          if (parsed.envPrices) {
+            ENV_DEFS.forEach(function (eDef) {
+              const v = Number(parsed.envPrices[eDef.id]);
+              envBase[eDef.id] = isNaN(v) ? 0 : round1(v);
+            });
+          }
+
           ownerCfg = {
             pw: (parsed.pw && String(parsed.pw).length === 8) ? String(parsed.pw) : DEFAULT_PW,
-            prices: base
+            prices: base,
+            envPrices: envBase,
+            envDupMode: parsed.envDupMode === 'max' ? 'max' : 'sum',
+            envScope: parsed.envScope === 'per_service' ? 'per_service' : 'once'
           };
         }
       } catch (e) {}
@@ -1272,12 +1515,15 @@
 
     function hasAnyPriceConfigured() {
       let found = false;
-      ['grout', 'screen', 'coating', 'silicone'].forEach(function (svc) {
+      ['grout', 'screen', 'coating'].forEach(function (svc) {
         Object.keys(ownerCfg.prices[svc]).forEach(function (z) {
           Object.keys(ownerCfg.prices[svc][z]).forEach(function (m) {
             if (Number(ownerCfg.prices[svc][z][m]) > 0) found = true;
           });
         });
+      });
+      Object.keys(ownerCfg.prices.silicone).forEach(function (z) {
+        if (Number(ownerCfg.prices.silicone[z]) > 0) found = true;
       });
       return found;
     }
@@ -1285,6 +1531,91 @@
     function updatePriceEmptyWarning() {
       const el = document.getElementById('priceEmptyWarn');
       if (el) el.classList.toggle('show', !hasAnyPriceConfigured());
+    }
+
+    /* 현장 정보 파싱 (부산, 감만우성, 34평) */
+    const REGION_KEYWORDS = ['부산', '양산', '김해', '창원', '울산', '밀양', '진해', '마산', '거제', '경남'];
+    const TYPE_TO_PYEONG = { '59': 25, '72': 29, '74': 30, '76': 31, '84': 34, '99': 39, '101': 40, '114': 45 };
+
+    function parseSiteText(raw) {
+      const text = String(raw || '').trim();
+      if (!text) return { region: '', complex: '', pyeong: 0 };
+      let foundRegion = '';
+      for (let i = 0; i < REGION_KEYWORDS.length; i++) {
+        if (text.indexOf(REGION_KEYWORDS[i]) >= 0) {
+          foundRegion = REGION_KEYWORDS[i];
+          break;
+        }
+      }
+      let pyeong = 0;
+      const pyMatch = text.match(/(\d{2,3})\s*(?:평형|평|py|PY)/);
+      if (pyMatch) {
+        pyeong = parseInt(pyMatch[1], 10);
+      } else {
+        const typeMatch = text.match(/\b(59|72|74|76|84|99|101|114)\s*(?:타입|형|A|B|C|D|㎡|m2)?\b/i);
+        if (typeMatch) pyeong = TYPE_TO_PYEONG[typeMatch[1]] || 0;
+      }
+      let cleaned = text.replace(/[,/·]+/g, ' ');
+      if (foundRegion) cleaned = cleaned.replace(foundRegion, ' ');
+      cleaned = cleaned
+        .replace(/(\d{2,3})\s*(?:평형|평|py|PY)/g, ' ')
+        .replace(/\b(59|72|74|76|84|99|101|114)\s*(?:타입|형|A|B|C|D|㎡|m2)?\b/gi, ' ')
+        .replace(/\s+/g, ' ')
+        .trim();
+
+      return { region: foundRegion, complex: cleaned, pyeong: pyeong };
+    }
+
+    function renderParsedSiteBar() {
+      const bar = document.getElementById('parsedSiteBar');
+      if (!bar) return;
+      const tags = [];
+      if (appState.parsedRegion) tags.push('<span class="parsed-site-tag">지역: ' + escapeHtml(appState.parsedRegion) + '</span>');
+      if (appState.parsedComplex) tags.push('<span class="parsed-site-tag">단지: ' + escapeHtml(appState.parsedComplex) + '</span>');
+      if (appState.parsedPyeong > 0) tags.push('<span class="parsed-site-tag">평수: ' + appState.parsedPyeong + '평</span>');
+      bar.innerHTML = tags.join('');
+    }
+
+    function onMetaRegionChange() {
+      appState.region = document.getElementById('metaRegion').value;
+      const parsed = parseSiteText(appState.region);
+      appState.parsedRegion = parsed.region;
+      appState.parsedComplex = parsed.complex;
+      appState.parsedPyeong = parsed.pyeong;
+      renderParsedSiteBar();
+      rebuildReplyText(true);
+    }
+
+    /* 거주 상태 문자열에서 5가지 환경 자동 감지 */
+    function detectEnvIdsFromText(resText) {
+      const text = String(resText || '');
+      const matched = [];
+      ENV_DEFS.forEach(function (eDef) {
+        if (eDef.id === 'new') {
+          if (text.indexOf('준신축') >= 0) {
+            const stripped = text.replace(/준신축/g, '');
+            if (stripped.indexOf('신축') >= 0) matched.push('new');
+          } else if (text.indexOf('신축') >= 0) {
+            matched.push('new');
+          }
+        } else {
+          for (let i = 0; i < eDef.keywords.length; i++) {
+            if (text.indexOf(eDef.keywords[i]) >= 0) {
+              matched.push(eDef.id);
+              break;
+            }
+          }
+        }
+      });
+      return matched;
+    }
+
+    function onMetaResidenceChange() {
+      appState.residence = document.getElementById('metaResidence').value;
+      appState.activeEnvIds = detectEnvIdsFromText(appState.residence);
+      renderEnvButtons();
+      renderTotals();
+      rebuildReplyText(true);
     }
 
     /* 잠금 인증 */
@@ -1351,6 +1682,10 @@
       return String(val || '');
     }
 
+    function getMatIdList(serviceKey) {
+      return CATALOG[serviceKey].mats.map(function (m) { return m.id; });
+    }
+
     function loadFromUrlIfPresent() {
       const params = new URLSearchParams(window.location.search);
       const q = params.get('q');
@@ -1360,46 +1695,56 @@
         const jsonStr = decodeBase64Url(q);
         const data = JSON.parse(jsonStr);
         appState.region = data.r || '';
+        const fallbackParsed = parseSiteText(appState.region);
+        appState.parsedRegion = data.rg || fallbackParsed.region;
+        appState.parsedComplex = data.cx || fallbackParsed.complex;
+        appState.parsedPyeong = Number(data.py) || fallbackParsed.pyeong;
+
         appState.residence = Array.isArray(data.s) ? data.s.join(', ') : (data.s || '');
+        appState.activeEnvIds = detectEnvIdsFromText(appState.residence);
         appState.schedule = data.d || '';
         appState.items = [];
         appState.quickAdjIds = [];
         appState.customAdjs = [];
 
         if (Array.isArray(data.g)) {
+          const gMats = getMatIdList('grout');
           data.g.forEach(function (row) {
             const zone = resolveRef(row[0], CATALOG.grout.zones);
-            const mat = resolveRef(row[1], CATALOG.grout.mats);
+            const mat = resolveRef(row[1], gMats);
             const note = row[2] || '';
             addItemObj('grout', zone, mat, 1, '', note);
           });
         }
         if (Array.isArray(data.sc)) {
+          const scMats = getMatIdList('screen');
           data.sc.forEach(function (row) {
             const win = resolveRef(row[0], CATALOG.screen.wins);
-            const mat = resolveRef(row[1], CATALOG.screen.mats);
+            const mat = resolveRef(row[1], scMats);
             const count = Math.max(1, Number(row[2]) || 1);
             const size = resolveRef(row[3], CATALOG.screen.sizes);
             addItemObj('screen', win, mat, count, size, '');
           });
         }
         if (Array.isArray(data.c)) {
+          const cMats = getMatIdList('coating');
           data.c.forEach(function (row) {
             const zone = resolveRef(row[0], CATALOG.coating.zones);
-            const mat = resolveRef(row[1], CATALOG.coating.mats);
+            const mat = resolveRef(row[1], cMats);
             addItemObj('coating', zone, mat, 1, '', '');
           });
         }
         if (Array.isArray(data.si)) {
+          const siMats = ['무펄', '펄'];
           data.si.forEach(function (row) {
             const zone = resolveRef(row[0], CATALOG.silicone.zones);
-            const mat = resolveRef(row[1], CATALOG.silicone.mats);
+            const mat = resolveRef(row[1], siMats);
             addItemObj('silicone', zone, mat, 1, '', '');
           });
         }
 
         const banner = document.getElementById('linkBanner');
-        banner.textContent = '문자 접수 링크에서 고객 선택 내역 ' + appState.items.length + '건을 자동으로 불러왔습니다.';
+        banner.textContent = '접수 링크에서 고객 선택 내역 ' + appState.items.length + '건을 자동으로 불러왔습니다.';
         banner.classList.add('show');
 
         appState.smsCollapsed = true;
@@ -1410,22 +1755,23 @@
       }
     }
 
-    function getScreenTier(winName, sizeLabel) {
-      if (winName === '거실 대창' || winName === '안방 베란다창') return CATALOG.screen.tiers[0];
+    function getScreenDetailedKey(winName, sizeLabel) {
       if (winName === '방 1' || winName === '방 2' || winName === '방 3') {
-        return (sizeLabel && sizeLabel.indexOf('대창') >= 0) ? CATALOG.screen.tiers[0] : CATALOG.screen.tiers[1];
+        if (sizeLabel === '중간창 크기') return winName + ' · 중간창 크기';
+        return winName + ' · 거실 대창과 같은 크기';
       }
-      if (winName === '주방 옆 세탁실 창') return CATALOG.screen.tiers[1];
-      if (winName === '안방 팬트리창' || winName === '주방 창') return CATALOG.screen.tiers[2];
-      return '';
+      return winName;
     }
 
     function lookupDefaultPrice(service, zone, mat, count, sizeLabel) {
       if (service === 'screen') {
-        const tier = getScreenTier(zone, sizeLabel);
-        if (!tier || !ownerCfg.prices.screen[tier]) return 0;
-        const unit = Number(ownerCfg.prices.screen[tier][mat]) || 0;
+        const detailedWin = getScreenDetailedKey(zone, sizeLabel);
+        if (!ownerCfg.prices.screen[detailedWin]) return 0;
+        const unit = Number(ownerCfg.prices.screen[detailedWin][mat]) || 0;
         return round1(unit * (count || 1));
+      }
+      if (service === 'silicone') {
+        return round1(Number(ownerCfg.prices.silicone[zone]) || 0);
       }
       if (ownerCfg.prices[service] && ownerCfg.prices[service][zone]) {
         return round1(Number(ownerCfg.prices[service][zone][mat]) || 0);
@@ -1461,19 +1807,19 @@
       document.getElementById('smsInput').value = [
         '[부산딥클린 올인원 홈케어 견적 문의]',
         '',
-        '현장 정보: 부산 남구 해링턴 마레 34평',
-        '거주 상태: 신축 (올해 준공 입주)',
+        '현장 정보: 부산, 감만우성, 34평',
+        '거주 상태: 구축 (5년 이상), 거주 중',
         '시공 희망 날짜: 11월 27일(금) ~ 11월 29일(일) (총 3일) · 앞뒤 날짜 조율 가능',
         '',
         '[01 프리미엄 줄눈]',
         '- 현관 [스타라이크 프로]',
         '- 안방 욕실 바닥 [아스팍톤]',
-        '- 공용 욕실 바닥 [아스팍톤]',
+        '- 공용 욕실 바닥 [폴리아스파틱]',
         '- 거실·주방·복도 바닥 [스타라이크 프로] (34평 전체)',
         '',
         '[02 블랙스텐 방충망]',
         '- 거실 대창 1개 [고강도 블랙스텐]',
-        '- 방 1 · 중간창 크기 2개 [고강도 블랙스텐]',
+        '- 방 1 · 중간창 크기 2개 [미세 촘촘망]',
         '',
         '[03 욕실·타일 코팅]',
         '- 주방 상판 [700 Z]',
@@ -1494,7 +1840,11 @@
       }
 
       appState.region = '';
+      appState.parsedRegion = '';
+      appState.parsedComplex = '';
+      appState.parsedPyeong = 0;
       appState.residence = '';
+      appState.activeEnvIds = [];
       appState.schedule = '';
       appState.items = [];
       appState.quickAdjIds = [];
@@ -1508,10 +1858,15 @@
         if (!line) return;
         if (line.indexOf('현장 정보:') === 0) {
           appState.region = line.replace('현장 정보:', '').trim();
+          const p = parseSiteText(appState.region);
+          appState.parsedRegion = p.region;
+          appState.parsedComplex = p.complex;
+          appState.parsedPyeong = p.pyeong;
           return;
         }
         if (line.indexOf('거주 상태:') === 0) {
           appState.residence = line.replace('거주 상태:', '').trim();
+          appState.activeEnvIds = detectEnvIdsFromText(appState.residence);
           return;
         }
         if (line.indexOf('시공 희망 날짜:') === 0) {
@@ -1576,6 +1931,8 @@
       document.getElementById('metaRegion').value = appState.region;
       document.getElementById('metaResidence').value = appState.residence;
       document.getElementById('metaSchedule').value = appState.schedule;
+      renderParsedSiteBar();
+      renderEnvButtons();
       renderCalcList();
       renderQuickAdjs();
       renderAdjChips();
@@ -1588,6 +1945,51 @@
       appState.residence = document.getElementById('metaResidence').value;
       appState.schedule = document.getElementById('metaSchedule').value;
       rebuildReplyText(true);
+    }
+
+    function toggleEnvId(envId) {
+      const idx = appState.activeEnvIds.indexOf(envId);
+      if (idx >= 0) {
+        appState.activeEnvIds.splice(idx, 1);
+      } else {
+        appState.activeEnvIds.push(envId);
+      }
+      renderEnvButtons();
+      renderTotals();
+      rebuildReplyText(true);
+    }
+
+    function renderEnvButtons() {
+      const grid = document.getElementById('envBtnGrid');
+      const noteEl = document.getElementById('envRuleNote');
+      if (!grid) return;
+
+      let html = '';
+      ENV_DEFS.forEach(function (eDef) {
+        const isOn = appState.activeEnvIds.indexOf(eDef.id) >= 0;
+        const val = Number(ownerCfg.envPrices[eDef.id]) || 0;
+        const signStr = val > 0 ? '+' + val + '만' : (val < 0 ? val + '만' : '+0만');
+        html += '<button type="button" class="env-btn' + (isOn ? ' active' : '') + '" onclick="toggleEnvId(\'' + eDef.id + '\')">' +
+          '<span class="env-btn-name">' + escapeHtml(eDef.shortName) + '</span>' +
+          '<span class="env-btn-val">' + signStr + '</span>' +
+          '</button>';
+      });
+      grid.innerHTML = html;
+
+      const dupTxt = ownerCfg.envDupMode === 'max' ? '중복 시 최대 1개 적용' : '중복 시 각각 합산';
+      const scopeTxt = ownerCfg.envScope === 'per_service' ? '시공 품목 수마다 적용' : '전체 1회 합산';
+      noteEl.textContent = '적용 규칙: ' + dupTxt + ' · ' + scopeTxt;
+    }
+
+    function getDisplayMatLabel(service, matId) {
+      if (service === 'grout' && matId === '폴리아스파틱') return '폴리아스파틱(기본)';
+      if (service === 'screen') {
+        if (matId === '고강도 블랙스텐') return '블랙스텐';
+        if (matId === '미세 촘촘망') return '미세촘촘망(기본형)';
+        if (matId === '알루미늄망') return '알루미늄(보급형)';
+      }
+      if (service === 'silicone') return (matId || '무펄') + ' (무펄·펄 동일단가)';
+      return matId;
     }
 
     function renderCalcList() {
@@ -1620,12 +2022,14 @@
             titleText += ' - ' + it.note;
           }
 
+          const matLabel = getDisplayMatLabel(svc, it.mat);
+
           html += '<div class="calc-row' + (isZero ? ' need-price' : '') + '">' +
             '<div class="calc-row-top">' +
               '<div>' +
                 '<div class="calc-name">' + escapeHtml(titleText) + '</div>' +
                 '<div class="calc-meta-tags">' +
-                  (it.mat ? '<span class="tag-pill">' + escapeHtml(it.mat) + '</span>' : '') +
+                  (matLabel ? '<span class="tag-pill">' + escapeHtml(matLabel) + '</span>' : '') +
                   (isZero ? '<span class="tag-pill warn">금액 확인 필요</span>' : '') +
                 '</div>' +
               '</div>' +
@@ -1696,6 +2100,10 @@
           appState.quickAdjIds = appState.quickAdjIds.filter(function (x) { return x !== 'bundle10'; });
         } else if (id === 'bundle10') {
           appState.quickAdjIds = appState.quickAdjIds.filter(function (x) { return x !== 'bundle5'; });
+        } else if (id === 'travel2') {
+          appState.quickAdjIds = appState.quickAdjIds.filter(function (x) { return x !== 'travel3'; });
+        } else if (id === 'travel3') {
+          appState.quickAdjIds = appState.quickAdjIds.filter(function (x) { return x !== 'travel2'; });
         }
         appState.quickAdjIds.push(id);
       }
@@ -1745,9 +2153,60 @@
       wrap.innerHTML = html;
     }
 
+    function calcEnvAmount() {
+      const activeList = [];
+      ENV_DEFS.forEach(function (eDef) {
+        if (appState.activeEnvIds.indexOf(eDef.id) >= 0) {
+          activeList.push({
+            id: eDef.id,
+            name: eDef.shortName,
+            amount: Number(ownerCfg.envPrices[eDef.id]) || 0
+          });
+        }
+      });
+
+      if (activeList.length === 0) {
+        return { total: 0, names: [] };
+      }
+
+      let base = 0;
+      let usedNames = [];
+
+      if (ownerCfg.envDupMode === 'max') {
+        let best = activeList[0];
+        activeList.forEach(function (x) {
+          if (x.amount > best.amount) best = x;
+        });
+        base = best.amount;
+        usedNames = [best.name];
+      } else {
+        activeList.forEach(function (x) {
+          base += x.amount;
+          usedNames.push(x.name);
+        });
+      }
+
+      let mult = 1;
+      if (ownerCfg.envScope === 'per_service') {
+        const distinctServices = {};
+        appState.items.forEach(function (it) { distinctServices[it.service] = true; });
+        const svcCount = Object.keys(distinctServices).length;
+        mult = svcCount > 0 ? svcCount : 1;
+      }
+
+      return {
+        total: round1(base * mult),
+        names: usedNames,
+        mult: mult
+      };
+    }
+
     function calcSums() {
       let sub = 0;
       appState.items.forEach(function (it) { sub += Number(it.price) || 0; });
+
+      const envInfo = calcEnvAmount();
+
       let adj = 0;
       const activeAdjs = [];
       appState.quickAdjIds.forEach(function (id) {
@@ -1761,15 +2220,32 @@
         adj += c.amount;
         activeAdjs.push({ label: c.label, amount: c.amount });
       });
+
       sub = round1(sub);
       adj = round1(adj);
-      const finalVal = Math.max(0, round1(sub + adj));
-      return { sub: sub, adj: adj, finalVal: finalVal, activeAdjs: activeAdjs };
+      const finalVal = Math.max(0, round1(sub + envInfo.total + adj));
+      return {
+        sub: sub,
+        envTotal: envInfo.total,
+        envNames: envInfo.names,
+        envMult: envInfo.mult || 1,
+        adj: adj,
+        finalVal: finalVal,
+        activeAdjs: activeAdjs
+      };
     }
 
     function renderTotals() {
       const sums = calcSums();
       document.getElementById('sumSubtotal').textContent = formatWonText(sums.sub);
+      const envLabelEl = document.getElementById('sumEnvLabel');
+      if (sums.envNames.length > 0) {
+        const multTxt = sums.envMult > 1 ? ' × ' + sums.envMult + '품목' : '';
+        envLabelEl.textContent = '거주 환경 (' + sums.envNames.join(', ') + multTxt + ')';
+      } else {
+        envLabelEl.textContent = '거주 환경 추가금';
+      }
+      document.getElementById('sumEnv').textContent = (sums.envTotal > 0 ? '+' : '') + formatWonText(sums.envTotal);
       document.getElementById('sumAdj').textContent = (sums.adj > 0 ? '+' : '') + formatWonText(sums.adj);
       document.getElementById('sumFinal').textContent = formatWonText(sums.finalVal);
     }
@@ -1860,8 +2336,13 @@
         lines.push('');
       });
 
-      if (sums.activeAdjs.length > 0) {
+      if (sums.envTotal !== 0 || sums.activeAdjs.length > 0) {
         lines.push('시공 정가 합계: ' + formatWonText(sums.sub));
+        if (sums.envTotal !== 0) {
+          const envSign = sums.envTotal > 0 ? '+' : '';
+          const envTag = sums.envNames.length > 0 ? ' (' + sums.envNames.join(', ') + ')' : '';
+          lines.push('거주 환경 추가금' + envTag + ': ' + envSign + formatWonText(sums.envTotal));
+        }
         sums.activeAdjs.forEach(function (a) {
           const sign = a.amount > 0 ? '+' : '';
           lines.push(a.label + ': ' + sign + formatWonText(a.amount));
@@ -1926,7 +2407,11 @@
 
     function resetEstimate() {
       appState.region = '';
+      appState.parsedRegion = '';
+      appState.parsedComplex = '';
+      appState.parsedPyeong = 0;
       appState.residence = '';
+      appState.activeEnvIds = [];
       appState.schedule = '';
       appState.items = [];
       appState.quickAdjIds = [];
@@ -1942,7 +2427,11 @@
     }
 
     /* 단가표 및 보안 설정 모달 */
-    function openSettings() {
+    function openSettings(targetTab) {
+      if (targetTab) appState.cfgTab = targetTab;
+      document.querySelectorAll('.cfg-tab').forEach(function (b) {
+        b.classList.toggle('active', b.getAttribute('data-ctab') === appState.cfgTab);
+      });
       document.getElementById('settingsModal').classList.add('open');
       renderCfgTab();
     }
@@ -1959,9 +2448,60 @@
       renderCfgTab();
     }
 
+    function updateEnvPreviewWon(envId, valStr) {
+      const num = parseFloat(valStr);
+      const clean = isNaN(num) ? 0 : round1(num);
+      const span = document.getElementById('envWon_' + envId);
+      if (span) {
+        const won = Math.round(clean * 10000);
+        span.textContent = '= ' + won.toLocaleString('ko-KR') + '원';
+      }
+    }
+
+    function setCfgEnvRule(field, val) {
+      ownerCfg[field] = val;
+      renderCfgTab();
+    }
+
     function renderCfgTab() {
       const body = document.getElementById('cfgTabBody');
       const tab = appState.cfgTab;
+
+      if (tab === 'env') {
+        let html = '<div class="cfg-note">5가지 거주 환경별 추가 금액을 만원 단위로 입력합니다 (예: 50,000원은 5, 30,000원은 3). 고객이 선택한 거주 상태에 맞춰 자동으로 반영됩니다.</div>';
+
+        ENV_DEFS.forEach(function (eDef) {
+          const val = Number(ownerCfg.envPrices[eDef.id]) || 0;
+          const won = Math.round(val * 10000);
+          html += '<div class="env-cfg-row">' +
+            '<div class="env-cfg-info">' +
+              '<div class="env-cfg-name">' + escapeHtml(eDef.fullName) + '</div>' +
+              '<div class="env-cfg-won" id="envWon_' + eDef.id + '">= ' + won.toLocaleString('ko-KR') + '원</div>' +
+            '</div>' +
+            '<div class="env-cfg-input-box">' +
+              '<input class="env-cfg-input" data-envid="' + eDef.id + '" type="number" step="0.5" value="' + val + '" oninput="updateEnvPreviewWon(\'' + eDef.id + '\', this.value)" />' +
+              '<span style="font-size:12px; font-weight:700; color:var(--text-sub);">만원</span>' +
+            '</div>' +
+            '</div>';
+        });
+
+        html += '<div class="sec-box" style="margin-top:10px;">' +
+          '<div class="sec-title">중복 선택 시 계산 방식 (예: 구축 + 거주 중)</div>' +
+          '<div class="seg-row">' +
+            '<button type="button" class="seg-btn' + (ownerCfg.envDupMode === 'sum' ? ' active' : '') + '" onclick="setCfgEnvRule(\'envDupMode\', \'sum\')">체크된 환경 모두 합산</button>' +
+            '<button type="button" class="seg-btn' + (ownerCfg.envDupMode === 'max' ? ' active' : '') + '" onclick="setCfgEnvRule(\'envDupMode\', \'max\')">가장 큰 금액 1개만 적용</button>' +
+          '</div>' +
+          '<div class="sec-title" style="margin-top:10px;">추가금 적용 기준</div>' +
+          '<div class="seg-row">' +
+            '<button type="button" class="seg-btn' + (ownerCfg.envScope === 'once' ? ' active' : '') + '" onclick="setCfgEnvRule(\'envScope\', \'once\')">전체 견적에 1회 합산</button>' +
+            '<button type="button" class="seg-btn' + (ownerCfg.envScope === 'per_service' ? ' active' : '') + '" onclick="setCfgEnvRule(\'envScope\', \'per_service\')">시공 품목 수마다 적용</button>' +
+          '</div>' +
+        '</div>';
+
+        html += '<button type="button" class="cfg-save-btn" onclick="saveEnvPrices()">거주 환경 금액 저장하기</button>';
+        body.innerHTML = html;
+        return;
+      }
 
       if (tab === 'security') {
         body.innerHTML = '' +
@@ -1974,7 +2514,7 @@
           '</div>' +
           '<div class="sec-box">' +
             '<div class="sec-title">단가표 및 설정 백업 / 복원</div>' +
-            '<div class="cfg-note">입력해 둔 단가표와 비밀번호를 파일로 저장해 두면 폰을 바꾸거나 PC에서 쓸 때 1초 만에 그대로 복원할 수 있습니다.</div>' +
+            '<div class="cfg-note">입력해 둔 단가표, 거주 환경 금액, 비밀번호를 파일로 저장해 두면 폰을 바꾸거나 PC에서 쓸 때 1초 만에 그대로 복원할 수 있습니다.</div>' +
             '<div class="sec-btn-row">' +
               '<button type="button" class="mini-btn" style="padding:11px;" onclick="exportCfgBackup()">백업 파일 저장</button>' +
               '<label class="mini-btn" style="padding:11px; text-align:center; cursor:pointer;">백업 파일 복원' +
@@ -1986,13 +2526,15 @@
       }
 
       const svc = CATALOG[tab];
-      const rows = (tab === 'screen') ? svc.tiers : svc.zones;
+      const rows = (tab === 'screen') ? svc.detailedWins : svc.zones;
       const mats = svc.mats;
-      const gridCls = mats.length === 3 ? 'cfg-mat-grid three' : 'cfg-mat-grid';
+      const gridCls = mats.length === 1 ? 'cfg-mat-grid one' : (mats.length === 3 ? 'cfg-mat-grid three' : 'cfg-mat-grid');
 
       let noteText = '모든 금액은 만원 단위로 입력합니다 (예: 15만원은 15, 12만 5천원은 12.5). 0으로 두면 계산 시 현장 확인 항목으로 표시됩니다.';
       if (tab === 'screen') {
-        noteText = '방충망은 창문 1개당 단가(만원)를 입력합니다. 고객이 개수를 선택하면 자동으로 곱해집니다.';
+        noteText = '방충망은 창문 1개당 단가(만원)를 입력합니다. 고객이 선택한 개수만큼 자동으로 곱해집니다.';
+      } else if (tab === 'silicone') {
+        noteText = '실리콘은 무펄·펄 모두 동일한 금액으로 자동 적용됩니다.';
       }
 
       let html = '<div class="cfg-note">' + noteText + '</div>';
@@ -2001,16 +2543,29 @@
         html += '<div class="cfg-zone-box">' +
           '<div class="cfg-zone-name">' + escapeHtml(zoneName) + '</div>' +
           '<div class="' + gridCls + '">';
-        mats.forEach(function (matName, mIdx) {
-          const val = (ownerCfg.prices[tab][zoneName] && ownerCfg.prices[tab][zoneName][matName]) || 0;
+
+        if (tab === 'silicone') {
+          const val = Number(ownerCfg.prices.silicone[zoneName]) || 0;
           html += '<div class="cfg-mat-field">' +
-            '<label class="cfg-mat-label">' + escapeHtml(matName) + '</label>' +
+            '<label class="cfg-mat-label">무펄 · 펄 동일 단가</label>' +
             '<div class="cfg-mat-input-line">' +
-              '<input class="cfg-mat-input" data-r="' + rIdx + '" data-m="' + mIdx + '" type="number" step="0.5" min="0" value="' + val + '" />' +
-              '<span style="font-size:11px; color:var(--text-muted); font-weight:700;">만</span>' +
+              '<input class="cfg-mat-input" data-r="' + rIdx + '" data-m="0" type="number" step="0.5" min="0" value="' + val + '" />' +
+              '<span style="font-size:11px; color:var(--text-muted); font-weight:700;">만원</span>' +
             '</div>' +
             '</div>';
-        });
+        } else {
+          mats.forEach(function (matObj, mIdx) {
+            const val = (ownerCfg.prices[tab][zoneName] && ownerCfg.prices[tab][zoneName][matObj.id]) || 0;
+            html += '<div class="cfg-mat-field">' +
+              '<label class="cfg-mat-label">' + escapeHtml(matObj.label) + '</label>' +
+              '<div class="cfg-mat-input-line">' +
+                '<input class="cfg-mat-input" data-r="' + rIdx + '" data-m="' + mIdx + '" type="number" step="0.5" min="0" value="' + val + '" />' +
+                '<span style="font-size:11px; color:var(--text-muted); font-weight:700;">만</span>' +
+              '</div>' +
+              '</div>';
+          });
+        }
+
         html += '</div></div>';
       });
 
@@ -2018,17 +2573,36 @@
       body.innerHTML = html;
     }
 
+    function saveEnvPrices() {
+      document.querySelectorAll('#cfgTabBody .env-cfg-input').forEach(function (inp) {
+        const eid = inp.getAttribute('data-envid');
+        const val = parseFloat(inp.value);
+        ownerCfg.envPrices[eid] = isNaN(val) ? 0 : round1(val);
+      });
+      saveOwnerCfg();
+      renderEnvButtons();
+      renderTotals();
+      rebuildReplyText(true);
+      showToast('거주 환경 금액이 저장되었습니다');
+    }
+
     function saveCurrentTabPrices() {
       const tab = appState.cfgTab;
       const svc = CATALOG[tab];
-      const rows = (tab === 'screen') ? svc.tiers : svc.zones;
+      const rows = (tab === 'screen') ? svc.detailedWins : svc.zones;
       const mats = svc.mats;
 
       document.querySelectorAll('#cfgTabBody .cfg-mat-input').forEach(function (inp) {
         const r = Number(inp.getAttribute('data-r'));
         const m = Number(inp.getAttribute('data-m'));
         const val = parseFloat(inp.value);
-        ownerCfg.prices[tab][rows[r]][mats[m]] = isNaN(val) || val < 0 ? 0 : round1(val);
+        const cleanVal = isNaN(val) || val < 0 ? 0 : round1(val);
+
+        if (tab === 'silicone') {
+          ownerCfg.prices.silicone[rows[r]] = cleanVal;
+        } else {
+          ownerCfg.prices[tab][rows[r]][mats[m].id] = cleanVal;
+        }
       });
 
       saveOwnerCfg();
@@ -2072,10 +2646,10 @@
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = 'busandeepclean_price_backup.json';
+      a.download = 'admin_price_backup.json';
       a.click();
       URL.revokeObjectURL(url);
-      showToast('단가표 백업 파일이 저장되었습니다');
+      showToast('백업 파일이 저장되었습니다');
     }
 
     function importCfgBackup(event) {
@@ -2092,7 +2666,9 @@
             localStorage.setItem(AUTH_STORAGE_KEY, ownerCfg.pw);
           }
           renderCfgTab();
+          renderEnvButtons();
           if (appState.items.length > 0) reapplyPriceTable();
+          else { renderTotals(); rebuildReplyText(true); }
           showToast('단가표와 설정이 복원되었습니다');
         } catch (err) {
           showToast('올바른 백업 파일이 아닙니다');
