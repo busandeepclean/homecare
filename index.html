@@ -18,6 +18,7 @@
       --text-sub: #57534E;
       --text-muted: #78716C;
       --emerald: #047857;
+      --emerald-mid: #059669;
       --emerald-bg: #ECFDF5;
       --emerald-border: #A7F3D0;
       --gold: #B45309;
@@ -30,6 +31,7 @@
       --indigo-bg: #EEF2FF;
       --indigo-border: #C7D2FE;
       --charcoal: #292524;
+      --sun-red: #DC2626;
     }
 
     html, body, div, span, h1, h2, h3, h4, p, a, button, input, textarea, select, img, label, section, header, footer {
@@ -713,6 +715,245 @@
       background: var(--bg-card);
     }
 
+    /* 시공 희망 날짜 인라인 멀티 달력 카드 */
+    .schedule-card {
+      background: var(--bg-card);
+      border: 1.5px solid var(--border-light);
+      border-radius: 16px;
+      padding: 16px 14px;
+    }
+
+    .cal-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .cal-month-title {
+      font-size: 15.5px;
+      font-weight: 800;
+      color: var(--text-main);
+      letter-spacing: -0.02em;
+    }
+
+    .cal-nav-btn {
+      width: 32px;
+      height: 32px;
+      border: 1px solid var(--border-light);
+      background: var(--bg-canvas);
+      border-radius: 9px;
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--text-main);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .cal-nav-btn:disabled {
+      opacity: 0.35;
+      cursor: default;
+    }
+
+    .cal-weekdays {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      text-align: center;
+      margin-bottom: 6px;
+    }
+
+    .cal-weekday {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--text-muted);
+      padding: 4px 0;
+    }
+
+    .cal-weekday.sun { color: var(--sun-red); }
+    .cal-weekday.sat { color: var(--blue); }
+
+    .cal-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      row-gap: 4px;
+      column-gap: 0;
+    }
+
+    .cal-blank {
+      height: 38px;
+    }
+
+    .cal-day {
+      height: 38px;
+      border: none;
+      background: transparent;
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-main);
+      cursor: pointer;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 9px;
+      margin: 0 2px;
+      transition: background-color 0.12s ease, color 0.12s ease;
+    }
+
+    .cal-day.sun { color: var(--sun-red); }
+    .cal-day.sat { color: var(--blue); }
+
+    .cal-day.past {
+      color: var(--border-mid);
+      cursor: default;
+      font-weight: 500;
+    }
+
+    .cal-day.today:not(.selected) {
+      background: var(--bg-subtle);
+      box-shadow: inset 0 0 0 1.5px var(--emerald);
+      color: var(--emerald);
+    }
+
+    .cal-day.selected {
+      background: var(--emerald);
+      color: #FFFFFF;
+      font-weight: 800;
+    }
+
+    .cal-day.range-start {
+      border-radius: 9px 0 0 9px;
+      margin: 0 0 0 2px;
+    }
+
+    .cal-day.range-mid {
+      background: var(--emerald-mid);
+      border-radius: 0;
+      margin: 0;
+    }
+
+    .cal-day.range-end {
+      border-radius: 0 9px 9px 0;
+      margin: 0 2px 0 0;
+    }
+
+    .cal-summary-box {
+      margin-top: 12px;
+      padding: 11px 12px;
+      background: var(--emerald-bg);
+      border: 1px solid var(--emerald-border);
+      border-radius: 11px;
+    }
+
+    .cal-summary-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .cal-summary-left {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+      min-width: 0;
+    }
+
+    .cal-count-pill {
+      display: inline-block;
+      background: var(--emerald);
+      color: #FFFFFF;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 999px;
+      flex-shrink: 0;
+    }
+
+    .cal-range-text {
+      font-size: 12.5px;
+      font-weight: 800;
+      color: var(--emerald);
+      word-break: keep-all;
+    }
+
+    .cal-clear-btn {
+      background: var(--bg-card);
+      border: 1px solid var(--emerald-border);
+      border-radius: 7px;
+      padding: 4px 8px;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--emerald);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .cal-chips-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-top: 8px;
+    }
+
+    .cal-date-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: var(--bg-card);
+      border: 1px solid var(--emerald-border);
+      border-radius: 7px;
+      padding: 4px 8px;
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--text-main);
+      cursor: pointer;
+    }
+
+    .cal-date-chip-x {
+      color: var(--text-muted);
+      font-weight: 800;
+    }
+
+    .date-opt-label {
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--text-sub);
+      margin: 14px 0 7px;
+    }
+
+    .date-opt-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 7px;
+    }
+
+    .date-opt-btn {
+      background: var(--bg-canvas);
+      border: 1.5px solid var(--border-light);
+      border-radius: 10px;
+      padding: 10px 9px;
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--text-sub);
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.14s ease;
+      word-break: keep-all;
+    }
+
+    .date-opt-btn.selected {
+      background: var(--emerald-bg);
+      border-color: var(--emerald);
+      color: var(--emerald);
+      font-weight: 800;
+    }
+
     /* 실시간 장바구니 보드 */
     .cart-board {
       background: var(--bg-card);
@@ -1156,6 +1397,39 @@
       </div>
     </section>
 
+    <!-- 시공 희망 날짜 (인라인 멀티 날짜 달력 + 빠른 일정 옵션) -->
+    <section class="section-block">
+      <div class="section-head">
+        <div class="section-kicker">PREFERRED SCHEDULE</div>
+        <h2 class="section-title">시공 희망 날짜</h2>
+        <p class="section-note">1일 시공부터 2~4일 연속 시공까지 원하시는 날짜를 여러 개 터치해 선택해 주세요.</p>
+      </div>
+
+      <div class="schedule-card">
+        <div class="cal-topbar">
+          <button type="button" id="calPrevBtn" class="cal-nav-btn" onclick="changeCalMonth(-1)" aria-label="이전 달">&lt;</button>
+          <div id="calMonthTitle" class="cal-month-title"></div>
+          <button type="button" id="calNextBtn" class="cal-nav-btn" onclick="changeCalMonth(1)" aria-label="다음 달">&gt;</button>
+        </div>
+
+        <div class="cal-weekdays">
+          <div class="cal-weekday sun">일</div>
+          <div class="cal-weekday">월</div>
+          <div class="cal-weekday">화</div>
+          <div class="cal-weekday">수</div>
+          <div class="cal-weekday">목</div>
+          <div class="cal-weekday">금</div>
+          <div class="cal-weekday sat">토</div>
+        </div>
+
+        <div id="calGrid" class="cal-grid"></div>
+        <div id="calSummaryWrap"></div>
+
+        <div class="date-opt-label">빠른 일정 옵션</div>
+        <div id="dateOptGrid" class="date-opt-grid"></div>
+      </div>
+    </section>
+
     <!-- 실시간 장바구니 보드 -->
     <section class="section-block">
       <div class="cart-board">
@@ -1385,6 +1659,19 @@
       }
     };
 
+    const DATE_OPTIONS = [
+      { id: '일정 협의 희망', exclusive: true },
+      { id: '최대한 빠른 시공', exclusive: true },
+      { id: '앞뒤 날짜 조율 가능', exclusive: false },
+      { id: '주말 시공 희망', exclusive: false }
+    ];
+
+    const WEEKDAY_NAMES = ['일', '월', '화', '수', '목', '금', '토'];
+    const TODAY_NOW = new Date();
+    const TODAY_Y = TODAY_NOW.getFullYear();
+    const TODAY_M = TODAY_NOW.getMonth();
+    const TODAY_D = TODAY_NOW.getDate();
+
     const state = {
       activeTab: 'grout',
       groutMap: {},
@@ -1396,8 +1683,241 @@
       coatingCustomList: [],
       siliconeMap: {},
       siliconeCustomList: [],
-      residences: []
+      residences: [],
+      calYear: TODAY_Y,
+      calMonth: TODAY_M,
+      selectedDates: [],
+      dateOptions: []
     };
+
+    function pad2(n) {
+      return n < 10 ? '0' + n : String(n);
+    }
+
+    function toDateStr(y, mZero, d) {
+      return y + '-' + pad2(mZero + 1) + '-' + pad2(d);
+    }
+
+    function parseDateParts(str) {
+      const p = str.split('-');
+      return { y: Number(p[0]), m: Number(p[1]), d: Number(p[2]) };
+    }
+
+    function getWeekdayKor(str) {
+      const p = parseDateParts(str);
+      const dt = new Date(p.y, p.m - 1, p.d);
+      return WEEKDAY_NAMES[dt.getDay()];
+    }
+
+    function isNextDay(strA, strB) {
+      const a = parseDateParts(strA);
+      const b = parseDateParts(strB);
+      const tA = Date.UTC(a.y, a.m - 1, a.d);
+      const tB = Date.UTC(b.y, b.m - 1, b.d);
+      return tB - tA === 86400000;
+    }
+
+    function formatShortDate(str) {
+      const p = parseDateParts(str);
+      const prefix = p.y !== TODAY_Y ? p.y + '년 ' : '';
+      return prefix + p.m + '월 ' + p.d + '일(' + getWeekdayKor(str) + ')';
+    }
+
+    function formatChipDate(str) {
+      const p = parseDateParts(str);
+      return p.m + '/' + p.d + '(' + getWeekdayKor(str) + ')';
+    }
+
+    function formatDateRanges(dates) {
+      if (!dates || dates.length === 0) return '';
+      const sorted = dates.slice().sort();
+      const ranges = [];
+      let start = sorted[0];
+      let end = sorted[0];
+
+      for (let i = 1; i < sorted.length; i++) {
+        if (isNextDay(end, sorted[i])) {
+          end = sorted[i];
+        } else {
+          ranges.push(start === end ? formatShortDate(start) : formatShortDate(start) + ' ~ ' + formatShortDate(end));
+          start = sorted[i];
+          end = sorted[i];
+        }
+      }
+      ranges.push(start === end ? formatShortDate(start) : formatShortDate(start) + ' ~ ' + formatShortDate(end));
+      return ranges.join(', ');
+    }
+
+    function getScheduleSummaryText() {
+      const parts = [];
+      if (state.selectedDates.length > 0) {
+        parts.push(formatDateRanges(state.selectedDates) + ' (총 ' + state.selectedDates.length + '일)');
+      }
+      if (state.dateOptions.length > 0) {
+        parts.push(state.dateOptions.join(', '));
+      }
+      return parts.join(' · ');
+    }
+
+    function changeCalMonth(delta) {
+      let nextM = state.calMonth + delta;
+      let nextY = state.calYear;
+      while (nextM < 0) {
+        nextM += 12;
+        nextY -= 1;
+      }
+      while (nextM > 11) {
+        nextM -= 12;
+        nextY += 1;
+      }
+      if (nextY < TODAY_Y || (nextY === TODAY_Y && nextM < TODAY_M)) {
+        return;
+      }
+      state.calYear = nextY;
+      state.calMonth = nextM;
+      renderCalendar();
+    }
+
+    function toggleCalDate(dateStr) {
+      const idx = state.selectedDates.indexOf(dateStr);
+      if (idx >= 0) {
+        state.selectedDates.splice(idx, 1);
+      } else {
+        state.selectedDates.push(dateStr);
+        state.selectedDates.sort();
+        state.dateOptions = state.dateOptions.filter(function (optId) {
+          const meta = DATE_OPTIONS.find(function (o) { return o.id === optId; });
+          return meta ? !meta.exclusive : true;
+        });
+      }
+      renderCalendar();
+      renderDateOptions();
+      renderCart();
+    }
+
+    function clearSelectedDates() {
+      state.selectedDates = [];
+      renderCalendar();
+      renderCart();
+    }
+
+    function clearScheduleAll() {
+      state.selectedDates = [];
+      state.dateOptions = [];
+      renderCalendar();
+      renderDateOptions();
+      renderCart();
+    }
+
+    function toggleDateOption(optId) {
+      const meta = DATE_OPTIONS.find(function (o) { return o.id === optId; });
+      const idx = state.dateOptions.indexOf(optId);
+      if (idx >= 0) {
+        state.dateOptions.splice(idx, 1);
+      } else {
+        if (meta && meta.exclusive) {
+          state.selectedDates = [];
+          state.dateOptions = state.dateOptions.filter(function (existing) {
+            const m = DATE_OPTIONS.find(function (o) { return o.id === existing; });
+            return m ? !m.exclusive : true;
+          });
+        }
+        state.dateOptions.push(optId);
+      }
+      renderCalendar();
+      renderDateOptions();
+      renderCart();
+    }
+
+    function renderCalendar() {
+      const y = state.calYear;
+      const m = state.calMonth;
+      document.getElementById('calMonthTitle').textContent = y + '년 ' + (m + 1) + '월';
+
+      const isCurrentMonth = (y === TODAY_Y && m === TODAY_M);
+      document.getElementById('calPrevBtn').disabled = isCurrentMonth;
+
+      const firstDow = new Date(y, m, 1).getDay();
+      const daysInMonth = new Date(y, m + 1, 0).getDate();
+      const todayStr = toDateStr(TODAY_Y, TODAY_M, TODAY_D);
+
+      const selectedSet = {};
+      state.selectedDates.forEach(function (s) { selectedSet[s] = true; });
+
+      let html = '';
+      for (let b = 0; b < firstDow; b++) {
+        html += '<div class="cal-blank"></div>';
+      }
+
+      for (let d = 1; d <= daysInMonth; d++) {
+        const curStr = toDateStr(y, m, d);
+        const dow = (firstDow + d - 1) % 7;
+        const isPast = curStr < todayStr;
+        const isToday = curStr === todayStr;
+        const isSel = !!selectedSet[curStr];
+
+        const cls = ['cal-day'];
+        if (dow === 0) cls.push('sun');
+        if (dow === 6) cls.push('sat');
+        if (isPast) cls.push('past');
+        if (isToday) cls.push('today');
+
+        if (isSel) {
+          cls.push('selected');
+          const prevDateObj = new Date(y, m, d - 1);
+          const nextDateObj = new Date(y, m, d + 1);
+          const prevStr = toDateStr(prevDateObj.getFullYear(), prevDateObj.getMonth(), prevDateObj.getDate());
+          const nextStr = toDateStr(nextDateObj.getFullYear(), nextDateObj.getMonth(), nextDateObj.getDate());
+          const hasPrev = dow !== 0 && !!selectedSet[prevStr];
+          const hasNext = dow !== 6 && !!selectedSet[nextStr];
+
+          if (hasPrev && hasNext) cls.push('range-mid');
+          else if (!hasPrev && hasNext) cls.push('range-start');
+          else if (hasPrev && !hasNext) cls.push('range-end');
+        }
+
+        if (isPast) {
+          html += '<button type="button" class="' + cls.join(' ') + '" disabled>' + d + '</button>';
+        } else {
+          html += '<button type="button" class="' + cls.join(' ') + '" onclick="toggleCalDate(\'' + curStr + '\')">' + d + '</button>';
+        }
+      }
+
+      document.getElementById('calGrid').innerHTML = html;
+
+      const summaryWrap = document.getElementById('calSummaryWrap');
+      if (state.selectedDates.length === 0) {
+        summaryWrap.innerHTML = '';
+      } else {
+        let chipsHtml = '';
+        state.selectedDates.forEach(function (ds) {
+          chipsHtml += '<button type="button" class="cal-date-chip" onclick="toggleCalDate(\'' + ds + '\')">' +
+            '<span>' + formatChipDate(ds) + '</span>' +
+            '<span class="cal-date-chip-x">&times;</span>' +
+            '</button>';
+        });
+
+        summaryWrap.innerHTML = '<div class="cal-summary-box">' +
+          '<div class="cal-summary-top">' +
+            '<div class="cal-summary-left">' +
+              '<span class="cal-count-pill">총 ' + state.selectedDates.length + '일 선택</span>' +
+              '<span class="cal-range-text">' + escapeHtml(formatDateRanges(state.selectedDates)) + '</span>' +
+            '</div>' +
+            '<button type="button" class="cal-clear-btn" onclick="clearSelectedDates()">날짜 지우기</button>' +
+          '</div>' +
+          '<div class="cal-chips-wrap">' + chipsHtml + '</div>' +
+          '</div>';
+      }
+    }
+
+    function renderDateOptions() {
+      let html = '';
+      DATE_OPTIONS.forEach(function (opt) {
+        const isSel = state.dateOptions.indexOf(opt.id) >= 0;
+        html += '<button type="button" class="date-opt-btn' + (isSel ? ' selected' : '') + '" onclick="toggleDateOption(\'' + opt.id + '\')">' + opt.id + '</button>';
+      });
+      document.getElementById('dateOptGrid').innerHTML = html;
+    }
 
     function getToneClass(serviceKey, matId) {
       const found = CATALOG[serviceKey].materials.find(function (m) { return m.id === matId; });
@@ -1842,6 +2362,9 @@
 
     function renderCart() {
       const groups = collectGroupedItems();
+      const region = (document.getElementById('clientRegion').value || '').trim();
+      const scheduleText = getScheduleSummaryText();
+
       let count = 0;
       groups.forEach(function (g) { count += g.items.length; });
 
@@ -1849,7 +2372,7 @@
       document.getElementById('dockCount').textContent = count;
 
       const body = document.getElementById('cartBody');
-      if (count === 0 && state.residences.length === 0) {
+      if (count === 0 && state.residences.length === 0 && !scheduleText && !region) {
         body.innerHTML = '<div class="cart-empty">위에서 시공할 구역과 자재를 선택하시면 실시간으로 정리됩니다.</div>';
         return;
       }
@@ -1866,9 +2389,22 @@
         html += '</div>';
       });
 
+      if (region) {
+        html += '<div class="cart-group"><div class="cart-group-name">현장 정보</div>' +
+          '<div class="cart-item"><span class="cart-item-text">' + escapeHtml(region) + '</span></div></div>';
+      }
+
       if (state.residences.length > 0) {
         html += '<div class="cart-group"><div class="cart-group-name">거주 상태</div>' +
           '<div class="cart-item"><span class="cart-item-text">' + escapeHtml(state.residences.join(', ')) + '</span></div></div>';
+      }
+
+      if (scheduleText) {
+        html += '<div class="cart-group"><div class="cart-group-name">시공 희망 날짜</div>' +
+          '<div class="cart-item">' +
+            '<span class="cart-item-text">' + escapeHtml(scheduleText) + '</span>' +
+            '<button type="button" class="cart-del" onclick="clearScheduleAll()">삭제</button>' +
+          '</div></div>';
       }
 
       body.innerHTML = html;
@@ -1899,9 +2435,13 @@
       state.siliconeMap = {};
       state.siliconeCustomList = [];
       state.residences = [];
+      state.selectedDates = [];
+      state.dateOptions = [];
       document.getElementById('clientRegion').value = '';
       document.querySelectorAll('.res-card').forEach(function (b) { b.classList.remove('selected'); });
       renderPanel();
+      renderCalendar();
+      renderDateOptions();
       renderCart();
       showToast('선택 내역이 초기화되었습니다');
     }
@@ -1909,6 +2449,7 @@
     function buildMessageText() {
       const groups = collectGroupedItems();
       const region = (document.getElementById('clientRegion').value || '').trim();
+      const scheduleText = getScheduleSummaryText();
       const lines = [
         '[부산딥클린 올인원 홈케어 견적 문의]',
         ''
@@ -1920,7 +2461,10 @@
       if (state.residences.length > 0) {
         lines.push('거주 상태: ' + state.residences.join(', '));
       }
-      if (region || state.residences.length > 0) {
+      if (scheduleText) {
+        lines.push('시공 희망 날짜: ' + scheduleText);
+      }
+      if (region || state.residences.length > 0 || scheduleText) {
         lines.push('');
       }
 
@@ -2084,6 +2628,8 @@
 
     loadConfig();
     renderPanel();
+    renderCalendar();
+    renderDateOptions();
     renderCart();
   </script>
 </body>
