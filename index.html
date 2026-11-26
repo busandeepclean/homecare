@@ -813,7 +813,7 @@
       border-top: 1px dashed var(--border-light);
     }
 
-    /* 3가지 자재(방충망, 코팅) 한 줄 3열 정렬 */
+    /* 3가지 자재(방충망, 코팅) 한 줄 3열 & 4가지 자재(줄눈) 2개씩 2줄 정렬 */
     .mini-chip-bar-3col {
       margin-top: 8px;
       padding-top: 8px;
@@ -832,6 +832,21 @@
       padding: 6px 3px;
       font-size: 11px;
       letter-spacing: -0.03em;
+      white-space: nowrap;
+    }
+
+    .mini-chip-grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 5px;
+    }
+
+    .mini-chip-grid-2 .mini-chip {
+      width: 100%;
+      justify-content: center;
+      padding: 6px 6px;
+      font-size: 11.5px;
+      letter-spacing: -0.02em;
       white-space: nowrap;
     }
 
@@ -3004,12 +3019,13 @@
       renderPanel();
     }
 
-    /* 3가지 자재(방충망, 코팅)는 1줄 3열 고정 / 4가지(줄눈)와 2가지(실리콘)는 자연 배치 */
+    /* 3가지 자재(방충망, 코팅)는 1줄 3열 고정 / 4가지 자재(줄눈)는 2개씩 2줄 고정 / 2가지(실리콘)는 자연 배치 */
     function renderMiniChips(serviceKey, selectedMatId, onSelectExpr, onClearExpr) {
       const mats = CATALOG[serviceKey].materials;
-      if (mats.length === 3) {
+      if (mats.length === 3 || mats.length === 4) {
+        const gridCls = mats.length === 3 ? 'mini-chip-grid-3' : 'mini-chip-grid-2';
         let html = '<div class="mini-chip-bar-3col" onclick="event.stopPropagation()">';
-        html += '<div class="mini-chip-grid-3">';
+        html += '<div class="' + gridCls + '">';
         mats.forEach(function (m) {
           const isSel = selectedMatId === m.id;
           const activeCls = isSel ? ' active-' + m.tone : '';
