@@ -1,3 +1,7 @@
+
+홈페이지 최종코드(7) 2페이지 최종완성(줄눈1~실리콘12).txt
+
+100%
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -37,7 +41,7 @@
       --req-border: #FECACA;
     }
 
-    html, body, div, span, h1, h2, h3, h4, p, a, button, input, textarea, select, img, label, section, header, footer {
+    html, body, div, span, h1, h2, h3, h4, p, a, button, input, textarea, select, img, label, section, header, footer, article, nav {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
@@ -73,6 +77,7 @@
       font-weight: 800;
       letter-spacing: -0.03em;
       color: var(--text-main);
+      cursor: pointer;
     }
 
     .brand-region {
@@ -84,9 +89,81 @@
       border-radius: 999px;
     }
 
+    /* 상단 2페이지 전환 내비게이션 바 */
+    .page-nav-wrap {
+      position: sticky;
+      top: 0;
+      z-index: 45;
+      background: rgba(250, 250, 249, 0.94);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border-light);
+      padding: 8px 0;
+      margin-bottom: 6px;
+    }
+
+    .page-nav {
+      max-width: 540px;
+      margin: 0 auto;
+      padding: 0 18px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+    }
+
+    .page-nav-btn {
+      background: var(--bg-card);
+      border: 1.5px solid var(--border-light);
+      border-radius: 12px;
+      padding: 10px 8px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      color: var(--text-main);
+    }
+
+    .page-nav-btn.active {
+      background: var(--charcoal);
+      border-color: var(--charcoal);
+      color: #FFFFFF;
+    }
+
+    .page-step-badge {
+      font-size: 10.5px;
+      font-weight: 800;
+      padding: 2px 6px;
+      border-radius: 6px;
+      background: var(--bg-subtle);
+      color: var(--emerald);
+    }
+
+    .page-nav-btn.active .page-step-badge {
+      background: rgba(255, 255, 255, 0.16);
+      color: #6EE7B7;
+    }
+
+    .page-nav-label {
+      font-size: 13.5px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      white-space: nowrap;
+    }
+
+    /* 페이지 뷰 전환 */
+    .page-view {
+      display: none;
+    }
+
+    .page-view.active {
+      display: block;
+    }
+
     /* 박스 없는 미니멀 히어로 */
     .hero {
-      padding: 20px 0 22px;
+      padding: 16px 0 22px;
     }
 
     .hero-eyebrow {
@@ -155,28 +232,30 @@
       letter-spacing: -0.02em;
     }
 
-    /* SNS 3열 입체 뱃지 */
+    /* SNS 3열 입체 뱃지 (모바일 한 줄 고정) */
     .sns-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
-      margin-bottom: 26px;
+      gap: 7px;
+      margin-bottom: 24px;
     }
 
     .sns-badge {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 6px;
+      gap: 5px;
       background: var(--bg-card);
       border: 1px solid var(--border-light);
       border-bottom: 3px solid var(--border-mid);
       border-radius: 11px;
-      padding: 10px 8px;
+      padding: 10px 4px;
       text-decoration: none;
       color: var(--text-main);
-      font-size: 12.5px;
+      font-size: 12px;
       font-weight: 700;
+      letter-spacing: -0.03em;
+      white-space: nowrap;
       transition: transform 0.12s ease;
     }
 
@@ -186,8 +265,8 @@
     }
 
     .sns-icon {
-      width: 16px;
-      height: 16px;
+      width: 15px;
+      height: 15px;
       flex-shrink: 0;
       display: block;
     }
@@ -195,7 +274,7 @@
     /* 섹션 공통 */
     .section-block {
       margin-bottom: 28px;
-      scroll-margin-top: 16px;
+      scroll-margin-top: 64px;
     }
 
     .section-head {
@@ -222,6 +301,7 @@
       font-weight: 800;
       letter-spacing: -0.02em;
       color: var(--text-main);
+      word-break: keep-all;
     }
 
     .req-badge {
@@ -251,6 +331,291 @@
       word-break: keep-all;
     }
 
+    /* =========================================================
+       1페이지: 사용되는 정품 제품 라인업 안내 (실사진 12종)
+       ========================================================= */
+    .product-detail-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .product-box {
+      background: var(--bg-card);
+      border: 1.5px solid var(--border-light);
+      border-radius: 16px;
+      padding: 16px 14px;
+      scroll-margin-top: 66px;
+    }
+
+    .product-box-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .product-box-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      min-width: 0;
+    }
+
+    .product-num-pill {
+      font-size: 11px;
+      font-weight: 800;
+      color: #FFFFFF;
+      background: var(--charcoal);
+      padding: 2px 8px;
+      border-radius: 6px;
+      flex-shrink: 0;
+    }
+
+    .product-box-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--text-main);
+      letter-spacing: -0.02em;
+      word-break: keep-all;
+    }
+
+    .product-go-btn {
+      background: var(--emerald-bg);
+      border: 1px solid var(--emerald-border);
+      color: var(--emerald);
+      font-size: 11.5px;
+      font-weight: 800;
+      padding: 5px 9px;
+      border-radius: 8px;
+      cursor: pointer;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .product-summary {
+      font-size: 12.8px;
+      font-weight: 600;
+      color: var(--text-sub);
+      margin-bottom: 12px;
+      word-break: keep-all;
+      line-height: 1.48;
+    }
+
+    .spec-line-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .spec-line-card {
+      background: var(--bg-canvas);
+      border: 1px solid var(--border-light);
+      border-radius: 12px;
+      padding: 11px;
+      display: flex;
+      gap: 11px;
+      align-items: flex-start;
+    }
+
+    .spec-thumb-box {
+      width: 82px;
+      height: 82px;
+      background: #FFFFFF;
+      border: 1px solid var(--border-light);
+      border-radius: 10px;
+      overflow: hidden;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .spec-thumb-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    .spec-line-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .spec-line-top {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 4px;
+      margin-bottom: 5px;
+    }
+
+    .spec-line-name {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 13.5px;
+      font-weight: 800;
+      color: var(--text-main);
+      letter-spacing: -0.02em;
+      word-break: keep-all;
+      line-height: 1.3;
+    }
+
+    .spec-line-tag {
+      font-size: 10.5px;
+      font-weight: 800;
+      padding: 2px 7px;
+      border-radius: 5px;
+      display: inline-block;
+    }
+
+    .spec-line-desc {
+      font-size: 12px;
+      color: var(--text-sub);
+      line-height: 1.46;
+      word-break: keep-all;
+    }
+
+    .spec-line-zone {
+      margin-top: 5px;
+      font-size: 11.2px;
+      font-weight: 700;
+      color: var(--text-muted);
+      word-break: keep-all;
+      line-height: 1.38;
+    }
+
+    .process-strip {
+      margin-top: 11px;
+      padding: 9px 11px;
+      background: var(--bg-subtle);
+      border-radius: 9px;
+      font-size: 11.8px;
+      font-weight: 700;
+      color: var(--text-main);
+      word-break: keep-all;
+      line-height: 1.45;
+    }
+
+    .process-strip span {
+      color: var(--emerald);
+      font-weight: 800;
+    }
+
+    /* 출장 시공 가능 지역 */
+    .region-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: 14px;
+      padding: 15px 14px;
+    }
+
+    .region-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin: 4px 0 10px;
+    }
+
+    .region-pill {
+      background: var(--emerald-bg);
+      border: 1px solid var(--emerald-border);
+      color: var(--emerald);
+      font-size: 12px;
+      font-weight: 800;
+      padding: 4px 11px;
+      border-radius: 999px;
+    }
+
+    .region-sub-text {
+      font-size: 12px;
+      color: var(--text-sub);
+      line-height: 1.48;
+      word-break: keep-all;
+    }
+
+    /* 2페이지 이동 유도 박스 */
+    .next-page-cta-box {
+      background: var(--charcoal);
+      color: #FFFFFF;
+      border-radius: 16px;
+      padding: 18px 16px;
+      text-align: center;
+    }
+
+    .next-page-cta-kicker {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #6EE7B7;
+      margin-bottom: 4px;
+    }
+
+    .next-page-cta-title {
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 6px;
+      word-break: keep-all;
+    }
+
+    .next-page-cta-desc {
+      font-size: 12.5px;
+      color: #D6D3D1;
+      margin-bottom: 14px;
+      word-break: keep-all;
+    }
+
+    .next-page-cta-btn {
+      width: 100%;
+      background: var(--emerald);
+      color: #FFFFFF;
+      border: none;
+      border-radius: 12px;
+      padding: 13px 16px;
+      font-size: 14.5px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    /* =========================================================
+       2페이지: 셀프 견적 선택 및 문자 문의 접수 (최종코드 5 기반)
+       ========================================================= */
+    .quote-top-banner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: 12px;
+      padding: 11px 13px;
+      margin: 12px 0 18px;
+    }
+
+    .quote-top-text {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-sub);
+      word-break: keep-all;
+    }
+
+    .quote-back-btn {
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-mid);
+      border-radius: 8px;
+      padding: 6px 10px;
+      font-size: 11.5px;
+      font-weight: 800;
+      color: var(--text-main);
+      cursor: pointer;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
     /* 필수 미입력 경고 하이라이트 */
     .invalid-highlight {
       border-color: var(--req-red) !important;
@@ -275,64 +640,6 @@
 
     .field-error-msg.show {
       display: block;
-    }
-
-    /* 4대 시공 동일 비율 2x2 카드 */
-    .photo-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
-    }
-
-    .photo-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-light);
-      border-radius: 14px;
-      overflow: hidden;
-      cursor: pointer;
-      transition: border-color 0.15s ease;
-    }
-
-    .photo-card:active {
-      border-color: var(--emerald);
-    }
-
-    .photo-frame {
-      width: 100%;
-      aspect-ratio: 4 / 3;
-      background: var(--bg-subtle);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .photo-frame img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .photo-meta {
-      padding: 10px 12px;
-    }
-
-    .photo-num {
-      font-size: 11px;
-      font-weight: 800;
-      color: var(--emerald);
-    }
-
-    .photo-name {
-      font-size: 14px;
-      font-weight: 800;
-      color: var(--text-main);
-      margin-top: 1px;
-    }
-
-    .photo-tag {
-      font-size: 11.5px;
-      color: var(--text-muted);
-      margin-top: 2px;
     }
 
     /* 시공 선택 탭 */
@@ -499,7 +806,7 @@
       flex-shrink: 0;
     }
 
-    /* 초소형 인라인 제품 선택 칩 바 */
+    /* 인라인 제품 선택 칩 바 */
     .mini-chip-bar {
       display: flex;
       flex-wrap: wrap;
@@ -508,6 +815,34 @@
       margin-top: 8px;
       padding-top: 8px;
       border-top: 1px dashed var(--border-light);
+    }
+
+    /* 3가지 자재(방충망, 코팅) 한 줄 3열 정렬 */
+    .mini-chip-bar-3col {
+      margin-top: 8px;
+      padding-top: 8px;
+      border-top: 1px dashed var(--border-light);
+    }
+
+    .mini-chip-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 5px;
+    }
+
+    .mini-chip-grid-3 .mini-chip {
+      width: 100%;
+      justify-content: center;
+      padding: 6px 3px;
+      font-size: 11px;
+      letter-spacing: -0.03em;
+      white-space: nowrap;
+    }
+
+    .mini-clear-row {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 6px;
     }
 
     .mini-chip {
@@ -538,7 +873,6 @@
     .dot-indigo { background: var(--indigo); }
     .dot-blue { background: var(--blue); }
 
-    /* 선택된 칩 컬러 */
     .mini-chip.active-emerald {
       background: var(--emerald);
       border-color: var(--emerald);
@@ -1219,6 +1553,65 @@
       opacity: 1;
     }
 
+    /* 제품 사진 확대 라이트박스 */
+    .lightbox-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.78);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      z-index: 120;
+    }
+
+    .lightbox-backdrop.open {
+      display: flex;
+    }
+
+    .lightbox-card {
+      width: 100%;
+      max-width: 420px;
+      background: #FFFFFF;
+      border-radius: 16px;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .lightbox-card img {
+      width: 100%;
+      max-height: 70vh;
+      object-fit: contain;
+      display: block;
+      background: #FFFFFF;
+    }
+
+    .lightbox-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 14px;
+      border-top: 1px solid var(--border-light);
+    }
+
+    .lightbox-title {
+      font-size: 13.5px;
+      font-weight: 800;
+      color: var(--text-main);
+      text-align: left;
+    }
+
+    .lightbox-close {
+      background: var(--charcoal);
+      color: #FFFFFF;
+      border: none;
+      border-radius: 8px;
+      padding: 6px 12px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
     /* 관리자 모달 */
     .modal-backdrop {
       position: fixed;
@@ -1280,15 +1673,36 @@
       color: var(--text-main);
     }
 
+    .admin-calc-link {
+      display: block;
+      width: 100%;
+      text-align: center;
+      text-decoration: none;
+      background: var(--charcoal);
+      color: #FFFFFF;
+      border-radius: 11px;
+      padding: 12px 14px;
+      font-size: 13.5px;
+      font-weight: 800;
+      margin-bottom: 14px;
+    }
+
     .admin-photo-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 10px;
-      margin-bottom: 8px;
+      gap: 8px;
+      margin-bottom: 7px;
       background: var(--bg-canvas);
-      padding: 9px 11px;
+      padding: 8px 10px;
       border-radius: 10px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .admin-photo-row input[type="file"] {
+      max-width: 170px;
+      font-size: 11px;
     }
 
     .admin-btn-row {
@@ -1302,261 +1716,523 @@
 <body>
 
   <header class="topbar">
-    <div class="brand-mark">부산딥클린 올인원 홈케어</div>
+    <div class="brand-mark" onclick="switchPage('intro')">부산딥클린 올인원 홈케어</div>
     <div class="brand-region">부산 · 경남 전지역</div>
   </header>
 
-  <main class="wrap">
-    <!-- 박스 없는 미니멀 히어로 -->
-    <section class="hero">
-      <div class="hero-eyebrow">부산 · 경남 4대 홈케어 전문</div>
-      <h1 class="hero-title">실속형부터 하이엔드까지, 우리 집에 딱 맞는 정석 시공</h1>
-      <p class="hero-desc">예산에 맞춘 자재 선택, 결과로 증명하는 꼼꼼한 마감.</p>
+  <!-- 상단 2페이지 전환 내비게이션 -->
+  <nav class="page-nav-wrap" aria-label="페이지 전환 메뉴">
+    <div class="page-nav">
+      <button type="button" id="navBtnIntro" class="page-nav-btn active" onclick="switchPage('intro')">
+        <span class="page-step-badge">01</span>
+        <span class="page-nav-label">업체·제품 소개</span>
+      </button>
+      <button type="button" id="navBtnQuote" class="page-nav-btn" onclick="switchPage('quote')">
+        <span class="page-step-badge">02</span>
+        <span class="page-nav-label">셀프 견적 문의</span>
+      </button>
+    </div>
+  </nav>
 
-      <!-- 2x2 정품 스펙 라벨 그리드 -->
-      <div class="spec-grid">
-        <button type="button" class="spec-item" onclick="jumpToService('grout')">
-          <span class="spec-label">줄눈 정석 시공</span>
-          <span class="spec-sub">스타라이크 프로 · 아스팍톤</span>
-        </button>
-        <button type="button" class="spec-item" onclick="jumpToService('screen')">
-          <span class="spec-label">미세 방충망</span>
-          <span class="spec-sub">고강도 블랙스텐</span>
-        </button>
-        <button type="button" class="spec-item" onclick="jumpToService('coating')">
-          <span class="spec-label">타일·욕실 코팅</span>
-          <span class="spec-sub">일본 아크바리아 700</span>
-        </button>
-        <button type="button" class="spec-item" onclick="jumpToService('silicone')">
-          <span class="spec-label">곰팡이 방지</span>
-          <span class="spec-sub">항균 바이오 실리콘</span>
-        </button>
-      </div>
+  <!-- =========================================================
+       [1페이지] 업체 소개 및 사용되는 정품 제품 라인업 안내
+       ========================================================= -->
+  <div id="pageIntro" class="page-view active">
+    <main class="wrap">
+      <!-- 박스 없는 미니멀 히어로 (기존 유지) -->
+      <section class="hero">
+        <div class="hero-eyebrow">부산 · 경남 4대 홈케어 전문</div>
+        <h1 class="hero-title">실속형부터 하이엔드까지, 우리 집에 딱 맞는 정석 시공</h1>
+        <p class="hero-desc">예산에 맞춘 자재 선택, 결과로 증명하는 꼼꼼한 마감.</p>
 
-      <!-- SNS 3열 입체 뱃지 (정석 브랜드 SVG 아이콘) -->
-      <div class="sns-grid">
-        <a id="linkBlog" class="sns-badge" href="https://m.blog.naver.com/deepclean6831" target="_blank" rel="noopener">
-          <svg class="sns-icon" viewBox="0 0 24 24" aria-hidden="true">
-            <rect width="24" height="24" rx="5" fill="#03C75A"/>
-            <path d="M14.3 12.4L9.5 5.5H5.8v13h3.9v-6.9l4.8 6.9h3.7v-13h-3.9v6.9z" fill="#FFFFFF"/>
-          </svg>
-          <span>네이버 블로그</span>
-        </a>
-        <a id="linkYoutube" class="sns-badge" href="https://www.youtube.com/channel/UChThxOIUbsBCIYgWad-3FuQ" target="_blank" rel="noopener">
-          <svg class="sns-icon" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31.4 31.4 0 0 0 0 12a31.4 31.4 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31.4 31.4 0 0 0 24 12a31.4 31.4 0 0 0-.5-5.8z" fill="#FF0000"/>
-            <path d="M9.6 15.6V8.4L15.8 12l-6.2 3.6z" fill="#FFFFFF"/>
-          </svg>
-          <span>유튜브</span>
-        </a>
-        <a id="linkInsta" class="sns-badge" href="https://www.instagram.com/deep_clean_6831" target="_blank" rel="noopener">
-          <svg class="sns-icon" viewBox="0 0 24 24" aria-hidden="true">
-            <defs>
-              <linearGradient id="igGrad" x1="0%" y1="100%" x2="100%" y2="0%">
-                <stop offset="0%" stop-color="#FD5949"/>
-                <stop offset="50%" stop-color="#D6249F"/>
-                <stop offset="100%" stop-color="#285AEB"/>
-              </linearGradient>
-            </defs>
-            <rect width="24" height="24" rx="6" fill="url(#igGrad)"/>
-            <rect x="4.5" y="4.5" width="15" height="15" rx="4" fill="none" stroke="#FFFFFF" stroke-width="1.8"/>
-            <circle cx="12" cy="12" r="3.4" fill="none" stroke="#FFFFFF" stroke-width="1.8"/>
-            <circle cx="16.3" cy="7.7" r="1.1" fill="#FFFFFF"/>
-          </svg>
-          <span>인스타그램</span>
-        </a>
-      </div>
-    </section>
-
-    <!-- 4대 시공 동일 비율 2x2 카드 (1.png ~ 4.png 자동 송출 + 미업로드 시 자동 대체 그래픽) -->
-    <section class="section-block">
-      <div class="section-head">
-        <div class="section-kicker">ALL-IN-ONE CARE</div>
-        <h2 class="section-title">4대 핵심 정석 시공</h2>
-        <p class="section-note">항목을 누르시면 아래 공간별 자재 선택으로 바로 이동합니다.</p>
-      </div>
-
-      <div class="photo-grid">
-        <div class="photo-card" onclick="jumpToService('grout')">
-          <div class="photo-frame">
-            <img id="imgGrout" alt="01 프리미엄 줄눈 시공" />
-          </div>
-          <div class="photo-meta">
-            <div class="photo-num">01</div>
-            <div class="photo-name">프리미엄 줄눈</div>
-            <div class="photo-tag">백시멘트 제거 후 정석 충전</div>
-          </div>
-        </div>
-
-        <div class="photo-card" onclick="jumpToService('screen')">
-          <div class="photo-frame">
-            <img id="imgScreen" alt="02 블랙스텐 방충망 시공" />
-          </div>
-          <div class="photo-meta">
-            <div class="photo-num">02</div>
-            <div class="photo-name">블랙스텐 방충망</div>
-            <div class="photo-tag">물구멍·모헤어 무상 교체 포함</div>
-          </div>
-        </div>
-
-        <div class="photo-card" onclick="jumpToService('coating')">
-          <div class="photo-frame">
-            <img id="imgCoating" alt="03 욕실·타일 코팅 시공" />
-          </div>
-          <div class="photo-meta">
-            <div class="photo-num">03</div>
-            <div class="photo-name">욕실·타일 코팅</div>
-            <div class="photo-tag">일본 아크바리아 700 시리즈</div>
-          </div>
-        </div>
-
-        <div class="photo-card" onclick="jumpToService('silicone')">
-          <div class="photo-frame">
-            <img id="imgSilicone" alt="04 항균 바이오 실리콘 시공" />
-          </div>
-          <div class="photo-meta">
-            <div class="photo-num">04</div>
-            <div class="photo-name">항균 바이오 실리콘</div>
-            <div class="photo-tag">기존 제거 후 항균 재시공</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 공간별 자재 매핑 견적 섹션 -->
-    <section id="estimatorSection" class="section-block">
-      <div class="section-head">
-        <div class="section-kicker">CUSTOM SELECTION</div>
-        <div class="section-title-row">
-          <h2 class="section-title">시공 품목 및 공간별 자재 선택</h2>
-          <span id="badgeItems" class="req-badge">필수</span>
-        </div>
-        <p class="section-note">원하시는 구역을 터치하면 바로 아래 소형 자재 버튼이 열려 공간마다 다르게 선택할 수 있습니다.</p>
-      </div>
-
-      <div class="service-tabs">
-        <button type="button" class="service-tab active" data-tab="grout" onclick="switchTab('grout')">
-          <span class="tab-num">01</span>
-          <span class="tab-label">프리미엄 줄눈</span>
-        </button>
-        <button type="button" class="service-tab" data-tab="screen" onclick="switchTab('screen')">
-          <span class="tab-num">02</span>
-          <span class="tab-label">블랙스텐 방충망</span>
-        </button>
-        <button type="button" class="service-tab" data-tab="coating" onclick="switchTab('coating')">
-          <span class="tab-num">03</span>
-          <span class="tab-label">욕실·타일 코팅</span>
-        </button>
-        <button type="button" class="service-tab" data-tab="silicone" onclick="switchTab('silicone')">
-          <span class="tab-num">04</span>
-          <span class="tab-label">항균 바이오 실리콘</span>
-        </button>
-      </div>
-
-      <div id="servicePanel" class="panel-card"></div>
-      <div id="errItems" class="field-error-msg">시공하실 구역을 1개 이상 선택해 주세요.</div>
-    </section>
-
-    <!-- 거주 상태 및 현장 정보 선택 (필수) -->
-    <section id="residenceSection" class="section-block">
-      <div class="section-head">
-        <div class="section-kicker">RESIDENCE STATUS</div>
-        <div class="section-title-row">
-          <h2 class="section-title">거주 상태 및 현장 정보</h2>
-          <span id="badgeResidence" class="req-badge">거주상태 필수</span>
-        </div>
-        <p class="section-note">연식 및 거주 상태 체크와 지역·아파트명·평수 입력은 필수입니다.</p>
-      </div>
-
-      <div id="resGroupBox" class="res-group-box">
-        <!-- 1행: 신축 / 준신축 / 구축 / 거주 중 4열 가로 배치 -->
-        <div class="res-row-top">
-          <button type="button" class="res-card" data-res="신축 (올해 준공 입주)" onclick="toggleResidence(this)">
-            <span class="res-title">신축</span>
-            <span class="res-desc">올해 준공 입주</span>
+        <!-- 2x2 정품 스펙 라벨 그리드 (터치 시 해당 제품 소개 섹션으로 이동) -->
+        <div class="spec-grid">
+          <button type="button" class="spec-item" onclick="scrollToProduct('prodGrout')">
+            <span class="spec-label">줄눈 정석 시공</span>
+            <span class="spec-sub">스타라이크 프로 · 아스팍톤</span>
           </button>
-          <button type="button" class="res-card" data-res="준신축 (2~4년)" onclick="toggleResidence(this)">
-            <span class="res-title">준신축</span>
-            <span class="res-desc">2~4년</span>
+          <button type="button" class="spec-item" onclick="scrollToProduct('prodScreen')">
+            <span class="spec-label">미세 방충망</span>
+            <span class="spec-sub">고강도 블랙스텐</span>
           </button>
-          <button type="button" class="res-card" data-res="구축 (5년 이상)" onclick="toggleResidence(this)">
-            <span class="res-title">구축</span>
-            <span class="res-desc">5년 이상</span>
+          <button type="button" class="spec-item" onclick="scrollToProduct('prodCoating')">
+            <span class="spec-label">타일·욕실 코팅</span>
+            <span class="spec-sub">일본 아크바리아 700</span>
           </button>
-          <button type="button" class="res-card" data-res="거주 중" onclick="toggleResidence(this)">
-            <span class="res-title">거주 중</span>
-            <span class="res-desc">현재 거주</span>
+          <button type="button" class="spec-item" onclick="scrollToProduct('prodSilicone')">
+            <span class="spec-label">곰팡이 방지</span>
+            <span class="spec-sub">항균 바이오 실리콘</span>
           </button>
         </div>
 
-        <!-- 2행: 리모델링 공사 후 카드 + 지역·아파트·평수 필수 입력 카드 -->
-        <div class="res-row-bottom">
-          <button type="button" class="res-card left-align" data-res="리모델링 공사 후" onclick="toggleResidence(this)">
-            <span class="res-title">리모델링 공사 후</span>
-            <span class="res-desc">인테리어 완료 후 입주 전</span>
-          </button>
-          <div id="siteCardBox" class="site-card">
-            <div class="site-card-head">
-              <label class="site-card-label" for="clientRegion">지역 · 아파트명 · 평수</label>
-              <span id="badgeSite" class="req-badge">필수</span>
+        <!-- SNS 3열 입체 뱃지 (한 줄 고정) -->
+        <div class="sns-grid">
+          <a id="linkBlog" class="sns-badge" href="https://m.blog.naver.com/deepclean6831" target="_blank" rel="noopener">
+            <svg class="sns-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <rect width="24" height="24" rx="5" fill="#03C75A"/>
+              <path d="M14.3 12.4L9.5 5.5H5.8v13h3.9v-6.9l4.8 6.9h3.7v-13h-3.9v6.9z" fill="#FFFFFF"/>
+            </svg>
+            <span>네이버 블로그</span>
+          </a>
+          <a id="linkYoutube" class="sns-badge" href="https://www.youtube.com/channel/UChThxOIUbsBCIYgWad-3FuQ" target="_blank" rel="noopener">
+            <svg class="sns-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31.4 31.4 0 0 0 0 12a31.4 31.4 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31.4 31.4 0 0 0 24 12a31.4 31.4 0 0 0-.5-5.8z" fill="#FF0000"/>
+              <path d="M9.6 15.6V8.4L15.8 12l-6.2 3.6z" fill="#FFFFFF"/>
+            </svg>
+            <span>유튜브</span>
+          </a>
+          <a id="linkInsta" class="sns-badge" href="https://www.instagram.com/deep_clean_6831" target="_blank" rel="noopener">
+            <svg class="sns-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <defs>
+                <linearGradient id="igGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#FD5949"/>
+                  <stop offset="50%" stop-color="#D6249F"/>
+                  <stop offset="100%" stop-color="#285AEB"/>
+                </linearGradient>
+              </defs>
+              <rect width="24" height="24" rx="6" fill="url(#igGrad)"/>
+              <rect x="4.5" y="4.5" width="15" height="15" rx="4" fill="none" stroke="#FFFFFF" stroke-width="1.8"/>
+              <circle cx="12" cy="12" r="3.4" fill="none" stroke="#FFFFFF" stroke-width="1.8"/>
+              <circle cx="16.3" cy="7.7" r="1.1" fill="#FFFFFF"/>
+            </svg>
+            <span>인스타그램</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- 사용되는 정품 제품 라인업 안내 (깃허브 실사진 줄눈1~실리콘12 자동 연동) -->
+      <section class="section-block">
+        <div class="section-head">
+          <div class="section-kicker">VERIFIED MATERIALS</div>
+          <h2 class="section-title">사용되는 정품 제품 라인업 안내</h2>
+          <p class="section-note">공간별 환경과 예산에 맞춰 최적의 자재를 선택하실 수 있도록 실제 사용 제품과 시공 기준을 투명하게 공개합니다.</p>
+        </div>
+
+        <div class="product-detail-list">
+          <!-- 01 프리미엄 줄눈 -->
+          <article id="prodGrout" class="product-box">
+            <div class="product-box-head">
+              <div class="product-box-title-wrap">
+                <span class="product-num-pill">01</span>
+                <h3 class="product-box-title">프리미엄 줄눈 자재 4종</h3>
+              </div>
+              <button type="button" class="product-go-btn" onclick="jumpToService('grout')">견적 담기 &gt;</button>
             </div>
-            <input id="clientRegion" class="site-card-input" type="text" placeholder="예: 부산, 감만우성, 34평" oninput="onSiteInput()" />
-            <div id="siteParsedPreview" class="site-parsed-bar"></div>
+            <p class="product-summary">
+              다공성 백시멘트를 일정 깊이로 파낸 뒤 수분·곰팡이를 차단하는 고밀도 정품 줄눈제로 충진합니다. 공간마다 자재를 다르게 조합할 수 있습니다.
+            </p>
+
+            <div class="spec-line-list">
+              <div class="spec-line-card">
+                <div class="spec-thumb-box" onclick="openLightbox('prodImg1', '스타라이크 프로 (최고가 제품)')">
+                  <img id="prodImg1" alt="스타라이크 프로 (최고가 제품)" />
+                </div>
+                <div class="spec-line-content">
+                  <div class="spec-line-top">
+                    <span class="spec-line-name"><span class="mini-dot dot-emerald"></span>스타라이크 프로 (최고가 제품)</span>
+                    <span class="spec-line-tag pill-emerald">이태리 리토콜 에폭시</span>
+                  </div>
+                  <div class="spec-line-desc">이태리 리토콜사의 2026년 업그레이드 신형 에폭시 줄눈제입니다. 항균제 디펜더에보가 본 제품 자체에 내장되어 출시되었으며, 강도와 내오염성이 뛰어나 물 사용이 많은 공간에 탁월합니다.</div>
+                  <div class="spec-line-zone">추천: 메인 욕실 바닥·벽면, 주방·아트월, 거실 포세린 타일</div>
+                </div>
+              </div>
+
+              <div class="spec-line-card">
+                <div class="spec-thumb-box" onclick="openLightbox('prodImg2', '아스팍톤 (국내개발 특허제품)')">
+                  <img id="prodImg2" alt="아스팍톤 (국내개발 특허제품)" />
+                </div>
+                <div class="spec-line-content">
+                  <div class="spec-line-top">
+                    <span class="spec-line-name"><span class="mini-dot dot-gold"></span>아스팍톤 (국내개발 특허제품)</span>
+                    <span class="spec-line-tag pill-gold">크린파파 특허 무광</span>
+                  </div>
+                  <div class="spec-line-desc">국내 줄눈 전문 기업 크린파파가 특허 개발한 자체 생산 프리미엄 제품입니다. 일반 폴리나 에폭시와는 다른 독자적 성분을 지녀 단단한 내구성과 고급스러운 무광·무펄 질감을 완성합니다.</div>
+                  <div class="spec-line-zone">추천: 포세린·무광 타일 욕실, 거실·복도 바닥, 모던 인테리어 공간</div>
+                </div>
+              </div>
+
+              <div class="spec-line-card">
+                <div class="spec-thumb-box" onclick="openLightbox('prodImg3', '아스팍샤인 (폴리 중 최고가)')">
+                  <img id="prodImg3" alt="아스팍샤인 (폴리 중 최고가)" />
+                </div>
+                <div class="spec-line-content">
+                  <div class="spec-line-top">
+                    <span class="spec-line-name"><span class="mini-dot dot-indigo"></span>아스팍샤인 (폴리 중 최고가)</span>
+                    <span class="spec-line-tag pill-indigo">고기능성 폴리 상위 라인</span>
+                  </div>
+                  <div class="spec-line-desc">크린파파 폴리 아스파틱 우레아 라인업 중 가장 상위 등급 제품으로, 기존 폴리 대비 표면 광택 유지력과 오염 방어력을 한층 끌어올렸습니다.</div>
+                  <div class="spec-line-zone">추천: 공용·안방 욕실 바닥, 현관, 세탁실</div>
+                </div>
+              </div>
+
+              <div class="spec-line-card">
+                <div class="spec-thumb-box" onclick="openLightbox('prodImg4', '폴리아스파틱 우레아 (기본제품)')">
+                  <img id="prodImg4" alt="폴리아스파틱 우레아 (기본제품)" />
+                </div>
+                <div class="spec-line-content">
+                  <div class="spec-line-top">
+                    <span class="spec-line-name"><span class="mini-dot dot-blue"></span>폴리아스파틱 우레아 (기본제품)</span>
+                    <span class="spec-line-tag pill-blue">실속형 폴리</span>
+                  </div>
+                  <div class="spec-line-desc">합리적인 예산으로 깔끔한 줄눈 효과를 누릴 수 있는 실속형 정품 폴리 자재입니다. 은은한 반짝임의 펄 라인과 깔끔한 유광무펄 라인 중 선택 가능합니다.</div>
+                  <div class="spec-line-zone">추천: 현관 바닥, 안방 베란다, 세탁실</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="process-strip">
+              <span>ㄷ자 시공 기초작업 기준:</span> 폴리 계열 2~3mm / 스타라이크 프로·아스팍톤 3~5mm 정밀 파내기 후 산업용 집진기 분진 흡입 및 24시간 양생 안내
+            </div>
+          </article>
+
+          <!-- 02 블랙스텐 방충망 -->
+          <article id="prodScreen" class="product-box">
+            <div class="product-box-head">
+              <div class="product-box-title-wrap">
+                <span class="product-num-pill">02</span>
+                <h3 class="product-box-title">미세·고강도 방충망 3종</h3>
+              </div>
+              <button type="button" class="product-go-btn" onclick="jumpToService('screen')">견적 담기 &gt;</button>
+            </div>
+            <p class="product-summary">
+              날벌레 유입 차단과 시야 개방감, 내구성을 모두 고려해 3가지 망 원단 중 우리 집 층수와 환경에 맞게 선택하실 수 있습니다.
+            </p>
+
+            <div class="spec-line-list">
+              <div class="spec-line-card">
+                <div class="spec-thumb-box" onclick="openLightbox('prodImg5', '고강도 블랙스텐 방충망 (최고가 제품)')">
+                  <img id="prodImg5" alt="고강도 블랙스텐 방충망 (최고가 제품)" />
+                </div>
+                <div class="spec-line-content">
+                  <div class="spec-line-top">
+                    <span class="spec-line-name"><span class="mini-dot dot-emerald"></span>고강도 블랙스텐 방충망 (최고가 제품)</span>
+                    <span class="spec-line-tag pill-emerald">내구성·시인성 최상</span>
+                  </div>
+                  <div class="spec-line-desc">부식에 강한 스테인리스 와이어에 특수 블랙 코팅을 적용해 찢어짐에 강하고 시인성이 좋습니다.</div>
+                  <div class="spec-line-zone">추천: 반려동물 가정, 저층·고층 전 세대, 반영구적 내구성 희망 세대</div>
+                </div>
+              </div>
+
+              <div class="spec-line-card">
+                <div class="spec-thumb-box" onclick="openLightbox('prodImg6', '미세 촘촘망 (기본제품)')">
+                  <img id="prodImg6" alt="미세 촘촘망 (기본제품)" />
+                </div>
+                <div class="spec-line-content">
+                  <div class="spec-line-top">
+                    <span class="spec-line-name"><span class="mini-dot dot-gold"></span>미세 촘촘망 (기본제품)</span>
+                    <span class="spec-line-tag pill-gold">초미세 날벌레 차단</span>
+                  </div>
+                  <div class="spec-line-desc">일반 방충망보다 촘촘한 모노필라멘트 원사로 제작되어 날파리·하루살이 등 작은 벌레 유입을 효과적으로 막아주고 통풍이 우수합니다.</div>
+                  <div class="spec-line-zone">추천: 하천·산 인접 단지, 야간 조명 사용이 많은 세대</div>
+                </div>
+              </div>
+
+              <div class="spec-line-card">
+                <div class="spec-thumb-box" onclick="openLightbox('prodImg7', '알루미늄망 (보급형 제품)')">
+                  <img id="prodImg7" alt="알루미늄망 (보급형 제품)" />
+                </div>
+                <div class="spec-line-content">
+                  <div class="spec-line-top">
+                    <span class="spec-line-name"><span class="mini-dot dot-blue"></span>알루미늄망 (보급형 제품)</span>
+                    <span class="spec-line-tag pill-blue">보급형 교체</span>
+                  </div>
+                  <div class="spec-line-desc">노후된 기존 망을 깔끔하고 실속 있게 교체할 수 있는 보급형 기본망 입니다.</div>
+                  <div class="spec-line-zone">추천: 실속형 전체 교체, 임대·거주 세대 기본 보수</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="process-strip">
+              <span>무상 기본 포함 서비스:</span> 교체 진행되는 모든 방충망 창틀의 노후 모헤어 교체 및 물구멍 방충 스티커 부착 포함
+            </div>
+          </article>
+
+          <!-- 03 욕실·타일 코팅 -->
+          <article id="prodCoating" class="product-box">
+            <div class="product-box-head">
+              <div class="product-box-title-wrap">
+                <span class="product-num-pill">03</span>
+                <h3 class="product-box-title">일본 아크바리아 700 나노코팅</h3>
+              </div>
+              <button type="button" class="product-go-btn" onclick="jumpToService('coating')">견적 담기 &gt;</button>
+            </div>
+            <p class="product-summary">
+              일본 정품 아크바리아 700 시리즈를 사용하여 타일·상판·욕실 도기 표면에 고밀도 보호막을 형성해 물때와 오염 고착을 예방합니다.
+            </p>
+
+            <div class="spec-line-list">
+              <div class="spec-line-card">
+                <div class="spec-thumb-box" onclick="openLightbox('prodImg8', '아크바리아 700 Z')">
+                  <img id="prodImg8" alt="아크바리아 700 Z" />
+                </div>
+                <div class="spec-line-content">
+                  <div class="spec-line-top">
+                    <span class="spec-line-name"><span class="mini-dot dot-emerald"></span>아크바리아 700 Z</span>
+                    <span class="spec-line-tag pill-emerald">포세린·상판·바닥 전용</span>
+                  </div>
+                  <div class="spec-line-desc">흡수율이 있는 포세린 타일과 주방 엔지니어드 스톤·세라믹 상판에 깊숙이 침투해 김칫국물·기름때·수분 얼룩 스며듦을 강력하게 방어합니다.</div>
+                  <div class="spec-line-zone">추천: 주방 상판, 거실 포세린 타일, 공용·안방 욕실 바닥타일</div>
+                </div>
+              </div>
+
+              <div class="spec-line-card">
+                <div class="spec-thumb-box" onclick="openLightbox('prodImg9', '아크바리아 700 X')">
+                  <img id="prodImg9" alt="아크바리아 700 X" />
+                </div>
+                <div class="spec-line-content">
+                  <div class="spec-line-top">
+                    <span class="spec-line-name"><span class="mini-dot dot-gold"></span>아크바리아 700 X</span>
+                    <span class="spec-line-tag pill-gold">타일·도기·다목적 고경도</span>
+                  </div>
+                  <div class="spec-line-desc">욕실 바닥·벽타일부터 세면대, 양변기, 수전, 거울까지 폭넓게 적용 가능한 다목적 고경도 코팅제로 발수력과 광택 유지력이 뛰어납니다.</div>
+                  <div class="spec-line-zone">추천: 위생도기, 타일, 유리, 세면대 다목적</div>
+                </div>
+              </div>
+
+              <div class="spec-line-card">
+                <div class="spec-thumb-box" onclick="openLightbox('prodImg10', '아크바리아 700 R')">
+                  <img id="prodImg10" alt="아크바리아 700 R" />
+                </div>
+                <div class="spec-line-content">
+                  <div class="spec-line-top">
+                    <span class="spec-line-name"><span class="mini-dot dot-blue"></span>아크바리아 700 R</span>
+                    <span class="spec-line-tag pill-blue">유리·거울·수전 발수 특화</span>
+                  </div>
+                  <div class="spec-line-desc">샤워부스 강화유리와 욕실 거울, 크롬 수전 표면에 생기는 하얀 석회 물때 고착을 줄여 물기 제거와 청소를 한결 수월하게 만들어 줍니다.</div>
+                  <div class="spec-line-zone">추천: 샤워부스 강화유리, 욕실 거울, 세면대 특화 제품</div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- 04 항균 바이오 실리콘 -->
+          <article id="prodSilicone" class="product-box">
+            <div class="product-box-head">
+              <div class="product-box-title-wrap">
+                <span class="product-num-pill">04</span>
+                <h3 class="product-box-title">항균 바이오 실리콘 2종</h3>
+              </div>
+              <button type="button" class="product-go-btn" onclick="jumpToService('silicone')">견적 담기 &gt;</button>
+            </div>
+            <p class="product-summary">
+              습기가 머무는 테두리에 곰팡이가 번식하지 않도록 기존 노후·오염 실리콘을 깔끔하게 도려낸 뒤 항균 성분이 강화된 바이오 실리콘으로 재시공합니다.
+            </p>
+
+            <div class="spec-line-list">
+              <div class="spec-line-card">
+                <div class="spec-thumb-box" onclick="openLightbox('prodImg11', '항균 바이오 실리콘 (무펄)')">
+                  <img id="prodImg11" alt="항균 바이오 실리콘 (무펄)" />
+                </div>
+                <div class="spec-line-content">
+                  <div class="spec-line-top">
+                    <span class="spec-line-name"><span class="mini-dot dot-emerald"></span>항균 바이오 실리콘 (무펄)</span>
+                    <span class="spec-line-tag pill-emerald">차분하고 정돈된 마감</span>
+                  </div>
+                  <div class="spec-line-desc">타일 및 인테리어 자재 본연의 색감과 자연스럽게 어우러지는 깔끔한 무펄 타입으로 주방 상판, 욕실 젠다이·욕조, 창틀 샷시 등에 가장 널리 시공됩니다.</div>
+                  <div class="spec-line-zone">적용 구역: 주방 상판 테두리, 욕실 세로줄·젠다이·욕조, 샷시, 집 전체 걸레받이</div>
+                </div>
+              </div>
+
+              <div class="spec-line-card">
+                <div class="spec-thumb-box" onclick="openLightbox('prodImg12', '항균 바이오 실리콘 (펄)')">
+                  <img id="prodImg12" alt="항균 바이오 실리콘 (펄)" />
+                </div>
+                <div class="spec-line-content">
+                  <div class="spec-line-top">
+                    <span class="spec-line-name"><span class="mini-dot dot-blue"></span>항균 바이오 실리콘 (펄)</span>
+                    <span class="spec-line-tag pill-blue">은은한 포인트 마감</span>
+                  </div>
+                  <div class="spec-line-desc">은은한 펄감이 더해져 화사한 타일 톤이나 펄 줄눈과 조화를 이루는 항균 실리콘 라인입니다.</div>
+                  <div class="spec-line-zone">적용 구역: 주방·욕실 테두리 및 희망 포인트 구간</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="process-strip">
+              <span>시공 원칙 안내:</span> 실리콘 위에 줄눈제를 덧바르는 시공은 권장하지 않으며, 오염된 기존 실리콘 제거 후 바이오 실리콘으로 정석 재시공합니다.
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- 출장 시공 가능 지역 안내 -->
+      <section class="section-block">
+        <div class="section-head">
+          <div class="section-kicker">SERVICE AREA</div>
+          <h2 class="section-title">출장 시공 가능 지역</h2>
+        </div>
+        <div class="region-card">
+          <div class="region-pills">
+            <span class="region-pill">부산</span>
+            <span class="region-pill">양산</span>
+            <span class="region-pill">김해</span>
+            <span class="region-pill">창원</span>
+            <span class="region-pill">울산</span>
+            <span class="region-pill">밀양</span>
+          </div>
+          <p class="region-sub-text">
+            부산 남구 감만동 거점을 중심으로 부산·경남 6대 권역(부산·양산·김해·창원·울산·밀양) 전지역 출장 시공을 진행하며, 일정 협의 시 경주·대구·남해 권역도 상담 가능합니다.
+          </p>
+        </div>
+      </section>
+
+      <!-- 2페이지 이동 유도 카드 -->
+      <section class="section-block">
+        <div class="next-page-cta-box">
+          <div class="next-page-cta-kicker">STEP 02 · SELF ESTIMATE</div>
+          <h2 class="next-page-cta-title">우리 집에 필요한 시공 구역과 자재를 직접 골라보세요</h2>
+          <p class="next-page-cta-desc">원하시는 구역과 자재, 현장 정보, 희망 날짜를 선택하시면 문자 한 번으로 바로 상담이 접수됩니다.</p>
+          <button type="button" class="next-page-cta-btn" onclick="switchPage('quote')">2페이지 셀프 견적 문의하러 가기 &gt;</button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- =========================================================
+       [2페이지] 셀프 견적 선택 및 문자 문의 접수 (최종코드 5 호환)
+       ========================================================= -->
+  <div id="pageQuote" class="page-view">
+    <main class="wrap">
+      <div class="quote-top-banner">
+        <span class="quote-top-text">사용되는 정품 자재 스펙과 특징이 궁금하신가요?</span>
+        <button type="button" class="quote-back-btn" onclick="switchPage('intro')">&lt; 1페이지 소개 보기</button>
+      </div>
+
+      <!-- 공간별 자재 매핑 견적 섹션 -->
+      <section id="estimatorSection" class="section-block">
+        <div class="section-head">
+          <div class="section-kicker">CUSTOM SELECTION</div>
+          <div class="section-title-row">
+            <h2 class="section-title">시공 품목 및 공간별 자재 선택</h2>
+            <span id="badgeItems" class="req-badge">필수</span>
+          </div>
+          <p class="section-note">원하시는 구역을 터치하면 바로 아래 소형 자재 버튼이 열려 공간마다 다르게 선택할 수 있습니다.</p>
+        </div>
+
+        <div class="service-tabs">
+          <button type="button" class="service-tab active" data-tab="grout" onclick="switchTab('grout')">
+            <span class="tab-num">01</span>
+            <span class="tab-label">프리미엄 줄눈</span>
+          </button>
+          <button type="button" class="service-tab" data-tab="screen" onclick="switchTab('screen')">
+            <span class="tab-num">02</span>
+            <span class="tab-label">블랙스텐 방충망</span>
+          </button>
+          <button type="button" class="service-tab" data-tab="coating" onclick="switchTab('coating')">
+            <span class="tab-num">03</span>
+            <span class="tab-label">욕실·타일 코팅</span>
+          </button>
+          <button type="button" class="service-tab" data-tab="silicone" onclick="switchTab('silicone')">
+            <span class="tab-num">04</span>
+            <span class="tab-label">항균 바이오 실리콘</span>
+          </button>
+        </div>
+
+        <div id="servicePanel" class="panel-card"></div>
+        <div id="errItems" class="field-error-msg">시공하실 구역을 1개 이상 선택해 주세요.</div>
+      </section>
+
+      <!-- 거주 상태 및 현장 정보 선택 (필수) -->
+      <section id="residenceSection" class="section-block">
+        <div class="section-head">
+          <div class="section-kicker">RESIDENCE STATUS</div>
+          <div class="section-title-row">
+            <h2 class="section-title">거주 상태 및 현장 정보</h2>
+            <span id="badgeResidence" class="req-badge">거주상태 필수</span>
+          </div>
+          <p class="section-note">연식 및 거주 상태 체크와 지역·아파트명·평수 입력은 필수입니다.</p>
+        </div>
+
+        <div id="resGroupBox" class="res-group-box">
+          <!-- 1행: 신축 / 준신축 / 구축 / 거주 중 4열 가로 배치 -->
+          <div class="res-row-top">
+            <button type="button" class="res-card" data-res="신축 (올해 준공 입주)" onclick="toggleResidence(this)">
+              <span class="res-title">신축</span>
+              <span class="res-desc">올해 준공 입주</span>
+            </button>
+            <button type="button" class="res-card" data-res="준신축 (2~4년)" onclick="toggleResidence(this)">
+              <span class="res-title">준신축</span>
+              <span class="res-desc">2~4년</span>
+            </button>
+            <button type="button" class="res-card" data-res="구축 (5년 이상)" onclick="toggleResidence(this)">
+              <span class="res-title">구축</span>
+              <span class="res-desc">5년 이상</span>
+            </button>
+            <button type="button" class="res-card" data-res="거주 중" onclick="toggleResidence(this)">
+              <span class="res-title">거주 중</span>
+              <span class="res-desc">현재 거주</span>
+            </button>
+          </div>
+
+          <!-- 2행: 리모델링 공사 후 카드 + 지역·아파트·평수 필수 입력 카드 -->
+          <div class="res-row-bottom">
+            <button type="button" class="res-card left-align" data-res="리모델링 공사 후" onclick="toggleResidence(this)">
+              <span class="res-title">리모델링 공사 후</span>
+              <span class="res-desc">인테리어 완료 후 입주 전</span>
+            </button>
+            <div id="siteCardBox" class="site-card">
+              <div class="site-card-head">
+                <label class="site-card-label" for="clientRegion">지역 · 아파트명 · 평수</label>
+                <span id="badgeSite" class="req-badge">필수</span>
+              </div>
+              <input id="clientRegion" class="site-card-input" type="text" placeholder="예: 부산, 감만우성, 34평" oninput="onSiteInput()" />
+              <div id="siteParsedPreview" class="site-parsed-bar"></div>
+            </div>
           </div>
         </div>
-      </div>
-      <div id="errResidence" class="field-error-msg">거주 상태(신축·준신축·구축·거주 중·리모델링 중 1개 이상)를 선택해 주세요.</div>
-      <div id="errSite" class="field-error-msg">지역, 아파트명, 평수를 모두 입력해 주세요 (예: 부산, 감만우성, 34평).</div>
-    </section>
+        <div id="errResidence" class="field-error-msg">거주 상태(신축·준신축·구축·거주 중·리모델링 중 1개 이상)를 선택해 주세요.</div>
+        <div id="errSite" class="field-error-msg">지역, 아파트명, 평수를 모두 입력해 주세요 (예: 부산, 감만우성, 34평).</div>
+      </section>
 
-    <!-- 시공 희망 날짜 (필수 · 인라인 멀티 날짜 달력 + 빠른 일정 옵션) -->
-    <section id="scheduleSection" class="section-block">
-      <div class="section-head">
-        <div class="section-kicker">PREFERRED SCHEDULE</div>
-        <div class="section-title-row">
-          <h2 class="section-title">시공 희망 날짜</h2>
-          <span id="badgeSchedule" class="req-badge">필수</span>
-        </div>
-        <p class="section-note">1일 시공부터 2~4일 연속 시공까지 희망 날짜를 선택하거나 아래 빠른 일정 옵션을 체크해 주세요.</p>
-      </div>
-
-      <div id="scheduleCardBox" class="schedule-card">
-        <div class="cal-topbar">
-          <button type="button" id="calPrevBtn" class="cal-nav-btn" onclick="changeCalMonth(-1)" aria-label="이전 달">&lt;</button>
-          <div id="calMonthTitle" class="cal-month-title"></div>
-          <button type="button" id="calNextBtn" class="cal-nav-btn" onclick="changeCalMonth(1)" aria-label="다음 달">&gt;</button>
+      <!-- 시공 희망 날짜 (필수 · 인라인 멀티 날짜 달력 + 빠른 일정 옵션) -->
+      <section id="scheduleSection" class="section-block">
+        <div class="section-head">
+          <div class="section-kicker">PREFERRED SCHEDULE</div>
+          <div class="section-title-row">
+            <h2 class="section-title">시공 희망 날짜</h2>
+            <span id="badgeSchedule" class="req-badge">필수</span>
+          </div>
+          <p class="section-note">1일 시공부터 2~4일 연속 시공까지 희망 날짜를 선택하거나 아래 빠른 일정 옵션을 체크해 주세요.</p>
         </div>
 
-        <div class="cal-weekdays">
-          <div class="cal-weekday sun">일</div>
-          <div class="cal-weekday">월</div>
-          <div class="cal-weekday">화</div>
-          <div class="cal-weekday">수</div>
-          <div class="cal-weekday">목</div>
-          <div class="cal-weekday">금</div>
-          <div class="cal-weekday sat">토</div>
+        <div id="scheduleCardBox" class="schedule-card">
+          <div class="cal-topbar">
+            <button type="button" id="calPrevBtn" class="cal-nav-btn" onclick="changeCalMonth(-1)" aria-label="이전 달">&lt;</button>
+            <div id="calMonthTitle" class="cal-month-title"></div>
+            <button type="button" id="calNextBtn" class="cal-nav-btn" onclick="changeCalMonth(1)" aria-label="다음 달">&gt;</button>
+          </div>
+
+          <div class="cal-weekdays">
+            <div class="cal-weekday sun">일</div>
+            <div class="cal-weekday">월</div>
+            <div class="cal-weekday">화</div>
+            <div class="cal-weekday">수</div>
+            <div class="cal-weekday">목</div>
+            <div class="cal-weekday">금</div>
+            <div class="cal-weekday sat">토</div>
+          </div>
+
+          <div id="calGrid" class="cal-grid"></div>
+          <div id="calSummaryWrap"></div>
+
+          <div class="date-opt-label">빠른 일정 옵션</div>
+          <div id="dateOptGrid" class="date-opt-grid"></div>
         </div>
+        <div id="errSchedule" class="field-error-msg">시공 희망 날짜를 달력에서 선택하거나 빠른 일정 옵션을 선택해 주세요.</div>
+      </section>
 
-        <div id="calGrid" class="cal-grid"></div>
-        <div id="calSummaryWrap"></div>
-
-        <div class="date-opt-label">빠른 일정 옵션</div>
-        <div id="dateOptGrid" class="date-opt-grid"></div>
-      </div>
-      <div id="errSchedule" class="field-error-msg">시공 희망 날짜를 달력에서 선택하거나 빠른 일정 옵션을 선택해 주세요.</div>
-    </section>
-
-    <!-- 실시간 장바구니 보드 -->
-    <section class="section-block">
-      <div class="cart-board">
-        <div class="cart-header">
-          <div class="cart-title">선택 내역 확인 (<span id="totalCount">0</span>건)</div>
-          <button type="button" class="reset-btn" onclick="resetAll()">전체 초기화</button>
+      <!-- 실시간 장바구니 보드 -->
+      <section class="section-block">
+        <div class="cart-board">
+          <div class="cart-header">
+            <div class="cart-title">선택 내역 확인 (<span id="totalCount">0</span>건)</div>
+            <button type="button" class="reset-btn" onclick="resetAll()">전체 초기화</button>
+          </div>
+          <div id="cartBody"></div>
         </div>
-        <div id="cartBody"></div>
-      </div>
-    </section>
-  </main>
+      </section>
+    </main>
+  </div>
 
   <footer class="footer">
     <div>부산딥클린 올인원 홈케어</div>
@@ -1566,13 +2242,27 @@
 
   <!-- 하단 고정 스마트 독 -->
   <div class="smart-dock">
-    <div class="dock-inner">
+    <div id="dockIntro" class="dock-inner">
+      <button type="button" class="dock-sms-btn" onclick="switchPage('quote')">셀프 견적 선택하고 문자 문의하기 &gt;</button>
+    </div>
+    <div id="dockQuote" class="dock-inner" style="display:none;">
       <button type="button" class="dock-copy-btn" onclick="copyEstimate()">내역 복사</button>
       <button type="button" class="dock-sms-btn" onclick="sendSms()">문자 견적 문의하기 (<span id="dockCount">0</span>건)</button>
     </div>
   </div>
 
   <div id="toast" class="toast"></div>
+
+  <!-- 제품 사진 확대 보기 모달 -->
+  <div id="lightboxModal" class="lightbox-backdrop" onclick="closeLightbox()">
+    <div class="lightbox-card" onclick="event.stopPropagation()">
+      <img id="lightboxImg" alt="제품 확대 사진" />
+      <div class="lightbox-bar">
+        <div id="lightboxTitle" class="lightbox-title"></div>
+        <button type="button" class="lightbox-close" onclick="closeLightbox()">닫기</button>
+      </div>
+    </div>
+  </div>
 
   <!-- 사장님 관리자 모드 모달 -->
   <div id="adminModal" class="modal-backdrop">
@@ -1581,6 +2271,11 @@
         <div class="modal-title">사장님 관리자 모드</div>
         <button type="button" class="modal-close" onclick="closeAdmin()">닫기</button>
       </div>
+
+      <!-- 관리자 계산기(dc6831.html) 바로 접속 버튼 -->
+      <a class="admin-calc-link" href="https://busandeepclean.co.kr/dc6831.html" target="_blank" rel="noopener">
+        사장님 전용 견적 계산기 바로 열기 (dc6831.html) &gt;
+      </a>
 
       <div>
         <label class="admin-label">상담 수신 전화번호</label>
@@ -1600,23 +2295,9 @@
       </div>
 
       <div class="admin-section">
-        <div class="admin-label">4대 시공 실사진 교체 (기본값: 깃허브 1.png ~ 4.png 자동 연결)</div>
-        <div class="admin-photo-row">
-          <span>01 프리미엄 줄눈 (1.png)</span>
-          <input type="file" accept="image/*" onchange="handlePhotoUpload(event, 'grout')" />
-        </div>
-        <div class="admin-photo-row">
-          <span>02 블랙스텐 방충망 (2.png)</span>
-          <input type="file" accept="image/*" onchange="handlePhotoUpload(event, 'screen')" />
-        </div>
-        <div class="admin-photo-row">
-          <span>03 욕실·타일 코팅 (3.png)</span>
-          <input type="file" accept="image/*" onchange="handlePhotoUpload(event, 'coating')" />
-        </div>
-        <div class="admin-photo-row">
-          <span>04 항균 바이오 실리콘 (4.png)</span>
-          <input type="file" accept="image/*" onchange="handlePhotoUpload(event, 'silicone')" />
-        </div>
+        <div class="admin-label">제품 실사진 12종 개별 교체 (기본값: 깃허브 줄눈1 ~ 실리콘12 자동 연결)</div>
+        <div id="adminPhotoRows"></div>
+        <button type="button" class="reset-btn" style="width:100%; padding:9px; margin-top:4px;" onclick="resetPhotosToGithub()">깃허브 기본 파일명(줄눈1~실리콘12)으로 초기화</button>
       </div>
 
       <div class="admin-section">
@@ -1633,28 +2314,38 @@
   </div>
 
   <script>
-    const STORAGE_KEY = 'busandeepclean_master_v5';
+    const STORAGE_KEY = 'busandeepclean_master_v7';
     const CALC_BASE_URL = 'https://busandeepclean.co.kr/dc6831.html';
 
-    function makeFallbackSvg(num, title, subtitle, bg1, bg2) {
-      const svg = '<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">' +
-        '<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1">' +
-        '<stop offset="0%" stop-color="' + bg1 + '"/><stop offset="100%" stop-color="' + bg2 + '"/>' +
-        '</linearGradient></defs>' +
-        '<rect width="800" height="600" fill="url(#g)"/>' +
-        '<text x="54" y="110" fill="rgba(255,255,255,0.75)" font-family="sans-serif" font-size="30" font-weight="700">BUSAN DEEP CLEAN · ' + num + '</text>' +
-        '<text x="54" y="310" fill="#FFFFFF" font-family="sans-serif" font-size="54" font-weight="800">' + title + '</text>' +
-        '<text x="54" y="375" fill="rgba(255,255,255,0.88)" font-family="sans-serif" font-size="28" font-weight="600">' + subtitle + '</text>' +
+    /* 깃허브 저장소 내 제품 실사진 12종 파일명 매핑 (.jpg / .png / .jpeg / .webp 자동 탐지) */
+    const PRODUCT_IMAGE_SLOTS = [
+      { key: 'p1',  imgId: 'prodImg1',  base: '줄눈1',   label: '01 스타라이크 프로', bg: '#047857' },
+      { key: 'p2',  imgId: 'prodImg2',  base: '줄눈2',   label: '02 아스팍톤',       bg: '#B45309' },
+      { key: 'p3',  imgId: 'prodImg3',  base: '줄눈3',   label: '03 아스팍샤인',     bg: '#4338CA' },
+      { key: 'p4',  imgId: 'prodImg4',  base: '줄눈4',   label: '04 폴리아스파틱',   bg: '#1D4ED8' },
+      { key: 'p5',  imgId: 'prodImg5',  base: '방충망5', label: '05 블랙스텐 방충망', bg: '#047857' },
+      { key: 'p6',  imgId: 'prodImg6',  base: '방충망6', label: '06 미세 촘촘망',     bg: '#B45309' },
+      { key: 'p7',  imgId: 'prodImg7',  base: '방충망7', label: '07 알루미늄망',      bg: '#1D4ED8' },
+      { key: 'p8',  imgId: 'prodImg8',  base: '코팅8',   label: '08 아크바리아 700 Z', bg: '#047857' },
+      { key: 'p9',  imgId: 'prodImg9',  base: '코팅9',   label: '09 아크바리아 700 X', bg: '#B45309' },
+      { key: 'p10', imgId: 'prodImg10', base: '코팅10',  label: '10 아크바리아 700 R', bg: '#1D4ED8' },
+      { key: 'p11', imgId: 'prodImg11', base: '실리콘11', label: '11 바이오실리콘 무펄', bg: '#047857' },
+      { key: 'p12', imgId: 'prodImg12', base: '실리콘12', label: '12 바이오실리콘 펄',  bg: '#1D4ED8' }
+    ];
+
+    const EXT_CANDIDATES = ['.jpg', '.png', '.jpeg', '.webp', '.JPG', '.PNG', '.JPEG'];
+
+    function makePlaceholderSvg(baseName, accentColor) {
+      const svg = '<svg xmlns="http://www.w3.org/2000/svg" width="240" height="240" viewBox="0 0 240 240">' +
+        '<rect width="240" height="240" fill="#F5F5F4"/>' +
+        '<rect x="18" y="18" width="204" height="204" rx="18" fill="#FFFFFF" stroke="#E7E5E4" stroke-width="3"/>' +
+        '<rect x="66" y="54" width="108" height="32" rx="16" fill="' + accentColor + '"/>' +
+        '<text x="120" y="75" text-anchor="middle" fill="#FFFFFF" font-family="sans-serif" font-size="14" font-weight="800">정품 자재</text>' +
+        '<text x="120" y="138" text-anchor="middle" fill="#1C1917" font-family="sans-serif" font-size="28" font-weight="800">' + baseName + '</text>' +
+        '<text x="120" y="172" text-anchor="middle" fill="#78716C" font-family="sans-serif" font-size="14" font-weight="600">사진 등록 대기</text>' +
         '</svg>';
       return 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(svg);
     }
-
-    const FALLBACK_PHOTOS = {
-      grout: makeFallbackSvg('01', '프리미엄 줄눈 시공', '스타라이크 프로 · 아스팍톤 · 아스팍샤인 · 폴리', '#065F46', '#047857'),
-      screen: makeFallbackSvg('02', '블랙스텐 방충망', '물구멍 스티커 및 모헤어 교체 포함', '#1E3A8A', '#1D4ED8'),
-      coating: makeFallbackSvg('03', '욕실 · 타일 코팅', '일본 아크바리아 700 Z · X · R 정품 시공', '#92400E', '#B45309'),
-      silicone: makeFallbackSvg('04', '항균 바이오 실리콘', '기존 실리콘 제거 후 무펄 · 펄 정석 마감', '#292524', '#44403C')
-    };
 
     const defaultConfig = {
       phone: '01049446831',
@@ -1662,12 +2353,7 @@
       youtube: 'https://www.youtube.com/channel/UChThxOIUbsBCIYgWad-3FuQ',
       insta: 'https://www.instagram.com/deep_clean_6831',
       pw: '0000',
-      photos: {
-        grout: '1.png',
-        screen: '2.png',
-        coating: '3.png',
-        silicone: '4.png'
-      }
+      productPhotos: {}
     };
 
     let config = JSON.parse(JSON.stringify(defaultConfig));
@@ -1678,29 +2364,58 @@
         if (saved) {
           const parsed = JSON.parse(saved);
           config = Object.assign({}, defaultConfig, parsed);
-          config.photos = Object.assign({}, defaultConfig.photos, parsed.photos || {});
+          config.productPhotos = Object.assign({}, parsed.productPhotos || {});
         }
       } catch (e) {}
       applyConfigToDom();
     }
 
-    function setPhotoWithFallback(imgId, key) {
-      const imgEl = document.getElementById(imgId);
-      imgEl.onerror = function () {
-        this.onerror = null;
-        this.src = FALLBACK_PHOTOS[key];
-      };
-      imgEl.src = config.photos[key] || defaultConfig.photos[key];
+    function bindGithubPhoto(slot) {
+      const imgEl = document.getElementById(slot.imgId);
+      if (!imgEl) return;
+
+      const customSrc = config.productPhotos && config.productPhotos[slot.key];
+      if (customSrc) {
+        imgEl.onerror = function () {
+          this.onerror = null;
+          this.src = makePlaceholderSvg(slot.base, slot.bg);
+        };
+        imgEl.src = customSrc;
+        return;
+      }
+
+      let idx = 0;
+      function tryNext() {
+        if (idx >= EXT_CANDIDATES.length) {
+          imgEl.onerror = null;
+          imgEl.src = makePlaceholderSvg(slot.base, slot.bg);
+          return;
+        }
+        const candidate = encodeURI(slot.base + EXT_CANDIDATES[idx]);
+        idx += 1;
+        imgEl.onerror = tryNext;
+        imgEl.src = candidate;
+      }
+      tryNext();
     }
 
     function applyConfigToDom() {
       document.getElementById('linkBlog').href = config.blog;
       document.getElementById('linkYoutube').href = config.youtube;
       document.getElementById('linkInsta').href = config.insta;
-      setPhotoWithFallback('imgGrout', 'grout');
-      setPhotoWithFallback('imgScreen', 'screen');
-      setPhotoWithFallback('imgCoating', 'coating');
-      setPhotoWithFallback('imgSilicone', 'silicone');
+      PRODUCT_IMAGE_SLOTS.forEach(bindGithubPhoto);
+    }
+
+    function openLightbox(imgId, title) {
+      const imgEl = document.getElementById(imgId);
+      if (!imgEl || !imgEl.src) return;
+      document.getElementById('lightboxImg').src = imgEl.src;
+      document.getElementById('lightboxTitle').textContent = title;
+      document.getElementById('lightboxModal').classList.add('open');
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightboxModal').classList.remove('open');
     }
 
     const CATALOG = {
@@ -1790,6 +2505,7 @@
     const TODAY_D = TODAY_NOW.getDate();
 
     const state = {
+      currentPage: 'intro',
       activeTab: 'grout',
       groutMap: {},
       groutLivingNote: '',
@@ -1807,7 +2523,34 @@
       dateOptions: []
     };
 
-    /* 지역 · 아파트명 · 평수 실시간 분석 (예: "부산, 감만우성, 34평" 또는 "부산 남구 해링턴 마레 84타입") */
+    /* 2페이지 전환 제어 */
+    function switchPage(pageKey, opts) {
+      const target = pageKey === 'quote' ? 'quote' : 'intro';
+      state.currentPage = target;
+
+      document.getElementById('pageIntro').classList.toggle('active', target === 'intro');
+      document.getElementById('pageQuote').classList.toggle('active', target === 'quote');
+
+      document.getElementById('navBtnIntro').classList.toggle('active', target === 'intro');
+      document.getElementById('navBtnQuote').classList.toggle('active', target === 'quote');
+
+      document.getElementById('dockIntro').style.display = target === 'intro' ? 'flex' : 'none';
+      document.getElementById('dockQuote').style.display = target === 'quote' ? 'flex' : 'none';
+
+      if (!opts || !opts.skipScroll) {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    function scrollToProduct(articleId) {
+      switchPage('intro', { skipScroll: true });
+      const el = document.getElementById(articleId);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    /* 지역 · 아파트명 · 평수 실시간 분석 */
     const REGION_KEYWORDS = ['부산', '양산', '김해', '창원', '울산', '밀양', '진해', '마산', '거제', '경남'];
     const TYPE_TO_PYEONG = {
       '59': 25,
@@ -2222,11 +2965,11 @@
 
         summaryWrap.innerHTML = '<div class="cal-summary-box">' +
           '<div class="cal-summary-top">' +
-            '<div class="cal-summary-left">' +
-              '<span class="cal-count-pill">총 ' + state.selectedDates.length + '일 선택</span>' +
-              '<span class="cal-range-text">' + escapeHtml(formatDateRanges(state.selectedDates)) + '</span>' +
-            '</div>' +
-            '<button type="button" class="cal-clear-btn" onclick="clearSelectedDates()">날짜 지우기</button>' +
+          '<div class="cal-summary-left">' +
+          '<span class="cal-count-pill">총 ' + state.selectedDates.length + '일 선택</span>' +
+          '<span class="cal-range-text">' + escapeHtml(formatDateRanges(state.selectedDates)) + '</span>' +
+          '</div>' +
+          '<button type="button" class="cal-clear-btn" onclick="clearSelectedDates()">날짜 지우기</button>' +
           '</div>' +
           '<div class="cal-chips-wrap">' + chipsHtml + '</div>' +
           '</div>';
@@ -2248,6 +2991,7 @@
     }
 
     function jumpToService(tabKey) {
+      switchPage('quote', { skipScroll: true });
       switchTab(tabKey);
       const el = document.getElementById('estimatorSection');
       if (el) {
@@ -2264,8 +3008,26 @@
       renderPanel();
     }
 
+    /* 3가지 자재(방충망, 코팅)는 1줄 3열 고정 / 4가지(줄눈)와 2가지(실리콘)는 자연 배치 */
     function renderMiniChips(serviceKey, selectedMatId, onSelectExpr, onClearExpr) {
       const mats = CATALOG[serviceKey].materials;
+      if (mats.length === 3) {
+        let html = '<div class="mini-chip-bar-3col" onclick="event.stopPropagation()">';
+        html += '<div class="mini-chip-grid-3">';
+        mats.forEach(function (m) {
+          const isSel = selectedMatId === m.id;
+          const activeCls = isSel ? ' active-' + m.tone : '';
+          html += '<button type="button" class="mini-chip' + activeCls + '" onclick="' + onSelectExpr.replace('__MAT__', m.id) + '">' +
+            '<span class="mini-dot dot-' + m.tone + '"></span>' +
+            '<span>' + m.name + '</span>' +
+            '</button>';
+        });
+        html += '</div>';
+        html += '<div class="mini-clear-row"><button type="button" class="mini-clear" onclick="' + onClearExpr + '">해제</button></div>';
+        html += '</div>';
+        return html;
+      }
+
       let html = '<div class="mini-chip-bar" onclick="event.stopPropagation()">';
       mats.forEach(function (m) {
         const isSel = selectedMatId === m.id;
@@ -2319,16 +3081,16 @@
 
           html += '<div class="zone-card' + cardCls + '">' +
             '<div class="zone-header" onclick="toggleScreenRow(\'' + w.name + '\')">' +
-              '<div class="zone-info">' +
-                '<div class="zone-title">' + w.name +
-                  (count > 0 ? ' <span class="mapped-badge pill-' + tone + '">' + activeMat + '</span>' : '') +
-                '</div>' +
-              '</div>' +
-              '<div class="stepper" onclick="event.stopPropagation()">' +
-                '<button type="button" class="step-btn" onclick="changeScreenCount(\'' + w.name + '\', -1)">-</button>' +
-                '<span class="step-val">' + count + '</span>' +
-                '<button type="button" class="step-btn" onclick="changeScreenCount(\'' + w.name + '\', 1)">+</button>' +
-              '</div>' +
+            '<div class="zone-info">' +
+            '<div class="zone-title">' + w.name +
+            (count > 0 ? ' <span class="mapped-badge pill-' + tone + '">' + activeMat + '</span>' : '') +
+            '</div>' +
+            '</div>' +
+            '<div class="stepper" onclick="event.stopPropagation()">' +
+            '<button type="button" class="step-btn" onclick="changeScreenCount(\'' + w.name + '\', -1)">-</button>' +
+            '<span class="step-val">' + count + '</span>' +
+            '<button type="button" class="step-btn" onclick="changeScreenCount(\'' + w.name + '\', 1)">+</button>' +
+            '</div>' +
             '</div>';
 
           if (count > 0) {
@@ -2400,8 +3162,8 @@
 
       return '<div class="zone-card' + cardCls + '">' +
         '<div class="zone-header" onclick="toggleZone(\'' + serviceKey + '\', \'' + zoneName + '\', \'' + defaultMat + '\')">' +
-          '<div class="zone-info"><div class="zone-title">' + zoneName + recHtml + '</div></div>' +
-          rightHtml +
+        '<div class="zone-info"><div class="zone-title">' + zoneName + recHtml + '</div></div>' +
+        rightHtml +
         '</div>' +
         chipsHtml +
         '</div>';
@@ -2421,8 +3183,8 @@
           const tone = getToneClass(serviceKey, item.mat);
           html += '<div class="zone-card mapped tone-border-' + tone + '">' +
             '<div class="zone-header">' +
-              '<div class="zone-info"><div class="zone-title">' + escapeHtml(item.name) + '</div></div>' +
-              '<span class="mapped-badge pill-' + tone + '">' + item.mat + '</span>' +
+            '<div class="zone-info"><div class="zone-title">' + escapeHtml(item.name) + '</div></div>' +
+            '<span class="mapped-badge pill-' + tone + '">' + item.mat + '</span>' +
             '</div>' +
             renderMiniChips(
               serviceKey,
@@ -2451,8 +3213,8 @@
           const tone = getToneClass('screen', item.mat);
           html += '<div class="zone-card mapped tone-border-' + tone + '">' +
             '<div class="zone-header">' +
-              '<div class="zone-info"><div class="zone-title">' + escapeHtml(item.name) + ' (' + item.count + '개)</div></div>' +
-              '<span class="mapped-badge pill-' + tone + '">' + item.mat + '</span>' +
+            '<div class="zone-info"><div class="zone-title">' + escapeHtml(item.name) + ' (' + item.count + '개)</div></div>' +
+            '<span class="mapped-badge pill-' + tone + '">' + item.mat + '</span>' +
             '</div>' +
             renderMiniChips(
               'screen',
@@ -2736,8 +3498,8 @@
       if (scheduleText) {
         html += '<div class="cart-group"><div class="cart-group-name">시공 희망 날짜</div>' +
           '<div class="cart-item">' +
-            '<span class="cart-item-text">' + escapeHtml(scheduleText) + '</span>' +
-            '<button type="button" class="cart-del" onclick="clearScheduleAll()">삭제</button>' +
+          '<span class="cart-item-text">' + escapeHtml(scheduleText) + '</span>' +
+          '<button type="button" class="cart-del" onclick="clearScheduleAll()">삭제</button>' +
           '</div></div>';
       }
 
@@ -2787,7 +3549,7 @@
       showToast('선택 내역이 초기화되었습니다');
     }
 
-    /* 사장님 전용 원터치 계산기 링크 생성 (가격 정보 없음 · 지역/단지/평수 자동 분리 포함) */
+    /* 사장님 전용 계산기(dc6831.html) 원터치 연동 링크 생성 (최종코드 5 100% 동일 규격) */
     function encodeBase64Url(str) {
       const bytes = new TextEncoder().encode(str);
       let bin = '';
@@ -2962,6 +3724,18 @@
     }
 
     /* 관리자 모드 */
+    function renderAdminPhotoRows() {
+      const wrap = document.getElementById('adminPhotoRows');
+      let html = '';
+      PRODUCT_IMAGE_SLOTS.forEach(function (slot) {
+        html += '<div class="admin-photo-row">' +
+          '<span>' + slot.label + ' (' + slot.base + ')</span>' +
+          '<input type="file" accept="image/*" onchange="handleProductPhotoUpload(event, \'' + slot.key + '\')" />' +
+          '</div>';
+      });
+      wrap.innerHTML = html;
+    }
+
     function openAdmin() {
       const input = prompt('관리자 비밀번호를 입력해 주세요');
       if (input === null) return;
@@ -2974,6 +3748,7 @@
       document.getElementById('cfgYoutube').value = config.youtube;
       document.getElementById('cfgInsta').value = config.insta;
       document.getElementById('cfgPw').value = config.pw;
+      renderAdminPhotoRows();
       document.getElementById('adminModal').classList.add('open');
     }
 
@@ -2995,28 +3770,35 @@
       showToast('관리자 설정이 저장되었습니다');
     }
 
-    function handlePhotoUpload(event, key) {
+    function handleProductPhotoUpload(event, key) {
       const file = event.target.files && event.target.files[0];
       if (!file) return;
       const reader = new FileReader();
       reader.onload = function (e) {
         const img = new Image();
         img.onload = function () {
-          const maxW = 800;
+          const maxW = 700;
           const scale = Math.min(1, maxW / img.width);
           const canvas = document.createElement('canvas');
           canvas.width = Math.round(img.width * scale);
           canvas.height = Math.round(img.height * scale);
           const ctx = canvas.getContext('2d');
           ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-          config.photos[key] = canvas.toDataURL('image/jpeg', 0.78);
+          config.productPhotos[key] = canvas.toDataURL('image/jpeg', 0.8);
           localStorage.setItem(STORAGE_KEY, JSON.stringify(config));
           applyConfigToDom();
-          showToast('사진이 압축되어 반영되었습니다');
+          showToast('제품 사진이 압축되어 반영되었습니다');
         };
         img.src = e.target.result;
       };
       reader.readAsDataURL(file);
+    }
+
+    function resetPhotosToGithub() {
+      config.productPhotos = {};
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(config));
+      applyConfigToDom();
+      showToast('깃허브 기본 파일명(줄눈1~실리콘12) 연결로 초기화되었습니다');
     }
 
     function exportBackup() {
@@ -3037,7 +3819,7 @@
         try {
           const parsed = JSON.parse(e.target.result);
           config = Object.assign({}, defaultConfig, parsed);
-          config.photos = Object.assign({}, defaultConfig.photos, parsed.photos || {});
+          config.productPhotos = Object.assign({}, parsed.productPhotos || {});
           localStorage.setItem(STORAGE_KEY, JSON.stringify(config));
           applyConfigToDom();
           showToast('백업 데이터가 복원되었습니다');
@@ -3065,3 +3847,4 @@
   </script>
 </body>
 </html>
+홈페이지 최종코드(7) 2페이지 최종완성(줄눈1~실리콘12).txt 표시 중입니다.
